@@ -7,6 +7,9 @@ public class TrainingRecordSystem {
 
 		String userName;
 		String password;
+
+		// Load user information - *For test only*
+		Trainee[] trainee = new Trainee{("e1", "e"), ("e2", "e"), ("e3", "e")};
 		
 		System.out.println("**********************************");
 		System.out.println(" Welcome to Training Record System");
@@ -14,7 +17,8 @@ public class TrainingRecordSystem {
 		
 		Scanner scanner = new Scanner(System.in);
 
-		
+		System.out.pirnt("Please enter your user name: ");
+
 		scanner.close();
 	}
 }

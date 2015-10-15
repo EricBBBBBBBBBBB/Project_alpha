@@ -9,9 +9,8 @@ class Users{
 }
 	
 class Trainee{
-	
 	//data member
-	public static int TraineeID ;
+	public int TraineeID ;
 	private String displayName;
 	private int phone;
 	private String email;
@@ -29,14 +28,12 @@ class Trainee{
 	}
 	
 	Trainee(String name, String password){
-		
 		//username
 		userName = name;
 		
 		//encrypt password
 		CryptWithMD5 CMD5 = new CryptWithMD5();
 		cryptPassword = CryptWithMD5.cryptWithMD5(password);
-		
 	}
 	
 	//method
@@ -55,7 +52,6 @@ class Trainee{
 }
 
 class Trainer{
-	
 	//data member
 	public static int TrainerID ;
 	private String displayName;
