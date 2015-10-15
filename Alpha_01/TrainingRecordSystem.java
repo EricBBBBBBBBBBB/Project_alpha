@@ -16,7 +16,7 @@ public class TrainingRecordSystem {
 		};
 		Trainer[] trainer = {
 			new Trainer("r1", "r"), 
-			new Trainer{("r2", "r")
+			new Trainer("r2", "r")
 		};
 		Admin[] admin = {
 			new Admin("adm", "a")
@@ -29,7 +29,7 @@ public class TrainingRecordSystem {
 		
 		Scanner scanner = new Scanner(System.in);
 
-		System.out.pirnt("Please enter your user name: ");
+		System.out.print("Please enter your user name: ");
 
 		scanner.close();
 	}
