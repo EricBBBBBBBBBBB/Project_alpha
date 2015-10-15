@@ -15,6 +15,7 @@ public class TrainingRecordSystem {
 
 		String userName;
 		String password;
+		int userID;
 
 		boolean success = false;
 
@@ -30,36 +31,41 @@ public class TrainingRecordSystem {
 			new Users("adm", "a", "admin")
 		};
 
-		System.out.println("**********************************");
+		System.out.println("***********************************");
 		System.out.println(" Welcome to Training Record System");
-		System.out.println("**********************************");
+		System.out.println("***********************************");
 		
 		Scanner scanner = new Scanner(System.in);
+		
+		do{
+			//input username & password
+			System.out.print("Please enter your user name: ");
+			while ((userName = scanner.nextLine()).isEmpty()){
+				System.out.print("User name cannot be empty, Please enter again: ");
+			} 
+			System.out.print("Please enter your password: ");
+			while ((password = scanner.nextLine()).isEmpty()){
+				System.out.print("Password cannot be empty, Please enter again: ");
+			} 
+			//CryptWithMD5 CMD5 = new CryptWithMD5();
+			password = CryptWithMD5.cryptWithMD5(password);
 
-		//input username & password
-		System.out.print("Please enter your user name: ");
-		while ((userName = scanner.nextLine()).isEmpty()){
-			System.out.print("User name cannot be empty, Please enter again: ");
-		} 
-		System.out.print("Please enter your password: ");
-		while ((password = scanner.nextLine()).isEmpty()){
-			System.out.print("Password cannot be empty, Please enter again: ");
-		} 
-		//CryptWithMD5 CMD5 = new CryptWithMD5();
-		password = CryptWithMD5.cryptWithMD5(password);
-
-		//User validate
-		for (int i = 0; i < users.length; i++) {
-			if(users[i].validateUser(userName, password)){
-				success = true;
-				System.out.println("\nLogin in successfully!");
-				System.out.println("The ID is " + users[i].userID);
-				break;
+			//User validate
+			for (int i = 0; i < users.length; i++) {
+				if(users[i].validateUser(userName, password)){
+					success = true;
+					userID = users[i].userID;
+					System.out.println("\nLogin in successfully!");
+					System.out.println("The ID is " + userID);
+					break;
+				}
 			}
-		}
-		if(success == false)
-			System.out.println("\nLogin fail, please login again.");
+			if(!success)
+				System.out.println("\nLogin fail, please login again.");
+			
+		}while(!success);		//repeat when login fail
 		
 		scanner.close();
+
 	}
 }
