@@ -28,8 +28,25 @@ public class TrainingRecordSystem {
 		System.out.println("**********************************");
 		
 		Scanner scanner = new Scanner(System.in);
-
-		System.out.print("Please enter your user name: ");
+	
+		do{
+			// enter user name
+			System.out.print("Please enter your user name: ");
+			while ((userName = scanner.nextLine()).isEmpty()){
+				System.out.print("User name cannot be empty, Please enter again: ");
+			} 
+			
+			//enter password
+			System.out.print("Please enter your password: ");
+			while ((password = scanner.nextLine()).isEmpty()){
+				System.out.print("Password cannot be empty, Please enter again: ");
+			} 
+			
+			//validate
+			if(trainee.validateUser(userName, password)) System.out.println("\nLogin in successfully!");
+				else System.out.println("\nLogin fail, please login again.");
+				
+		}while(!trainee.validateUser(userName, password));		//repeat if login fail
 
 		scanner.close();
 	}
