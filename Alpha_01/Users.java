@@ -49,6 +49,10 @@ class Trainee{
 		
 	}
 	
+	public boolean validateUser(String name, String password){
+		return (userName.equals(name) && cryptPassword.equals(CryptWithMD5.cryptWithMD5(password)));
+	}
+	
 }
 
 class Trainer{
