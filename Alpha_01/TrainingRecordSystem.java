@@ -9,9 +9,18 @@ public class TrainingRecordSystem {
 		String password;
 
 		// Load user information - *For test only*
-		Trainee[] trainee = new Trainee{("e1", "e"), ("e2", "e"), ("e3", "e")};
-		Trainer[] trainer = new Trainer{("r1", "r"), ("r2", "r")};
-		Admin[] admin = new Admin{("adm", "a")};
+		Trainee[] trainee = {
+			new Trainee("e1", "e"),
+			new Trainee("e2", "e"), 
+			new Trainee("e3", "e")
+		};
+		Trainer[] trainer = {
+			new Trainer("r1", "r"), 
+			new Trainer{("r2", "r")
+		};
+		Admin[] admin = {
+			new Admin("adm", "a")
+		};
 
 		
 		System.out.println("**********************************");
