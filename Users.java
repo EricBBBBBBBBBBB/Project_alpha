@@ -2,11 +2,11 @@ public class Trainee{
 	
 	//data member
 	public static int TraineeID ;
-	private String userName;
+	private String displayName;
 	private int phone;
 	private String email;
 	
-	private String acount;
+	private String userName;
 	private String cryptPassword;
 	
 	//constructor
@@ -48,11 +48,11 @@ public class Trainer{
 	
 	//data member
 	public static int TrainerID ;
-	private String userName;
+	private String displayName;
 	private int phone;
 	private String email;
 		
-	private String acount;
+	private String userName;
 	private String cryptPassword;
 	
 	//constructor
@@ -89,5 +89,40 @@ public class Trainer{
 	
 }
 
+public class Admin{
 
+	//data member
+	public static int AdminID ;
+	private String displayName;
+	private int phone;
+	private String email;
+		
+	private String userName;
+	private String cryptPassword;
+	
+	//constructor
+	Admin(){
+		
+	}
+	
+	Admin(String name){
+		
+	}
+	
+	Admin(String name, String password){
+		
+		//username
+		userName = name;
+		
+		//encrypt password
+		CryptWithMD5 CMD5 = new CryptWithMD5();
+		cryptPassword = CryptWithMD5.cryptWithMD5(password);
+		
+	}
+	
+	//method
+	
+	
+	
 
+}
