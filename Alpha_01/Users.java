@@ -1,138 +1,30 @@
-
 class Users{
-	
-	public static void main(String[] args) {
-	
-	
+	public int userID;
+	public String userName;
+	public String userType;
+	private String password;
+	protected String email;
+	protected String phone;
+	public static int totalNumOfUser = 0;
+
+	Users(){
+
 	}
 
-}
-	
-class Trainee{
-	//data member
-	public int TraineeID ;
-	private String displayName;
-	private int phone;
-	private String email;
-	
-	private String userName;
-	private String cryptPassword;
-	
-	//constructor
-	Trainee(){
-		
-	}
-	
-	Trainee(String name){
-		
-	}
-	
-	Trainee(String name, String password){
-		//username
-		userName = name;
-		
+	Users(String userName, String password, String userType){
+		this.userName = userName;
 		//encrypt password
-		CryptWithMD5 CMD5 = new CryptWithMD5();
-		cryptPassword = CryptWithMD5.cryptWithMD5(password);
+		//CryptWithMD5 CMD5 = new CryptWithMD5();
+		this.password = CryptWithMD5.cryptWithMD5(password);
+		this.userType = userType;
 	}
-	
-	//method
-	public void browse(){
-		
+
+	public boolean validateUser(String inName, String inPassword){
+		return (userName.equals(inName) && password.equals(inPassword));
 	}
-	
-	public void join(int cid){
-		
-	}
-	
-	public void display(){
-		
-	}
-	
-	public boolean validateUser(String name, String password){
-		return (userName.equals(name) && cryptPassword.equals(CryptWithMD5.cryptWithMD5(password)));
-	}
-	
 }
 
-class Trainer{
-	//data member
-	public static int TrainerID ;
-	private String displayName;
-	private int phone;
-	private String email;
-		
-	private String userName;
-	private String cryptPassword;
-	
-	//constructor
-	Trainer(){
-		
-	}
-	
-	Trainer(String name){
-		
-	}
-	
-	Trainer(String name, String password){
-		
-		//username
-		userName = name;
-		
-		//encrypt password
-		CryptWithMD5 CMD5 = new CryptWithMD5();
-		cryptPassword = CryptWithMD5.cryptWithMD5(password);
-		
-	}
-	
-	//method
-	public void list(){
-		
-		
-	}
-	
-	public void track(String name){
-		
-		
-	}
-	
-	
-}
-
-class Admin{
-
-	//data member
-	public static int AdminID ;
-	private String displayName;
-	private int phone;
-	private String email;
-		
-	private String userName;
-	private String cryptPassword;
-	
-	//constructor
-	Admin(){
-		
-	}
-	
-	Admin(String name){
-		
-	}
-	
-	Admin(String name, String password){
-		
-		//username
-		userName = name;
-		
-		//encrypt password
-		CryptWithMD5 CMD5 = new CryptWithMD5();
-		cryptPassword = CryptWithMD5.cryptWithMD5(password);
-		
-	}
-	
-	//method
-	
-	
-	
-
-}
+/*public static void main(String[] args) {
+	Array userTypeName[] = {"trainee", "trainer", "admin"};
+	userTypeName[userID];
+}*/

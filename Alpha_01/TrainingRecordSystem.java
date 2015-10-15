@@ -11,20 +11,17 @@ public class TrainingRecordSystem {
 		int loginID = -1;	// no login ID -> empty
 
 		// Load user information - *For test only*
-		Trainee[] trainee = {
-			new Trainee("e1", "e"),
-			new Trainee("e2", "e"), 
-			new Trainee("e3", "e")
-		};
-		Trainer[] trainer = {
-			new Trainer("r1", "r"), 
-			new Trainer("r2", "r")
-		};
-		Admin[] admin = {
-			new Admin("adm", "a")
+		Users[] users = {
+			new Users("e1", "e", "trainee"),
+			new Users("e2", "e", "trainee"),
+			new Users("e3", "e", "trainee"),
+
+			new Users("r1", "r", "trainer"),
+			new Users("r2", "r", "trainer"),
+
+			new Users("adm", "a", "admin")
 		};
 
-		
 		System.out.println("**********************************");
 		System.out.println(" Welcome to Training Record System");
 		System.out.println("**********************************");
@@ -39,8 +36,11 @@ public class TrainingRecordSystem {
 		while ((password = scanner.nextLine()).isEmpty()){
 			System.out.print("Password cannot be empty, Please enter again: ");
 		} 
-		for (int i = 0; i < trainee.length; i++) {
-			if(trainee[i].validateUser(userName, password)){
+		//CryptWithMD5 CMD5 = new CryptWithMD5();
+		password = CryptWithMD5.cryptWithMD5(password);
+
+		for (int i = 0; i < users.length; i++) {
+			if(users[i].validateUser(userName, password)){
 				System.out.println("\nLogin in successfully!");
 				loginID = i;
 				System.out.println("The ID is " + loginID);
