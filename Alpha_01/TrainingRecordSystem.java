@@ -10,6 +10,9 @@ public class TrainingRecordSystem {
 
 		// Load user information - *For test only*
 		Trainee[] trainee = new Trainee{("e1", "e"), ("e2", "e"), ("e3", "e")};
+		Trainer[] trainer = new Trainer{("r1", "r"), ("r2", "r")};
+		Admin[] admin = new Admin{("adm", "a")};
+
 		
 		System.out.println("**********************************");
 		System.out.println(" Welcome to Training Record System");
