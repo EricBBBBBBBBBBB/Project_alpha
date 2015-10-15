@@ -1,4 +1,14 @@
-public class Trainee{
+
+class Users{
+	
+	public static void main(String[] args) {
+	
+	
+	}
+
+}
+	
+class Trainee{
 	
 	//data member
 	public static int TraineeID ;
@@ -44,7 +54,7 @@ public class Trainee{
 	
 }
 
-public class Trainer{
+class Trainer{
 	
 	//data member
 	public static int TrainerID ;
@@ -89,7 +99,7 @@ public class Trainer{
 	
 }
 
-public class Admin{
+class Admin{
 
 	//data member
 	public static int AdminID ;
