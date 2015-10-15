@@ -1,4 +1,12 @@
+/********************************************
+* Project Team:	
+* Students: 
+* Couse: OOP 2015 Sem 1, HDIT
+*
+* TrainingRecordSystem.java: 
+********************************************/
 
+import java.io.*;
 import java.util.Scanner;
 
 public class TrainingRecordSystem {
@@ -8,7 +16,7 @@ public class TrainingRecordSystem {
 		String userName;
 		String password;
 
-		int loginID = -1;	// no login ID -> empty
+		boolean success = false;
 
 		// Load user information - *For test only*
 		Users[] users = {
@@ -28,6 +36,7 @@ public class TrainingRecordSystem {
 		
 		Scanner scanner = new Scanner(System.in);
 
+		//input username & password
 		System.out.print("Please enter your user name: ");
 		while ((userName = scanner.nextLine()).isEmpty()){
 			System.out.print("User name cannot be empty, Please enter again: ");
@@ -39,16 +48,18 @@ public class TrainingRecordSystem {
 		//CryptWithMD5 CMD5 = new CryptWithMD5();
 		password = CryptWithMD5.cryptWithMD5(password);
 
+		//User validate
 		for (int i = 0; i < users.length; i++) {
 			if(users[i].validateUser(userName, password)){
+				success = true;
 				System.out.println("\nLogin in successfully!");
-				loginID = i;
-				System.out.println("The ID is " + loginID);
+				System.out.println("The ID is " + users[i].userID);
 				break;
 			}
 		}
-		if(loginID == -1)
+		if(success == false)
 			System.out.println("\nLogin fail, please login again.");
+		
 		scanner.close();
 	}
 }
