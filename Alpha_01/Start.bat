@@ -1,2 +1,2 @@
 java TrainingRecordSystem
-pause
+pause 
