@@ -54,7 +54,8 @@ public class TrainingRecordSystem {
 			for (int i = 0; i < users.length; i++) {
 				if(users[i].validateUser(userName, password)){
 					success = true;
-					userID = users[i].userID;
+					userID = users[i].getUserID();
+					userName = users[i].getUserName();
 					System.out.println("\nLogin in successfully!");
 					System.out.println("The ID is " + userID);
 					break;
@@ -65,6 +66,9 @@ public class TrainingRecordSystem {
 			
 		}while(!success);		//repeat when login fail
 		
+		// menu for users
+		
+
 		scanner.close();
 
 	}

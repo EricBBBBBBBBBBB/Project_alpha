@@ -37,6 +37,18 @@ class Users{
 	public boolean validateUser(String inName, String inPassword){
 		return (userName.equals(inName) && password.equals(inPassword));
 	}
+
+	public String getUserName() {
+		return this.userName;
+	}
+
+	public String getUserType() {
+		return this.userType;
+	}
+
+	public int getUserID(){
+		return this.userID;
+	}
 	
 }
 
