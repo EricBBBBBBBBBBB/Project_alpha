@@ -62,7 +62,7 @@ class Login{
 			
 		}while(!this.loginSuccess);		//repeat when login fail
 		
-		scanner.close();
+		//scanner.close();
 
 		return users[userID];
 	}

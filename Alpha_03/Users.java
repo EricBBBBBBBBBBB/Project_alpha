@@ -16,6 +16,7 @@ class Users{
 	protected String email;
 	protected String phone;
 	public static int totalNumOfUser = 0;
+	public Courses courses;
 	
 	//constructors
 	Users(){
@@ -53,7 +54,7 @@ class Users{
 		return this.userID;
 	}
 
-	public void getUserInf() {	// for test ONLY
+	public void getUserInfo() {	// for test ONLY
 		System.out.println("*********** LOGIN INFORMATION (FOR TEST ONLY) ************");
 		System.out.println("userID: " + this.userID);
 		System.out.println("userName: " + this.userName);

@@ -9,36 +9,36 @@ import java.io.*;
 import java.util.*;
 
 class Menus{
-	//public char inChar;
+	public char inChar;
+	public Users user;
 	//data members
 	
 	
 	//constructors
-	Menus() {
-
+	Menus(Users user) {
+		this.user = user;
 	}
 	
 	
 	
 	//methods
-	public static void mainMenu(Users user) {
+	public void mainMenu() {
 		switch(user.getUserType()) {
 			case 0:
-				traineeMenu(user);
+				traineeMenu();
 				break;
 			case 1:
-				System.out.println("trainer Menu");
+				trainerMenu();
 				break;
 			case 2:
-				System.out.println("admin Menu");
+				adminMenu();
 				break;
 			default:
 				System.out.println("Unknown Comment");
 		}
 	}
 
-	public static void traineeMenu(Users user) {
-		char inChar;
+	public void traineeMenu() {
 		Scanner in = new Scanner(System.in);
 
 		System.out.println("------- Trainee Menu -------");
@@ -46,11 +46,7 @@ class Menus{
 		System.out.println("2. xxxxxxxxxxxxxxxxxxxxxx");
 		System.out.println("3. xxxxxxxxxxxxxxxxxxxxxx");
 		System.out.println("4. xxxxxxxxxxxxxxxxxxxxxx");
-		System.out.println("5. xxxxxxxxxxxxxxxxxxxxxx");
-		System.out.println("6. xxxxxxxxxxxxxxxxxxxxxx");
-		System.out.println("7. xxxxxxxxxxxxxxxxxxxxxx");
-		System.out.println("8. xxxxxxxxxxxxxxxxxxxxxx");
-		System.out.println("9. General Menu");
+		System.out.println("5. General Menu");
 		System.out.println("Enter q for quit.");
 
 
@@ -72,17 +68,83 @@ class Menus{
 			case '5':
 				System.out.println("You choose number 5");
 				break;
-			case '6':
-				System.out.println("You choose number 6");
+			case 'Q':
+			case 'q':
+				System.out.println("You choose Q ");
 				break;
-			case '7':
-				System.out.println("You choose number 7");
+		}
+
+		in.close();
+	}
+
+		public void trainerMenu() {
+		Scanner in = new Scanner(System.in);
+
+		System.out.println("------- Trainer Menu -------");
+		System.out.println("1. xxxxxxxxxxxxxxxxxxxxxx");
+		System.out.println("2. xxxxxxxxxxxxxxxxxxxxxx");
+		System.out.println("3. xxxxxxxxxxxxxxxxxxxxxx");
+		System.out.println("4. xxxxxxxxxxxxxxxxxxxxxx");
+		System.out.println("5. General Menu");
+		System.out.println("Enter q for quit.");
+
+
+		inChar = in.next().charAt(0);
+
+		switch(inChar) {
+			case '1':
+				System.out.println("You choose number 1");
 				break;
-			case '8':
-				System.out.println("You choose number 8");
+			case '2':
+				System.out.println("You choose number 2");
 				break;
-			case '9':
-				System.out.println("You choose number 9");
+			case '3':
+				System.out.println("You choose number 3");
+				break;
+			case '4':
+				System.out.println("You choose number 4");
+				break;
+			case '5':
+				System.out.println("You choose number 5");
+				break;
+			case 'Q':
+			case 'q':
+				System.out.println("You choose Q ");
+				break;
+		}
+
+		in.close();
+	}
+
+	public void adminMenu() {
+		Scanner in = new Scanner(System.in);
+
+		System.out.println("------- Admin Menu -------");
+		System.out.println("1. xxxxxxxxxxxxxxxxxxxxxx");
+		System.out.println("2. xxxxxxxxxxxxxxxxxxxxxx");
+		System.out.println("3. xxxxxxxxxxxxxxxxxxxxxx");
+		System.out.println("4. xxxxxxxxxxxxxxxxxxxxxx");
+		System.out.println("5. General Menu");
+		System.out.println("Enter q for quit.");
+
+
+		inChar = in.next().charAt(0);
+
+		switch(inChar) {
+			case '1':
+				System.out.println("You choose number 1");
+				break;
+			case '2':
+				System.out.println("You choose number 2");
+				break;
+			case '3':
+				System.out.println("You choose number 3");
+				break;
+			case '4':
+				System.out.println("You choose number 4");
+				break;
+			case '5':
+				System.out.println("You choose number 5");
 				break;
 			case 'Q':
 			case 'q':

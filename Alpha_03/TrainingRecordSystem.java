@@ -13,6 +13,13 @@ public class TrainingRecordSystem {
     //public Users loginUser = new Users();
 
 	public static void main(String[] args) {
+
+        // Load Courses information - *For test only*
+        Courses[] courses = {
+            new Courses("Learn How to Fuck Eric Fung"),
+            new Courses("Eric BB")
+        };
+
 		System.out.println("***********************************");
 		System.out.println(" Welcome to Training Record System ");
 		System.out.println("***********************************");
@@ -20,17 +27,22 @@ public class TrainingRecordSystem {
 		Login login = new Login(); //login
         Users loginUser = login.login();
 
-        loginUser.getUserInf();  // for test only
+        loginUser.getUserInfo();  // for test only
 
         if (!login.LoginStatus() || (loginUser.getUserName().equals("Unknown"))) {
             System.out.println("Login unsuccessful! Unknown Error....");
             return; //close the application
         }
 
-		
-        // Menu
-        //Menus.mainMenu(loginUser);
-        //Menus menu = new Menus(loginUser);
-		
+		Menus menus = new Menus(loginUser);
+        menus.mainMenu();
+
+        System.out.println("");
+        System.out.println("");
+        System.out.println("");
+
+        courses[0].getCourseInfo();
+        System.out.println("");
+        courses[1].getCourseInfo();
 	}
 }
