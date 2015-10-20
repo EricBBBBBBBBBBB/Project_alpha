@@ -1,2 +1,0 @@
-java TrainingRecordSystem
-pause
