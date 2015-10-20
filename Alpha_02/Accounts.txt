@@ -1,0 +1,5 @@
+e1	e	trainee 
+e2	e	trainee
+r1	r	trainer
+r2	r	trainer
+adm	a	administer
