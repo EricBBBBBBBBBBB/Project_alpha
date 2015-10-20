@@ -20,14 +20,17 @@ public class TrainingRecordSystem {
             new Courses("Eric BB")
         };
 
-		System.out.println("***********************************");
-		System.out.println(" Welcome to Training Record System ");
-		System.out.println("***********************************");
-		
+		System.out.println("*****************************************************");
+		System.out.println("* - - - - Welcome to Training Record System - - - - *");
+		System.out.println("*****************************************************");
+        System.out.println("");
+
+        System.out.println("");
+
 		Login login = new Login(); //login
         Users loginUser = login.login();
 
-        loginUser.getUserInfo();  // for test only
+        //loginUser.getUserInfo();  // for test only
 
         if (!login.LoginStatus() || (loginUser.getUserName().equals("Unknown"))) {
             System.out.println("Login unsuccessful! Unknown Error....");
@@ -41,8 +44,8 @@ public class TrainingRecordSystem {
         System.out.println("");
         System.out.println("");
 
-        courses[0].getCourseInfo();
-        System.out.println("");
-        courses[1].getCourseInfo();
+        //courses[0].getCourseInfo();
+        //System.out.println("");
+        //courses[1].getCourseInfo();
 	}
 }

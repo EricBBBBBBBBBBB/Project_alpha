@@ -32,15 +32,26 @@ class Login{
 	}
 	//methods
 	public Users login() {
-		
 		Scanner scanner = new Scanner(System.in);
-		
+
+
 		do{
+        System.out.println("-----------------------------------------------------");
+        System.out.println("-                   Login System                    -");
+        System.out.println("-----------------------------------------------------");
+        System.out.println("");
+        	System.out.println("");
 			//input username & password
+			System.out.println("(if you haven't got a user, please type signup)");
 			System.out.print("Please enter your user name: ");
 			while ((userName = scanner.nextLine()).isEmpty()){
 				System.out.print("User name cannot be empty, Please enter again: ");
 			} 
+			if (userName.equals("signup")) {
+				Register register = new Register();
+				register.register();	
+				continue;
+			}
 			System.out.print("Please enter your password: ");
 			while ((password = scanner.nextLine()).isEmpty()){
 				System.out.print("Password cannot be empty, Please enter again: ");
@@ -70,6 +81,10 @@ class Login{
 	
 	public boolean LoginStatus(){
 		return this.loginSuccess;
+	}
+
+	public Users[] getUserInfo() {
+		return users;
 	}
 	
 }
