@@ -21,7 +21,6 @@ class IOValidation{
 	public static boolean stringValid(String inStr) {
 		if(inStr.isEmpty()){
 			return false;
-		//} else if(Pattern.matches("[a-zA-Z&&[0-9]+]", inStr)) {
 		} else if(!inStr.matches("[A-Za-z0-9]+")) {
 			return false;
 		}
