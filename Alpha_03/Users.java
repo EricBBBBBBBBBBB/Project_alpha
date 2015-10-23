@@ -14,7 +14,7 @@ class Users{
 	private String userName;
 	private String password;
 	protected String email;
-	protected String phone;
+	protected int phone;
 	public static int totalNumOfUser = 0;
 	public Courses courses;
 	
@@ -42,6 +42,8 @@ class Users{
 		return (userName.equals(inName) && password.equals(inPassword));
 	}
 	
+	
+	/*GetInfo*/
 	public String getUserName() {
 		return this.userName;
 	}
@@ -53,13 +55,34 @@ class Users{
 	public int getUserID() {
 		return this.userID;
 	}
-
+	
 	public void getUserInfo() {	// for test ONLY
 		System.out.println("*********** LOGIN INFORMATION (FOR TEST ONLY) ************");
 		System.out.println("userID: " + this.userID);
 		System.out.println("userName: " + this.userName);
 		System.out.println("userType: " + this.userType);
 		System.out.println("*********** LOGIN INFORMATION (FOR TEST ONLY) ************");
+	}
+	
+	/*SetInfo*/
+	public void setUserName(String name) {
+		this.userName = name;
+	}
+	
+	public void setUserPassword(String pw) {
+		this.password = pw;
+	}
+		
+	public void setUserType(int type) {
+		this.userType = type;
+	}
+		
+	public void setUserEmail(String mail) {
+		this.email = mail;
+	}
+		
+	public void setUserPhone(int tel) {
+		this.phone = tel;
 	}
 	
 }
