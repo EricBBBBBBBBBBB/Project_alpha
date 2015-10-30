@@ -26,10 +26,10 @@ class Menus{
 				traineeMenu();
 				break;
 			case "Tariner":
-				traineeMenu();
+				trainerMenu();
 				break;
 			case "Admin":
-				traineeMenu();
+				adminMenu();
 				break;
 			default:
 				System.out.println("Unknown Comment");
@@ -37,7 +37,6 @@ class Menus{
 	}
 
 	public void traineeMenu() {
-		
 		Scanner in = new Scanner(System.in);
 
 		System.out.println("------- " + user.getUserType() + " Menu -------");
@@ -48,9 +47,7 @@ class Menus{
 		System.out.println("5. General Menu");
 		System.out.println("Enter q for quit.");
 	
-		
 		inChar = in.next().charAt(0);
-
 		switch(inChar) {
 			case '1':
 				register();
@@ -72,9 +69,73 @@ class Menus{
 				System.out.println("You choose Q ");
 				break;
 		}
-
 		in.close();
 	}
+	
+	public void trainerMenu() {
+		Scanner in = new Scanner(System.in);
+
+		System.out.println("------- " + user.getUserType() + " Menu -------");
+		System.out.println("1. List");
+		System.out.println("2. Display records");
+		System.out.println("3. Grade performance");
+		System.out.println("Enter q for quit.");
+	
+		inChar = in.next().charAt(0);
+		switch(inChar) {
+			case '1':
+				listCourse();
+				break;
+			case '2':
+				displayRecords();
+				break;
+			case '3':
+				gradePerformance();
+				break;
+			case 'Q':
+			case 'q':
+				System.out.println("You choose Q ");
+				break;
+		}
+		in.close();
+	}
+	
+	public void adminMenu() {
+		Scanner in = new Scanner(System.in);
+
+		System.out.println("------- " + user.getUserType() + " Menu -------");
+		System.out.println("1. Self-Register");
+		System.out.println("2. Browse current training courses");
+		System.out.println("3. Join training courses");
+		System.out.println("4. Display training courses");
+		System.out.println("5. General Menu");
+		System.out.println("Enter q for quit.");
+	
+		inChar = in.next().charAt(0);
+		switch(inChar) {
+			case '1':
+				register();
+				break;
+			case '2':
+				browseCourse();
+				break;
+			case '3':
+				joinCourse();
+				break;
+			case '4':
+				displayCourse();
+				break;
+			case '5':
+				System.out.println("You choose number 5");
+				break;
+			case 'Q':
+			case 'q':
+				System.out.println("You choose Q ");
+				break;
+		}
+		in.close();
+	}
+	
 	
 	//Trainee methods
 		public void register(){
