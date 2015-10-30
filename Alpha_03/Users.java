@@ -42,9 +42,7 @@ class Users{
 		public boolean validateUser(String inName, String inPassword) {
 			return (userName.equals(inName) && password.equals(inPassword));
 		}
-	
-	
-	
+		
 	
 	/*GetUserInfo*/
 		public String getUserName() {
