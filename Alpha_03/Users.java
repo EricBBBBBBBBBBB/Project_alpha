@@ -11,7 +11,7 @@ class Users{
 	//data members
 		public int userID;
 		public int userType;
-		private String userName;
+		protected String userName;
 		private String password;
 		protected String email;
 		protected int phone;
@@ -44,54 +44,7 @@ class Users{
 		}
 	
 	
-	//Trainee methods
-		public void register(){
-			System.out.println(userID + " Self-Register");
-		}
-		
-		public void browseCourse(){
-			System.out.println(userName + " Browse Course");
-		}
-		
-		public void joinCourse(){
-			System.out.println(email + " Join Course");
-		}
-		
-		public void displayCourse(){
-			
-		}
 	
-	
-	//Trainer methods
-		public void listCourse(){
-			System.out.println(userID + " List");
-		}
-		
-		public void displayRecords(){
-			System.out.println(userName + " Display records");
-		}
-		
-		public void gradePerformance(){
-			System.out.println(email + " Grade performance");
-		}
-	
-	
-	//Admin methods
-		public void deregister(){
-			System.out.println(userID + " Deregister");
-		}
-		
-		public void listallRecords(){
-			System.out.println(userID + " List all records ");
-		}
-		
-		public void AddCourses(){
-			System.out.println(userID + " Create Courses ");
-		}
-		
-		public void DelCourses(){
-			System.out.println(userID + " Delete Courses ");
-		}
 	
 	/*GetUserInfo*/
 		public String getUserName() {
