@@ -1,0 +1,14 @@
+set path=%path%;C:\Program Files\Java\jdk1.8.0_51\bin
+javac Users.java
+javac Login.java
+javac Courses.java
+javac Menus.java
+javac Register.java
+javac CryptWithMD5.java
+javac IOSystem.java
+javac IOValidation.java
+javac TrainingRecordSystem.java
+pause
+java TrainingRecordSystem
+pause
+
