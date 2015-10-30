@@ -53,16 +53,16 @@ class Menus{
 
 		switch(inChar) {
 			case '1':
-				user.register();
+				register();
 				break;
 			case '2':
-				user.browseCourse();
+				browseCourse();
 				break;
 			case '3':
-				user.joinCourse();
+				joinCourse();
 				break;
 			case '4':
-				user.displayCourse();
+				displayCourse();
 				break;
 			case '5':
 				System.out.println("You choose number 5");
@@ -76,4 +76,52 @@ class Menus{
 		in.close();
 	}
 	
+	//Trainee methods
+		public void register(){
+			System.out.println(user.userID + " Self-Register");
+		}
+		
+		public void browseCourse(){
+			System.out.println(user.userName + " Browse Course");
+		}
+		
+		public void joinCourse(){
+			System.out.println(user.email + " Join Course");
+		}
+		
+		public void displayCourse(){
+			
+		}
+	
+	
+	//Trainer methods
+		public void listCourse(){
+			System.out.println(user.userID + " List");
+		}
+		
+		public void displayRecords(){
+			System.out.println(user.userName + " Display records");
+		}
+		
+		public void gradePerformance(){
+			System.out.println(user.email + " Grade performance");
+		}
+	
+	
+	//Admin methods
+		public void deregister(){
+			System.out.println(user.userID + " Deregister");
+		}
+		
+		public void listallRecords(){
+			System.out.println(user.userID + " List all records ");
+		}
+		
+		public void AddCourses(){
+			System.out.println(user.userID + " Create Courses ");
+		}
+		
+		public void DelCourses(){
+			System.out.println(user.userID + " Delete Courses ");
+		}
 }
