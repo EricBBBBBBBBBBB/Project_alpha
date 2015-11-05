@@ -1,0 +1,3 @@
+javac TrainingRecordSystem.java
+java TrainingRecordSystem
+pause
