@@ -47,7 +47,5 @@ public class TrainingRecordSystem {
         //courses[0].getCourseInfo();
         //System.out.println("");
         //courses[1].getCourseInfo();
-
-        //System.out.println("Do you have account yet?");
 	}
 }

@@ -46,10 +46,10 @@ class Register {
         System.out.println("#   Your E-mail: " + inEmail);
         System.out.println("#   Your Phone: " + inPhone);
         System.out.println("#####################################################");
-        System.out.println(" **** Please Enter : 'register' to create user ****");
-        System.out.print("(register): ");
+        System.out.println(" **** Please Enter : 'Y' to create user ****");
+        System.out.print("(Y / N): ");
 
-        if((inStr = scanner.nextLine()).equals("register")){
+        if((inStr = scanner.nextLine()).equals("Y") || inStr.equals("y")){
      		System.out.println(Account.updateMyList(new Users(inUserName, inPassword, 0)));
 			System.out.println("-----------------------------------------------------");
 	        System.out.println("-                                                   -");
