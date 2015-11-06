@@ -10,11 +10,7 @@ import java.util.Scanner;
 
 
 class Register {
-	public Register() {
-
-	}
-
-	public void register() {
+	public static void register() {
 		String inUserName, inPassword, inEmail, inPhone, inStr;
 
 		Scanner scanner = new Scanner(System.in);

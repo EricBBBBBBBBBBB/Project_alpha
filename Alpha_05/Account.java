@@ -33,12 +33,18 @@ public class Account {
         return myList;
     }
 
-    public static boolean removeMyList(int listID) {
+    public static boolean removeUser(int listID) {
         return true;
     }
 
-    public static boolean removeMyList(String userName) {
-        return true;
+    public static boolean removeUser(String userName) {
+        for (int i = 0; i < myList.size(); i++) {
+            if (myList.get(i).getUserName().equals(userName)) {
+                myList.remove(i);
+                return true;
+            }
+        }
+        return false;
     }
 
 

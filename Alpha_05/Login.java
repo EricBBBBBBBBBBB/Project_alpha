@@ -40,8 +40,7 @@ class Login{
 				System.out.print("User name cannot be empty, Please enter again: ");
 			} 
 			if (userName.equals("signup")) {
-				Register register = new Register();
-				register.register();	
+				Register.register();	
 				continue;
 			}
 			System.out.print("Please enter your password: ");

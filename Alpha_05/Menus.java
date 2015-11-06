@@ -14,6 +14,7 @@ class Menus{
 	
 	//data members
 	public char inChar;
+	public String inString;
 	public Users user;
 	public boolean quit = false;
     private ArrayList<Users> myList = new ArrayList<Users>();
@@ -144,6 +145,7 @@ class Menus{
 					listallRecords();
 					break;
 				case '2':
+					deregister();
 					System.out.println("You choose number 2");
 					break;
 				case '3':
@@ -197,8 +199,16 @@ class Menus{
 	
 	
 	//Admin methods
-		public void deregister(){
+		public void deregister(){	// = remove
 			System.out.println(" Deregister\n");
+			System.out.print(" Please enter the user name you want to remove: ");
+			Scanner scanner = new Scanner(System.in);
+			inString = scanner.next();
+
+			if(Account.removeUser(inString))
+				System.out.println("The user " + inString + "is removed");
+			else
+				System.out.println("Error");
 		}
 		
 		public void listallRecords(){
