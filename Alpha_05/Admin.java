@@ -53,6 +53,11 @@ class Admin extends User{
 			System.out.println(	UserList.get(i).getUserID() + "\t" + UserList.get(i).getUserName() + "\t\t" + UserList.get(i).getUserType());
 		}
 		System.out.println("--------------------------------\n");
+		
+		
+		Scanner scanner = new Scanner(System.in);
+		System.out.print(" You can enter the user id to show more detail");
+		//zxczxczxc
 	}
 	
 	public void AddCourses(){

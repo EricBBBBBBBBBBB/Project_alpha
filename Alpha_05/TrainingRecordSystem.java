@@ -19,7 +19,7 @@ public class TrainingRecordSystem {
 		System.out.println("*****************************************************");
 		System.out.println("* - - - - Welcome to Training Record System - - - - *");
 		System.out.println("*****************************************************");
-        System.out.println("\n\n");
+        System.out.println("\n");
 
 		Login login = new Login(); //login class
         User loginUser = login.login();
@@ -31,7 +31,6 @@ public class TrainingRecordSystem {
 		Menus menus = new Menus(loginUser);	//menus class
         menus.mainMenu();
 
-        System.out.println("");
 		System.out.println("SYSTEM END.");
 		System.out.println("End of program.");
 

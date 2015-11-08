@@ -72,7 +72,9 @@ class User{
 		System.out.println("User ID: " + getUserID());
 		System.out.println("User Name: " + getUserName());
 		System.out.println("User Email: " + getUserEmail());
-		System.out.println("User Phone: " + getUserPhone());	
+		System.out.println("User Phone: " + getUserPhone());
+		if(getUserType() == "Tarinee")System.out.println("Completed Courses: ");
+		if(getUserType() == "Tariner")System.out.println("Owned Courses: ");
 		System.out.println("----------------------------------------------------------");
 	}
 	

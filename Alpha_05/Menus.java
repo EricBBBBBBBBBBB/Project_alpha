@@ -55,7 +55,8 @@ class Menus{
 		System.out.println("2. xxxxxxxxxxxxxxxxxxxxxx");
 		System.out.println("3. xxxxxxxxxxxxxxxxxxxxxx");
 		System.out.println("4. xxxxxxxxxxxxxxxxxxxxxx");
-		System.out.println("5. General Menu");
+		System.out.println("5. View Personal Infomation");
+		System.out.println("6. General Menu");
 		System.out.println("Enter q for quit.");
 		
 		Scanner scanner = new Scanner(System.in);
@@ -75,7 +76,10 @@ class Menus{
 				System.out.println("You choose number 4");
 				break;
 			case '5':
-				System.out.println("You choose number 5");
+				trainee.printUserInfo();
+				break;
+			case '6':
+				System.out.println("You choose number 6");
 				break;
 			case 'Q':
 			case 'q':
@@ -94,7 +98,8 @@ class Menus{
 		System.out.println("2. xxxxxxxxxxxxxxxxxxxxxx");
 		System.out.println("3. xxxxxxxxxxxxxxxxxxxxxx");
 		System.out.println("4. xxxxxxxxxxxxxxxxxxxxxx");
-		System.out.println("5. General Menu");
+		System.out.println("5. View Personal Infomation");
+		System.out.println("6. General Menu");
 		System.out.println("Enter q for quit.");
 
 		Scanner scanner = new Scanner(System.in);
@@ -114,7 +119,10 @@ class Menus{
 				System.out.println("You choose number 4");
 				break;
 			case '5':
-				System.out.println("You choose number 5");
+				trainer.printUserInfo();
+				break;
+			case '6':
+				System.out.println("You choose number 6");
 				break;
 			case 'Q':
 			case 'q':
@@ -133,7 +141,8 @@ class Menus{
 		System.out.println("2. Remove Users");
 		System.out.println("3. xxxxxxxxxxxxxxxxxxxxxx");
 		System.out.println("4. xxxxxxxxxxxxxxxxxxxxxx");
-		System.out.println("5. General Menu");
+		System.out.println("5. View Personal Infomation");
+		System.out.println("6. General Menu");
 		System.out.println("Enter q for quit.");
 
 		Scanner scanner = new Scanner(System.in);
@@ -153,7 +162,10 @@ class Menus{
 				admin.DelCourses();
 				break;
 			case '5':
-				System.out.println("You choose number 5");
+				admin.printUserInfo();
+				break;
+			case '6':
+				System.out.println("You choose number 6");
 				break;
 			case 'Q':
 			case 'q':
