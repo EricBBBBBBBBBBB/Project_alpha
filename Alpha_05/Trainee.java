@@ -5,6 +5,10 @@
 * 
 ********************************************/
 
+import java.io.*;
+import java.util.Scanner;
+import java.util.ArrayList;
+
 class Trainee extends User{
 
 // Declare data members //////////////////////////
@@ -21,7 +25,21 @@ class Trainee extends User{
 
 // Methods //////////////////////////
 	// XXXXXXXX
-
+	public void register(){
+		System.out.println(" Self-Register\n");
+	}
+	
+	public void browseCourse(){
+		System.out.println(" Browse Course\n");
+	}
+	
+	public void joinCourse(){
+		System.out.println(" Join Course\n");
+	}
+	
+	public void displayCourse(){
+		
+	}
 	
 	
 }

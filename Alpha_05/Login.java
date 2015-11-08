@@ -12,20 +12,18 @@ import java.util.ArrayList;
 
 
 class Login{
-	//data members
+	
+// Declare data members //////////////////////////
 	private boolean loginSuccess = false;
 	private int userID;
+	private int userType;
 	private String userName;
 	private String password;
     private ArrayList<User> UserList = new ArrayList<User>();
 	
-	//constuctor
-	public Login() {
-	}
-	//methods
+// Constructors //////////////////////////
 	public User login() {
 		Scanner scanner = new Scanner(System.in);
-
 
 		do{
 			System.out.println("-----------------------------------------------------");
@@ -33,7 +31,7 @@ class Login{
 			System.out.println("-----------------------------------------------------");
 			System.out.println("\n");
 			
-			//input username & password
+			//Input User name
 			System.out.println("(if you haven't got a user, please type signup)");
 			
 			System.out.print("Please enter your user name: ");
@@ -46,15 +44,18 @@ class Login{
 				continue;
 			}
 			
+			//Input User password
 			System.out.print("Please enter your password: ");
 			while ((password = scanner.nextLine()).isEmpty()){
 				System.out.print("Password cannot be empty, Please enter again: ");
 			} 
 			CryptWithMD5 CMD5 = new CryptWithMD5();
-			password = CMD5.cryptWithMD5(password);
+			password = CMD5.cryptWithMD5(password);	//Encrypt Password
 			
+			//Get User list
 			UserList = Account.getUserList();
 			
+			//loading 
 			try {
 				System.out.println(">Loading...");
 				Thread.sleep(2000);                 //1000 milliseconds is one second.
@@ -62,11 +63,12 @@ class Login{
 				Thread.currentThread().interrupt();
 			}
 			
-			
+			//User validate
 			for (int i = 0; i < UserList.size(); i++) {
 				if(UserList.get(i).validateUser(userName, password)){
 					this.loginSuccess = true;
 					userID = UserList.get(i).userID;
+					userType = UserList.get(i).userType;
 					System.out.println(">>Login in successfully!\n");
 					return UserList.get(i);
 				}
@@ -75,14 +77,14 @@ class Login{
 			
 		}while(!this.loginSuccess);		//repeat if login fail
 		
-		// scanner.close();
-
+		scanner.close();
 		return null;
 	}
 	
-	
+// Methods //////////////////////////
+	//Get login status
 	public boolean LoginStatus(){
-		return this.loginSuccess;
+		return loginSuccess;
 	}
 	
 }

@@ -5,6 +5,10 @@
 * 
 ********************************************/
 
+import java.io.*;
+import java.util.Scanner;
+import java.util.ArrayList;
+
 class Trainer extends User{
 
 // Declare data members //////////////////////////
@@ -21,6 +25,17 @@ class Trainer extends User{
 
 // Methods //////////////////////////
 	// XXXXXXXX
+	public void listCourse(){
+		System.out.println(" List\n");
+	}
+	
+	public void displayRecords(){
+		System.out.println(" Display records\n");
+	}
+	
+	public void gradePerformance(){
+		System.out.println(" Grade performance\n");
+	}
 
 	
 	

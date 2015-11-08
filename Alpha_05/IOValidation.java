@@ -18,10 +18,6 @@ class IOValidation{
         System.out.println(IOValidation.stringValid("APP12412AP"));
         System.out.println(IOValidation.stringValid("!@#!%#$%"));
 
-        
-
-
-
         ArrayList<String> emails = new ArrayList<String>();
         emails.add("user@domain.com");
         emails.add("user@domain.co.in");

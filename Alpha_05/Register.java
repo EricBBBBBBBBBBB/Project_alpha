@@ -11,6 +11,7 @@ import java.util.Scanner;
 
 class Register {
 	public static void register() {
+		
 		String inUserName, inPassword, inEmail, inPhone, inStr;
 
 		Scanner scanner = new Scanner(System.in);

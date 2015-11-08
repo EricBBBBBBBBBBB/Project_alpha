@@ -19,20 +19,16 @@ public class TrainingRecordSystem {
 		System.out.println("*****************************************************");
 		System.out.println("* - - - - Welcome to Training Record System - - - - *");
 		System.out.println("*****************************************************");
-        System.out.println("");
+        System.out.println("\n\n");
 
-        System.out.println("");
-
-		Login login = new Login(); //login
+		Login login = new Login(); //login class
         User loginUser = login.login();
-
-
-        if (!login.LoginStatus() || (loginUser.getUserName().equals("Unknown"))) {
+        if (!login.LoginStatus()) {
             System.out.println("Login unsuccessful! Unknown Error....");
-            return; //close the application
+            return; //program end if login fail
         }
 
-		Menus menus = new Menus(loginUser);
+		Menus menus = new Menus(loginUser);	//menus class
         menus.mainMenu();
 
         System.out.println("");
