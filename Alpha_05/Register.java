@@ -50,7 +50,7 @@ class Register {
         System.out.print("(Y / N): ");
 
         if((inStr = scanner.nextLine()).equals("Y") || inStr.equals("y")){
-     		System.out.println(Account.updateMyList(new Users(inUserName, inPassword, 0)));
+     		System.out.println(Account.updateUserList(new User(inUserName, inPassword, 0)));
 			System.out.println("-----------------------------------------------------");
 	        System.out.println("-                                                   -");
 	        System.out.println("-      Your user is created! Please login..         -");

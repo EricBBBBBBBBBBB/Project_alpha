@@ -17,55 +17,63 @@ class Login{
 	private int userID;
 	private String userName;
 	private String password;
-    private ArrayList<Users> myList = new ArrayList<Users>();
+    private ArrayList<User> UserList = new ArrayList<User>();
 	
 	//constuctor
 	public Login() {
 	}
 	//methods
-	public Users login() {
+	public User login() {
 		Scanner scanner = new Scanner(System.in);
 
 
 		do{
-        System.out.println("-----------------------------------------------------");
-        System.out.println("-                   Login System                    -");
-        System.out.println("-----------------------------------------------------");
-        System.out.println("");
-        	System.out.println("");
+			System.out.println("-----------------------------------------------------");
+			System.out.println("-                   Login System                    -");
+			System.out.println("-----------------------------------------------------");
+			System.out.println("\n");
+			
 			//input username & password
 			System.out.println("(if you haven't got a user, please type signup)");
+			
 			System.out.print("Please enter your user name: ");
 			while ((userName = scanner.nextLine()).isEmpty()){
 				System.out.print("User name cannot be empty, Please enter again: ");
 			} 
 			if (userName.equals("signup")) {
-				Register.register();	
+				Register register = new Register();
+				register.register();	
 				continue;
 			}
+			
 			System.out.print("Please enter your password: ");
 			while ((password = scanner.nextLine()).isEmpty()){
 				System.out.print("Password cannot be empty, Please enter again: ");
 			} 
 			CryptWithMD5 CMD5 = new CryptWithMD5();
 			password = CMD5.cryptWithMD5(password);
-
-			myList = Account.getMyList();
-			//User validate
-			//for (int i = 0; i < users.length; i++){
-			for (int i = 0; i < myList.size(); i++) {
-				//if(users[i].validateUser(userName, password)){
-				if(myList.get(i).validateUser(userName, password)){
+			
+			UserList = Account.getUserList();
+			
+			try {
+				System.out.println(">Loading...");
+				Thread.sleep(2000);                 //1000 milliseconds is one second.
+			} catch(InterruptedException ex) {
+				Thread.currentThread().interrupt();
+			}
+			
+			
+			for (int i = 0; i < UserList.size(); i++) {
+				if(UserList.get(i).validateUser(userName, password)){
 					this.loginSuccess = true;
-					userID = myList.get(i).userID;
-					System.out.println("\nLogin in successfully!");
-
-					return myList.get(i);
+					userID = UserList.get(i).userID;
+					System.out.println(">>Login in successfully!\n");
+					return UserList.get(i);
 				}
 			}
-			if(!this.loginSuccess) System.out.println("\nLogin fail, please login again.");
+			if(!this.loginSuccess) System.out.println("\n>>Login fail, please login again.");
 			
-		}while(!this.loginSuccess);		//repeat when login fail
+		}while(!this.loginSuccess);		//repeat if login fail
 		
 		// scanner.close();
 

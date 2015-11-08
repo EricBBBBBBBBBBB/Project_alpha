@@ -10,27 +10,27 @@ import java.util.ArrayList;
 
 public class Account {
 
-    // data member (To save the Users Infomation without FileIOSystem)
-    public static ArrayList<Users> myList = new ArrayList<Users>(); 
+    // data member (To save the User Infomation without FileIOSystem)
+    public static ArrayList<User> UserList = new ArrayList<User>(); 
 
-    public static void initMyList() {       //initialization
-        myList.add(new Users("e1", "e", 0));
-        myList.add(new Users("e2", "e", 0));
-        myList.add(new Users("e3", "e", 0));
-        myList.add(new Users("r1", "r", 1));
-        myList.add(new Users("r2", "r", 1));
-        myList.add(new Users("adm", "a", 2));
+    public static void initUserList() {       //initialization
+        UserList.add(new Trainee("e1", "e"));
+        UserList.add(new Trainee("e2", "e"));
+        UserList.add(new Trainee("e3", "e"));
+        UserList.add(new Trainer("r1", "r"));
+        UserList.add(new Trainer("r2", "r"));
+        UserList.add(new Admin("adm", "a"));
     }
 
-    public static boolean updateMyList(Users user) {
-        if(myList.add(user))
+    public static boolean updateUserList(User user) {
+        if(UserList.add(user))
             return true;
         else
             return false;
     }
 
-    public static ArrayList<Users> getMyList() {
-        return myList;
+    public static ArrayList<User> getUserList() {
+        return UserList;
     }
 
     public static boolean removeUser(int listID) {
@@ -38,9 +38,9 @@ public class Account {
     }
 
     public static boolean removeUser(String userName) {
-        for (int i = 0; i < myList.size(); i++) {
-            if (myList.get(i).getUserName().equals(userName)) {
-                myList.remove(i);
+        for (int i = 0; i < UserList.size(); i++) {
+            if (UserList.get(i).getUserName().equals(userName)) {
+                UserList.remove(i);
                 return true;
             }
         }

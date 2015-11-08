@@ -13,12 +13,8 @@ public class TrainingRecordSystem {
 
 	public static void main(String[] args) {
         // Load Users Information
-        Account.initMyList();
-        // Load Courses information - *For test only*
-        Courses[] courses = {
-            new Courses("Learn How to Fuck Eric Fung"),
-            new Courses("Eric BB")
-        };
+        Account.initUserList();
+        // Load Courses information 
 
 		System.out.println("*****************************************************");
 		System.out.println("* - - - - Welcome to Training Record System - - - - *");
@@ -28,9 +24,8 @@ public class TrainingRecordSystem {
         System.out.println("");
 
 		Login login = new Login(); //login
-        Users loginUser = login.login();
+        User loginUser = login.login();
 
-        //loginUser.getUserInfo();  // for test only
 
         if (!login.LoginStatus() || (loginUser.getUserName().equals("Unknown"))) {
             System.out.println("Login unsuccessful! Unknown Error....");
@@ -41,11 +36,8 @@ public class TrainingRecordSystem {
         menus.mainMenu();
 
         System.out.println("");
-        System.out.println("");
-        System.out.println("");
+		System.out.println("SYSTEM END.");
+		System.out.println("End of program.");
 
-        //courses[0].getCourseInfo();
-        //System.out.println("");
-        //courses[1].getCourseInfo();
 	}
 }

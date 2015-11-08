@@ -15,12 +15,12 @@ class Menus{
 	//data members
 	public char inChar;
 	public String inString;
-	public Users user;
+	public User user;
 	public boolean quit = false;
-    private ArrayList<Users> myList = new ArrayList<Users>();
+    private ArrayList<User> UserList = new ArrayList<User>();
 	
 	//constructors
-	Menus(Users user) {
+	Menus(User user) {
 		this.user = user;
 	}
 	
@@ -212,12 +212,12 @@ class Menus{
 		}
 		
 		public void listallRecords(){
-			myList = Account.getMyList();		//update My List
+			UserList = Account.getUserList();		//update My List
 			System.out.println("--------------------------------");
 			System.out.println("UserID\tUserName\tUserType");
 			System.out.println("--------------------------------");
-			for (int i = 0; i < myList.size(); i++) {
-				System.out.println(	myList.get(i).getUserID() + "\t" + myList.get(i).getUserName() + "\t\t" + myList.get(i).getUserType());
+			for (int i = 0; i < UserList.size(); i++) {
+				System.out.println(	UserList.get(i).getUserID() + "\t" + UserList.get(i).getUserName() + "\t\t" + UserList.get(i).getUserType());
 			}
 			System.out.println("--------------------------------\n");
 		}

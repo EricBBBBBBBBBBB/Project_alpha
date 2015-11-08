@@ -1,3 +1,3 @@
-javac TrainingRecordSystem.java
+javac *.java
 java TrainingRecordSystem
 pause
