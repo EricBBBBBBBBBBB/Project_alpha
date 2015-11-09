@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 
 class Register {
-	public static void register() {
+	public void register() {
 		
 		String inUserName, inPassword, inEmail, inPhone, inStr;
 
@@ -33,8 +33,9 @@ class Register {
         	System.out.print("Password could not be empty! Please enter again: ");
         }
         System.out.print("E-mail: ");
-        while((inEmail = scanner.nextLine()).isEmpty()){
-        	System.out.print("User name could not be empty! Please enter again: ");
+        //while((inEmail = scanner.nextLine()).isEmpty()){
+        while(!IOValidation.emailValid(inEmail = scanner.nextLine())){
+        	System.out.print("Email could not be empty! Please enter again: ");
         }
         System.out.print("Phone: ");
         while((inPhone = scanner.nextLine()).isEmpty()){

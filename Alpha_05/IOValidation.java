@@ -33,7 +33,7 @@ class IOValidation{
         //Invalid emails
         emails.add("user#domain.com");
         emails.add("@yahoo.com");
- 
+        emails.add(""); 
         for(int i = 0; i < emails.size(); i++){
             String email = emails.get(i);
             System.out.println(email +" : "+ IOValidation.emailValid(email));
@@ -51,6 +51,9 @@ class IOValidation{
 	}
 
     public static boolean emailValid(String inStr) {
+        if(inStr.isEmpty())
+            return false;
+
         String regex = "^[a-zA-Z0-9._]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";  // set the regex
         Pattern pattern = Pattern.compile(regex);   // compile the pattern
         Matcher matcher = pattern.matcher(inStr);   // validate the email
@@ -58,6 +61,10 @@ class IOValidation{
             return true;
         else
             return false;
+    }
+
+    public static boolean phoneValid(String inStr) {
+        
     }
 
 }

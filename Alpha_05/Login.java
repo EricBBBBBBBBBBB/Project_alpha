@@ -43,6 +43,9 @@ class Login{
 				register.register();	
 				continue;
 			}
+
+			if(userName.equals("q"))		// emergency quit for testing only
+				return null;
 			
 			//Input User password
 			System.out.print("Please enter your password: ");

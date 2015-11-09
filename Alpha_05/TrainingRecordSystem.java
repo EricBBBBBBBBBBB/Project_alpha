@@ -12,9 +12,9 @@ import java.util.ArrayList;
 public class TrainingRecordSystem {
 
 	public static void main(String[] args) {
-        // Load Users Information
+        // Load Users Information ()
         Account.initUserList();
-        // Load Courses information 
+        // Load Courses information ()
 
 		System.out.println("*****************************************************");
 		System.out.println("* - - - - Welcome to Training Record System - - - - *");

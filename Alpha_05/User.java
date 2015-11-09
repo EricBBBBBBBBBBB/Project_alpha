@@ -7,7 +7,7 @@
 
 class User{
 
-// Declare data members //////////////////////////
+// Declare data members
 	public static int totalNoOfUser = 0;
 
 	public int userID;
@@ -17,7 +17,7 @@ class User{
 	protected String email;
 	protected int phone;
 
-// Constructors //////////////////////////
+// Constructors
 	User() {
 		totalNoOfUser++;
 	}
@@ -34,7 +34,7 @@ class User{
 		password = CryptWithMD5.cryptWithMD5(pw);
 	}
 
-// Methods //////////////////////////
+// Methods
 	// Validate a User
 	public boolean validateUser(String name, String pw) {
 		return (userName.equals(name) && password.equals(pw));
