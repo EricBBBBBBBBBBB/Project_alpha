@@ -66,7 +66,7 @@ class Menus{
 				Curriculum.listAvaibleCourse();
 				break;
 			case '2':
-				Curriculum.JoinCourse(user);
+				Curriculum.JoinCourse(trainee);
 				break;
 			case '3':
 				System.out.println("You choose number 3");
@@ -136,7 +136,7 @@ class Menus{
 	public void adminMenu() {
 		Admin admin = (Admin) user;
 		System.out.println("------- Admin Menu -------");
-		System.out.println("1. List All Users");
+		System.out.println("1. Users setting");
 		System.out.println("2. List All Courses");
 		System.out.println("3. Remove Users");
 		System.out.println("4. xxxxxxxxxxxxxxxxxxxxxx");
@@ -149,7 +149,27 @@ class Menus{
 
 		switch(inChar) {
 			case '1':
-				Account.listAll();
+				while(true){
+					System.out.print("\033[2J");
+					System.out.println("===== Users setting Menu =====");
+					System.out.println("enter -l for listing all user breif information");
+					System.out.println("enter -q for quit");
+					System.out.println("1. All Users Detailed Information");
+					System.out.println("2. Users Searching");
+					System.out.println("3. Users editing");
+
+
+
+					inString = scanner.next();
+					if(inString.equals("-l"))
+						Account.listAll();
+					else
+						inChar = inString.charAt(0);
+						switch(inChar){
+
+						}
+					break;
+				}
 				break;
 			case '2':
 				Curriculum.listAll();

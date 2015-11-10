@@ -64,10 +64,11 @@ class Course{
 		System.out.println("----------------------------------------------------------");
 		System.out.println("                   		 Information (" + getCourseStatus() + ")");
 		System.out.println("----------------------------------------------------------");
-		System.out.println("User ID: \t\t\t" + courseID);
-		System.out.println("User Name: \t\t" + courseName);
-		System.out.println("CourseTrainerID: \t" + courseTrainerID);
-        System.out.println("price: \t\t\t" + price);
+		System.out.println("Course ID: \t\t\t" + courseID);
+		System.out.println("Course Name: \t\t" + courseName);
+		System.out.println("Course Trainer ID: \t" + courseTrainerID);
+        System.out.println("Price: \t\t\t" + price);
+        System.out.println("Duration: \t" + "months");
         System.out.println("Description: \t\t" + description);
 		System.out.println("Number of Trainee: \t" + totalNumOfTrainee + "/" + maxNumOfTrainee);
 		System.out.println("----------------------------------------------------------");

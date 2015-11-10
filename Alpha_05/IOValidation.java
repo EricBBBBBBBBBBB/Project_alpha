@@ -12,11 +12,6 @@ import java.util.ArrayList;
 class IOValidation{
 
 	public static void main(String[] args) {
-        System.out.println(IOValidation.stringValid(""));
-        System.out.println(IOValidation.stringValid("APPAP"));
-        System.out.println(IOValidation.stringValid("12312312516"));
-        System.out.println(IOValidation.stringValid("APP12412AP"));
-        System.out.println(IOValidation.stringValid("!@#!%#$%"));
 
         ArrayList<String> emails = new ArrayList<String>();
         emails.add("user@domain.com");
@@ -65,7 +60,6 @@ class IOValidation{
     public static boolean emailValid(String inStr) {
         if(inStr.isEmpty())
             return false;
-
         String regex = "^[a-zA-Z0-9._]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";  // set the regex
         Pattern pattern = Pattern.compile(regex);   // compile the pattern
         Matcher matcher = pattern.matcher(inStr);   // validate the email
@@ -85,6 +79,25 @@ class IOValidation{
             return true;
         else
             return false;
+    }
+
+    public static void clear(){
+        try{
+            final String os = System.getProperty("os.name");
+
+            if (os.contains("Windows"))
+        {
+            Runtime.getRuntime().exec("cls");
+        }
+        else
+        {
+            Runtime.getRuntime().exec("clear");
+        }
+    }
+    catch (final Exception e)
+    {
+        //  Handle any exceptions.
+    }
     }
 
 }
