@@ -16,7 +16,6 @@ class Menus{
 	public String inString;
 	public User user;
 	public boolean quit = false;
-    private ArrayList<User> UserList = new ArrayList<User>();
 	
 // Constructors //////////////////////////
 	Menus(User user) {
@@ -41,7 +40,7 @@ class Menus{
 					adminMenu();
 					break;
 				default:
-					System.out.println("Unknown Comment");
+					System.out.println("Unknown Comment, Please Restart The System.");
 			}
 		}
 		
@@ -50,13 +49,13 @@ class Menus{
 	//Trainee Menu
 	public void traineeMenu() {
 		Trainee trainee = (Trainee) user;
-		System.out.println("------- Trainee Menu -------");
-		System.out.println("1. xxxxxxxxxxxxxxxxxxxxxx");
-		System.out.println("2. xxxxxxxxxxxxxxxxxxxxxx");
-		System.out.println("3. xxxxxxxxxxxxxxxxxxxxxx");
-		System.out.println("4. xxxxxxxxxxxxxxxxxxxxxx");
-		System.out.println("5. View Personal Infomation");
-		System.out.println("6. General Menu");
+		System.out.println("------------ Trainee Menu ---------------");
+		System.out.println("- 1. View the Current Available Courses -");
+		System.out.println("- 2. Join training Courses");
+		System.out.println("- 3. Display Current/Completed Courses  -");
+		System.out.println("- 4. xxxxxxxxxxxxxxxxxxxxxx             -");
+		System.out.println("- 5. View Personal Infomation           -");
+		System.out.println("- 6. General Menu						-");
 		System.out.println("Enter q for quit.");
 		
 		Scanner scanner = new Scanner(System.in);
@@ -64,7 +63,7 @@ class Menus{
 		
 		switch(inChar) {
 			case '1':
-				System.out.println("You choose number 1");
+				Curriculum.listAvaibleCourse();
 				break;
 			case '2':
 				System.out.println("You choose number 2");
@@ -138,8 +137,8 @@ class Menus{
 		Admin admin = (Admin) user;
 		System.out.println("------- Admin Menu -------");
 		System.out.println("1. List All Users");
-		System.out.println("2. Remove Users");
-		System.out.println("3. xxxxxxxxxxxxxxxxxxxxxx");
+		System.out.println("2. List All Courses");
+		System.out.println("3. Remove Users");
 		System.out.println("4. xxxxxxxxxxxxxxxxxxxxxx");
 		System.out.println("5. View Personal Infomation");
 		System.out.println("6. General Menu");
@@ -150,16 +149,16 @@ class Menus{
 
 		switch(inChar) {
 			case '1':
-				admin.listallRecords();
+				Account.listAll();
 				break;
 			case '2':
-				admin.deregister();
+				Curriculum.listAll();
 				break;
 			case '3':
-				admin.AddCourses();
+				Account.deregister();
 				break;
 			case '4':
-				admin.DelCourses();
+				Curriculum.DelCourse();
 				break;
 			case '5':
 				admin.printUserInfo();

@@ -3,7 +3,7 @@
 * Students: 
 * Couse: OOP 2015 Sem 1, HDIT
 *
-* Account.java: 
+* Account > User > Tarinee, Trainer, Admin 
 ********************************************/
 
 import java.util.ArrayList;

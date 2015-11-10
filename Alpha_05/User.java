@@ -1,6 +1,7 @@
 /********************************************
-* Student: FUNG K.K. Eric (10614373), HDIT
-* Couse: OOP 2015 Sem 1
+* Project Team:	
+* Students: 
+* Course: OOP 2015 Sem 1, HDIT
 *
 * 
 ********************************************/

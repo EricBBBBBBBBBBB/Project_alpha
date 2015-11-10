@@ -1,6 +1,7 @@
 /********************************************
-* Student: FUNG K.K. Eric (10614373), HDIT
-* Couse: OOP 2015 Sem 1
+* Project Team:	
+* Students: 
+* Course: OOP 2015 Sem 1, HDIT
 *
 * 
 ********************************************/
@@ -24,18 +25,6 @@ class Trainer extends User{
 	}
 
 // Methods //////////////////////////
-	// XXXXXXXX
-	public void listCourse(){
-		System.out.println(" List\n");
-	}
-	
-	public void displayRecords(){
-		System.out.println(" Display records\n");
-	}
-	
-	public void gradePerformance(){
-		System.out.println(" Grade performance\n");
-	}
 
 	
 	

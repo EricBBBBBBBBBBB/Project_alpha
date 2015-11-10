@@ -1,6 +1,7 @@
 /********************************************
-* Student: FUNG K.K. Eric (10614373), HDIT
-* Couse: OOP 2015 Sem 1
+* Project Team:	
+* Students: 
+* Course: OOP 2015 Sem 1, HDIT
 *
 * 
 ********************************************/
@@ -13,7 +14,7 @@ class Trainee extends User{
 
 // Declare data members //////////////////////////
 	public static int totalNoOfTrainee = 0;  // class data member
-
+	
 // Constructors //////////////////////////
 	Trainee(String name) {
 		super(name, 0);	//call superclass constructor
@@ -24,19 +25,7 @@ class Trainee extends User{
 	}
 
 // Methods //////////////////////////
-	// XXXXXXXX
-	public void register(){
-		System.out.println(" Self-Register\n");
-	}
-	
-	public void browseCourse(){
-		System.out.println(" Browse Course\n");
-	}
-	
-	public void joinCourse(){
-		System.out.println(" Join Course\n");
-	}
-	
+	//Diplay User Current Courses & Completed Courses
 	public void displayCourse(){
 		
 	}
