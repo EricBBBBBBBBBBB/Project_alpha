@@ -11,19 +11,20 @@ import javax.swing.JOptionPane;
 
 class Menus{
 	
-// Declare data members //////////////////////////
+// Declare data members 
 	public char inChar;
 	public String inString;
+	public int inInt;
 	public User user;
 	public boolean quit = false;
 	
-// Constructors //////////////////////////
+// Constructors 
 	Menus(User user) {
 		this.user = user;
 	}
 	
 
-// Methods //////////////////////////
+// Methods 
 	//Main Menu
 	public void mainMenu() {
 		while(!quit){
@@ -67,7 +68,7 @@ class Menus{
 				Curriculum.JoinCourse(trainee);
 				break;
 			case '3':
-				System.out.println("You choose number 3");
+				Curriculum.displayCourse(trainee.getUserName());
 				break;
 			case '4':
 				Curriculum.listTarget();
@@ -133,7 +134,6 @@ class Menus{
 	//Admin Menu
 	public void adminMenu() {
 		Admin admin = (Admin) user;
-		System.out.print("\033[H\033[2J");
 		System.out.println("------- Admin Menu -------");
 		System.out.println("1. Users setting");
 		System.out.println("2. List All Courses");
@@ -148,15 +148,15 @@ class Menus{
 
 		switch(inChar) {
 			case '1':
+				outerloop:
 				while(true){
-					System.out.print("\033[H\033[2J");
 					System.out.println("===== Users setting Menu =====");
 					System.out.println("enter -l for listing all user breif information");
-					System.out.println("enter -q for quit");
 					System.out.println("1. All Users Detailed Information");
 					System.out.println("2. Users Searching");
 					System.out.println("3. Users editing");
 					System.out.println("4. Remove Users");
+					System.out.println("9. Return to main menu");
 
 					inString = scanner.next();
 					if(inString.equals("-l"))
@@ -174,13 +174,22 @@ class Menus{
 								Account.listAll();
 								break;
 							case '4':
-								Account.deregister();
+								System.out.println(" Deregister\n");
+								System.out.print(" Please enter the user name or ID you want to remove: ");
+								if(scanner.hasNextInt()){
+									inInt = scanner.nextInt();
+									removeUser(inInt);
+								} else {
+									inString = scanner.next();
+									removeUser(inString);
+								}
 								break;
+							case '9':
+								break outerloop;	//break the outerloop -> return main menu
 							default:
 								System.out.println("Unknown Error.");
 						}
 					}
-					break;
 				}
 				break;
 			case '2':
