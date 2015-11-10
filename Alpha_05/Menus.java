@@ -133,11 +133,11 @@ class Menus{
 	//Admin Menu
 	public void adminMenu() {
 		Admin admin = (Admin) user;
-		System.out.print("\033[H\033[2J");
+		//System.out.print("\033[H\033[2J");
 		System.out.println("------- Admin Menu -------");
 		System.out.println("1. Users setting");
 		System.out.println("2. List All Courses");
-		System.out.println("3. Remove Users");
+		System.out.println("3. XXXX");
 		System.out.println("4. xxxxxxxxxxxxxxxxxxxxxx");
 		System.out.println("5. View Personal Infomation");
 		System.out.println("6. General Menu");
@@ -156,6 +156,7 @@ class Menus{
 					System.out.println("1. All Users Detailed Information");
 					System.out.println("2. Users Searching");
 					System.out.println("3. Users editing");
+					System.out.println("4. Remove Users");
 
 					inString = scanner.next();
 					if(inString.equals("-l"))
@@ -163,7 +164,20 @@ class Menus{
 					else
 						inChar = inString.charAt(0);
 						switch(inChar){
-
+							case '1':
+								Account.listAll();
+								break;
+							case '2':
+								Account.listAll();
+								break;
+							case '3':
+								Account.listAll();
+								break;
+							case '4':
+								Account.deregister();
+								break;
+							default:
+								System.out.println("Unknown Error.");
 						}
 					break;
 				}
@@ -172,7 +186,6 @@ class Menus{
 				Curriculum.listAll();
 				break;
 			case '3':
-				Account.deregister();
 				break;
 			case '4':
 				Curriculum.DelCourse();

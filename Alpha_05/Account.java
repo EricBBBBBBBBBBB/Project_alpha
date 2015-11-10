@@ -41,33 +41,63 @@ public class Account {
     }
 
 	//Remove User by ID
-    public static boolean removeUser(int uid) {
-		for (int i = 0; i < UserList.size(); i++) {
-            if (UserList.get(i).getUserID() == uid) {
-                UserList.remove(i);
-                return true;
-            }
+    public static void removeUser(int uid) {
+        int listID = searchUser(uid);
+        if(listID != -1) {
+            removeUserConfirm(listID);
+        }else{
+            System.out.println("user not found!");
         }
-        return false;
     }
 	
 	//Remove User by Name
-    public static boolean removeUser(String uname) {
-        for (int i = 0; i < UserList.size(); i++) {
-            if (UserList.get(i).getUserName().equals(uname)) {
-                UserList.remove(i);
-                return true;
+    public static void removeUser(String userName) {
+        int listID = searchUser(userName);
+        if(listID != -1) {
+            removeUserConfirm(listID);
+        }else{
+            System.out.println("user not found!");
+        }
+    }
+
+    public static void removeUserConfirm(int listID) {
+        System.out.println("Are you sure to remove User [" + UserList.get(listID).getUserName() + "]? (Y/N)");
+        Scanner scanner = new Scanner(System.in);
+        char inChar = scanner.next().charAt(0);
+            if(inChar == 'Y' || inChar == 'y') {
+                UserList.remove(listID);
+                System.out.println("Remove凸!");
+            } else{
+                System.out.println("Unsuccessful, Unknown error!");
             }
         }
-        return false;
+
+    //Search User by ID (return ArrayList ID)
+    public static int searchUser(int uid) {
+        for (int i = 0; i < UserList.size(); i++) {
+            if (UserList.get(i).getUserID() == uid) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    //Search User by Name (return ArrayList ID)
+    public static int searchUser(String userName) {
+        for (int i = 0; i < UserList.size(); i++) {
+            if (UserList.get(i).getUserName().equals(userName)) {
+                return i;
+            }
+        }
+        return -1;
     }
 	
 	// Remove register
 	public static void deregister(){
 		
 		String inString;
-		boolean status = false;
 		int inInt;
+        boolean status = false;
 		Scanner scanner = new Scanner(System.in);
 		
 		System.out.println(" Deregister\n");
@@ -75,17 +105,12 @@ public class Account {
 		
 		if(scanner.hasNextInt()){
 			inInt = scanner.nextInt();
-			status = removeUser(inInt);
+			removeUser(inInt);
 		} else {
 			inString = scanner.next();
-			status = removeUser(inString);
+			removeUser(inString);
 		}
-
-		if(status)
-			System.out.println("The user ******* is removed");
-		else
-			System.out.println("Error");
-	}
+    }
 	
 	//List all Users records
 	public static void listAll(){
