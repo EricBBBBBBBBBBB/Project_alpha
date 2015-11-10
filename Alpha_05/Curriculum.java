@@ -75,7 +75,7 @@ class Curriculum{
 	}
 	
 	//Diplay User Current Courses & Completed Courses
-	public static void displayCourse(String uname){
+	public static void printCourse(String uname){
 		
 		//Current Courses
 		System.out.println("-------------------------------------------");
@@ -100,6 +100,19 @@ class Curriculum{
 			for (int j = 0; j < CourseList.get(i).CompletedTraineeList.size(); j++) {
 				if(CourseList.get(i).CompletedTraineeList.get(j).getUserName().equals(uname)) System.out.println(CourseList.get(i).getCourseID() + "t\t" + CourseList.get(i).getCourseName());
 			}
+		}
+		System.out.println("------------------------------------------\n");
+	}
+	
+	//Diplay User Owned Courses
+	public static void printOwnedCourse(int uid){
+		System.out.println("-------------------------------------------");
+		System.out.println("Owned Courses ");
+		System.out.println("-------------------------------------------");
+		System.out.println("ID\tCourse Name");
+		System.out.println("-------------------------------------------");
+		for (int i = 0; i < CourseList.size(); i++) {
+				if(CourseList.get(i).getTrainerID() == uid ) System.out.println(CourseList.get(i).getCourseID() + "\t" + CourseList.get(i).getCourseName());
 		}
 		System.out.println("------------------------------------------\n");
 	}
@@ -148,6 +161,7 @@ class Curriculum{
 		for (int i = 0; i < CourseList.size(); i++) {
 			System.out.println(	CourseList.get(i).getCourseID() + "\t\t" + CourseList.get(i).getCourseName());
 		}
+		
 		System.out.println("--------------------------------");
 	}
 	

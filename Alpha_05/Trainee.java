@@ -28,11 +28,6 @@ class Trainee extends User{
 	}
 
 // Methods //////////////////////////
-	//Diplay User Current Courses & Completed Courses
-	public void displayCourse(){
-		
-	}
-	
 	// Print Trainee information
 	public void printUserInfo() {
 		System.out.println("---------------------------------------------------------");

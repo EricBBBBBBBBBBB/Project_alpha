@@ -42,6 +42,7 @@ class Menus{
 				default:
 					System.out.println("Unknown Comment, Please Restart The System.");
 			}
+			paktc();
 		}
 	}
 
@@ -105,7 +106,7 @@ class Menus{
 
 		switch(inChar) {
 			case '1':
-				Curriculum.printOwnedCourse(trainer.getUserName());
+				Curriculum.printOwnedCourse(trainer.getUserID());
 				break;
 			case '2':
 				System.out.println("You choose number 2");

@@ -19,18 +19,20 @@ class Course{
 	
 	private int duration;
 	private String place;
-	private int courseTrainerID;
 	private int price;	
 	// add Date & Time later
 	private String description;
 	private String target;
 	
-	public static int totalNoOfCourses = 0;
+	private int courseTrainerID;
+	
 	public int totalNumOfTrainee = 0;
 	public int maxNumOfTrainee;
 	
 	public ArrayList<Trainee> TraineeList = new ArrayList<Trainee>(); 
-	public ArrayList<Trainee> CompletedTraineeList = new ArrayList<Trainee>(); 
+	public ArrayList<Trainee> CompletedTraineeList = new ArrayList<Trainee>();
+	
+	public static int totalNoOfCourses = 0;
 	
 // Constructors //////////////////////////
 	Course() {
@@ -60,6 +62,9 @@ class Course{
 		return statusStr;
 	}
 	
+	public int getTrainerID() {
+		return courseTrainerID;
+	}
 	public String getTarget() {
 		return target;
 	}
