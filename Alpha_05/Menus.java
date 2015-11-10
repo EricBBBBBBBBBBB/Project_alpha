@@ -42,7 +42,6 @@ class Menus{
 				default:
 					System.out.println("Unknown Comment, Please Restart The System.");
 			}
-			paktc();
 		}
 	}
 
@@ -153,7 +152,7 @@ class Menus{
 				while(true){
 					System.out.println("===== Users setting Menu =====");
 					System.out.println("enter -l for listing all user breif information");
-					System.out.println("1. All Users Detailed Information");
+					System.out.println("1. Users Detailed Information");
 					System.out.println("2. Users Searching");
 					System.out.println("3. Users editing");
 					System.out.println("4. Remove Users");
@@ -173,8 +172,7 @@ class Menus{
 								System.out.print(" Please enter the user name you want to search: ");
 								// temportary no ID searching......
 								inString = scanner.next();
-								Account.showUserInfo(Account.searchUser(inString));
-								paktc();
+								Account.searchEUser(inString);
 								break;
 							case '3':	// Edit User =========
 								Account.listAll();

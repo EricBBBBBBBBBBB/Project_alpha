@@ -5,10 +5,9 @@
 *
 * 
 ********************************************/
-
+import java.util.Calendar;
 class User{
-
-// Declare data members
+	// Declare data members
 	public static int totalNoOfUser = 0;
 
 	public int userID;
@@ -17,10 +16,12 @@ class User{
 	private String password;
 	protected String email;
 	protected int phone;
+	protected Calendar dateOfRegister;
 
 // Constructors
 	User() {
 		totalNoOfUser++;
+		dateOfRegister = Calendar.getInstance();
 	}
 	
 	public User(String name, int type) {	
@@ -92,5 +93,15 @@ class User{
 		userType = type;
 		email = mail;
 		phone = tel;
+	}
+
+	public void showUserInfo() {
+		System.out.println("========== User Information [" + getUserName() + "] ==========");
+		System.out.println("User name:\t\t" + getUserName());
+		System.out.println("User type:\t\t" + getUserType());
+		System.out.println("Phone:\t\t\t" + phone);
+		System.out.println("Email:\t\t\t" + email);
+		System.out.println("Date of register:\t" + dateOfRegister.getTime());
+		System.out.println("===========================================");
 	}
 }

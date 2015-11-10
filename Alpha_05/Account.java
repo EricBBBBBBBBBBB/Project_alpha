@@ -75,29 +75,59 @@ public class Account {
     //Search User by ID (return ArrayList ID)
     public static int searchUser(int uid) {
         for (int i = 0; i < UserList.size(); i++) {
-            if (UserList.get(i).getUserID() == uid) {
+            if (UserList.get(i).getUserID() == uid)
                 return i;
-            }
+        }
+        return -1;
+    }
+    //Search User by name (return ArrayList ID) [Exactly User name for searching]
+    public static int searchUser(String userName) {
+        for (int i = 0; i < UserList.size(); i++) {
+            if (UserList.get(i).getUserName().equals(userName)) 
+                return i;
         }
         return -1;
     }
 
-    //Search User by Name (return ArrayList ID)
-    public static int searchUser(String userName) {
+    //Search User by Name (return no value)
+    public static void searchEUser(String userName) {
+        System.out.println("There is/are the result(s) of searching: ");
+        System.out.println("ID\tUsername");
+        System.out.println("===========================================");
         for (int i = 0; i < UserList.size(); i++) {
-            if (UserList.get(i).getUserName().equals(userName)) {
-                return i;
+            if(UserList.get(i).getUserName().contains(userName)) {
+                System.out.println(UserList.get(i).getUserID() +"\t"+UserList.get(i).getUserName());
             }
         }
-        return -1;
+        System.out.println("===========================================");
+        System.out.println("Please enter the user ID for detailed Information.");
+        System.out.print("(-1) for quit. : ");
+
+        Scanner scanner = new Scanner(System.in);
+        //String inString = scanner.next();
+        int inInt;
+        if(scanner.hasNextInt())
+            inInt = scanner.nextInt();
+        else
+            inInt = -1;
+
+        if(inInt == -1){
+            System.out.println(">> quit.");
+            return;
+        }
+        showUserInfo(searchUser(inInt));
     }
+
+    //SearchList
+    public static void searching() {
+        //showUserInfo();
+    }
+
 
     //
     public static void showUserInfo(int listID) {
         if(listID != -1) {
-            System.out.println("======= User [" + UserList.get(listID).getUserName() + "] Info =======");
-            System.out.println("Username: \t" + UserList.get(listID).getUserName());
-            System.out.println("Usertype: \t" + UserList.get(listID).getUserType());
+            UserList.get(listID).showUserInfo();
         }else{
             System.out.println("user not found!");
         }
