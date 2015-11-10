@@ -39,6 +39,18 @@ class IOValidation{
             System.out.println(email +" : "+ IOValidation.emailValid(email));
 
         }
+
+        ArrayList<String> phones = new ArrayList<String>();
+        phones.add("12345678");
+        phones.add("1234567");
+        phones.add("123458");
+        phones.add("12678");
+        phones.add("345678");
+        phones.add("");
+        for(int i = 0; i < phones.size(); i++){
+            String phone = phones.get(i);
+            System.out.println(phone + " : " + IOValidation.phoneValid(phone));
+        }
 	}
 	
 	public static boolean stringValid(String inStr) {
@@ -64,7 +76,15 @@ class IOValidation{
     }
 
     public static boolean phoneValid(String inStr) {
-        
+        if(inStr.isEmpty())
+            return false;
+        String regex = "[0-9]{8}";  // set the regex
+        Pattern pattern = Pattern.compile(regex);   // compile the pattern
+        Matcher matcher = pattern.matcher(inStr);   // validate the email
+        if(matcher.matches())
+            return true;
+        else
+            return false;
     }
 
 }
