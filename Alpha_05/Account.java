@@ -91,6 +91,17 @@ public class Account {
         }
         return -1;
     }
+
+    //
+    public static void showUserInfo(int listID) {
+        if(listID != -1) {
+            System.out.println("======= User [" + UserList.get(listID).getUserName() + "] Info =======");
+            System.out.println("Username: \t" + UserList.get(listID).getUserName());
+            System.out.println("Usertype: \t" + UserList.get(listID).getUserType());
+        }else{
+            System.out.println("user not found!");
+        }
+    }
 	
 	//List all Users records
 	public static void listAll(){

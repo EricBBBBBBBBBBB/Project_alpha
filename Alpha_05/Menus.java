@@ -68,7 +68,7 @@ class Menus{
 				Curriculum.JoinCourse(trainee);
 				break;
 			case '3':
-				Curriculum.displayCourse(trainee.getUserName());
+				Curriculum.printCourse(trainee.getUserName());
 				break;
 			case '4':
 				Curriculum.listTarget();
@@ -105,7 +105,7 @@ class Menus{
 
 		switch(inChar) {
 			case '1':
-				System.out.println("You choose number 1");
+				Curriculum.printOwnedCourse(trainer.getUserName());
 				break;
 			case '2':
 				System.out.println("You choose number 2");
@@ -157,7 +157,7 @@ class Menus{
 					System.out.println("3. Users editing");
 					System.out.println("4. Remove Users");
 					System.out.println("9. Return to main menu");
-
+					System.out.print(" >> Please enter the number: ");
 					inString = scanner.next();
 					if(inString.equals("-l"))
 						Account.listAll();
@@ -167,19 +167,24 @@ class Menus{
 							case '1':
 								Account.listAll();
 								break;
-							case '2':
+							case '2':	// Search User =======
+								System.out.println(" = = = = = = Users Searching = = = = = =");
+								System.out.print(" Please enter the user name you want to search: ");
+								// temportary no ID searching......
+								inString = scanner.next();
+								Account.showUserInfo(Account.searchUser(inString));
+								paktc();
+								break;
+							case '3':	// Edit User =========
 								Account.listAll();
 								break;
-							case '3':
-								Account.listAll();
-								break;
-							case '4':
+							case '4':	// Remove User =======
 								System.out.println(" Deregister\n");
 								System.out.print(" Please enter the user name or ID you want to remove: ");
-								if(scanner.hasNextInt()){
+								if(scanner.hasNextInt()){	// if enter user ID
 									inInt = scanner.nextInt();
 									Account.removeUser(inInt);
-								} else {
+								} else {					// if enter user name
 									inString = scanner.next();
 									Account.removeUser(inString);
 								}
@@ -213,5 +218,15 @@ class Menus{
 				scanner.close();
 				break;
 		}
+	}
+
+	private void paktc(){
+		System.out.println("Press any key to continue...");
+        try
+        {
+            System.in.read();
+        }  
+        catch(Exception e)
+        {} 
 	}
 }
