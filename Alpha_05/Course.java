@@ -30,6 +30,7 @@ class Course{
 	public int maxNumOfTrainee;
 	
 	public ArrayList<Trainee> TraineeList = new ArrayList<Trainee>(); 
+	public ArrayList<Trainee> CompletedTraineeList = new ArrayList<Trainee>(); 
 	
 // Constructors //////////////////////////
 	Course() {

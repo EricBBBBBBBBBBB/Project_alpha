@@ -74,9 +74,34 @@ class Curriculum{
 
 	}
 	
-	//Display the Completed Courses
-	public static void displayRecords(){
-		System.out.println(" Display records\n");
+	//Diplay User Current Courses & Completed Courses
+	public static void displayCourse(String uname){
+		
+		//Current Courses
+		System.out.println("-------------------------------------------");
+		System.out.println("Current Courses ");
+		System.out.println("-------------------------------------------");
+		System.out.println("ID\tCourse Name");
+		System.out.println("-------------------------------------------");
+		for (int i = 0; i < CourseList.size(); i++) {
+			for (int j = 0; j < CourseList.get(i).TraineeList.size(); j++) {
+				if(CourseList.get(i).TraineeList.get(j).getUserName().equals(uname)) System.out.println(CourseList.get(i).getCourseID() + "\t" + CourseList.get(i).getCourseName());
+			}
+		}
+		System.out.println("------------------------------------------\n");
+		
+		//Completed Courses
+		System.out.println("-------------------------------------------");
+		System.out.println("Completed Courses");
+		System.out.println("------------------------------------------\n");
+		System.out.println("ID\tCourse Name");
+		System.out.println("-------------------------------------------");
+		for (int i = 0; i < CourseList.size(); i++) {
+			for (int j = 0; j < CourseList.get(i).CompletedTraineeList.size(); j++) {
+				if(CourseList.get(i).CompletedTraineeList.get(j).getUserName().equals(uname)) System.out.println(CourseList.get(i).getCourseID() + "t\t" + CourseList.get(i).getCourseName());
+			}
+		}
+		System.out.println("------------------------------------------\n");
 	}
 	
 	//Courses Performance
