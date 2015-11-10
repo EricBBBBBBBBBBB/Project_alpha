@@ -92,6 +92,26 @@ public class Account {
         return -1;
     }
 	
+	// Remove register
+	public static void deregister(){
+		
+		String inString;
+		int inInt;
+        boolean status = false;
+		Scanner scanner = new Scanner(System.in);
+		
+		System.out.println(" Deregister\n");
+		System.out.print(" Please enter the user name or ID you want to remove: ");
+		
+		if(scanner.hasNextInt()){
+			inInt = scanner.nextInt();
+			removeUser(inInt);
+		} else {
+			inString = scanner.next();
+			removeUser(inString);
+		}
+    }
+	
 	//List all Users records
 	public static void listAll(){
 		
