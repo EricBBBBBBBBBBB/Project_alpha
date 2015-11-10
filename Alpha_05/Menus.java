@@ -178,10 +178,10 @@ class Menus{
 								System.out.print(" Please enter the user name or ID you want to remove: ");
 								if(scanner.hasNextInt()){
 									inInt = scanner.nextInt();
-									removeUser(inInt);
+									Account.removeUser(inInt);
 								} else {
 									inString = scanner.next();
-									removeUser(inString);
+									Account.removeUser(inString);
 								}
 								break;
 							case '9':
