@@ -51,9 +51,9 @@ class Menus{
 		Trainee trainee = (Trainee) user;
 		System.out.println("------------ Trainee Menu ---------------");
 		System.out.println("- 1. View the Current Available Courses -");
-		System.out.println("- 2. Join training Courses");
+		System.out.println("- 2. Join Training Courses");
 		System.out.println("- 3. Display Current/Completed Courses  -");
-		System.out.println("- 4. xxxxxxxxxxxxxxxxxxxxxx             -");
+		System.out.println("- 4. Display Targets Set             -");
 		System.out.println("- 5. View Personal Infomation           -");
 		System.out.println("- 6. General Menu						-");
 		System.out.println("Enter q for quit.");
@@ -66,7 +66,7 @@ class Menus{
 				Curriculum.listAvaibleCourse();
 				break;
 			case '2':
-				System.out.println("You choose number 2");
+				Curriculum.JoinCourse(user);
 				break;
 			case '3':
 				System.out.println("You choose number 3");

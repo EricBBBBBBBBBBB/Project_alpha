@@ -6,6 +6,10 @@
 * Course.java: 
 ********************************************/
 
+import java.io.*;
+import java.util.Scanner;
+import java.util.ArrayList;
+
 class Course{
 
 // Declare data members //////////////////////////
@@ -23,6 +27,8 @@ class Course{
 	public static int totalNoOfCourses = 0;
 	public int totalNumOfTrainee = 0;
 	public int maxNumOfTrainee;
+	
+	public static ArrayList<Trainee> TraineeList = new ArrayList<Trainee>(); 
 	
 // Constructors //////////////////////////
 	Course() {
@@ -70,6 +76,7 @@ class Course{
 	//Join Course
 	public void joinCourse(Trainee user){
 		totalNumOfTrainee++;
+		TraineeList.add(user);
 	}
 	
 }

@@ -15,6 +15,7 @@ public class TrainingRecordSystem {
         // Load Users Information ()
         Account.initUserList();
         // Load Courses information ()
+        Curriculum.initCourseList();
 
 		System.out.println("*****************************************************");
 		System.out.println("* - - - - Welcome to Training Record System - - - - *");

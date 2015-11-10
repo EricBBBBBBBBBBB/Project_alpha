@@ -88,6 +88,11 @@ class Curriculum{
 	public static void DelCourse(){
 		System.out.println(" Delete Courses \n");
 	}
+	
+	//Join Course
+	public static void JoinCourse(Trainee user){
+		
+	}
 
 	//List Avaible Courses
 	public static void listAvaibleCourse(){

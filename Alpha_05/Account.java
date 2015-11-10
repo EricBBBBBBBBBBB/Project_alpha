@@ -1,11 +1,13 @@
 /********************************************
 * Project Team:	
 * Students: 
-* Couse: OOP 2015 Sem 1, HDIT
+* Course: OOP 2015 Sem 1, HDIT
 *
-* Account > User > Tarinee, Trainer, Admin 
+* Account > User > Trainer, Trainee, Admin
 ********************************************/
 
+import java.io.*;
+import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Account {
@@ -53,6 +55,37 @@ public class Account {
         }
         return false;
     }
+	
+	// Remove register
+	public static void deregister(){
+		
+		String inString;
+		Scanner scanner = new Scanner(System.in);
+		
+		System.out.println(" Deregister\n");
+		System.out.print(" Please enter the user name you want to remove: ");
+		inString = scanner.next();
 
+		if(removeUser(inString))
+			System.out.println("The user " + inString + " is removed");
+		else
+			System.out.println("Error");
+	}
+	
+	
+	//List all Users records
+	public static void listAll(){
+		
+		System.out.println("--------------------------------");
+		System.out.println("UserID\tUserName\tUserType");
+		System.out.println("--------------------------------");
+		
+		for (int i = 0; i < UserList.size(); i++) {
+			System.out.println(	UserList.get(i).getUserID() + "\t" + UserList.get(i).getUserName() + "\t\t" + UserList.get(i).getUserType());
+		}
+		System.out.println("--------------------------------\n");
 
+	}
+	
+	
 }
