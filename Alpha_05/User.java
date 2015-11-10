@@ -96,7 +96,7 @@ class User{
 		phone = tel;
 	}
 	
-	// Print Trainee information
+	// Print User information
 	public void printUserInfo() {
 		System.out.println("-----------------------------------------------------");	
 		System.out.println("-   \t\t" + getUserType() + " Information\t\t   -");

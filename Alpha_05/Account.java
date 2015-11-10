@@ -10,14 +10,14 @@ import java.io.*;
 import java.util.Scanner;
 import java.util.ArrayList;
 
-public class Account {
+public class Account{
 
 // Declare data members (To save the User Infomation without FileIOSystem)
-    public static ArrayList<User> UserList = new ArrayList<User>(); 
+    public static ArrayList<User> UserList = new ArrayList<User>();
 
 
 // Methods 
-	//Initialization User List
+//Initialization User List
     public static void initUserList() {       
         UserList.add(new Trainee("e1", "e"));
         UserList.add(new Trainee("e2", "e"));
@@ -69,14 +69,16 @@ public class Account {
         System.out.println("Are you sure to remove User [" + UserList.get(listID).getUserName() + "]? (Y/N)");
         Scanner scanner = new Scanner(System.in);
         char inChar = scanner.next().charAt(0);
-            if(inChar == 'Y' || inChar == 'y') {
-                UserList.remove(listID);
-                System.out.println("Removed!");
-            } else{
-                System.out.println("Unsuccessful, Unknown error!");
-            }
-        }
-	}
+		
+		if(inChar == 'Y' || inChar == 'y') {
+			UserList.remove(listID);
+			System.out.println("Removed!");
+		} else{
+			System.out.println("Unsuccessful, Unknown error!");
+		}
+		
+    }
+	
 	
     //Search User by ID (return ArrayList ID)
     public static int searchUser(int uid) {
@@ -153,6 +155,5 @@ public class Account {
 		System.out.println("--------------------------------\n");
 
 	}
-	
 	
 }

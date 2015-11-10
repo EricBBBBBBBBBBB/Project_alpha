@@ -15,19 +15,21 @@ class Course{
 // Declare data members
 	protected int courseID;
 	protected String courseName;
+	protected String courseType;
+	private String traineeRequire = "beginner";
 	protected boolean isAvailable = true;
 	
 	private int duration;
 	private String place;
 	private int price;	
 	// add Date & Time later
-	private String description;
 	private String target;
-	
+	private String description;
+
 	private int courseTrainerID;
 	
 	public int totalNumOfTrainee = 0;
-	public int maxNumOfTrainee;
+	public int maxNumOfTrainee = 15;
 	
 	public ArrayList<Trainee> TraineeList = new ArrayList<Trainee>(); 
 	public ArrayList<Trainee> CompletedTraineeList = new ArrayList<Trainee>();
@@ -79,8 +81,9 @@ class Course{
 		System.out.println("Course Trainer ID: \t" + courseTrainerID);
         System.out.println("Price: \t\t\t" + price);
         System.out.println("Duration: \t" + "months");
-        System.out.println("Description: \t\t" + description);
-		System.out.println("Number of Trainee: \t" + totalNumOfTrainee + "/" + maxNumOfTrainee);
+        System.out.println("Trainee Requirements: \t" + traineeRequire);
+        System.out.println("Number of Trainee: \t" + totalNumOfTrainee + "/" + maxNumOfTrainee);
+		System.out.println("Description: \t\t" + description);
 		System.out.println("-----------------------------------------------------");	
 	}
 	
@@ -99,8 +102,13 @@ class Course{
 	
 	//Join Course
 	public void joinCourse(Trainee user){
-		totalNumOfTrainee++;
-		TraineeList.add(user);
+		if(maxNumOfTrainee == totalNumOfTrainee){
+			System.out.println(">>>This Course was full. \n");
+		}else{
+			totalNumOfTrainee++;
+			TraineeList.add(user);
+			System.out.println(">>>Joined. \n");
+		}
 	}
 	
 }
