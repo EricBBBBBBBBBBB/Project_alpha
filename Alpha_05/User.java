@@ -106,9 +106,6 @@ class User{
 		System.out.println("User Email: \t  " + getUserEmail());
 		System.out.println("User Phone: \t  " + getUserPhone());
 		System.out.println("Date of register: " + dateOfRegister.getTime());
-		if(getUserType().equals("Trainee"))System.out.println("Completed Courses: ");
-		if(getUserType().equals("Trainee"))System.out.println("Current Courses: ");
-		if(getUserType().equals("Trainer"))System.out.println("Owned Courses: ");
 		System.out.println("-----------------------------------------------------");	
 		System.out.println("End of Personal Infomation.\n");
 	}

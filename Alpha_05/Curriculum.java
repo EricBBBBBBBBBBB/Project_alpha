@@ -76,8 +76,11 @@ class Curriculum{
 	
 	//Diplay User Current Courses & Completed Courses
 	public static void printCourse(String uname){
-		
-		//Current Courses
+		Curriculum.printCurrentCourse(uname);
+		Curriculum.printCompletedCourse(uname);
+	}
+				
+	public static void printCurrentCourse(String uname){
 		System.out.println("-----------------------------------------------------");
 		System.out.println("------------------ Current Courses ------------------");
 		System.out.println("-----------------------------------------------------");
@@ -89,8 +92,8 @@ class Curriculum{
 			}
 		}
 		System.out.println("-----------------------------------------------------\n");
-		
-		//Completed Courses
+	}
+	public static void printCompletedCourse(String uname){
 		System.out.println("-----------------------------------------------------");
 		System.out.println("----------------- Completed Courses -----------------");
 		System.out.println("-----------------------------------------------------");
@@ -103,6 +106,27 @@ class Curriculum{
 			}
 		}
 		System.out.println("------------------------------------------\n");
+	}
+	
+	//Count Current Courses & Completed Courses	
+	public static int totalOfCurrent(String uname){
+		int total = 0;
+		for (int i = 0; i < CourseList.size(); i++) {
+			for (int j = 0; j < CourseList.get(i).CompletedTraineeList.size(); j++) {
+				if(CourseList.get(i).TraineeList.get(j).getUserName().equals(uname)) total++;
+			}
+		}
+		return total;
+	}
+
+	public static int totalOfCompleted(String uname){
+		int total = 0;
+		for (int i = 0; i < CourseList.size(); i++) {
+			for (int j = 0; j < CourseList.get(i).CompletedTraineeList.size(); j++) {
+				if(CourseList.get(i).CompletedTraineeList.get(j).getUserName().equals(uname)) total++;
+			}
+		}
+		return total;
 	}
 	
 	//Diplay User Owned Courses

@@ -29,7 +29,7 @@ class Login{
 			System.out.println("-----------------------------------------------------");
 			
 			//Input User name
-			System.out.println("(if you haven't got a user, please type signup)");
+			System.out.println("(if you haven't got a user, please type 'signup')");
 			
 			System.out.print("> Please enter your user name: ");
 			while ((userName = scanner.nextLine()).isEmpty()){
