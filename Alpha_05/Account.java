@@ -41,14 +41,20 @@ public class Account {
     }
 
 	//Remove User by ID
-    public static boolean removeUser(int listID) {
-        return true;
+    public static boolean removeUser(int uid) {
+		for (int i = 0; i < UserList.size(); i++) {
+            if (UserList.get(i).getUserID() == uid) {
+                UserList.remove(i);
+                return true;
+            }
+        }
+        return false;
     }
 	
 	//Remove User by Name
-    public static boolean removeUser(String userName) {
+    public static boolean removeUser(String uname) {
         for (int i = 0; i < UserList.size(); i++) {
-            if (UserList.get(i).getUserName().equals(userName)) {
+            if (UserList.get(i).getUserName().equals(uname)) {
                 UserList.remove(i);
                 return true;
             }
@@ -60,14 +66,23 @@ public class Account {
 	public static void deregister(){
 		
 		String inString;
+		boolean status = false;
+		int inInt;
 		Scanner scanner = new Scanner(System.in);
 		
 		System.out.println(" Deregister\n");
-		System.out.print(" Please enter the user name you want to remove: ");
-		inString = scanner.next();
+		System.out.print(" Please enter the user name or ID you want to remove: ");
+		
+		if(scanner.hasNextInt()){
+			inInt = scanner.nextInt();
+			status = removeUser(inInt);
+		} else {
+			inString = scanner.next();
+			status = removeUser(inString);
+		}
 
-		if(removeUser(inString))
-			System.out.println("The user " + inString + " is removed");
+		if(status)
+			System.out.println("The user ******* is removed");
 		else
 			System.out.println("Error");
 	}

@@ -39,9 +39,14 @@ class Curriculum{
     }
 
 	//Remove Course by ID
-    public static boolean removeCourse(int listID) {
-		////////////
-        return true;
+    public static boolean removeCourse(int cid) {
+		for (int i = 0; i < CourseList.size(); i++) {
+            if (CourseList.get(i).getCourseID() == cid) {
+                CourseList.remove(i);
+                return true;
+            }
+        }
+        return false;
     }
 	
 	//Remove Course by Name
