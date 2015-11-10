@@ -12,9 +12,9 @@ import java.util.ArrayList;
 public class TrainingRecordSystem {
 
 	public static void main(String[] args) {
-        // Load Users Information ()
+        // Load Users Information()
         Account.initUserList();
-        // Load Courses information ()
+        // Load Courses information()
         Curriculum.initCourseList();
 
 		System.out.println("*****************************************************");
@@ -32,7 +32,8 @@ public class TrainingRecordSystem {
 		Menus menus = new Menus(loginUser);	//menus class
         menus.mainMenu();
 
-		System.out.println("SYSTEM END.");
+		//rewrite data (users, courses)
+		System.out.println("\nSYSTEM END.");
 		System.out.println("End of program.");
 
 	}

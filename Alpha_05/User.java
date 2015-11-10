@@ -65,20 +65,6 @@ class User{
 		return phone;
 	}	
 	
-	// Print the User information
-	public void printUserInfo() {
-		System.out.println("----------------------------------------------------------");
-		System.out.println("                   " + getUserType() + " Information ");
-		System.out.println("----------------------------------------------------------");
-		System.out.println("User ID: " + getUserID());
-		System.out.println("User Name: " + getUserName());
-		System.out.println("User Email: " + getUserEmail());
-		System.out.println("User Phone: " + getUserPhone());
-		if(getUserType() == "Tarinee")System.out.println("Completed Courses: ");
-		if(getUserType() == "Tariner")System.out.println("Owned Courses: ");
-		System.out.println("----------------------------------------------------------");
-	}
-	
 	//Set the User information
 	public void setUserName(String name) {
 		userName = name;

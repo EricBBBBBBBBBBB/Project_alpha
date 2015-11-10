@@ -26,7 +26,6 @@ class Menus{
 // Methods //////////////////////////
 	//Main Menu
 	public void mainMenu() {
-		
 		while(!quit){
 			quit = false;
 			switch(user.getUserType()) {
@@ -43,7 +42,6 @@ class Menus{
 					System.out.println("Unknown Comment, Please Restart The System.");
 			}
 		}
-		
 	}
 
 	//Trainee Menu
@@ -51,9 +49,9 @@ class Menus{
 		Trainee trainee = (Trainee) user;
 		System.out.println("------------ Trainee Menu ---------------");
 		System.out.println("- 1. View the Current Available Courses -");
-		System.out.println("- 2. Join Training Courses");
+		System.out.println("- 2. Join Training Courses				-");
 		System.out.println("- 3. Display Current/Completed Courses  -");
-		System.out.println("- 4. Display Targets Set             -");
+		System.out.println("- 4. Display Targets Set             	-");
 		System.out.println("- 5. View Personal Infomation           -");
 		System.out.println("- 6. General Menu						-");
 		System.out.println("Enter q for quit.");
@@ -72,7 +70,7 @@ class Menus{
 				System.out.println("You choose number 3");
 				break;
 			case '4':
-				System.out.println("You choose number 4");
+				Curriculum.listTarget();
 				break;
 			case '5':
 				trainee.printUserInfo();
@@ -92,13 +90,13 @@ class Menus{
 	//Trainer Menu
 	public void trainerMenu() {
 		Trainer trainer = (Trainer) user;
-		System.out.println("------- Trainer Menu -------");
-		System.out.println("1. xxxxxxxxxxxxxxxxxxxxxx");
-		System.out.println("2. xxxxxxxxxxxxxxxxxxxxxx");
-		System.out.println("3. xxxxxxxxxxxxxxxxxxxxxx");
-		System.out.println("4. xxxxxxxxxxxxxxxxxxxxxx");
-		System.out.println("5. View Personal Infomation");
-		System.out.println("6. General Menu");
+		System.out.println("--------------- Trainer Menu ---------------");
+		System.out.println("- 1. List Owned Courses					   -");
+		System.out.println("- 2. Display Courses and Trainee Records   -");
+		System.out.println("- 3. xxxxxxxxxxxxxxxxxxxxxx				   -");
+		System.out.println("- 4. xxxxxxxxxxxxxxxxxxxxxx				   -");
+		System.out.println("- 5. View Personal Infomation			   -");
+		System.out.println("- 6. General Menu						   -");
 		System.out.println("Enter q for quit.");
 
 		Scanner scanner = new Scanner(System.in);

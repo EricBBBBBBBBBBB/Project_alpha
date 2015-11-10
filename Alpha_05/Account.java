@@ -72,7 +72,6 @@ public class Account {
 			System.out.println("Error");
 	}
 	
-	
 	//List all Users records
 	public static void listAll(){
 		

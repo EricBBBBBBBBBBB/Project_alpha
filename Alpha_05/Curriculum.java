@@ -105,4 +105,15 @@ class Curriculum{
 		}
 		System.out.println("--------------------------------\n");
 	}
+	//List Courses Targets
+	public static void listTarget(){
+		System.out.println("--------------------------------");
+		System.out.println("Course ID\tCourse Name\tTargets");
+		System.out.println("--------------------------------");
+		
+		for (int i = 0; i < CourseList.size(); i++) {
+			System.out.println(	CourseList.get(i).getCourseID() + "\t\t" + CourseList.get(i).getCourseName() + "\t" + CourseList.get(i).getTarget());
+		}
+		System.out.println("--------------------------------\n");
+	}
 }

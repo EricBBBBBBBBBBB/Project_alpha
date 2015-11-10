@@ -25,7 +25,19 @@ class Trainer extends User{
 	}
 
 // Methods //////////////////////////
-
+	// Print Trainer information
+	public void printUserInfo() {
+		System.out.println("---------------------------------------------------------");
+		System.out.println("                   " + getUserType() + " Information ");
+		System.out.println("----------------------------------------------------------");
+		System.out.println("User ID: " + getUserID());
+		System.out.println("User Name: " + getUserName());
+		System.out.println("User Email: " + getUserEmail());
+		System.out.println("User Phone: " + getUserPhone());
+		System.out.println("Owned Courses: ");
+		System.out.println("----------------------------------------------------------\n");
+		System.out.println("End of Personal Infomation.\n");
+	}
 	
 	
 }

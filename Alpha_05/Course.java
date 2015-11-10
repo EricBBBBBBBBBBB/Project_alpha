@@ -23,6 +23,7 @@ class Course{
 	private int price;	
 	// add Date & Time later
 	private String description;
+	private String target;
 	
 	public static int totalNoOfCourses = 0;
 	public int totalNumOfTrainee = 0;
@@ -56,6 +57,10 @@ class Course{
 		if(isAvailable) statusStr = "Available";
 		else statusStr = "NOT Available";
 		return statusStr;
+	}
+	
+	public String getTarget() {
+		return target;
 	}
 	
 	// Print the Course information
