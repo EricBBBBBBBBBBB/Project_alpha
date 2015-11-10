@@ -49,11 +49,11 @@ class Menus{
 		Trainee trainee = (Trainee) user;
 		System.out.println("------------ Trainee Menu ---------------");
 		System.out.println("- 1. View the Current Available Courses -");
-		System.out.println("- 2. Join Training Courses				-");
+		System.out.println("- 2. Join Training Courses		-");
 		System.out.println("- 3. Display Current/Completed Courses  -");
 		System.out.println("- 4. Display Targets Set             	-");
 		System.out.println("- 5. View Personal Infomation           -");
-		System.out.println("- 6. General Menu						-");
+		System.out.println("- 6. General Menu			-");
 		System.out.println("Enter q for quit.");
 		
 		Scanner scanner = new Scanner(System.in);
@@ -133,11 +133,11 @@ class Menus{
 	//Admin Menu
 	public void adminMenu() {
 		Admin admin = (Admin) user;
-		//System.out.print("\033[H\033[2J");
+		System.out.print("\033[H\033[2J");
 		System.out.println("------- Admin Menu -------");
 		System.out.println("1. Users setting");
 		System.out.println("2. List All Courses");
-		System.out.println("3. XXXX");
+		System.out.println("3. Remove Users");
 		System.out.println("4. xxxxxxxxxxxxxxxxxxxxxx");
 		System.out.println("5. View Personal Infomation");
 		System.out.println("6. General Menu");
@@ -161,7 +161,7 @@ class Menus{
 					inString = scanner.next();
 					if(inString.equals("-l"))
 						Account.listAll();
-					else
+					else{
 						inChar = inString.charAt(0);
 						switch(inChar){
 							case '1':
@@ -179,6 +179,7 @@ class Menus{
 							default:
 								System.out.println("Unknown Error.");
 						}
+					}
 					break;
 				}
 				break;

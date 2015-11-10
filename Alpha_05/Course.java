@@ -29,7 +29,7 @@ class Course{
 	public int totalNumOfTrainee = 0;
 	public int maxNumOfTrainee;
 	
-	public static ArrayList<Trainee> TraineeList = new ArrayList<Trainee>(); 
+	public ArrayList<Trainee> TraineeList = new ArrayList<Trainee>(); 
 	
 // Constructors //////////////////////////
 	Course() {
@@ -65,7 +65,6 @@ class Course{
 	
 	// Print the Course information
 	public void printCourseInfo() {
-		
 		System.out.println("----------------------------------------------------------");
 		System.out.println("                   		 Information (" + getCourseStatus() + ")");
 		System.out.println("----------------------------------------------------------");
@@ -76,6 +75,19 @@ class Course{
         System.out.println("Duration: \t" + "months");
         System.out.println("Description: \t\t" + description);
 		System.out.println("Number of Trainee: \t" + totalNumOfTrainee + "/" + maxNumOfTrainee);
+		System.out.println("----------------------------------------------------------");
+	}
+	
+	// Print the Course Trainee List
+	public void printTraineeList() {
+		System.out.println("----------------------------------------------------------");
+		System.out.println("                   		 Trainee List");
+		System.out.println("----------------------------------------------------------");
+		System.out.println("UserID\tUserName");
+		System.out.println("----------------------------------------------------------");		
+		for (int i = 0; i < TraineeList.size(); i++) {
+			System.out.println(	TraineeList.get(i).getUserID() + "\t" + TraineeList.get(i).getUserName());
+		}
 		System.out.println("----------------------------------------------------------");
 	}
 	

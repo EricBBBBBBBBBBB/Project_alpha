@@ -16,25 +16,25 @@ public class TrainingRecordSystem {
         Account.initUserList();
         // Load Courses information()
         Curriculum.initCourseList();
-
+		
 		System.out.println("*****************************************************");
 		System.out.println("* - - - - Welcome to Training Record System - - - - *");
 		System.out.println("*****************************************************");
         System.out.println("\n");
-
+		
 		Login login = new Login(); //login class
         User loginUser = login.login();
         if (!login.LoginStatus()) {
             System.out.println("Login unsuccessful! Unknown Error....");
             return; //program end if login fail
         }
-
+		
 		Menus menus = new Menus(loginUser);	//menus class
         menus.mainMenu();
-
+		
 		//rewrite data (users, courses)
 		System.out.println("\nSYSTEM END.");
 		System.out.println("End of program.");
-
+		
 	}
 }

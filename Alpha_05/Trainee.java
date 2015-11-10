@@ -15,6 +15,9 @@ class Trainee extends User{
 // Declare data members //////////////////////////
 	public static int totalNoOfTrainee = 0;  // class data member
 	
+	public ArrayList<Course> CurrentCourseList = new ArrayList<Course>(); 
+	public ArrayList<Course> CompletedCourseList = new ArrayList<Course>(); 
+	
 // Constructors //////////////////////////
 	Trainee(String name) {
 		super(name, 0);	//call superclass constructor
@@ -40,6 +43,7 @@ class Trainee extends User{
 		System.out.println("User Email: " + getUserEmail());
 		System.out.println("User Phone: " + getUserPhone());
 		System.out.println("Completed Courses: ");
+		System.out.println("Current Courses: ");
 		System.out.println("----------------------------------------------------------\n");
 		System.out.println("End of Personal Infomation.\n");
 	}

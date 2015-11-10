@@ -97,23 +97,39 @@ class Curriculum{
 	//Join Course
 	public static void JoinCourse(Trainee user){
 		
+		listAvaibleCourse();
+		System.out.println(" Join");
+		System.out.print(" Please enter the course name you want to join: ");
+		Scanner scanner = new Scanner(System.in);
+		String course = scanner.next();
+		
+		for (int i = 0; i < CourseList.size(); i++) {
+			if(CourseList.get(i).getCourseName().equals(course)) {
+				CourseList.get(i).joinCourse(user);
+				System.out.println(" Joined. \n");
+				break;
+			}else{
+				System.out.println(" Unknown Courses. \n");
+			}
+		}	
 	}
 
 	//List Avaible Courses
 	public static void listAvaibleCourse(){
 		System.out.println("--------------------------------");
-		System.out.println("Course ID\tCourse Name");
+		System.out.println("ID\tCourse Name");
 		System.out.println("--------------------------------");
 		
 		for (int i = 0; i < CourseList.size(); i++) {
 			System.out.println(	CourseList.get(i).getCourseID() + "\t\t" + CourseList.get(i).getCourseName());
 		}
-		System.out.println("--------------------------------\n");
+		System.out.println("--------------------------------");
 	}
+	
 	//List Courses Targets
 	public static void listTarget(){
 		System.out.println("--------------------------------");
-		System.out.println("Course ID\tCourse Name\tTargets");
+		System.out.println("ID\tCourse Name\tTargets");
 		System.out.println("--------------------------------");
 		
 		for (int i = 0; i < CourseList.size(); i++) {
