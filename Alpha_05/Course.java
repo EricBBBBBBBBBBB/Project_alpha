@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 class Course{
 
-// Declare data members //////////////////////////
+// Declare data members
 	protected int courseID;
 	protected String courseName;
 	protected boolean isAvailable = true;
@@ -34,7 +34,7 @@ class Course{
 	
 	public static int totalNoOfCourses = 0;
 	
-// Constructors //////////////////////////
+// Constructors
 	Course() {
 		totalNoOfCourses++;
 	}
@@ -45,7 +45,7 @@ class Course{
 		courseName = cname;
 	}
 	
-// Methods //////////////////////////
+// Methods
 	//Get the Course information
 	public int getCourseID() {
 		return courseID;
@@ -71,9 +71,9 @@ class Course{
 	
 	// Print the Course information
 	public void printCourseInfo() {
-		System.out.println("----------------------------------------------------------");
-		System.out.println("                   		 Information (" + getCourseStatus() + ")");
-		System.out.println("----------------------------------------------------------");
+		System.out.println("-----------------------------------------------------");
+		System.out.println("           Information (" + getCourseStatus() + "\t)");    		 
+		System.out.println("-----------------------------------------------------");
 		System.out.println("Course ID: \t\t\t" + courseID);
 		System.out.println("Course Name: \t\t" + courseName);
 		System.out.println("Course Trainer ID: \t" + courseTrainerID);
@@ -81,20 +81,20 @@ class Course{
         System.out.println("Duration: \t" + "months");
         System.out.println("Description: \t\t" + description);
 		System.out.println("Number of Trainee: \t" + totalNumOfTrainee + "/" + maxNumOfTrainee);
-		System.out.println("----------------------------------------------------------");
+		System.out.println("-----------------------------------------------------");	
 	}
 	
 	// Print the Course Trainee List
-	public void printTraineeList() {
-		System.out.println("----------------------------------------------------------");
-		System.out.println("                   		 Trainee List");
-		System.out.println("----------------------------------------------------------");
+	public void printTraineeList() {    		 
+		System.out.println("-----------------------------------------------------");
+		System.out.println("- Trainee List\t\t\t    -");
+		System.out.println("-----------------------------------------------------");
 		System.out.println("UserID\tUserName");
-		System.out.println("----------------------------------------------------------");		
+		System.out.println("-----------------------------------------------------");		
 		for (int i = 0; i < TraineeList.size(); i++) {
 			System.out.println(	TraineeList.get(i).getUserID() + "\t" + TraineeList.get(i).getUserName());
 		}
-		System.out.println("----------------------------------------------------------");
+		System.out.println("-----------------------------------------------------");	
 	}
 	
 	//Join Course

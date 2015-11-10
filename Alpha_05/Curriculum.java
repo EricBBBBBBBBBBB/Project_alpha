@@ -12,11 +12,11 @@ import java.util.ArrayList;
 
 class Curriculum{
 
-// Declare data members //////////////////////////(To save the Course Infomation without FileIOSystem)
+// Declare data members (To save the Course Infomation without FileIOSystem)
     public static ArrayList<Course> CourseList = new ArrayList<Course>(); 
 	
 	
-// Methods //////////////////////////
+// Methods
 	//Initialization Course List
     public static void initCourseList() {       
         CourseList.add(new Course("Courses1"));
@@ -78,27 +78,28 @@ class Curriculum{
 	public static void printCourse(String uname){
 		
 		//Current Courses
-		System.out.println("-------------------------------------------");
-		System.out.println("Current Courses ");
-		System.out.println("-------------------------------------------");
+		System.out.println("-----------------------------------------------------");
+		System.out.println("------------------ Current Courses ------------------");
+		System.out.println("-----------------------------------------------------");
 		System.out.println("ID\tCourse Name");
-		System.out.println("-------------------------------------------");
+		System.out.println("-----------------------------------------------------");
 		for (int i = 0; i < CourseList.size(); i++) {
 			for (int j = 0; j < CourseList.get(i).TraineeList.size(); j++) {
 				if(CourseList.get(i).TraineeList.get(j).getUserName().equals(uname)) System.out.println(CourseList.get(i).getCourseID() + "\t" + CourseList.get(i).getCourseName());
 			}
 		}
-		System.out.println("------------------------------------------\n");
+		System.out.println("-----------------------------------------------------\n");
 		
 		//Completed Courses
-		System.out.println("-------------------------------------------");
-		System.out.println("Completed Courses");
-		System.out.println("------------------------------------------\n");
-		System.out.println("ID\tCourse Name");
+		System.out.println("-----------------------------------------------------");
+		System.out.println("----------------- Completed Courses -----------------");
+		System.out.println("-----------------------------------------------------");
+		System.out.println("-  ID\tCourse Name");
 		System.out.println("-------------------------------------------");
 		for (int i = 0; i < CourseList.size(); i++) {
 			for (int j = 0; j < CourseList.get(i).CompletedTraineeList.size(); j++) {
-				if(CourseList.get(i).CompletedTraineeList.get(j).getUserName().equals(uname)) System.out.println(CourseList.get(i).getCourseID() + "t\t" + CourseList.get(i).getCourseName());
+				if(CourseList.get(i).CompletedTraineeList.get(j).getUserName().equals(uname)) 
+					System.out.println("- " + CourseList.get(i).getCourseID() + "t\t" + CourseList.get(i).getCourseName());
 			}
 		}
 		System.out.println("------------------------------------------\n");
@@ -106,13 +107,13 @@ class Curriculum{
 	
 	//Diplay User Owned Courses
 	public static void printOwnedCourse(int uid){
-		System.out.println("-------------------------------------------");
-		System.out.println("Owned Courses ");
-		System.out.println("-------------------------------------------");
+		System.out.println("------------------- Owned Courses -------------------");
+		System.out.println("-----------------------------------------------------");
 		System.out.println("ID\tCourse Name");
 		System.out.println("-------------------------------------------");
 		for (int i = 0; i < CourseList.size(); i++) {
-				if(CourseList.get(i).getTrainerID() == uid ) System.out.println(CourseList.get(i).getCourseID() + "\t" + CourseList.get(i).getCourseName());
+				if(CourseList.get(i).getTrainerID() == uid ) 
+					System.out.println("- " + CourseList.get(i).getCourseID() + "\t" + CourseList.get(i).getCourseName());
 		}
 		System.out.println("------------------------------------------\n");
 	}
@@ -133,47 +134,44 @@ class Curriculum{
 	}
 	
 	//Join Course
-	public static void JoinCourse(Trainee user){
+	public static boolean JoinCourse(Trainee user){
 		
 		listAvaibleCourse();
-		System.out.println(" Join");
-		System.out.print(" Please enter the course name you want to join: ");
+		System.out.print(">>Please enter the course name you want to join: ");
 		Scanner scanner = new Scanner(System.in);
 		String course = scanner.next();
 		
 		for (int i = 0; i < CourseList.size(); i++) {
 			if(CourseList.get(i).getCourseName().equals(course)) {
 				CourseList.get(i).joinCourse(user);
-				System.out.println(" Joined. \n");
-				break;
-			}else{
-				System.out.println(" Unknown Courses. \n");
+				return true;
 			}
-		}	
+		}
+		return false;
 	}
 
 	//List Avaible Courses
 	public static void listAvaibleCourse(){
-		System.out.println("--------------------------------");
-		System.out.println("ID\tCourse Name");
-		System.out.println("--------------------------------");
+		System.out.println("-----------------------------------------------------");
+		System.out.println("- ID\tCourse Name");
+		System.out.println("-----------------------------------------------------");	
 		
 		for (int i = 0; i < CourseList.size(); i++) {
-			System.out.println(	CourseList.get(i).getCourseID() + "\t\t" + CourseList.get(i).getCourseName());
+			System.out.println("- " + CourseList.get(i).getCourseID() + "\t" + CourseList.get(i).getCourseName());
 		}
 		
-		System.out.println("--------------------------------");
+		System.out.println("-----------------------------------------------------");
 	}
 	
 	//List Courses Targets
 	public static void listTarget(){
-		System.out.println("--------------------------------");
+		System.out.println("-----------------------------------------------------");
 		System.out.println("ID\tCourse Name\tTargets");
-		System.out.println("--------------------------------");
+		System.out.println("-----------------------------------------------------");
 		
 		for (int i = 0; i < CourseList.size(); i++) {
-			System.out.println(	CourseList.get(i).getCourseID() + "\t\t" + CourseList.get(i).getCourseName() + "\t" + CourseList.get(i).getTarget());
+			System.out.println("- " + CourseList.get(i).getCourseID() + "\t" + CourseList.get(i).getCourseName() + "\t" + CourseList.get(i).getTarget());
 		}
-		System.out.println("--------------------------------\n");
+		System.out.println("-----------------------------------------------------");
 	}
 }

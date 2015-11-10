@@ -48,24 +48,29 @@ class Menus{
 	//Trainee Menu
 	public void traineeMenu() {
 		Trainee trainee = (Trainee) user;
-		System.out.println("------------ Trainee Menu ---------------");
-		System.out.println("- 1. View the Current Available Courses -");
-		System.out.println("- 2. Join Training Courses		-");
-		System.out.println("- 3. Display Current/Completed Courses  -");
-		System.out.println("- 4. Display Targets Set             	-");
-		System.out.println("- 5. View Personal Infomation           -");
-		System.out.println("- 6. General Menu			-");
-		System.out.println("Enter q for quit.");
+		System.out.println("-----------------------------------------------------");
+		System.out.println("------------------ Trainee Menu ---------------------");
+		System.out.println("- 1. View the Current Available Courses\t\t    -");
+		System.out.println("- 2. Join Training Courses\t\t\t    -");
+		System.out.println("- 3. Display Current/Completed Courses\t\t    -");
+		System.out.println("- 4. Display Targets Set\t\t\t    -");
+		System.out.println("- 5. View Personal Infomation\t\t\t    -");
+		System.out.println("- 6. General Menu\t\t\t\t    -");
+		System.out.println("-----------------------------------------------------");
+		System.out.print("Enter q for quit.\n> ");
 		
 		Scanner scanner = new Scanner(System.in);
 		inChar = scanner.next().charAt(0);
 		
 		switch(inChar) {
 			case '1':
+				System.out.println(">>View the Current Available Courses.\n");	
 				Curriculum.listAvaibleCourse();
 				break;
 			case '2':
-				Curriculum.JoinCourse(trainee);
+				System.out.println(">>Join Training Courses.\n");	
+				if(Curriculum.JoinCourse(trainee)) System.out.println(">>>Joined. \n");
+					else System.out.println(">>>Unknown Courses. \n");
 				break;
 			case '3':
 				Curriculum.printCourse(trainee.getUserName());
@@ -85,20 +90,24 @@ class Menus{
 				quit = true;
 				scanner.close();
 				break;
+			default:
+				System.out.println(">>Unknown Comment, Please Re-type Again.\n");	
 		}
 	}
 	
 	//Trainer Menu
 	public void trainerMenu() {
 		Trainer trainer = (Trainer) user;
-		System.out.println("--------------- Trainer Menu ---------------");
-		System.out.println("- 1. List Owned Courses					   -");
-		System.out.println("- 2. Display Courses and Trainee Records   -");
-		System.out.println("- 3. xxxxxxxxxxxxxxxxxxxxxx				   -");
-		System.out.println("- 4. xxxxxxxxxxxxxxxxxxxxxx				   -");
-		System.out.println("- 5. View Personal Infomation			   -");
-		System.out.println("- 6. General Menu						   -");
-		System.out.println("Enter q for quit.");
+		System.out.println("-----------------------------------------------------");
+		System.out.println("------------------ Trainer Menu ---------------------");
+		System.out.println("- 1. List Owned Courses	\t\t\t    -");
+		System.out.println("- 2. Display Courses and Trainee Records\t    -");
+		System.out.println("- 3. xxxxxxxxxxxxxxxxxxxxxx\t\t\t    -");
+		System.out.println("- 4. xxxxxxxxxxxxxxxxxxxxxx\t\t\t    -");
+		System.out.println("- 5. View Personal Infomation\t\t\t    -");
+		System.out.println("- 6. General Menu\t\t\t\t    -");
+		System.out.println("-----------------------------------------------------");
+		System.out.print("Enter q for quit.\n> ");
 
 		Scanner scanner = new Scanner(System.in);
 		inChar = scanner.next().charAt(0);
@@ -134,14 +143,16 @@ class Menus{
 	//Admin Menu
 	public void adminMenu() {
 		Admin admin = (Admin) user;
-		System.out.println("------- Admin Menu -------");
-		System.out.println("1. Users setting");
-		System.out.println("2. List All Courses");
-		System.out.println("3. Remove Users");
-		System.out.println("4. xxxxxxxxxxxxxxxxxxxxxx");
-		System.out.println("5. View Personal Infomation");
-		System.out.println("6. General Menu");
-		System.out.println("Enter q for quit.");
+		System.out.println("-----------------------------------------------------");
+		System.out.println("-------------------- Admin Menu ---------------------");
+		System.out.println("- 1. Users Setting\t\t\t\t    -");
+		System.out.println("- 2. List All Courses\t\t\t\t    -");
+		System.out.println("- 3. Remove Users\t\t\t\t    -");
+		System.out.println("- 4. xxxxxxxxxxxxxxxxxxxxxx\t\t\t    -");
+		System.out.println("- 5. View Personal Infomation\t\t\t    -");
+		System.out.println("- 6. General Menu\t\t\t\t    -");
+		System.out.println("-----------------------------------------------------");
+		System.out.print("Enter q for quit.\n> ");
 
 		Scanner scanner = new Scanner(System.in);
 		inChar = scanner.next().charAt(0);
@@ -150,14 +161,15 @@ class Menus{
 			case '1':
 				outerloop:
 				while(true){
-					System.out.println("===== Users setting Menu =====");
-					System.out.println("enter -l for listing all user breif information");
-					System.out.println("1. Users Detailed Information");
-					System.out.println("2. Users Searching");
-					System.out.println("3. Users editing");
-					System.out.println("4. Remove Users");
-					System.out.println("9. Return to main menu");
-					System.out.print(" >> Please enter the number: ");
+					System.out.println("================ Users Setting Menu =================");
+					System.out.println("= 1. Users Detailed Information\t\t\t    =");
+					System.out.println("= 2. Users Searching\t\t\t\t    =");
+					System.out.println("= 3. Users editing\t\t\t\t    =");
+					System.out.println("= 4. Remove Users\t\t\t\t    =");
+					System.out.println("= 9. Return to main menu\t\t\t    =");
+					System.out.println("= Enter '-l' for listing all user breif information =");
+					System.out.println("=====================================================");
+					System.out.print(">> Please enter the number: ");
 					inString = scanner.next();
 					if(inString.equals("-l"))
 						Account.listAll();
@@ -168,7 +180,7 @@ class Menus{
 								Account.listAll();
 								break;
 							case '2':	// Search User =======
-								System.out.println(" = = = = = = Users Searching = = = = = =");
+								System.out.println("\n= = = = = = Users Searching = = = = = =");
 								System.out.print(" Please enter the user name you want to search: ");
 								// temportary no ID searching......
 								inString = scanner.next();

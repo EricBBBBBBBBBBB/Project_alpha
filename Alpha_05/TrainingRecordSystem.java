@@ -20,14 +20,16 @@ public class TrainingRecordSystem {
 		System.out.println("*****************************************************");
 		System.out.println("* - - - - Welcome to Training Record System - - - - *");
 		System.out.println("*****************************************************");
-        System.out.println("\n");
+        System.out.print("\n");
 		
 		Login login = new Login(); //login class
         User loginUser = login.login();
-        if (!login.LoginStatus()) {
-            System.out.println("Login unsuccessful! Unknown Error....");
+        if (login.LoginStatus()) {
+            System.out.println(">>> Login in successfully!\n");
+        }else{
+			System.out.println(">>> Login unsuccessful! Unknown Error....");
             return; //program end if login fail
-        }
+		}
 		
 		Menus menus = new Menus(loginUser);	//menus class
         menus.mainMenu();

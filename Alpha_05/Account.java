@@ -12,19 +12,23 @@ import java.util.ArrayList;
 
 public class Account {
 
-// Declare data members //////////////////////////(To save the User Infomation without FileIOSystem)
+// Declare data members (To save the User Infomation without FileIOSystem)
     public static ArrayList<User> UserList = new ArrayList<User>(); 
 
 
-// Methods //////////////////////////
+// Methods 
 	//Initialization User List
     public static void initUserList() {       
         UserList.add(new Trainee("e1", "e"));
         UserList.add(new Trainee("e2", "e"));
         UserList.add(new Trainee("e3", "e"));
+        UserList.add(new Trainee("Donny", "don"));
         UserList.add(new Trainer("r1", "r"));
         UserList.add(new Trainer("r2", "r"));
+        UserList.add(new Trainer("Fred", "red"));
+        UserList.add(new Trainer("Eric", "ric"));
         UserList.add(new Admin("adm", "a"));
+        UserList.add(new Admin("Peter", "pe"));
     }
 	
 	//Update User List
@@ -59,19 +63,21 @@ public class Account {
             System.out.println("user not found!");
         }
     }
-
+	
+	//Confirmation of Removing User 
     public static void removeUserConfirm(int listID) {
         System.out.println("Are you sure to remove User [" + UserList.get(listID).getUserName() + "]? (Y/N)");
         Scanner scanner = new Scanner(System.in);
         char inChar = scanner.next().charAt(0);
             if(inChar == 'Y' || inChar == 'y') {
                 UserList.remove(listID);
-                System.out.println("Remove凸!");
+                System.out.println("Removed!");
             } else{
                 System.out.println("Unsuccessful, Unknown error!");
             }
         }
-
+	}
+	
     //Search User by ID (return ArrayList ID)
     public static int searchUser(int uid) {
         for (int i = 0; i < UserList.size(); i++) {
@@ -80,6 +86,7 @@ public class Account {
         }
         return -1;
     }
+	
     //Search User by name (return ArrayList ID) [Exactly User name for searching]
     public static int searchUser(String userName) {
         for (int i = 0; i < UserList.size(); i++) {
@@ -115,19 +122,19 @@ public class Account {
             System.out.println(">> quit.");
             return;
         }
-        showUserInfo(searchUser(inInt));
+        printUserInfo(searchUser(inInt));
     }
 
     //SearchList
     public static void searching() {
-        //showUserInfo();
+       
     }
 
 
-    //
-    public static void showUserInfo(int listID) {
+    //Print User Information
+    public static void printUserInfo(int listID) {
         if(listID != -1) {
-            UserList.get(listID).showUserInfo();
+            UserList.get(listID).printUserInfo();
         }else{
             System.out.println("user not found!");
         }
