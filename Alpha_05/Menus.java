@@ -15,7 +15,7 @@ class Menus{
 	public char inChar;
 	public String inString;
 	public int inInt;
-	public User user;
+	private User user;
 	public boolean quit = false;
 	
 // Constructors 
@@ -144,14 +144,15 @@ class Menus{
 		Admin admin = (Admin) user;
 		System.out.println("-----------------------------------------------------");
 		System.out.println("-------------------- Admin Menu ---------------------");
-		System.out.println("- 1. Users Setting\t\t\t\t    -");
+		System.out.println("- 1. Users Management\t\t\t\t    -");
 		System.out.println("- 2. List All Courses\t\t\t\t    -");
-		System.out.println("- 3. Remove Users\t\t\t\t    -");
+		System.out.println("- 3. xxxxxxxxxxxxxxxxxxxxxxt\t\t\t    -");
 		System.out.println("- 4. xxxxxxxxxxxxxxxxxxxxxx\t\t\t    -");
 		System.out.println("- 5. View Personal Infomation\t\t\t    -");
 		System.out.println("- 6. General Menu\t\t\t\t    -");
+		System.out.println("- 9. Quit the system\t\t\t\t    -");
 		System.out.println("-----------------------------------------------------");
-		System.out.print("Enter q for quit.\n> ");
+		System.out.print(">> Please enter the number: ");
 
 		Scanner scanner = new Scanner(System.in);
 		inChar = scanner.next().charAt(0);
@@ -160,11 +161,12 @@ class Menus{
 			case '1':
 				outerloop:
 				while(true){
-					System.out.println("================ Users Setting Menu =================");
+					System.out.println("================ Users Management Menu ==============");
 					System.out.println("= 1. Users Detailed Information\t\t\t    =");
 					System.out.println("= 2. Users Searching\t\t\t\t    =");
 					System.out.println("= 3. Users editing\t\t\t\t    =");
 					System.out.println("= 4. Remove Users\t\t\t\t    =");
+					System.out.println("= 5. Create Users\t\t\t\t    =");
 					System.out.println("= 9. Return to main menu\t\t\t    =");
 					System.out.println("= Enter '-l' for listing all user breif information =");
 					System.out.println("=====================================================");
@@ -183,20 +185,26 @@ class Menus{
 								System.out.print(" Please enter the user name you want to search: ");
 								// temportary no ID searching......
 								inString = scanner.next();
-								Account.searchEUser(inString);
+								Account.searchUser(inString);
 								break;
 							case '3':	// Edit User =========
-								Account.listAll();
+								System.out.println("\n= = = = = = User Information Editing = = = = = =");
+								System.out.print(" Please enter the user name you want to edit: ");
+								// temportary no ID 
+								inString = scanner.next();
+								Account.editUser(inString);
+
+								
 								break;
 							case '4':	// Remove User =======
 								System.out.println(" Deregister\n");
 								System.out.print(" Please enter the user name or ID you want to remove: ");
 								if(scanner.hasNextInt()){	// if enter user ID
 									inInt = scanner.nextInt();
-									Account.removeUser(inInt);
+									Account.removeUser(inInt, user);
 								} else {					// if enter user name
 									inString = scanner.next();
-									Account.removeUser(inString);
+									Account.removeUser(inString, user);
 								}
 								break;
 							case '9':
@@ -204,6 +212,7 @@ class Menus{
 							default:
 								System.out.println("Unknown Error.");
 						}
+						pkContinue();	// press enter key to continue
 					}
 				}
 				break;
@@ -221,8 +230,7 @@ class Menus{
 			case '6':
 				System.out.println("You choose number 6");
 				break;
-			case 'Q':
-			case 'q':
+			case '9':
 				System.out.println("You choosed to quit the system. Bye!! ");
 				quit = true;
 				scanner.close();
@@ -230,7 +238,7 @@ class Menus{
 		}
 	}
 
-	private void paktc(){
+	private void pkContinue(){
 		System.out.println("Press any key to continue...");
         try
         {

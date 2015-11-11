@@ -15,8 +15,9 @@ public class Account{
 // Declare data members (To save the User Infomation without FileIOSystem)
     public static ArrayList<User> UserList = new ArrayList<User>();
 
-
 // Methods 
+
+    
 //Initialization User List
     public static void initUserList() {       
         UserList.add(new Trainee("e1", "e"));
@@ -45,8 +46,13 @@ public class Account{
     }
 
 	//Remove User by ID
-    public static void removeUser(int uid) {
-        int listID = searchUser(uid);
+    public static void removeUser(int uid, User operateUser) {
+        int listID = searchUserListID(uid);
+        if((UserList.get(listID).getUserName()).equals(operateUser.getUserName())) {
+            System.out.println("You cannot remove yourself!");
+            return;
+        }
+
         if(listID != -1) {
             removeUserConfirm(listID);
         }else{
@@ -55,8 +61,13 @@ public class Account{
     }
 	
 	//Remove User by Name
-    public static void removeUser(String userName) {
-        int listID = searchUser(userName);
+    public static void removeUser(String userName, User operateUser) {
+        int listID = searchUserListID(userName);
+        if((UserList.get(listID).getUserName()).equals(operateUser.getUserName())) {
+            System.out.println("You cannot remove yourself!");
+            return;
+        }
+
         if(listID != -1) {
             removeUserConfirm(listID);
         }else{
@@ -81,7 +92,7 @@ public class Account{
 	
 	
     //Search User by ID (return ArrayList ID)
-    public static int searchUser(int uid) {
+    public static int searchUserListID(int uid) {
         for (int i = 0; i < UserList.size(); i++) {
             if (UserList.get(i).getUserID() == uid)
                 return i;
@@ -89,8 +100,8 @@ public class Account{
         return -1;
     }
 	
-    //Search User by name (return ArrayList ID) [Exactly User name for searching]
-    public static int searchUser(String userName) {
+    //Search User by name (return ArrayList ID) [Require exactly User name for searching]
+    public static int searchUserListID(String userName) {
         for (int i = 0; i < UserList.size(); i++) {
             if (UserList.get(i).getUserName().equals(userName)) 
                 return i;
@@ -99,7 +110,7 @@ public class Account{
     }
 
     //Search User by Name (return no value)
-    public static void searchEUser(String userName) {
+    public static void searchUser(String userName) {
         System.out.println("There is/are the result(s) of searching: ");
         System.out.println("ID\tUsername");
         System.out.println("===========================================");
@@ -124,7 +135,7 @@ public class Account{
             System.out.println(">> quit.");
             return;
         }
-        printUserInfo(searchUser(inInt));
+        printUserInfo(searchUserListID(inInt));
     }
 
     //SearchList
@@ -139,6 +150,17 @@ public class Account{
             UserList.get(listID).printUserInfo();
         }else{
             System.out.println("user not found!");
+        }
+    }
+
+    //Edit User Information
+    public static void editUser(String userName) {
+        int listID = searchUserListID(userName);
+        if (listID != -1) {
+            System.out.println("Found the record");
+            UserList.get(listID).printUserInfo();
+        } else {
+            System.out.println("No such user");
         }
     }
 	
