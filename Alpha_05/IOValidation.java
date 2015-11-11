@@ -14,16 +14,10 @@ class IOValidation{
 	public static void main(String[] args) {
 
         ArrayList<String> emails = new ArrayList<String>();
-        emails.add("user@domain.com");
-        emails.add("user@domain.co.in");
-        emails.add("user1@domain.com");
-        emails.add("user.name@domain.com");
-        emails.add("user#@domain.co.in");
-        emails.add("user@domaincom");
-        emails.add("Eric_is_ON79@yahoo.com.hk");
-        emails.add("Eric_is_ON79@yahoo.com");
-        emails.add("Eric_is_ON79@yahoo.com.");
-        emails.add("Eric_is_ON79@yahoo.com.uk");
+        emails.add("Eric5201314Donny");
+        emails.add("Eric1111");
+        emails.add("eric1234");
+        emails.add("123eric");
          
         //Invalid emails
         emails.add("user#domain.com");
@@ -31,7 +25,7 @@ class IOValidation{
         emails.add(""); 
         for(int i = 0; i < emails.size(); i++){
             String email = emails.get(i);
-            System.out.println(email +" : "+ IOValidation.emailValid(email));
+            System.out.println(email +" : "+ IOValidation.usernameValid(email));
 
         }
 
@@ -81,23 +75,16 @@ class IOValidation{
             return false;
     }
 
-    public static void clear(){
-        try{
-            final String os = System.getProperty("os.name");
-
-            if (os.contains("Windows"))
-        {
-            Runtime.getRuntime().exec("cls");
-        }
+    public static boolean usernameValid(String inStr) {
+        if(inStr.isEmpty())
+            return false;
+        String regex = "[a-z]{1}[a-z0-9]{7,11}";  // set the regex
+        Pattern pattern = Pattern.compile(regex);   // compile the pattern
+        Matcher matcher = pattern.matcher(inStr);   // validate the email
+        if(matcher.matches())
+            return true;
         else
-        {
-            Runtime.getRuntime().exec("clear");
-        }
-    }
-    catch (final Exception e)
-    {
-        //  Handle any exceptions.
-    }
+            return false;
     }
 
 }

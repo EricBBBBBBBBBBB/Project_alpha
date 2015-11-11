@@ -201,10 +201,10 @@ class Menus{
 								System.out.print(" Please enter the user name or ID you want to remove: ");
 								if(scanner.hasNextInt()){	// if enter user ID
 									inInt = scanner.nextInt();
-									Account.removeUser(inInt, user);
+									Account.removeUser("", inInt, user);
 								} else {					// if enter user name
 									inString = scanner.next();
-									Account.removeUser(inString, user);
+									Account.removeUser(inString, 0, user);
 								}
 								break;
 							case '9':

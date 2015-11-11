@@ -22,10 +22,11 @@ class Register {
 		System.out.println(">>>Rules for a valid Login ID for a user account:");
 		System.out.println("\tLogin ID must contain: ");
 		System.out.println("\t\t- 8~12 characters");
-		System.out.println("\t\t- both upper and lower case letters");
-		System.out.println("\t\t- at least 1 digit");
+		System.out.println("\t\t- Just LOWER-CASE letters");
+		System.out.println("\t\t- no start with digit");
         System.out.print("Name: ");
-        while((inUserName = scanner.nextLine()).isEmpty()){
+        //while((inUserName = scanner.nextLine()).isEmpty()){
+        while(!IOValidation.usernameValid(inUserName = scanner.nextLine())){
         	System.out.print("User name could not be empty! Please enter again: ");
         }
         System.out.print("Password: ");

@@ -17,7 +17,7 @@ public class Account{
 
 // Methods 
 
-    
+
 //Initialization User List
     public static void initUserList() {       
         UserList.add(new Trainee("e1", "e"));
@@ -44,50 +44,33 @@ public class Account{
     public static ArrayList<User> getUserList() {
         return UserList;
     }
-
-	//Remove User by ID
-    public static void removeUser(int uid, User operateUser) {
-        int listID = searchUserListID(uid);
-        if((UserList.get(listID).getUserName()).equals(operateUser.getUserName())) {
-            System.out.println("You cannot remove yourself!");
-            return;
-        }
-
-        if(listID != -1) {
-            removeUserConfirm(listID);
-        }else{
-            System.out.println("user not found!");
-        }
-    }
 	
 	//Remove User by Name
-    public static void removeUser(String userName, User operateUser) {
-        int listID = searchUserListID(userName);
-        if((UserList.get(listID).getUserName()).equals(operateUser.getUserName())) {
-            System.out.println("You cannot remove yourself!");
-            return;
-        }
+    public static void removeUser(String userName, int uid, User operateUser) {
+        int listID;
+        if(userName.isEmpty())
+            listID = searchUserListID(userName);
+        else
+            listID = searchUserListID(uid);
 
-        if(listID != -1) {
-            removeUserConfirm(listID);
-        }else{
+        if(listID == -1) {
             System.out.println("user not found!");
+        }else if((UserList.get(listID).getUserName()).equals(operateUser.getUserName())) {
+                System.out.println("You cannot remove yourself!");
+        }else if((UserList.get(listID).getUserType()).equals("Admin")) {
+            System.out.println("You cannot remove an admin-type user!");
+        }else{
+            System.out.println("Are you sure to remove User [" + UserList.get(listID).getUserName() + "]? (Y/N)");
+            Scanner scanner = new Scanner(System.in);
+            char inChar = scanner.next().charAt(0);
+            
+            if(inChar == 'Y' || inChar == 'y') {
+                UserList.remove(listID);
+                System.out.println("Removed!");
+            } else{
+                System.out.println("Unsuccessful, Unknown error!");
+            }
         }
-    }
-	
-	//Confirmation of Removing User 
-    public static void removeUserConfirm(int listID) {
-        System.out.println("Are you sure to remove User [" + UserList.get(listID).getUserName() + "]? (Y/N)");
-        Scanner scanner = new Scanner(System.in);
-        char inChar = scanner.next().charAt(0);
-		
-		if(inChar == 'Y' || inChar == 'y') {
-			UserList.remove(listID);
-			System.out.println("Removed!");
-		} else{
-			System.out.println("Unsuccessful, Unknown error!");
-		}
-		
     }
 	
 	
