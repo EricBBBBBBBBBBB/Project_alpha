@@ -31,8 +31,8 @@ class Course{
 	public int totalNumOfTrainee = 0;
 	public int maxNumOfTrainee = 15;
 	
-	public ArrayList<Trainee> TraineeList = new ArrayList<Trainee>(); 
-	public ArrayList<Trainee> CompletedTraineeList = new ArrayList<Trainee>();
+	public ArrayList<Integer> TraineeList = new ArrayList<Integer>(); 
+	public ArrayList<Integer> CompletedTraineeList = new ArrayList<Integer>();
 	
 	public static int totalNoOfCourses = 0;
 	
@@ -95,18 +95,18 @@ class Course{
 		System.out.println("UserID\tUserName");
 		System.out.println("-----------------------------------------------------");		
 		for (int i = 0; i < TraineeList.size(); i++) {
-			System.out.println(	TraineeList.get(i).getUserID() + "\t" + TraineeList.get(i).getUserName());
+			
 		}
 		System.out.println("-----------------------------------------------------");	
 	}
 	
 	//Join Course
-	public void joinCourse(Trainee user){
+	public void joinCourse(int uid){
 		if(maxNumOfTrainee == totalNumOfTrainee){
 			System.out.println(">>>This Course was full. \n");
 		}else{
 			totalNumOfTrainee++;
-			TraineeList.add(user);
+			TraineeList.add(uid);
 			System.out.println(">>>Joined. \n");
 		}
 	}

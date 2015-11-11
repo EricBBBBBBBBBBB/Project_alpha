@@ -75,55 +75,51 @@ class Curriculum{
 	}
 	
 	//Diplay User Current Courses & Completed Courses
-	public static void printCourse(String uname){
-		Curriculum.printCurrentCourse(uname);
-		Curriculum.printCompletedCourse(uname);
+	public static void printCourse(int uid){
+		Curriculum.printCurrentCourse(uid);
+		Curriculum.printCompletedCourse(uid);
 	}
 				
-	public static void printCurrentCourse(String uname){
+	public static void printCurrentCourse(int uid){
 		System.out.println("-----------------------------------------------------");
-		System.out.println("------------------ Current Courses ------------------");
+		System.out.println("---------------------- Courses ----------------------");
 		System.out.println("-----------------------------------------------------");
-		System.out.println("ID\tCourse Name");
+		System.out.println("ID\tCourse Name\t\tStatus");
 		System.out.println("-----------------------------------------------------");
 		for (int i = 0; i < CourseList.size(); i++) {
 			for (int j = 0; j < CourseList.get(i).TraineeList.size(); j++) {
-				if(CourseList.get(i).TraineeList.get(j).getUserName().equals(uname)) System.out.println(CourseList.get(i).getCourseID() + "\t" + CourseList.get(i).getCourseName());
+				if(CourseList.get(i).TraineeList.get(j) == uid ) 
+					System.out.println(CourseList.get(i).getCourseID() + "\t" + CourseList.get(i).getCourseName() + "\t\t(Current)");
+			}
+		}
+	}
+	
+	public static void printCompletedCourse(int uid){
+		for (int i = 0; i < CourseList.size(); i++) {
+			for (int j = 0; j < CourseList.get(i).CompletedTraineeList.size(); j++) {
+				if(CourseList.get(i).CompletedTraineeList.get(j) == uid) 
+					System.out.println("- " + CourseList.get(i).getCourseID() + "\t\t" + CourseList.get(i).getCourseName() + "\t\t(Completed)");
 			}
 		}
 		System.out.println("-----------------------------------------------------\n");
 	}
-	public static void printCompletedCourse(String uname){
-		System.out.println("-----------------------------------------------------");
-		System.out.println("----------------- Completed Courses -----------------");
-		System.out.println("-----------------------------------------------------");
-		System.out.println("-  ID\tCourse Name");
-		System.out.println("-------------------------------------------");
-		for (int i = 0; i < CourseList.size(); i++) {
-			for (int j = 0; j < CourseList.get(i).CompletedTraineeList.size(); j++) {
-				if(CourseList.get(i).CompletedTraineeList.get(j).getUserName().equals(uname)) 
-					System.out.println("- " + CourseList.get(i).getCourseID() + "t\t" + CourseList.get(i).getCourseName());
-			}
-		}
-		System.out.println("------------------------------------------\n");
-	}
 	
 	//Count Current Courses & Completed Courses	
-	public static int totalOfCurrent(String uname){
+	public static int totalOfCurrent(int uid){
 		int total = 0;
 		for (int i = 0; i < CourseList.size(); i++) {
-			for (int j = 0; j < CourseList.get(i).CompletedTraineeList.size(); j++) {
-				if(CourseList.get(i).TraineeList.get(j).getUserName().equals(uname)) total++;
+			for (int j = 0; j < CourseList.get(i).TraineeList.size(); j++) {
+				if(CourseList.get(i).TraineeList.get(j) == uid) total++;
 			}
 		}
 		return total;
 	}
 
-	public static int totalOfCompleted(String uname){
+	public static int totalOfCompleted(int uid){
 		int total = 0;
 		for (int i = 0; i < CourseList.size(); i++) {
 			for (int j = 0; j < CourseList.get(i).CompletedTraineeList.size(); j++) {
-				if(CourseList.get(i).CompletedTraineeList.get(j).getUserName().equals(uname)) total++;
+				if(CourseList.get(i).CompletedTraineeList.get(j) == uid) total++;
 			}
 		}
 		return total;
@@ -158,16 +154,16 @@ class Curriculum{
 	}
 	
 	//Join Course
-	public static boolean JoinCourse(Trainee user){
+	public static boolean JoinCourse(int uid){
 		
 		listAvaibleCourse();
 		System.out.print(">>Please enter the course name you want to join: ");
 		Scanner scanner = new Scanner(System.in);
-		String course = scanner.next();
+		int course = scanner.nextInt();
 		
 		for (int i = 0; i < CourseList.size(); i++) {
-			if(CourseList.get(i).getCourseName().equals(course)) {
-				CourseList.get(i).joinCourse(user);
+			if(CourseList.get(i).getCourseID() == course) {
+				CourseList.get(i).joinCourse(uid);
 				return true;
 			}
 		}

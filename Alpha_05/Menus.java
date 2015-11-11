@@ -69,10 +69,10 @@ class Menus{
 				break;
 			case '2':
 				System.out.println(">>Join Training Courses.\n");	
-				if(!Curriculum.JoinCourse(trainee)) System.out.println(">>>Unknown Courses. \n");
+				if(!Curriculum.JoinCourse(trainee.getUserID())) System.out.println(">>>Unknown Courses. \n");
 				break;
 			case '3':
-				Curriculum.printCourse(trainee.getUserName());
+				Curriculum.printCourse(trainee.getUserID());
 				break;
 			case '4':
 				Curriculum.listTarget();

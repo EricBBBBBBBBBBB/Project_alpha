@@ -30,7 +30,7 @@ class Trainee extends User{
 // Methods 
 	//Trainee type updating
 	public String getTraineeType() {	
-		int total = Curriculum.totalOfCompleted(getUserName());
+		int total = Curriculum.totalOfCompleted(getUserID());
 		if( total > 10 ) traineeType = "advanced";
 			else if( total > 5 ) traineeType = "intermediate";
 		return traineeType;
