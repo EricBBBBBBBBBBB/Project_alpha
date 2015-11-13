@@ -87,4 +87,16 @@ class IOValidation{
             return false;
     }
 
+    public static boolean passwordValid(String inStr) {
+        if(inStr.isEmpty())
+            return false;
+        String regex = "[a-zA-Z0-9]{6,16}";  // set the regex
+        Pattern pattern = Pattern.compile(regex);   // compile the pattern
+        Matcher matcher = pattern.matcher(inStr);   // validate the email
+        if(matcher.matches())
+            return true;
+        else
+            return false;
+    }
+
 }

@@ -239,7 +239,7 @@ class Menus{
 	}
 
 	private void pkContinue(){
-		System.out.println("Press any key to continue...");
+		System.out.println("Press Enter key to continue...");
         try
         {
             System.in.read();

@@ -23,18 +23,19 @@ class Register {
 		System.out.println("\tLogin ID must contain: ");
 		System.out.println("\t\t- 8~12 characters");
 		System.out.println("\t\t- Just LOWER-CASE letters");
-		System.out.println("\t\t- no start with digit");
+		System.out.println("\t\t- no starting with digit");
+        System.out.println("\tPassword must contain: ");
+        System.out.println("\t\t- 8~12 characters");
+        System.out.println("\t\t- letters and digit");
         System.out.print("Name: ");
-        //while((inUserName = scanner.nextLine()).isEmpty()){
         while(!IOValidation.usernameValid(inUserName = scanner.nextLine())){
         	System.out.print("User name could not be empty! Please enter again: ");
         }
         System.out.print("Password: ");
-        while((inPassword = scanner.nextLine()).isEmpty()){
+        while(!IOValidation.passwordValid(inPassword = scanner.nextLine())){
         	System.out.print("Password could not be empty! Please enter again: ");
         }
         System.out.print("E-mail: ");
-        //while((inEmail = scanner.nextLine()).isEmpty()){
         while(!IOValidation.emailValid(inEmail = scanner.nextLine())){
         	System.out.print("Email could not be empty! Please enter again: ");
         }
