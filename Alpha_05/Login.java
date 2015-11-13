@@ -29,13 +29,13 @@ class Login{
 			System.out.println("-----------------------------------------------------");
 			
 			//Input User name
-			System.out.println("(if you haven't got a user, please type 'signup')");
+			System.out.println("(if you haven't got a user, please type '-r')");
 			
 			System.out.print("> Please enter your user name: ");
 			while ((userName = scanner.nextLine()).isEmpty()){
 				System.out.print(">>User name cannot be empty, Please enter again: ");
 			} 
-			if (userName.equals("signup")) {
+			if (userName.equals("-r") || userName.equals("-R")) {
 				Register register = new Register();
 				register.register();	
 				continue;

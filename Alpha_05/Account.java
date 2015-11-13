@@ -107,6 +107,7 @@ public class Account{
         System.out.print("(-1) for quit. : ");
 
         Scanner scanner = new Scanner(System.in);
+        String inStr;
         //String inString = scanner.next();
         int inInt;
         if(scanner.hasNextInt())
@@ -141,7 +142,39 @@ public class Account{
         int listID = searchUserListID(userName);
         if (listID != -1) {
             System.out.println("Found the record");
-            UserList.get(listID).printUserInfo();
+            //UserList.get(listID).printUserInfo();
+
+            Scanner scanner = new Scanner(System.in);
+            String inStr;
+            
+            whileloop:
+            while(true) {
+                System.out.println("Please select the part you want to edit: ");
+                System.out.println("- 1: User Email");
+                System.out.println("- 2: User Phone");
+                System.out.println("- 3: Other");
+                System.out.println("- 8: Show the information");
+                System.out.println("- 9: Quit Editing");
+
+                inStr = scanner.next();
+
+                switch(inStr.charAt(0)) {
+                    case '1':
+                        break;
+                    case '2':
+                        break;
+                    case '3':
+                        break;
+                    case '8':
+                        break;
+                    case '9':
+                        break;
+                    default:
+                        System.out.println("Unknown command");
+                        break whileloop;
+                }
+
+            }
         } else {
             System.out.println("No such user");
         }
