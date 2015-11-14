@@ -146,9 +146,11 @@ public class Account{
 
             Scanner scanner = new Scanner(System.in);
             String inStr;
+            char inChar;
             
             whileloop:
             while(true) {
+                System.out.println("---------------Edit User Information-------------");
                 System.out.println("Please select the part you want to edit: ");
                 System.out.println("- 1: User Email");
                 System.out.println("- 2: User Phone");
@@ -160,6 +162,26 @@ public class Account{
 
                 switch(inStr.charAt(0)) {
                     case '1':
+                        System.out.println("Please enter the new Email Address (-q for quit without save");
+                        inStr = scanner.next();
+                        if(inStr.equals("-q") || inStr.equals("-Q")) {
+                            break;
+                        } else {
+                            if(IOValidation.emailValid(inStr)) {
+                                System.out.println("The previous Email: " + UserList.get(listID).getUserEmail());
+                                System.out.println("The new Email: " + inStr);
+                                System.out.println(">> Are you sure to make change? (Y/N)");
+                                inChar = scanner.next().charAt(0);
+                                if(inChar == 'y' || inChar == 'Y'){
+                                    UserList.get(listID).setUserEmail(inStr);
+                                    System.out.println("The Email is updated!");
+                                } else {
+                                    System.out.println("Action was cancelled!");
+                                }
+                            }else{
+                                System.out.println("格式不乎");
+                            }
+                        }
                         break;
                     case '2':
                         break;
@@ -168,7 +190,7 @@ public class Account{
                     case '8':
                         break;
                     case '9':
-                        break;
+                        break whileloop;
                     default:
                         System.out.println("Unknown command");
                         break whileloop;
