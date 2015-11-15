@@ -13,38 +13,37 @@ import java.util.ArrayList;
 class Course{
 
 // Declare data members
+	public static int totalNoOfCourses = 0;
+	
 	protected int courseID;
 	protected String courseName;
-	protected String courseType;
-	private String traineeRequire = "beginner";
-	protected boolean isAvailable = true;
-	
-	private int duration;
-	private String place;
+	protected int courseType;
+
+	private String courseTrainerName;	
+	private int duration;	// add Date & Time later
+	private String venue;
 	private int price;	
-	// add Date & Time later
 	private String target;
 	private String description;
 
-	private int courseTrainerID;
-	
 	public int totalNumOfTrainee = 0;
 	public int maxNumOfTrainee = 15;
+	protected boolean isAvailable = true;
+	
 	
 	public ArrayList<Integer> TraineeList = new ArrayList<Integer>(); 
 	public ArrayList<Integer> CompletedTraineeList = new ArrayList<Integer>();
-	
-	public static int totalNoOfCourses = 0;
 	
 // Constructors
 	Course() {
 		totalNoOfCourses++;
 	}
 
-	Course(String cname) {
+	Course(int cid, String cname, int type) {
 		this();
-		courseID = totalNoOfCourses;
+		courseID = cid;
 		courseName = cname;
+		courseType = type;
 	}
 	
 // Methods
@@ -57,6 +56,13 @@ class Course{
 		return courseName;
 	}
 	
+	public String getCourseType() {	
+		if(courseType == 3 ) return "Beginner" ;
+		if(courseType == 4 ) return "Advanced" ;
+		if(courseType == 5 ) return "Intermediate" ;
+		return "Unknown" ;
+	}
+	
 	public String getCourseStatus() {
 		String statusStr;
 		if(isAvailable) statusStr = "Available";
@@ -64,8 +70,8 @@ class Course{
 		return statusStr;
 	}
 	
-	public int getTrainerID() {
-		return courseTrainerID;
+	public String getTrainerName() {
+		return courseTrainerName;
 	}
 	public String getTarget() {
 		return target;
@@ -78,10 +84,12 @@ class Course{
 		System.out.println("-----------------------------------------------------");
 		System.out.println("Course ID: \t\t\t" + courseID);
 		System.out.println("Course Name: \t\t" + courseName);
-		System.out.println("Course Trainer ID: \t" + courseTrainerID);
+		System.out.println("Course Trainer: \t" + courseTrainerName);
         System.out.println("Price: \t\t\t" + price);
         System.out.println("Duration: \t" + "months");
-        System.out.println("Trainee Requirements: \t" + traineeRequire);
+        System.out.println("Venue: \t" + venue);
+		
+        System.out.println("Trainee Requirements: \t" + courseType);
         System.out.println("Number of Trainee: \t" + totalNumOfTrainee + "/" + maxNumOfTrainee);
 		System.out.println("Description: \t\t" + description);
 		System.out.println("-----------------------------------------------------");	

@@ -13,10 +13,10 @@ class User{
 
 	public int userID;
 	public int userType;
-	private String userName;
-	private String password;
+	protected String userName;
+	protected String password;
 	protected String email;
-	protected int phone;
+	protected String phone;
 	protected Calendar dateOfRegister;
 
 // Constructors
@@ -27,14 +27,14 @@ class User{
 	
 	public User(String name, int type) {	
 		this();
-		userID = totalNoOfUser;
 		userName = name;
 		userType = type;
 	}
 	
-	public User(String name, String pw, int type) {
+	public User(int uid, String name, String pw, int type) {
 		this(name,type);
-		password = CryptWithMD5.cryptWithMD5(pw);
+		userID = uid;
+		password = pw;
 	}
 
 // Methods
@@ -63,8 +63,12 @@ class User{
 		return email;
 	}
 			
-	public int getUserPhone() {
+	public String getUserPhone() {
 		return phone;
+	}	
+	
+	public Calendar getDate() {
+		return dateOfRegister;
 	}	
 	
 	//Set the User information
@@ -84,14 +88,11 @@ class User{
 		email = mail;
 	}
 			
-	public void setUserPhone(int tel) {
+	public void setUserPhone(String tel) {
 		phone = tel;
 	}
 	
-	public void setUserInfo(String name,String pw,int type,String mail,int tel) {
-		userName = name;
-		password = pw;
-		userType = type;
+	public void setUserInfo(String mail,String tel) {
 		email = mail;
 		phone = tel;
 	}

@@ -12,60 +12,52 @@ import java.util.ArrayList;
 
 public class Account{
 
-// Declare data members (To save the User Infomation without FileIOSystem)
-    public static ArrayList<User> UserList = new ArrayList<User>();
+// Declare data members 
+    public static final String DEF_USERFILENAME = "Users.csv";
+	public static ArrayList<User> userlist = new ArrayList<User>();
+	
 
 // Methods 
-
-
-//Initialization User List
-    public static void initUserList() {       
-        UserList.add(new Trainee("e1", "e"));
-        UserList.add(new Trainee("e2", "e"));
-        UserList.add(new Trainee("e3", "e"));
-        UserList.add(new Trainee("Donny", "don"));
-        UserList.add(new Trainer("r1", "r"));
-        UserList.add(new Trainer("r2", "r"));
-        UserList.add(new Trainer("Fred", "red"));
-        UserList.add(new Trainer("Eric", "ric"));
-        UserList.add(new Admin("adm", "a"));
-        UserList.add(new Admin("Peter", "pe"));
-    }
+	//Initialization User List
+	public static void inituserlist() {
+		userlist = UserIO.readUTxtFile(DEF_USERFILENAME);
+		System.out.println("Read OK: " + DEF_USERFILENAME);
+	}
 	
 	//Update User List
-    public static boolean updateUserList(User user) {
-        if(UserList.add(user))
+    public static boolean updateuserlist(User user) {
+        if(userlist.add(user))
             return true;
         else
             return false;
     }
 	
 	//Get User List
-    public static ArrayList<User> getUserList() {
-        return UserList;
+    public static ArrayList<User> getuserlist() {
+        return userlist;
     }
 	
 	//Remove User by Name
     public static void removeUser(String userName, int uid, User operateUser) {
         int listID;
         if(userName.isEmpty())
-            listID = searchUserListID(userName);
+            listID = searchuserlistID(userName);
         else
-            listID = searchUserListID(uid);
+            listID = searchuserlistID(uid);
 
         if(listID == -1) {
             System.out.println("user not found!");
-        }else if((UserList.get(listID).getUserName()).equals(operateUser.getUserName())) {
+        }else if((userlist.get(listID).getUserName()).equals(operateUser.getUserName())) {
                 System.out.println("You cannot remove yourself!");
-        }else if((UserList.get(listID).getUserType()).equals("Admin")) {
+        }else if((userlist.get(listID).getUserType()).equals("Admin")) {
             System.out.println("You cannot remove an admin-type user!");
         }else{
-            System.out.println("Are you sure to remove User [" + UserList.get(listID).getUserName() + "]? (Y/N)");
+            System.out.println("Are you sure to remove User [" + userlist.get(listID).getUserName() + "]? (Y/N)");
             Scanner scanner = new Scanner(System.in);
             char inChar = scanner.next().charAt(0);
             
             if(inChar == 'Y' || inChar == 'y') {
-                UserList.remove(listID);
+                userlist.remove(listID);
                 System.out.println("Removed!");
             } else{
                 System.out.println("Unsuccessful, Unknown error!");
@@ -75,18 +67,18 @@ public class Account{
 	
 	
     //Search User by ID (return ArrayList ID)
-    public static int searchUserListID(int uid) {
-        for (int i = 0; i < UserList.size(); i++) {
-            if (UserList.get(i).getUserID() == uid)
+    public static int searchuserlistID(int uid) {
+        for (int i = 0; i < userlist.size(); i++) {
+            if (userlist.get(i).getUserID() == uid)
                 return i;
         }
         return -1;
     }
 	
     //Search User by name (return ArrayList ID) [Require exactly User name for searching]
-    public static int searchUserListID(String userName) {
-        for (int i = 0; i < UserList.size(); i++) {
-            if (UserList.get(i).getUserName().equals(userName)) 
+    public static int searchuserlistID(String userName) {
+        for (int i = 0; i < userlist.size(); i++) {
+            if (userlist.get(i).getUserName().equals(userName)) 
                 return i;
         }
         return -1;
@@ -97,9 +89,9 @@ public class Account{
         System.out.println("There is/are the result(s) of searching: ");
         System.out.println("ID\tUsername");
         System.out.println("===========================================");
-        for (int i = 0; i < UserList.size(); i++) {
-            if(UserList.get(i).getUserName().contains(userName)) {
-                System.out.println(UserList.get(i).getUserID() +"\t"+UserList.get(i).getUserName());
+        for (int i = 0; i < userlist.size(); i++) {
+            if(userlist.get(i).getUserName().contains(userName)) {
+                System.out.println(userlist.get(i).getUserID() +"\t"+userlist.get(i).getUserName());
             }
         }
         System.out.println("===========================================");
@@ -107,8 +99,7 @@ public class Account{
         System.out.print("(-1) for quit. : ");
 
         Scanner scanner = new Scanner(System.in);
-        String inStr;
-        //String inString = scanner.next();
+		String inStr;
         int inInt;
         if(scanner.hasNextInt())
             inInt = scanner.nextInt();
@@ -119,7 +110,7 @@ public class Account{
             System.out.println(">> quit.");
             return;
         }
-        printUserInfo(searchUserListID(inInt));
+        printUserInfo(searchuserlistID(inInt));
     }
 
     //SearchList
@@ -131,7 +122,7 @@ public class Account{
     //Print User Information
     public static void printUserInfo(int listID) {
         if(listID != -1) {
-            UserList.get(listID).printUserInfo();
+            userlist.get(listID).printUserInfo();
         }else{
             System.out.println("user not found!");
         }
@@ -139,15 +130,14 @@ public class Account{
 
     //Edit User Information
     public static void editUser(String userName) {
-        int listID = searchUserListID(userName);
+        int listID = searchuserlistID(userName);
         if (listID != -1) {
             System.out.println("Found the record");
-            //UserList.get(listID).printUserInfo();
-
-            Scanner scanner = new Scanner(System.in);
+            //userlist.get(listID).printUserInfo();
+        Scanner scanner = new Scanner(System.in);
             String inStr;
             char inChar;
-            
+			
             whileloop:
             while(true) {
                 System.out.println("---------------Edit User Information-------------");
@@ -168,21 +158,21 @@ public class Account{
                             break;
                         } else {
                             if(IOValidation.emailValid(inStr)) {
-                                System.out.println("The previous Email: " + UserList.get(listID).getUserEmail());
+                                System.out.println("The previous Email: " + userlist.get(listID).getUserEmail());
                                 System.out.println("The new Email: " + inStr);
                                 System.out.println(">> Are you sure to make change? (Y/N)");
                                 inChar = scanner.next().charAt(0);
                                 if(inChar == 'y' || inChar == 'Y'){
-                                    UserList.get(listID).setUserEmail(inStr);
+                                    userlist.get(listID).setUserEmail(inStr);
                                     System.out.println("The Email is updated!");
                                 } else {
                                     System.out.println("Action was cancelled!");
                                 }
                             }else{
-                                System.out.println("格式不乎");
+                                System.out.println("Wrong format");
                             }
                         }
-                        break;
+						break;
                     case '2':
                         break;
                     case '3':
@@ -200,7 +190,7 @@ public class Account{
         } else {
             System.out.println("No such user");
         }
-    }
+	}
 	
 	//List all Users records
 	public static void listAll(){
@@ -209,8 +199,8 @@ public class Account{
 		System.out.println("UserID\tUserName\tUserType");
 		System.out.println("--------------------------------");
 		
-		for (int i = 0; i < UserList.size(); i++) {
-			System.out.println(	UserList.get(i).getUserID() + "\t" + UserList.get(i).getUserName() + "\t\t" + UserList.get(i).getUserType());
+		for (int i = 0; i < userlist.size(); i++) {
+			System.out.println(	userlist.get(i).getUserID() + "\t" + userlist.get(i).getUserName() + "\t\t" + userlist.get(i).getUserType());
 		}
 		System.out.println("--------------------------------\n");
 

@@ -28,14 +28,16 @@ class Register {
         System.out.println("\t\t- 8~12 characters");
         System.out.println("\t\t- letters and digit");
         System.out.print("Name: ");
+        //while((inUserName = scanner.nextLine()).isEmpty()){
         while(!IOValidation.usernameValid(inUserName = scanner.nextLine())){
         	System.out.print("User name could not be empty! Please enter again: ");
         }
         System.out.print("Password: ");
-        while(!IOValidation.passwordValid(inPassword = scanner.nextLine())){
+        while((inPassword = scanner.nextLine()).isEmpty()){
         	System.out.print("Password could not be empty! Please enter again: ");
         }
         System.out.print("E-mail: ");
+        //while((inEmail = scanner.nextLine()).isEmpty()){
         while(!IOValidation.emailValid(inEmail = scanner.nextLine())){
         	System.out.print("Email could not be empty! Please enter again: ");
         }
@@ -54,10 +56,12 @@ class Register {
         System.out.print("(Y / N): ");
 
         if((inStr = scanner.nextLine()).equals("Y") || inStr.equals("y")){
-			Trainee trainee = new Trainee(inUserName, inPassword);
+			int uid = Account.userlist.get(Account.userlist.size() - 1).getUserID() + 1;
+			inPassword = CryptWithMD5.cryptWithMD5(inPassword);
+			Trainee trainee = new Trainee(uid, inUserName, inPassword);
 			trainee.setUserEmail(inEmail);
-			trainee.setUserPhone( Integer.parseInt(inPhone));
-     		System.out.println(Account.updateUserList(trainee));
+			trainee.setUserPhone(inPhone);
+     		System.out.println(Account.updateuserlist(trainee));
 			
 			System.out.println("-----------------------------------------------------");
 	        System.out.println("-                                                   -");

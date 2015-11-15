@@ -14,26 +14,29 @@ class Trainee extends User{
 
 // Declare data members 
 	public static int totalNoOfTrainee = 0;  // class data member
-	
-	private String traineeType = "beginner";
+	protected int traineeType = 3;
 	
 	
 // Constructors 
-	Trainee(String name) {
-		super(name, 0);	//call superclass constructor
-	}
-	
-	Trainee(String name, String pw) {
-		super(name, pw, 0);	//call superclass constructor
+	Trainee(int uid, String name, String pw) {
+		super(uid, name, pw, 0);	//call superclass constructor
 	}
 
 // Methods 
 	//Trainee type updating
-	public String getTraineeType() {	
+	public int upadteTraineeType() {	
 		int total = Curriculum.totalOfCompleted(getUserID());
-		if( total > 10 ) traineeType = "advanced";
-			else if( total > 5 ) traineeType = "intermediate";
+		if( total > 10 ) traineeType = 4;
+			else if( total > 5 ) traineeType = 5;
 		return traineeType;
+	}
+		
+	public String getTraineeType() {	
+		upadteTraineeType();
+		if(userType == 3 ) return "Beginner" ;
+		if(userType == 4 ) return "Advanced" ;
+		if(userType == 5 ) return "Intermediate" ;
+		return "Unknown" ;
 	}
 	
 	// Print Trainee information

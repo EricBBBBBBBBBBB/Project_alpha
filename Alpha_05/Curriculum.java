@@ -12,37 +12,36 @@ import java.util.ArrayList;
 
 class Curriculum{
 
-// Declare data members (To save the Course Infomation without FileIOSystem)
-    public static ArrayList<Course> CourseList = new ArrayList<Course>(); 
+// Declare data members
+    public static final String DEF_COURSEFILENAME = "Courses.csv";
+    public static ArrayList<Course> courselist = new ArrayList<Course>(); 
 	
 	
 // Methods
 	//Initialization Course List
-    public static void initCourseList() {       
-        CourseList.add(new Course("Courses1"));
-        CourseList.add(new Course("Courses2"));
-        CourseList.add(new Course("Courses3"));
-        CourseList.add(new Course("Courses4"));
+    public static void initcourselist() {       
+		courselist = CourseIO.readCTxtFile(DEF_COURSEFILENAME);
+		System.out.println("Read OK: " + DEF_COURSEFILENAME);
     }
 	
 	//Update Course List
-    public static boolean updateCourseList(Course course) {
-        if(CourseList.add(course))
+    public static boolean updatecourselist(Course course) {
+        if(courselist.add(course))
             return true;
         else
             return false;
     }
 	
 	//Get Course List
-    public static ArrayList<Course> getCourseList() {
-        return CourseList;
+    public static ArrayList<Course> getcourselist() {
+        return courselist;
     }
 
 	//Remove Course by ID
     public static boolean removeCourse(int cid) {
-		for (int i = 0; i < CourseList.size(); i++) {
-            if (CourseList.get(i).getCourseID() == cid) {
-                CourseList.remove(i);
+		for (int i = 0; i < courselist.size(); i++) {
+            if (courselist.get(i).getCourseID() == cid) {
+                courselist.remove(i);
                 return true;
             }
         }
@@ -51,9 +50,9 @@ class Curriculum{
 	
 	//Remove Course by Name
     public static boolean removeCourse(String cname) {
-        for (int i = 0; i < CourseList.size(); i++) {
-            if (CourseList.get(i).getCourseName().equals(cname)) {
-                CourseList.remove(i);
+        for (int i = 0; i < courselist.size(); i++) {
+            if (courselist.get(i).getCourseName().equals(cname)) {
+                courselist.remove(i);
                 return true;
             }
         }
@@ -67,8 +66,8 @@ class Curriculum{
 		System.out.println("ID\tCourse Name\tStatus");
 		System.out.println("-------------------------------------------");
 		
-		for (int i = 0; i < CourseList.size(); i++) {
-			System.out.println(	CourseList.get(i).getCourseID() + "\t" + CourseList.get(i).getCourseName()+ "\t" + CourseList.get(i).getCourseStatus());
+		for (int i = 0; i < courselist.size(); i++) {
+			System.out.println(	courselist.get(i).getCourseID() + "\t" + courselist.get(i).getCourseName()+ "\t" + courselist.get(i).getCourseStatus());
 		}
 		System.out.println("------------------------------------------\n");
 
@@ -86,19 +85,19 @@ class Curriculum{
 		System.out.println("-----------------------------------------------------");
 		System.out.println("ID\tCourse Name\t\tStatus");
 		System.out.println("-----------------------------------------------------");
-		for (int i = 0; i < CourseList.size(); i++) {
-			for (int j = 0; j < CourseList.get(i).TraineeList.size(); j++) {
-				if(CourseList.get(i).TraineeList.get(j) == uid ) 
-					System.out.println(CourseList.get(i).getCourseID() + "\t" + CourseList.get(i).getCourseName() + "\t\t(Current)");
+		for (int i = 0; i < courselist.size(); i++) {
+			for (int j = 0; j < courselist.get(i).TraineeList.size(); j++) {
+				if(courselist.get(i).TraineeList.get(j) == uid ) 
+					System.out.println(courselist.get(i).getCourseID() + "\t" + courselist.get(i).getCourseName() + "\t\t(Current)");
 			}
 		}
 	}
 	
 	public static void printCompletedCourse(int uid){
-		for (int i = 0; i < CourseList.size(); i++) {
-			for (int j = 0; j < CourseList.get(i).CompletedTraineeList.size(); j++) {
-				if(CourseList.get(i).CompletedTraineeList.get(j) == uid) 
-					System.out.println("- " + CourseList.get(i).getCourseID() + "\t\t" + CourseList.get(i).getCourseName() + "\t\t(Completed)");
+		for (int i = 0; i < courselist.size(); i++) {
+			for (int j = 0; j < courselist.get(i).CompletedTraineeList.size(); j++) {
+				if(courselist.get(i).CompletedTraineeList.get(j) == uid) 
+					System.out.println("- " + courselist.get(i).getCourseID() + "\t\t" + courselist.get(i).getCourseName() + "\t\t(Completed)");
 			}
 		}
 		System.out.println("-----------------------------------------------------\n");
@@ -107,9 +106,9 @@ class Curriculum{
 	//Count Current Courses & Completed Courses	
 	public static int totalOfCurrent(int uid){
 		int total = 0;
-		for (int i = 0; i < CourseList.size(); i++) {
-			for (int j = 0; j < CourseList.get(i).TraineeList.size(); j++) {
-				if(CourseList.get(i).TraineeList.get(j) == uid) total++;
+		for (int i = 0; i < courselist.size(); i++) {
+			for (int j = 0; j < courselist.get(i).TraineeList.size(); j++) {
+				if(courselist.get(i).TraineeList.get(j) == uid) total++;
 			}
 		}
 		return total;
@@ -117,23 +116,23 @@ class Curriculum{
 
 	public static int totalOfCompleted(int uid){
 		int total = 0;
-		for (int i = 0; i < CourseList.size(); i++) {
-			for (int j = 0; j < CourseList.get(i).CompletedTraineeList.size(); j++) {
-				if(CourseList.get(i).CompletedTraineeList.get(j) == uid) total++;
+		for (int i = 0; i < courselist.size(); i++) {
+			for (int j = 0; j < courselist.get(i).CompletedTraineeList.size(); j++) {
+				if(courselist.get(i).CompletedTraineeList.get(j) == uid) total++;
 			}
 		}
 		return total;
 	}
 	
 	//Diplay User Owned Courses
-	public static void printOwnedCourse(int uid){
+	public static void printOwnedCourse(String uname){
 		System.out.println("------------------- Owned Courses -------------------");
 		System.out.println("-----------------------------------------------------");
 		System.out.println("ID\tCourse Name");
 		System.out.println("-------------------------------------------");
-		for (int i = 0; i < CourseList.size(); i++) {
-				if(CourseList.get(i).getTrainerID() == uid ) 
-					System.out.println("- " + CourseList.get(i).getCourseID() + "\t" + CourseList.get(i).getCourseName());
+		for (int i = 0; i < courselist.size(); i++) {
+				if(courselist.get(i).getTrainerName().equals(uname)) 
+					System.out.println("- " + courselist.get(i).getCourseID() + "\t" + courselist.get(i).getCourseName());
 		}
 		System.out.println("------------------------------------------\n");
 	}
@@ -161,9 +160,9 @@ class Curriculum{
 		Scanner scanner = new Scanner(System.in);
 		int course = scanner.nextInt();
 		
-		for (int i = 0; i < CourseList.size(); i++) {
-			if(CourseList.get(i).getCourseID() == course) {
-				CourseList.get(i).joinCourse(uid);
+		for (int i = 0; i < courselist.size(); i++) {
+			if(courselist.get(i).getCourseID() == course) {
+				courselist.get(i).joinCourse(uid);
 				return true;
 			}
 		}
@@ -176,8 +175,8 @@ class Curriculum{
 		System.out.println("- ID\tCourse Name");
 		System.out.println("-----------------------------------------------------");	
 		
-		for (int i = 0; i < CourseList.size(); i++) {
-			System.out.println("- " + CourseList.get(i).getCourseID() + "\t" + CourseList.get(i).getCourseName());
+		for (int i = 0; i < courselist.size(); i++) {
+			System.out.println("- " + courselist.get(i).getCourseID() + "\t" + courselist.get(i).getCourseName());
 		}
 		
 		System.out.println("-----------------------------------------------------");
@@ -189,8 +188,8 @@ class Curriculum{
 		System.out.println("ID\tCourse Name\tTargets");
 		System.out.println("-----------------------------------------------------");
 		
-		for (int i = 0; i < CourseList.size(); i++) {
-			System.out.println("- " + CourseList.get(i).getCourseID() + "\t" + CourseList.get(i).getCourseName() + "\t" + CourseList.get(i).getTarget());
+		for (int i = 0; i < courselist.size(); i++) {
+			System.out.println("- " + courselist.get(i).getCourseID() + "\t" + courselist.get(i).getCourseName() + "\t" + courselist.get(i).getTarget());
 		}
 		System.out.println("-----------------------------------------------------");
 	}

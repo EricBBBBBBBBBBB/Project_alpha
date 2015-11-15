@@ -16,12 +16,8 @@ class Trainer extends User{
 	public static int totalNoOfTrainer = 0;  // class data member
 
 // Constructors 
-	Trainer(String name) {
-		super(name, 1);	//call superclass constructor
-	}
-	
-	Trainer(String name, String pw) {
-		super(name, pw, 1);	//call superclass constructor
+	Trainer(int uid, String name, String pw) {
+		super(uid, name, pw, 1);	//call superclass constructor
 	}
 
 // Methods

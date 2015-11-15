@@ -17,7 +17,7 @@ class Login{
 	private boolean loginSuccess = false;
 	private String userName;
 	private String password;
-    private ArrayList<User> UserList = new ArrayList<User>();
+    private ArrayList<User> userlist = new ArrayList<User>();
 	
 // Constructors 
 	public User login() {
@@ -53,7 +53,7 @@ class Login{
 			password = CMD5.cryptWithMD5(password);	//Encrypt Password
 			
 			//Get User list
-			UserList = Account.getUserList();
+			userlist = Account.getuserlist();
 			
 			//loading 
 			try {
@@ -64,10 +64,10 @@ class Login{
 			}
 			
 			//User validate
-			for (int i = 0; i < UserList.size(); i++) {
-				if(UserList.get(i).validateUser(userName, password)){
+			for (int i = 0; i < userlist.size(); i++) {
+				if(userlist.get(i).validateUser(userName, password)){
 					this.loginSuccess = true;
-					return UserList.get(i);
+					return userlist.get(i);
 				}
 			}
 			if(!this.loginSuccess) System.out.println("\n>>> Login fail, please login again.");

@@ -16,12 +16,8 @@ class Admin extends User{
 	public static int totalNoOfAdmin = 0;  // class data member
 
 // Constructors
-	Admin(String name) {
-		super(name, 2);	//call superclass constructor
-	}
-	
-	Admin(String name, String pw) {
-		super(name, pw, 2);	//call superclass constructor
+	Admin(int uid, String name, String pw) {
+		super(uid, name, pw, 2);	//call superclass constructor
 	}
 
 // Methods

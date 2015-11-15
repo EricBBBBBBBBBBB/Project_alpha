@@ -56,8 +56,9 @@ class Menus{
 		System.out.println("- 4. Display Targets Set\t\t\t    -");
 		System.out.println("- 5. View Personal Infomation\t\t\t    -");
 		System.out.println("- 6. General Menu\t\t\t\t    -");
+		System.out.println("- 9. Quit the system\t\t\t\t    -");
 		System.out.println("-----------------------------------------------------");
-		System.out.print("Enter q for quit.\n> ");
+		System.out.print(">> Please enter the number: ");
 		
 		Scanner scanner = new Scanner(System.in);
 		inChar = scanner.next().charAt(0);
@@ -83,8 +84,7 @@ class Menus{
 			case '6':
 				System.out.println("You choose number 6");
 				break;
-			case 'Q':
-			case 'q':
+			case '9':
 				System.out.println("You choosed to quit the system. Bye!! ");
 				quit = true;
 				scanner.close();
@@ -105,15 +105,16 @@ class Menus{
 		System.out.println("- 4. xxxxxxxxxxxxxxxxxxxxxx\t\t\t    -");
 		System.out.println("- 5. View Personal Infomation\t\t\t    -");
 		System.out.println("- 6. General Menu\t\t\t\t    -");
+		System.out.println("- 9. Quit the system\t\t\t\t    -");
 		System.out.println("-----------------------------------------------------");
-		System.out.print("Enter q for quit.\n> ");
-
+		System.out.print(">> Please enter the number: ");
+		
 		Scanner scanner = new Scanner(System.in);
 		inChar = scanner.next().charAt(0);
 
 		switch(inChar) {
 			case '1':
-				Curriculum.printOwnedCourse(trainer.getUserID());
+				Curriculum.printOwnedCourse(trainer.getUserName());
 				break;
 			case '2':
 				System.out.println("You choose number 2");
@@ -130,8 +131,7 @@ class Menus{
 			case '6':
 				System.out.println("You choose number 6");
 				break;
-			case 'Q':
-			case 'q':
+			case '9':
 				System.out.println("You choosed to quit the system. Bye!! ");
 				quit = true;
 				scanner.close();
