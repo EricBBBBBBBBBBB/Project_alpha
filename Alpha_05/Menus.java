@@ -67,7 +67,7 @@ class Menus{
 		switch(inChar) {
 			case '1':
 				System.out.println(">>View the Current Available Courses.\n");	
-				Curriculum.listAvaibleCourse();
+				Curriculum.listAvaibleCourse(trainee.upadteTraineeType());
 				break;
 			case '2':
 				

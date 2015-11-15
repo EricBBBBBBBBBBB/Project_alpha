@@ -30,7 +30,7 @@ class UserIO{
 					String row = null;
 					String [] strSplitArr;
 					int userID, userType, traineeType;
-					String uName, password, email, phone, dateOfReg;
+					String uName, password, inEmail, inPhone, dateOfReg;
 					Calendar date;
 					User newuser;
 					
@@ -39,25 +39,28 @@ class UserIO{
 						userID = Integer.parseInt(strSplitArr[0]);
 						uName = strSplitArr[2];
 						password = strSplitArr[3];
-						email = strSplitArr[4];
-						phone = strSplitArr[5];
+						inEmail = strSplitArr[4];
+						inPhone = strSplitArr[5];
 						//date = strSplitArr[6];
-						//traineeType = Integer.parseInt(strSplitArr[7]);
 						switch(Integer.parseInt(strSplitArr[1])) {
 							case 1:
 								newuser = new Trainer(userID, uName, password);
-								newuser.setUserInfo(email,phone);
+								newuser.setUserInfo(inEmail,inPhone);
+								
 								break;
 							case 2:
 								newuser = new Admin(userID, uName, password);
-								newuser.setUserInfo(email,phone);
+								newuser.setUserInfo(inEmail,inPhone);
 								break;
 							case 0:
 							default:
 								newuser = new Trainee(userID, uName, password);
-								newuser.setUserInfo(email,phone);
+								traineeType = Integer.parseInt(strSplitArr[7]);
+								Trainee newtrainee = (Trainee) newuser;
+								newtrainee.setTraineeInfo(inEmail,inPhone,traineeType);
 						}
 						list.add(newuser);
+						
 					}
 				} finally {
 					bufferReader.close(); //close the stream

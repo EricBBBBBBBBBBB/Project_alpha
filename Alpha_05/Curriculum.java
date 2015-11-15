@@ -78,13 +78,13 @@ class Curriculum{
 	public static void printOwnedCourse(String uname){
 		System.out.println("------------------- Owned Courses -------------------");
 		System.out.println("-----------------------------------------------------");
-		System.out.println("ID\tCourse Name");
-		System.out.println("-------------------------------------------");
+		System.out.println(" ID   Course Name         Total Number of Trainee");
+		System.out.println("-----------------------------------------------------");
 		for (int i = 0; i < courselist.size(); i++) {
 				if(courselist.get(i).getTrainerName().equals(uname)) 
-					System.out.println("- " + courselist.get(i).getCourseID() + "\t" + courselist.get(i).getCourseName());
+					System.out.format( "- %-5d%-20s%-10d\n" , courselist.get(i).getCourseID(), courselist.get(i).getCourseName(), courselist.get(i).totalNumOfTrainee);
 		}
-		System.out.println("------------------------------------------\n");
+		System.out.println("-----------------------------------------------------\n");
 	}
 	
 	//Courses Performance
@@ -105,13 +105,13 @@ class Curriculum{
 	}
 
 	//List Avaible Courses
-	public static void listAvaibleCourse(){
+	public static void listAvaibleCourse(int type){
 		System.out.println("-----------------------------------------------------");
-		System.out.println("- ID\tCourse Name");
+		System.out.println("- ID   Course Name         Course Type");
 		System.out.println("-----------------------------------------------------");	
-		
 		for (int i = 0; i < courselist.size(); i++) {
-			if(!(courselist.get(i).Completed) && courselist.get(i).isAvailable) System.out.println("- " + courselist.get(i).getCourseID() + "\t" + courselist.get(i).getCourseName());
+			if(!(courselist.get(i).Completed) && courselist.get(i).isAvailable && courselist.get(i).courseType <= type)
+				System.out.format( "- %-5d%-20s%-10s\n" , courselist.get(i).getCourseID(), courselist.get(i).getCourseName(), courselist.get(i).getCourseType() );
 		}
 		
 		System.out.println("-----------------------------------------------------");
@@ -120,11 +120,10 @@ class Curriculum{
 	//List Courses Targets
 	public static void listTarget(){
 		System.out.println("-----------------------------------------------------");
-		System.out.println("ID\tCourse Name\tTargets");
+		System.out.println(" ID   Course Name         Targets");
 		System.out.println("-----------------------------------------------------");
-		
 		for (int i = 0; i < courselist.size(); i++) {
-			System.out.println("- " + courselist.get(i).getCourseID() + "\t" + courselist.get(i).getCourseName() + "\t" + courselist.get(i).getTarget());
+			System.out.format( "- %-5d%-20s%-10s\n" , courselist.get(i).getCourseID(), courselist.get(i).getCourseName(), courselist.get(i).getTarget());
 		}
 		System.out.println("-----------------------------------------------------");
 	}

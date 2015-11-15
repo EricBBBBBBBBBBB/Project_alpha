@@ -36,11 +36,13 @@ class CourseIO{
 					
 					while ((row = bufferReader.readLine()) != null) {
 						strSplitArr = row.split(DEF_COLDELIMITER);
+						
 						//create new course
 						courseID = Integer.parseInt(strSplitArr[0]);
 						courseName = strSplitArr[1];
 						courseType = Integer.parseInt(strSplitArr[2]);
 						newcourse = new Course(courseID, courseName, courseType);
+						
 						//input information
 						Completed = Boolean.parseBoolean(strSplitArr[3]);
 						courseTrainer = strSplitArr[4];
@@ -49,8 +51,9 @@ class CourseIO{
 						price = Integer.parseInt(strSplitArr[7]);
 						target = strSplitArr[8];
 						description = strSplitArr[9];
-						max = Integer.parseInt(strSplitArr[10]);
+						max = Integer.parseInt(strSplitArr[11]);
 						newcourse.setCourseInfo(Completed, courseTrainer, duration, venue, price, target, description, max);
+						
 						//add to course list
 						list.add(newcourse);
 					}

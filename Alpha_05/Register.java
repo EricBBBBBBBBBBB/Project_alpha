@@ -58,10 +58,9 @@ class Register {
         if((inStr = scanner.nextLine()).equals("Y") || inStr.equals("y")){
 			int uid = Account.userlist.get(Account.userlist.size() - 1).getUserID() + 1;
 			inPassword = CryptWithMD5.cryptWithMD5(inPassword);
-			Trainee trainee = new Trainee(uid, inUserName, inPassword);
-			trainee.setUserEmail(inEmail);
-			trainee.setUserPhone(inPhone);
-     		System.out.println(Account.updateuserlist(trainee));
+			Trainee newtrainee = new Trainee(uid, inUserName, inPassword);
+			newtrainee.setTraineeInfo(inEmail,inPhone,3);
+     		System.out.println(Account.updateuserlist(newtrainee));
 			
 			System.out.println("-----------------------------------------------------");
 	        System.out.println("-                                                   -");

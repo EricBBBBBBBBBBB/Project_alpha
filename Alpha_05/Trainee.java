@@ -14,7 +14,7 @@ class Trainee extends User{
 
 // Declare data members 
 	public static int totalNoOfTrainee = 0;  // class data member
-	protected int traineeType = 3;
+	protected int traineeType;
 	
 	
 // Constructors 
@@ -25,17 +25,24 @@ class Trainee extends User{
 // Methods 
 	//Trainee type updating
 	public int upadteTraineeType() {	
-		int total = 1000;
-		if( total > 10 ) traineeType = 4;
-			else if( total > 5 ) traineeType = 5;
+		//int total = 0;
+		//if( total > 10 ) traineeType = 4;
+		//	else if( total > 5 ) traineeType = 5;
 		return traineeType;
 	}
-		
+	
+	//Set the User information
+	public void setTraineeInfo(String mail,String tel, int type) {
+		super.setUserInfo(mail,tel);
+		traineeType = type;
+	}
+	
+	//Get the User information
 	public String getTraineeType() {	
 		upadteTraineeType();
-		if(userType == 3 ) return "Beginner" ;
-		if(userType == 4 ) return "Advanced" ;
-		if(userType == 5 ) return "Intermediate" ;
+		if(traineeType == 3 ) return "Beginner" ;
+		if(traineeType == 4 ) return "Advanced" ;
+		if(traineeType == 5 ) return "Intermediate" ;
 		return "Unknown" ;
 	}
 	

@@ -27,14 +27,13 @@ class Course{
 	protected String target;
 	protected String description;
 
-	public int totalNumOfTrainee = 0;
-	public int maxNumOfTrainee = 15;
+	public int totalNumOfTrainee;
+	public int maxNumOfTrainee;
 	protected boolean isAvailable = true;
 		
 // Constructors
 	Course() {
 		totalNoOfCourses++;
-		if(totalNumOfTrainee == maxNumOfTrainee || Completed ) isAvailable = false;
 	}
 
 	Course(int cid, String cname, int type) {
@@ -62,6 +61,9 @@ class Course{
 	}
 	
 	public String getCourseStatus() {
+		if(totalNumOfTrainee == maxNumOfTrainee || Completed ) 
+			isAvailable = false;
+		
 		String statusStr;
 		if(!Completed){
 			if(isAvailable) statusStr = "Available";

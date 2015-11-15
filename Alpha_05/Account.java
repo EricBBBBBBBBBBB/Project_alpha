@@ -87,11 +87,11 @@ public class Account{
     //Search User by Name (return no value)
     public static void searchUser(String userName) {
         System.out.println("There is/are the result(s) of searching: ");
-        System.out.println("ID\tUsername");
+		System.out.println("- ID   User Name");
         System.out.println("===========================================");
         for (int i = 0; i < userlist.size(); i++) {
             if(userlist.get(i).getUserName().contains(userName)) {
-                System.out.println(userlist.get(i).getUserID() +"\t"+userlist.get(i).getUserName());
+                System.out.format( "- %-5d%-20s\n" , userlist.get(i).getUserID(), userlist.get(i).getUserName());
             }
         }
         System.out.println("===========================================");
@@ -124,7 +124,7 @@ public class Account{
         if(listID != -1) {
             userlist.get(listID).printUserInfo();
         }else{
-            System.out.println("user not found!");
+            System.out.println("User not found!");
         }
     }
 
@@ -195,14 +195,18 @@ public class Account{
 	//List all Users records
 	public static void listAll(){
 		
-		System.out.println("--------------------------------");
-		System.out.println("UserID\tUserName\tUserType");
-		System.out.println("--------------------------------");
+		System.out.println("-----------------------------------------------------");
+		System.out.println("- ID   User Name           User Type");
+		System.out.println("-----------------------------------------------------");
 		
 		for (int i = 0; i < userlist.size(); i++) {
-			System.out.println(	userlist.get(i).getUserID() + "\t" + userlist.get(i).getUserName() + "\t\t" + userlist.get(i).getUserType());
+			if(userlist.get(i) instanceof Trainee) {
+				Trainee trainee = (Trainee)userlist.get(i);
+				System.out.format( "- %-5d%-20s%s (%s)\n" , userlist.get(i).getUserID(), userlist.get(i).getUserName(), userlist.get(i).getUserType(), trainee.getTraineeType());
+			}else  
+				System.out.format( "- %-5d%-20s%s\n" , userlist.get(i).getUserID(), userlist.get(i).getUserName(), userlist.get(i).getUserType());
 		}
-		System.out.println("--------------------------------\n");
+		System.out.println("-----------------------------------------------------\n");
 
 	}
 	
