@@ -3,7 +3,7 @@
 * Students: 
 * Course: OOP 2015 Sem 1, HDIT
 *
-* 
+* Trainer.java:
 ********************************************/
 
 import java.io.*;

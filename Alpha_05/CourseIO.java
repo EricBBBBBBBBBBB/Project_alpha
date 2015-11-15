@@ -1,8 +1,9 @@
 /********************************************
-* Student: FUNG K.K. Eric (10614373), HDIT
-* Couse: OOP 2015 Sem 1
+* Project Team:	
+* Students: 
+* Course: OOP 2015 Sem 1, HDIT
 *
-* 
+* CourseIO.java: 
 ********************************************/
 
 import java.io.*;
@@ -12,7 +13,7 @@ class CourseIO{
 
 // Declare data members //////////////////////////	
 	public static final String DEF_COLDELIMITER = ",";
-	public static final String DEF_TITLEHEADER ="Course ID,Course name,Course Type,Course Trainer,Duration (Weeks),Venue,Price ($),Course Target,Course Description,Total of Trainee,Max of Trainee";
+	public static final String DEF_TITLEHEADER ="Course ID,Course name,Course Type,Completed,Course Trainer,Duration (Weeks),Venue,Price ($),Course Target,Course Description,Total of Trainee,Max of Trainee";
 	
 // Methods //////////////////////////
 	public static ArrayList<Course> readCTxtFile(String inFileStr){
@@ -28,16 +29,29 @@ class CourseIO{
 					//other rows: content
 					String row = null;
 					String [] strSplitArr;
-					int courseID, courseType, traineeType, duration, price, total, max;
-					String courseName, courseTrainee, venue, target, description;
+					int courseID, courseType, duration, price, total, max;
+					String courseName, courseTrainer, venue, target, description;
+					boolean Completed;
 					Course newcourse;
 					
 					while ((row = bufferReader.readLine()) != null) {
 						strSplitArr = row.split(DEF_COLDELIMITER);
+						//create new course
 						courseID = Integer.parseInt(strSplitArr[0]);
 						courseName = strSplitArr[1];
 						courseType = Integer.parseInt(strSplitArr[2]);
 						newcourse = new Course(courseID, courseName, courseType);
+						//input information
+						Completed = Boolean.parseBoolean(strSplitArr[3]);
+						courseTrainer = strSplitArr[4];
+						duration = Integer.parseInt(strSplitArr[5]);
+						venue = strSplitArr[6];
+						price = Integer.parseInt(strSplitArr[7]);
+						target = strSplitArr[8];
+						description = strSplitArr[9];
+						max = Integer.parseInt(strSplitArr[10]);
+						newcourse.setCourseInfo(Completed, courseTrainer, duration, venue, price, target, description, max);
+						//add to course list
 						list.add(newcourse);
 					}
 				} finally {
@@ -67,8 +81,15 @@ class CourseIO{
 				outStream.print(list.get(i).courseID + DEF_COLDELIMITER);
 				outStream.print(list.get(i).courseName + DEF_COLDELIMITER);
 				outStream.print(list.get(i).courseType + DEF_COLDELIMITER);
+				outStream.print(list.get(i).Completed + DEF_COLDELIMITER);
 				outStream.print(list.get(i).courseTrainerName + DEF_COLDELIMITER);
 				outStream.print(list.get(i).duration + DEF_COLDELIMITER);
+				outStream.print(list.get(i).venue + DEF_COLDELIMITER);
+				outStream.print(list.get(i).price + DEF_COLDELIMITER);
+				outStream.print(list.get(i).target + DEF_COLDELIMITER);
+				outStream.print(list.get(i).description + DEF_COLDELIMITER);
+				outStream.print(list.get(i).totalNumOfTrainee + DEF_COLDELIMITER);
+				outStream.print(list.get(i).maxNumOfTrainee + DEF_COLDELIMITER);		
 				outStream.println("");
 			}
 			outStream.close();

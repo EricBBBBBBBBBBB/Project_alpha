@@ -1,8 +1,9 @@
 /********************************************
-* Student: FUNG K.K. Eric (10614373), HDIT
-* Couse: OOP 2015 Sem 1
+* Project Team:	
+* Students: 
+* Course: OOP 2015 Sem 1, HDIT
 *
-* 
+* UserIO.java:
 ********************************************/
 
 import java.io.*;
@@ -30,6 +31,7 @@ class UserIO{
 					String [] strSplitArr;
 					int userID, userType, traineeType;
 					String uName, password, email, phone, dateOfReg;
+					Calendar date;
 					User newuser;
 					
 					while ((row = bufferReader.readLine()) != null) {
@@ -39,7 +41,7 @@ class UserIO{
 						password = strSplitArr[3];
 						email = strSplitArr[4];
 						phone = strSplitArr[5];
-						//dateOfReg;
+						//date = strSplitArr[6];
 						//traineeType = Integer.parseInt(strSplitArr[7]);
 						switch(Integer.parseInt(strSplitArr[1])) {
 							case 1:

@@ -5,6 +5,7 @@
 *
 * Menus.java: 
 ********************************************/
+
 import java.io.*;
 import java.util.*;
 import javax.swing.JOptionPane;
@@ -69,11 +70,10 @@ class Menus{
 				Curriculum.listAvaibleCourse();
 				break;
 			case '2':
-				System.out.println(">>Join Training Courses.\n");	
-				if(!Curriculum.JoinCourse(trainee.getUserID())) System.out.println(">>>Unknown Courses. \n");
+				
 				break;
 			case '3':
-				Curriculum.printCourse(trainee.getUserID());
+				
 				break;
 			case '4':
 				Curriculum.listTarget();

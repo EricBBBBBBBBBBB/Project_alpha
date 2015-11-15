@@ -1,7 +1,7 @@
 /********************************************
 * Project Team:	
 * Students: 
-* Couse: OOP 2015 Sem 1, HDIT
+* Course: OOP 2015 Sem 1, HDIT
 *
 * Login.java: 
 ********************************************/

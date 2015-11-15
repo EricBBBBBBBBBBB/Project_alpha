@@ -3,7 +3,7 @@
 * Students: 
 * Course: OOP 2015 Sem 1, HDIT
 *
-* 
+* Trainee.java: 
 ********************************************/
 
 import java.io.*;
@@ -25,7 +25,7 @@ class Trainee extends User{
 // Methods 
 	//Trainee type updating
 	public int upadteTraineeType() {	
-		int total = Curriculum.totalOfCompleted(getUserID());
+		int total = 1000;
 		if( total > 10 ) traineeType = 4;
 			else if( total > 5 ) traineeType = 5;
 		return traineeType;

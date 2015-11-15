@@ -18,25 +18,23 @@ class Course{
 	protected int courseID;
 	protected String courseName;
 	protected int courseType;
+	protected boolean Completed;
 
-	private String courseTrainerName;	
-	private int duration;	// add Date & Time later
-	private String venue;
-	private int price;	
-	private String target;
-	private String description;
+	protected String courseTrainerName;	
+	protected int duration;	// add Date & Time later
+	protected String venue;
+	protected int price;	
+	protected String target;
+	protected String description;
 
 	public int totalNumOfTrainee = 0;
 	public int maxNumOfTrainee = 15;
 	protected boolean isAvailable = true;
-	
-	
-	public ArrayList<Integer> TraineeList = new ArrayList<Integer>(); 
-	public ArrayList<Integer> CompletedTraineeList = new ArrayList<Integer>();
-	
+		
 // Constructors
 	Course() {
 		totalNoOfCourses++;
+		if(totalNumOfTrainee == maxNumOfTrainee || Completed ) isAvailable = false;
 	}
 
 	Course(int cid, String cname, int type) {
@@ -65,16 +63,34 @@ class Course{
 	
 	public String getCourseStatus() {
 		String statusStr;
-		if(isAvailable) statusStr = "Available";
-		else statusStr = "NOT Available";
+		if(!Completed){
+			if(isAvailable) statusStr = "Available";
+				else statusStr = "NOT Available";
+		}else{
+			statusStr = "Completed";
+		}
 		return statusStr;
 	}
 	
 	public String getTrainerName() {
 		return courseTrainerName;
 	}
+	
 	public String getTarget() {
 		return target;
+	}
+	
+	//set the Course information
+	public void setCourseInfo(boolean status, String tname, int time, String place, int cost, String t , String d, int max ) {
+		Completed = status;
+		courseTrainerName = tname;
+		duration = time;
+		venue = place;
+		price = cost;
+		target = t;
+		description = d;
+		maxNumOfTrainee = max;
+		
 	}
 	
 	// Print the Course information
@@ -95,28 +111,5 @@ class Course{
 		System.out.println("-----------------------------------------------------");	
 	}
 	
-	// Print the Course Trainee List
-	public void printTraineeList() {    		 
-		System.out.println("-----------------------------------------------------");
-		System.out.println("- Trainee List\t\t\t    -");
-		System.out.println("-----------------------------------------------------");
-		System.out.println("UserID\tUserName");
-		System.out.println("-----------------------------------------------------");		
-		for (int i = 0; i < TraineeList.size(); i++) {
-			
-		}
-		System.out.println("-----------------------------------------------------");	
-	}
-	
-	//Join Course
-	public void joinCourse(int uid){
-		if(maxNumOfTrainee == totalNumOfTrainee){
-			System.out.println(">>>This Course was full. \n");
-		}else{
-			totalNumOfTrainee++;
-			TraineeList.add(uid);
-			System.out.println(">>>Joined. \n");
-		}
-	}
 	
 }
