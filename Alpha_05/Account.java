@@ -84,6 +84,14 @@ public class Account{
         return -1;
     }
 
+    public static boolean searchUserReBo(String userName) {
+        for (int i = 0; i < userlist.size(); i++) {
+            if (userlist.get(i).getUserName().equals(userName)) 
+                return true;
+        }
+        return false;
+    }
+
     //Search User by Name (return no value)
     public static void searchUser(String userName) {
         System.out.println("There is/are the result(s) of searching: ");

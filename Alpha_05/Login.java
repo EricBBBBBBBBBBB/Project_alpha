@@ -17,7 +17,7 @@ class Login{
 	private boolean loginSuccess = false;
 	private String userName;
 	private String password;
-    private ArrayList<User> userlist = new ArrayList<User>();
+    private ArrayList<User> userlist;
 	
 // Constructors 
 	public User login() {
