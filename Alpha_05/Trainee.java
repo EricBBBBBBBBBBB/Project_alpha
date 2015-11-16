@@ -17,6 +17,7 @@ class Trainee extends User{
 	protected int traineeType;
 	
 	
+	
 // Constructors 
 	Trainee(int uid, String name, String pw) {
 		super(uid, name, pw, 0);	//call superclass constructor
@@ -25,9 +26,8 @@ class Trainee extends User{
 // Methods 
 	//Trainee type updating
 	public int upadteTraineeType() {	
-		//int total = 0;
-		//if( total > 10 ) traineeType = 4;
-		//	else if( total > 5 ) traineeType = 5;
+		//if( totalCompletedCourse > 10 ) traineeType = 4;
+		//	else if( totalCompletedCourse > 5 ) traineeType = 5;
 		return traineeType;
 	}
 	
@@ -58,8 +58,8 @@ class Trainee extends User{
 		System.out.println("User Phone: \t  " + getUserPhone());
 		System.out.println("Date of register: " + dateOfRegister.getTime());
 		System.out.println("-----------------------------------------------------");
-		System.out.println("Completed Courses: ");
-		System.out.println("Current Courses: ");
+		System.out.println("Completed Courses: " + Curriculum.checkNoOfCompleted(getUserID()));
+		System.out.println("Current Courses: " + Curriculum.checkNoOfCurrent(getUserID()));
 		System.out.println("-----------------------------------------------------");	
 		System.out.println("End of Personal Infomation.\n");
 	}

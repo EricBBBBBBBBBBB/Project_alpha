@@ -129,7 +129,23 @@ class Curriculum{
 		System.out.println("-----------------------------------------------------");
 	}	
 	
+	//Check total of Completed Courses
+	public static int checkNoOfCompleted(int uid){
+		int total = 0;
+		for (int i = 0; i < recordlist.size(); i++) {
+			if(recordlist.get(i).checkid(uid) && recordlist.get(i).Completed) total++;
+		}
+		return total;
+	}
 	
+	//Check total of Current Courses
+	public static int checkNoOfCurrent(int uid){
+		int total = 0;
+		for (int i = 0; i < recordlist.size(); i++) {
+			if(recordlist.get(i).checkid(uid) && !(recordlist.get(i).Completed)) total++;
+		}
+		return total;
+	}
 	
 	//Check Completed or Not by CourseID 
     public static boolean checkCompleted(int uid) {
