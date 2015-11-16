@@ -82,6 +82,10 @@ class Course{
 		return target;
 	}
 	
+	public int getPrice() {
+		return price;
+	}
+	
 	//set the Course information
 	public void setCourseInfo(boolean status, String tname, int time, String place, int cost, String t , String d, int max ) {
 		Completed = status;

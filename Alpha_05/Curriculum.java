@@ -14,16 +14,21 @@ class Curriculum{
 
 // Declare data members
     public static final String DEF_COURSE = "Courses.csv";
-    public static final String DEF_CURCOURSE = "Current.csv";
+    public static final String DEF_RECORD = "CourseRecords.csv";
     public static ArrayList<Course> courselist = new ArrayList<Course>(); 
-	
-	
-// Methods
+    public static ArrayList<CourseRecord> recordlist = new ArrayList<CourseRecord>();
+
+//Methods
 	//Initialization Course List
     public static void initcourselist() {       
 		courselist = CourseIO.readCTxtFile(DEF_COURSE);
 		System.out.println("Read OK: " + DEF_COURSE);
+		
+		recordlist = CourseRecordIO.readRTxtFile(DEF_RECORD);
+		System.out.println("Read OK: " + DEF_RECORD);
     }
+	
+	
 	
 	//Update Course List
     public static boolean updatecourselist(Course course) {
@@ -37,7 +42,7 @@ class Curriculum{
     public static ArrayList<Course> getcourselist() {
         return courselist;
     }
-
+	
 	//Remove Course by ID
     public static boolean removeCourse(int cid) {
 		for (int i = 0; i < courselist.size(); i++) {
@@ -59,32 +64,57 @@ class Curriculum{
         }
         return false;
     }
-	
+
 	//List all Course records
 	public static void listAll(){
 		
-		System.out.println("-------------------------------------------");
-		System.out.println("ID\tCourse Name\tStatus");
-		System.out.println("-------------------------------------------");
+		System.out.println("-----------------------------------------------------");
+		System.out.println("- ID   Course Name    Status         Price($)");
+		System.out.println("-----------------------------------------------------");	
 		
 		for (int i = 0; i < courselist.size(); i++) {
-			System.out.println(	courselist.get(i).getCourseID() + "\t" + courselist.get(i).getCourseName()+ "\t" + courselist.get(i).getCourseStatus());
+			System.out.format( "- %-5d%-15s%-15s%d\n" , courselist.get(i).getCourseID(), courselist.get(i).getCourseName(), courselist.get(i).getCourseStatus(), courselist.get(i).getPrice() );
 		}
-		System.out.println("------------------------------------------\n");
+		System.out.println("-----------------------------------------------------");
 
 	}
 	
-	//Diplay User Owned Courses
-	public static void printOwnedCourse(String uname){
+	//List Trainer Owned Courses
+	public static void listOwnedCourse(String uname){
 		System.out.println("------------------- Owned Courses -------------------");
 		System.out.println("-----------------------------------------------------");
-		System.out.println(" ID   Course Name         Total Number of Trainee");
+		System.out.println(" ID   Course Name    Total Number of Trainee");
 		System.out.println("-----------------------------------------------------");
 		for (int i = 0; i < courselist.size(); i++) {
 				if(courselist.get(i).getTrainerName().equals(uname)) 
-					System.out.format( "- %-5d%-20s%-10d\n" , courselist.get(i).getCourseID(), courselist.get(i).getCourseName(), courselist.get(i).totalNumOfTrainee);
+					System.out.format( "- %-5d%-15s%-15d\n" , courselist.get(i).getCourseID(), courselist.get(i).getCourseName(), courselist.get(i).totalNumOfTrainee);
 		}
 		System.out.println("-----------------------------------------------------\n");
+	}
+
+	//List Avaible Courses
+	public static void listAvaibleCourse(int type){
+		System.out.println("-----------------------------------------------------");
+		System.out.println("- ID   Course Name    Course Type    Price($)");
+		System.out.println("-----------------------------------------------------");	
+		for (int i = 0; i < courselist.size(); i++) {
+			if(!(courselist.get(i).Completed) && courselist.get(i).isAvailable && courselist.get(i).courseType <= type)
+				System.out.format( "- %-5d%-15s%-15s%d\n" , courselist.get(i).getCourseID(), courselist.get(i).getCourseName(), courselist.get(i).getCourseType(), courselist.get(i).getPrice() );
+		}
+		
+		System.out.println("-----------------------------------------------------");
+	}
+	
+	//List Courses Targets
+	public static void listTarget(int uid){
+		System.out.println("-----------------------------------------------------");
+		System.out.println(" ID   Course Name    Targets");
+		System.out.println("-----------------------------------------------------");
+		for (int i = 0; i < recordlist.size(); i++) {
+			if(recordlist.get(i).checkid(uid))
+				System.out.format( "- %-5d%-15s%-15s\n" , courselist.get(i).getCourseID(), courselist.get(i).getCourseName(), courselist.get(i).getTarget());
+		}
+		System.out.println("-----------------------------------------------------");
 	}
 	
 	//Courses Performance
@@ -102,29 +132,5 @@ class Curriculum{
 	//Delete Courses
 	public static void DelCourse(){
 		System.out.println(" Delete Courses \n");
-	}
-
-	//List Avaible Courses
-	public static void listAvaibleCourse(int type){
-		System.out.println("-----------------------------------------------------");
-		System.out.println("- ID   Course Name         Course Type");
-		System.out.println("-----------------------------------------------------");	
-		for (int i = 0; i < courselist.size(); i++) {
-			if(!(courselist.get(i).Completed) && courselist.get(i).isAvailable && courselist.get(i).courseType <= type)
-				System.out.format( "- %-5d%-20s%-10s\n" , courselist.get(i).getCourseID(), courselist.get(i).getCourseName(), courselist.get(i).getCourseType() );
-		}
-		
-		System.out.println("-----------------------------------------------------");
-	}
-	
-	//List Courses Targets
-	public static void listTarget(){
-		System.out.println("-----------------------------------------------------");
-		System.out.println(" ID   Course Name         Targets");
-		System.out.println("-----------------------------------------------------");
-		for (int i = 0; i < courselist.size(); i++) {
-			System.out.format( "- %-5d%-20s%-10s\n" , courselist.get(i).getCourseID(), courselist.get(i).getCourseName(), courselist.get(i).getTarget());
-		}
-		System.out.println("-----------------------------------------------------");
 	}
 }

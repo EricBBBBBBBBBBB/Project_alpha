@@ -76,7 +76,7 @@ class Menus{
 				
 				break;
 			case '4':
-				Curriculum.listTarget();
+				Curriculum.listTarget(trainee.getUserID());
 				break;
 			case '5':
 				trainee.printUserInfo();
@@ -86,8 +86,8 @@ class Menus{
 				break;
 			case '9':
 				System.out.println("You choosed to quit the system. Bye!! ");
-				quit = true;
 				scanner.close();
+				quit = true;
 				break;
 			default:
 				System.out.println(">>Unknown Comment, Please Re-type Again.\n");	
@@ -114,7 +114,7 @@ class Menus{
 
 		switch(inChar) {
 			case '1':
-				Curriculum.printOwnedCourse(trainer.getUserName());
+				Curriculum.listOwnedCourse(trainer.getUserName());
 				break;
 			case '2':
 				System.out.println("You choose number 2");
