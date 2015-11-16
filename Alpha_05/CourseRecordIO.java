@@ -13,7 +13,7 @@ class CourseRecordIO{
 
 // Declare data members //////////////////////////	
 	public static final String DEF_COLDELIMITER = ",";
-	public static final String DEF_TITLEHEADER ="Course ID,Trainer ID,Completed,Max of Trainee,Trainee ID";
+	public static final String DEF_TITLEHEADER ="Course ID,Trainer ID,Max of Trainee,Trainee ID";
 	
 // Methods //////////////////////////
 	public static ArrayList<CourseRecord> readRTxtFile(String inFileStr){
@@ -31,7 +31,6 @@ class CourseRecordIO{
 					String [] strSplitArr;
 					
 					int courseID, trainerID, max;
-					boolean Completed;
 					CourseRecord newrecord;
 					
 					while ((row = bufferReader.readLine()) != null) {
@@ -40,17 +39,16 @@ class CourseRecordIO{
 						//set info.
 						courseID = Integer.parseInt(strSplitArr[0]);
 						trainerID = Integer.parseInt(strSplitArr[1]);
-						Completed = Boolean.parseBoolean(strSplitArr[2]);
-						max = Integer.parseInt(strSplitArr[3]);
+						max = Integer.parseInt(strSplitArr[2]);
 						
 						int[] tlist = new int[max];
-						for(int i = 4; i < strSplitArr.length ; i++ ){
+						for(int i = 3; i < strSplitArr.length ; i++ ){
 							tlist[i] = Integer.parseInt(strSplitArr[i]);
 						}
 						
 						//create new course
 						newrecord = new CourseRecord(courseID);
-						newrecord.setInfo(trainerID, Completed, max);
+						newrecord.setInfo(trainerID, max);
 						newrecord.setTrainee(tlist);
 						
 						//add to course list

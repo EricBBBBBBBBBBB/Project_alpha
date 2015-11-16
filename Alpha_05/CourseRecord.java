@@ -23,18 +23,14 @@ class CourseRecord{
     protected int[] traineelist = new int[maxNumOfTrainee];
 		
 // Constructors
-	CourseRecord(){
-		
-	}
-	
 	CourseRecord(int cid){
 		courseID = cid;
+		Completed = Curriculum.checkCompleted(courseID);
 	}
 	
 // Methods
-	public void setInfo(int tid, boolean com, int max) {
+	public void setInfo(int tid, int max) {
 		courseTrainerID = tid;
-		Completed = com;
 		maxNumOfTrainee = max;
 	}
 	

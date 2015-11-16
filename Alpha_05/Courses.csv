@@ -1,6 +1,6 @@
 Course ID,Course name,Course Type,Completed,Course Trainer,Duration (Weeks),Venue,Price ($),Course Target,Course Description,Total of Trainee,Max of Trainee
-1,c2,3,true,eric,3,,100,swim 15m,,0,15,
-2,c3,4,false,fred,2,,150,swim 50m,,0,15,
-3,c4,4,false,r1,2,,150,swim 50m,,0,15,
-4,c5,5,false,r1,2,,150,swim 1000m,,0,15,
-5,c1,3,false,r1,3,,100,swim 10m,,0,15,
+1,c1,3,true,eric,3,,100,swim 15m,,0,15,
+2,c2,4,false,fred,2,,150,swim 50m,,0,15,
+3,c3,4,false,r1,2,,150,swim 50m,,0,15,
+4,c4,5,false,r1,2,,150,swim 1000m,,0,15,
+5,c5,3,false,r1,3,,100,swim 10m,,0,15,

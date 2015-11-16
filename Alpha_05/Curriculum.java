@@ -111,11 +111,34 @@ class Curriculum{
 		System.out.println(" ID   Course Name    Targets");
 		System.out.println("-----------------------------------------------------");
 		for (int i = 0; i < recordlist.size(); i++) {
-			if(recordlist.get(i).checkid(uid))
+			if(recordlist.get(i).checkid(uid) && !(recordlist.get(i).Completed))
 				System.out.format( "- %-5d%-15s%-15s\n" , courselist.get(i).getCourseID(), courselist.get(i).getCourseName(), courselist.get(i).getTarget());
 		}
 		System.out.println("-----------------------------------------------------");
 	}
+	
+	//List Courses Targets
+	public static void listCCCourse(int uid){
+		System.out.println("-----------------------------------------------------");
+		System.out.println(" ID   Course Name    Completed");
+		System.out.println("-----------------------------------------------------");
+		for (int i = 0; i < recordlist.size(); i++) {
+			if(recordlist.get(i).checkid(uid))
+				System.out.format( "- %-5d%-15s%-15s\n" , courselist.get(i).getCourseID(), courselist.get(i).getCourseName(), recordlist.get(i).Completed);
+		}
+		System.out.println("-----------------------------------------------------");
+	}	
+	
+	
+	
+	//Check Completed or Not by CourseID 
+    public static boolean checkCompleted(int uid) {
+        for (int i = 0; i < courselist.size(); i++) {
+            if (courselist.get(i).getCourseID() == uid)
+                return courselist.get(i).Completed;
+        }
+        return false;
+    }
 	
 	//Courses Performance
 	public static void Performance(){

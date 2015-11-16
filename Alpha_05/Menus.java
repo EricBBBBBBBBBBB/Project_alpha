@@ -73,7 +73,7 @@ class Menus{
 				
 				break;
 			case '3':
-				
+				Curriculum.listCCCourse(trainee.getUserID());
 				break;
 			case '4':
 				Curriculum.listTarget(trainee.getUserID());
@@ -133,8 +133,8 @@ class Menus{
 				break;
 			case '9':
 				System.out.println("You choosed to quit the system. Bye!! ");
-				quit = true;
 				scanner.close();
+				quit = true;
 				break;
 		}
 	}
@@ -232,8 +232,8 @@ class Menus{
 				break;
 			case '9':
 				System.out.println("You choosed to quit the system. Bye!! ");
-				quit = true;
 				scanner.close();
+				quit = true;
 				break;
 		}
 	}
