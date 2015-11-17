@@ -86,7 +86,6 @@ class Menus{
 				break;
 			case '9':
 				System.out.println("You choosed to quit the system. Bye!! ");
-				scanner.close();
 				quit = true;
 				break;
 			default:
@@ -133,7 +132,6 @@ class Menus{
 				break;
 			case '9':
 				System.out.println("You choosed to quit the system. Bye!! ");
-				scanner.close();
 				quit = true;
 				break;
 		}
@@ -232,7 +230,6 @@ class Menus{
 				break;
 			case '9':
 				System.out.println("You choosed to quit the system. Bye!! ");
-				scanner.close();
 				quit = true;
 				break;
 		}

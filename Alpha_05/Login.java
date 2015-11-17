@@ -74,7 +74,6 @@ class Login{
 			
 		}while(!this.loginSuccess);		//repeat if login fail
 		
-		scanner.close();
 		return null;
 	}
 	
