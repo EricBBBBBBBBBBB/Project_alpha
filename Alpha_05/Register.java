@@ -35,7 +35,7 @@ class Register {
             System.out.print("Name: ");
             inUserName = scanner.nextLine();
             if(!IOValidation.usernameValid(inUserName))
-                System.out.print("User name could not be empty! Please enter again: ");
+                System.out.print("User name is invalid! Please enter again: ");
             else {
                 System.out.println(Account.searchUserReBo(inUserName));
                 if(Account.searchUserReBo(inUserName))

@@ -10,17 +10,18 @@ import java.io.*;
 import java.util.Scanner;
 import java.util.ArrayList;
 
-public class Account implements Files{
+public class Account{
 
 // Declare data members 
+    public static final String DEF_USERFILENAME = "Users.csv";
 	public static ArrayList<User> userlist = new ArrayList<User>();
 	
 
 // Methods 
 	//Initialization User List
 	public static void inituserlist() {
-		userlist = UserIO.readUTxtFile(DEF_USER);
-		System.out.println("Read OK: " + DEF_USER);
+		userlist = UserIO.readUTxtFile(DEF_USERFILENAME);
+		System.out.println("Read OK: " + DEF_USERFILENAME);
 	}
 	
 	//Update User List
@@ -160,7 +161,7 @@ public class Account implements Files{
 
                 switch(inStr.charAt(0)) {
                     case '1':
-                        System.out.println("Please enter the new Email Address (-q for quit without save");
+                        System.out.println("Please enter the new Email Address (-q for quit without change");
                         inStr = scanner.next();
                         if(inStr.equals("-q") || inStr.equals("-Q")) {
                             break;
@@ -182,10 +183,31 @@ public class Account implements Files{
                         }
 						break;
                     case '2':
+                        System.out.println("Please enter the new phone number (-q for quit without change");
+                        inStr = scanner.next();
+                        if(inStr.equals("-q") || inStr.equals("-Q")) {
+                            break;
+                        } else {
+                            if(IOValidation.phoneValid(inStr)) {
+                                System.out.println("The previous Phone: " + userlist.get(listID).   getUserPhone());
+                                System.out.println("The new Phone: " + inStr);
+                                System.out.println(">> Are you sure to make chnage? (Y/N)");
+                                inChar = scanner.next().charAt(0);
+                                if(inChar == 'y' || inChar == 'Y'){
+                                    userlist.get(listID).setUserPhone(inStr);
+                                    System.out.println("The Phone number is updated!");
+                                } else {
+                                    System.out.println("Action was cancelled!");
+                                }
+                            }else{
+                                System.out.println("Wrong format");
+                            }
+                        }
                         break;
                     case '3':
                         break;
                     case '8':
+                        userlist.get(listID).printUserInfo();
                         break;
                     case '9':
                         break whileloop;
