@@ -44,7 +44,8 @@ class CourseRecord{
 		for( i = 0; i < traineelist.length ; i++ ){
 			if (traineelist[i] == 0) break;
 		}
-		traineelist[i] = uid;	
+		traineelist[i] = uid;
+		totalNumOfTrainee = traineelist.length;
 	}
 	
 	public void printRecoedInfo(){

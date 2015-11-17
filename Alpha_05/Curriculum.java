@@ -97,7 +97,7 @@ class Curriculum implements Files{
 		System.out.println("- ID   Course Name    Course Type    Price($)");
 		System.out.println("-----------------------------------------------------");	
 		for (int i = 0; i < courselist.size(); i++) {
-			if(!(courselist.get(i).Completed) && courselist.get(i).isAvailable && courselist.get(i).courseType <= type)
+			if(!(courselist.get(i).Completed) && courselist.get(i).courseType <= type && !(recordlist.get(i).checkid(uid)) )
 				System.out.format( "- %-5d%-15s%-15s%d\n" , courselist.get(i).getCourseID(), courselist.get(i).getCourseName(), courselist.get(i).getCourseType(), courselist.get(i).getPrice() );
 		}
 		
@@ -116,7 +116,7 @@ class Curriculum implements Files{
 		System.out.println("-----------------------------------------------------");
 	}
 	
-	//List Courses Targets
+	//List CCCourses
 	public static void listCCCourse(int uid){
 		System.out.println("-----------------------------------------------------");
 		System.out.println(" ID   Course Name    Completed");

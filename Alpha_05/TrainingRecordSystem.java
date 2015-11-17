@@ -46,6 +46,9 @@ public class TrainingRecordSystem implements Files{
     		
     		CourseIO.writeCTxtFile(DEF_COURSE, Curriculum.courselist);
     		System.out.println("Write OK: " + DEF_COURSE + "\n");
+			
+			CourseRecordIO.writeRTxtFile(DEF_RECORD, Curriculum.recordlist);
+    		System.out.println("Write OK: " + DEF_RECORD + "\n");
 
             System.out.println(">>> Enter \"-q\" for quit the system; nothing for login other user");
             String inStr;
