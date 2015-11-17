@@ -67,10 +67,10 @@ class Menus{
 		switch(inChar) {
 			case '1':
 				System.out.println(">>View the Current Available Courses.\n");	
-				Curriculum.listAvaibleCourse(trainee.upadteTraineeType(),trainee.getUserID());
+				Curriculum.listAvaibleCourse(trainee.upadteTraineeType());
 				break;
 			case '2':
-				Curriculum.joinCourse(trainee.getUserID());
+				
 				break;
 			case '3':
 				Curriculum.listCCCourse(trainee.getUserID());
@@ -144,7 +144,7 @@ class Menus{
 		System.out.println("-------------------- Admin Menu ---------------------");
 		System.out.println("- 1. Users Management\t\t\t\t    -");
 		System.out.println("- 2. List All Courses\t\t\t\t    -");
-		System.out.println("- 3. xxxxxxxxxxxxxxxxxxxxxxt\t\t\t    -");
+		System.out.println("- 3. Search Courses\t\t\t\t    -");		//Eric
 		System.out.println("- 4. xxxxxxxxxxxxxxxxxxxxxx\t\t\t    -");
 		System.out.println("- 5. View Personal Infomation\t\t\t    -");
 		System.out.println("- 6. General Menu\t\t\t\t    -");
@@ -160,7 +160,7 @@ class Menus{
 				outerloop:
 				while(true){
 					System.out.println("================ Users Management Menu ==============");
-					System.out.println("= 1. Users Detailed Information\t\t\t    =");
+					System.out.println("= 1. List All Users\t\t\t\t    =");
 					System.out.println("= 2. Users Searching\t\t\t\t    =");
 					System.out.println("= 3. Users editing\t\t\t\t    =");
 					System.out.println("= 4. Remove Users\t\t\t\t    =");
@@ -180,10 +180,13 @@ class Menus{
 								break;
 							case '2':	// Search User =======
 								System.out.println("\n= = = = = = Users Searching = = = = = =");
-								System.out.print(" Please enter the user name you want to search: ");
-								// temportary no ID searching......
-								inString = scanner.next();
-								Account.searchUser(inString);
+								System.out.println(" Please enter the user type you want to search: ");
+								System.out.println("  - 1. trainee");
+								System.out.println("  - 2. trainer");
+								System.out.println("  - 3. all types of users");
+								System.out.println("  - 9. quit");
+								System.out.print(" >>> ");
+								Account.searchUser(scanner.next().charAt(0));
 								break;
 							case '3':	// Edit User =========
 								System.out.println("\n= = = = = = User Information Editing = = = = = =");
@@ -191,8 +194,6 @@ class Menus{
 								// temportary no ID 
 								inString = scanner.next();
 								Account.editUser(inString);
-
-								
 								break;
 							case '4':	// Remove User =======
 								System.out.println(" Deregister\n");
