@@ -10,11 +10,10 @@ import java.io.*;
 import java.util.Scanner;
 import java.util.ArrayList;
 
-class Curriculum{
+class Curriculum implements Files{
 
 // Declare data members
-    public static final String DEF_COURSE = "Courses.csv";
-    public static final String DEF_RECORD = "CourseRecords.csv";
+
     public static ArrayList<Course> courselist = new ArrayList<Course>(); 
     public static ArrayList<CourseRecord> recordlist = new ArrayList<CourseRecord>();
 

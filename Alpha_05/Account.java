@@ -10,18 +10,17 @@ import java.io.*;
 import java.util.Scanner;
 import java.util.ArrayList;
 
-public class Account{
+public class Account implements Files{
 
 // Declare data members 
-    public static final String DEF_USERFILENAME = "Users.csv";
 	public static ArrayList<User> userlist = new ArrayList<User>();
 	
 
 // Methods 
 	//Initialization User List
 	public static void inituserlist() {
-		userlist = UserIO.readUTxtFile(DEF_USERFILENAME);
-		System.out.println("Read OK: " + DEF_USERFILENAME);
+		userlist = UserIO.readUTxtFile(DEF_USER);
+		System.out.println("Read OK: " + DEF_USER);
 	}
 	
 	//Update User List

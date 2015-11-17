@@ -9,8 +9,13 @@
 import java.util.Scanner;
 import java.util.ArrayList;
 
-public class TrainingRecordSystem {
-	
+interface Files {
+	public static final String DEF_COURSE = "Courses.csv";
+    public static final String DEF_RECORD = "CourseRecords.csv";
+	public static final String DEF_USER = "Users.csv";
+}
+
+public class TrainingRecordSystem implements Files{
 	
 	public static void main(String[] args) {
 		
@@ -35,11 +40,11 @@ public class TrainingRecordSystem {
         menus.mainMenu();
 		
 		
-		UserIO.writeUTxtFile("users.csv", Account.userlist);
-		System.out.println("Write OK: users.csv\n");
+		UserIO.writeUTxtFile(DEF_USER, Account.userlist);
+		System.out.println("Write OK: " + DEF_USER + "\n");
 		
-		CourseIO.writeCTxtFile("courses.csv", Curriculum.courselist);
-		System.out.println("Write OK: courses.csv\n");
+		CourseIO.writeCTxtFile(DEF_COURSE, Curriculum.courselist);
+		System.out.println("Write OK: " + DEF_COURSE + "\n");
 		
 		System.out.println("\nSYSTEM END.");
 		System.out.println("End of program.");

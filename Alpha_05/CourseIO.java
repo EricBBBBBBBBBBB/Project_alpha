@@ -67,6 +67,10 @@ class CourseIO{
 			} catch (NumberFormatException ex) {
 				System.out.println("ERROR: Check colDelimiter/ data");
 			}
+		
+		//Backup
+		writeCTxtFile(inFileStr.substring(0,inFileStr.length() - 4) + "_BackUp.csv", list );		
+			
 		return list;
 	}
 	

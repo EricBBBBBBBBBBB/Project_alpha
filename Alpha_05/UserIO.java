@@ -72,6 +72,10 @@ class UserIO{
 			} catch (NumberFormatException ex) {
 				System.out.println("ERROR: Check colDelimiter/ data");
 			}
+			
+		//Backup
+		writeUTxtFile(inFileStr.substring(0,inFileStr.length() - 4) + "_BackUp.csv", list );	
+		
 		return list;
 	}
 	

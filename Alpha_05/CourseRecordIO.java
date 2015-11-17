@@ -43,7 +43,7 @@ class CourseRecordIO{
 						
 						int[] tlist = new int[max];
 						for(int i = 3; i < strSplitArr.length ; i++ ){
-							tlist[i] = Integer.parseInt(strSplitArr[i]);
+							tlist[i-3] = Integer.parseInt(strSplitArr[i]);
 						}
 						
 						//create new course
@@ -64,10 +64,14 @@ class CourseRecordIO{
 			} catch (NumberFormatException ex) {
 				System.out.println("ERROR: Check colDelimiter/ data");
 			}
+			
+		//Backup
+		writeRTxtFile(inFileStr.substring(0,inFileStr.length() - 4) + "_BackUp.csv", list );	
+		
 		return list;
 	}
 	
-	/*public static boolean writeRTxtFile(String outFileStr, ArrayList<Course> list ){
+	public static boolean writeRTxtFile(String outFileStr, ArrayList<CourseRecord> list ){
 		System.out.println("START of writeLBTxtFile to file ["+outFileStr+"]");
 		if (list==null) return false; // in case of null arraylist
 		try{
@@ -80,7 +84,12 @@ class CourseRecordIO{
 			for(int i = 0 ; i < list.size(); i++) { // print/output each Course
 			
 				outStream.print(list.get(i).courseID + DEF_COLDELIMITER);
-	
+				outStream.print(list.get(i).courseTrainerID + DEF_COLDELIMITER);
+				outStream.print(list.get(i).maxNumOfTrainee + DEF_COLDELIMITER);
+				int[] tlist = list.get(i).traineelist;
+				for(int j = 0; j < tlist.length ; j++ ){
+					outStream.print(tlist[j]+ DEF_COLDELIMITER);
+				}
 				outStream.println("");
 			}
 			outStream.close();
@@ -94,7 +103,7 @@ class CourseRecordIO{
 		}
 		System.out.println("END of writeLBTxtFile");
 		return true;	
-	}*/
+	}
 	
 }
 
