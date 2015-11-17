@@ -92,7 +92,7 @@ class Curriculum implements Files{
 	}
 
 	//List Avaible Courses
-	public static void listAvaibleCourse(int type){
+	public static void listAvaibleCourse(int type,int uid){
 		System.out.println("-----------------------------------------------------");
 		System.out.println("- ID   Course Name    Course Type    Price($)");
 		System.out.println("-----------------------------------------------------");	
@@ -127,6 +127,31 @@ class Curriculum implements Files{
 		}
 		System.out.println("-----------------------------------------------------");
 	}	
+	
+	//Join Courses
+	public static void joinCourse(int uid){
+		System.out.println("Please enter the Course ID to join.");
+        System.out.print("(-1) for quit. : ");
+
+        Scanner scanner = new Scanner(System.in);
+		int inInt;
+        if(scanner.hasNextInt())
+            inInt = scanner.nextInt();
+        else
+            inInt = -1;
+
+        if(inInt == -1){
+            System.out.println(">> quit.");
+			return;
+        }
+		
+		for (int i = 0; i < recordlist.size(); i++) {
+			if(recordlist.get(i).courseID == inInt) recordlist.get(i).addTrainee(uid) ;
+		}
+		
+	
+	}
+	
 	
 	//Check total of Completed Courses
 	public static int checkNoOfCompleted(int uid){

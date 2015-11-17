@@ -67,10 +67,10 @@ class Menus{
 		switch(inChar) {
 			case '1':
 				System.out.println(">>View the Current Available Courses.\n");	
-				Curriculum.listAvaibleCourse(trainee.upadteTraineeType());
+				Curriculum.listAvaibleCourse(trainee.upadteTraineeType(),trainee.getUserID());
 				break;
 			case '2':
-				
+				Curriculum.joinCourse(trainee.getUserID());
 				break;
 			case '3':
 				Curriculum.listCCCourse(trainee.getUserID());

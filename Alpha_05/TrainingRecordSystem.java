@@ -18,7 +18,7 @@ interface Files {
 public class TrainingRecordSystem implements Files{
 	
 	public static void main(String[] args) {
-	Scanner scanner = new Scanner(System.in);
+		Scanner scanner = new Scanner(System.in);
         while(true) {
             Account.inituserlist();
             Curriculum.initcourselist();
@@ -55,7 +55,6 @@ public class TrainingRecordSystem implements Files{
                 System.out.println("End of program.");
                 break;
             }
-        }
-		
+        }	
 	}
 }

@@ -39,6 +39,14 @@ class CourseRecord{
 		totalNumOfTrainee = traineelist.length;
 	}
 	
+	public void addTrainee(int uid) {
+		int i;
+		for( i = 0; i < traineelist.length ; i++ ){
+			if (traineelist[i] == 0) break;
+		}
+		traineelist[i] = uid;	
+	}
+	
 	public void printRecoedInfo(){
 		System.out.println("-----------------------------------------------------");	
 		System.out.println("					XXX				");
