@@ -10,18 +10,17 @@ import java.io.*;
 import java.util.Scanner;
 import java.util.ArrayList;
 
-public class Account{
+public class Account implements Files{
 
 // Declare data members 
-    public static final String DEF_USERFILENAME = "Users.csv";
 	public static ArrayList<User> userlist = new ArrayList<User>();
 	
 
 // Methods 
 	//Initialization User List
 	public static void inituserlist() {
-		userlist = UserIO.readUTxtFile(DEF_USERFILENAME);
-		System.out.println("Read OK: " + DEF_USERFILENAME);
+		userlist = UserIO.readUTxtFile(DEF_USER);
+		System.out.println("Read OK: " + DEF_USER);
 	}
 	
 	//Update User List
@@ -154,7 +153,7 @@ public class Account{
                 System.out.println("- 1: User Email");
                 System.out.println("- 2: User Phone");
                 System.out.println("- 3: Other");
-                System.out.println("- 8: Show the information");
+                System.out.println("- 8: Show User information");
                 System.out.println("- 9: Quit Editing");
 
                 inStr = scanner.next();
@@ -162,7 +161,7 @@ public class Account{
                 switch(inStr.charAt(0)) {
                     case '1':
                         System.out.println("Please enter the new Email Address (-q for quit without change");
-                        inStr = scanner.next();
+						inStr = scanner.next();
                         if(inStr.equals("-q") || inStr.equals("-Q")) {
                             break;
                         } else {
@@ -183,7 +182,7 @@ public class Account{
                         }
 						break;
                     case '2':
-                        System.out.println("Please enter the new phone number (-q for quit without change");
+						System.out.println("Please enter the new phone number (-q for quit without change");
                         inStr = scanner.next();
                         if(inStr.equals("-q") || inStr.equals("-Q")) {
                             break;
@@ -207,7 +206,7 @@ public class Account{
                     case '3':
                         break;
                     case '8':
-                        userlist.get(listID).printUserInfo();
+						userlist.get(listID).printUserInfo();
                         break;
                     case '9':
                         break whileloop;
