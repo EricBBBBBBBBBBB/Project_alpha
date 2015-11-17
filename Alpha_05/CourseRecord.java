@@ -18,9 +18,8 @@ class CourseRecord{
 	protected int courseID;
 	protected int courseTrainerID;
 	protected boolean Completed;
-	public int totalNumOfTrainee;
 	public int maxNumOfTrainee;
-    protected int[] traineelist = new int[maxNumOfTrainee];
+    protected ArrayList<Integer> traineelist = new ArrayList<Integer>();
 		
 // Constructors
 	CourseRecord(int cid){
@@ -34,18 +33,20 @@ class CourseRecord{
 		maxNumOfTrainee = max;
 	}
 	
-	public void setTrainee(int[] list) {
+	public void setTrainee(ArrayList<Integer> list) {
 		traineelist = list;
-		totalNumOfTrainee = traineelist.length;
+	}
+	
+	public int getTotalOfTrainee(){
+		return traineelist.size();
+	}
+
+	public int getMaxOfTrainee(){
+		return maxNumOfTrainee;
 	}
 	
 	public void addTrainee(int uid) {
-		int i;
-		for( i = 0; i < traineelist.length ; i++ ){
-			if (traineelist[i] == 0) break;
-		}
-		traineelist[i] = uid;
-		totalNumOfTrainee = traineelist.length;
+		traineelist.add(uid);
 	}
 	
 	public void printRecoedInfo(){
@@ -55,10 +56,10 @@ class CourseRecord{
 		System.out.println("courseID: \t  " + courseID );
 		System.out.println("courseTrainerID:  " + courseTrainerID);
 		System.out.println("Completed: \t  " + Completed);
-		System.out.println("Trainee: \t  " + totalNumOfTrainee + "/" + maxNumOfTrainee);
+		System.out.println("Trainee: \t  " + traineelist.size()+ "/" + maxNumOfTrainee);
 		System.out.println("-----------------------------------------------------");	
-		for(int i = 0; i < traineelist.length ; i++ ){
-			System.out.println(traineelist[i]);
+		for(int i = 0; i < traineelist.size() ; i++ ){
+			System.out.println(traineelist.get(i));
 		}
 		System.out.println("-----------------------------------------------------");	
 		System.out.println("End of XXX.\n");
@@ -66,8 +67,8 @@ class CourseRecord{
 	}
 	
 	public boolean checkid(int uid){
-		for(int i = 0; i < traineelist.length ; i++ ){
-			if(traineelist[i] == uid) return true;
+		for(int i = 0; i < traineelist.size() ; i++ ){
+			if(traineelist.get(i) == uid) return true;
 		}
 		return false;
 	}

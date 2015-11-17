@@ -20,11 +20,13 @@ class Curriculum implements Files{
 //Methods
 	//Initialization Course List
     public static void initcourselist() {       
+		recordlist = CourseRecordIO.readRTxtFile(DEF_RECORD);
+		System.out.println("Read OK: " + DEF_RECORD);
+
 		courselist = CourseIO.readCTxtFile(DEF_COURSE);
 		System.out.println("Read OK: " + DEF_COURSE);
 		
-		recordlist = CourseRecordIO.readRTxtFile(DEF_RECORD);
-		System.out.println("Read OK: " + DEF_RECORD);
+
     }
 	
 	
@@ -68,11 +70,11 @@ class Curriculum implements Files{
 	public static void listAll(){
 		
 		System.out.println("-----------------------------------------------------");
-		System.out.println("- ID   Course Name    Status         Price($)");
+		System.out.println("- ID   Course Name          Status         Price($)");
 		System.out.println("-----------------------------------------------------");	
 		
 		for (int i = 0; i < courselist.size(); i++) {
-			System.out.format( "- %-5d%-15s%-15s%d\n" , courselist.get(i).getCourseID(), courselist.get(i).getCourseName(), courselist.get(i).getCourseStatus(), courselist.get(i).getPrice() );
+			System.out.format( "- %-5d%-20s%-15s%d\n" , courselist.get(i).getCourseID(), courselist.get(i).getCourseName(), courselist.get(i).getCourseStatus(), courselist.get(i).getPrice() );
 		}
 		System.out.println("-----------------------------------------------------");
 
@@ -82,11 +84,11 @@ class Curriculum implements Files{
 	public static void listOwnedCourse(String uname){
 		System.out.println("------------------- Owned Courses -------------------");
 		System.out.println("-----------------------------------------------------");
-		System.out.println(" ID   Course Name    Total Number of Trainee");
+		System.out.println(" ID   Course Name          Total Number of Trainee");
 		System.out.println("-----------------------------------------------------");
 		for (int i = 0; i < courselist.size(); i++) {
 				if(courselist.get(i).getTrainerName().equals(uname)) 
-					System.out.format( "- %-5d%-15s%-15d\n" , courselist.get(i).getCourseID(), courselist.get(i).getCourseName(), courselist.get(i).totalNumOfTrainee);
+					System.out.format( "- %-5d%-20s%-15d\n" , courselist.get(i).getCourseID(), courselist.get(i).getCourseName(), courselist.get(i).getTotalOfTrainee());
 		}
 		System.out.println("-----------------------------------------------------\n");
 	}
@@ -94,11 +96,11 @@ class Curriculum implements Files{
 	//List Avaible Courses
 	public static void listAvaibleCourse(int type,int uid){
 		System.out.println("-----------------------------------------------------");
-		System.out.println("- ID   Course Name    Course Type    Price($)");
+		System.out.println("- ID   Course Name          Course Type    Price($)");
 		System.out.println("-----------------------------------------------------");	
 		for (int i = 0; i < courselist.size(); i++) {
 			if(!(courselist.get(i).Completed) && courselist.get(i).courseType <= type && !(recordlist.get(i).checkid(uid)) )
-				System.out.format( "- %-5d%-15s%-15s%d\n" , courselist.get(i).getCourseID(), courselist.get(i).getCourseName(), courselist.get(i).getCourseType(), courselist.get(i).getPrice() );
+				System.out.format( "- %-5d%-20s%-15s%d\n" , courselist.get(i).getCourseID(), courselist.get(i).getCourseName(), courselist.get(i).getCourseType(), courselist.get(i).getPrice() );
 		}
 		
 		System.out.println("-----------------------------------------------------");
@@ -107,11 +109,11 @@ class Curriculum implements Files{
 	//List Courses Targets
 	public static void listTarget(int uid){
 		System.out.println("-----------------------------------------------------");
-		System.out.println(" ID   Course Name    Targets");
+		System.out.println(" ID   Course Name          Targets");
 		System.out.println("-----------------------------------------------------");
 		for (int i = 0; i < recordlist.size(); i++) {
 			if(recordlist.get(i).checkid(uid) && !(recordlist.get(i).Completed))
-				System.out.format( "- %-5d%-15s%-15s\n" , courselist.get(i).getCourseID(), courselist.get(i).getCourseName(), courselist.get(i).getTarget());
+				System.out.format( "- %-5d%-20s%-15s\n" , courselist.get(i).getCourseID(), courselist.get(i).getCourseName(), courselist.get(i).getTarget());
 		}
 		System.out.println("-----------------------------------------------------");
 	}
@@ -119,11 +121,11 @@ class Curriculum implements Files{
 	//List CCCourses
 	public static void listCCCourse(int uid){
 		System.out.println("-----------------------------------------------------");
-		System.out.println(" ID   Course Name    Completed");
+		System.out.println(" ID   Course Name          Completed");
 		System.out.println("-----------------------------------------------------");
 		for (int i = 0; i < recordlist.size(); i++) {
 			if(recordlist.get(i).checkid(uid))
-				System.out.format( "- %-5d%-15s%-15s\n" , courselist.get(i).getCourseID(), courselist.get(i).getCourseName(), recordlist.get(i).Completed);
+				System.out.format( "- %-5d%-20s%-15s\n" , courselist.get(i).getCourseID(), courselist.get(i).getCourseName(), recordlist.get(i).Completed);
 		}
 		System.out.println("-----------------------------------------------------");
 	}	

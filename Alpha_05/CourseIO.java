@@ -29,7 +29,7 @@ class CourseIO{
 					//other rows: content
 					String row = null;
 					String [] strSplitArr;
-					int courseID, courseType, duration, price, total, max;
+					int courseID, courseType, duration, price, max;
 					String courseName, courseTrainer, venue, target, description;
 					boolean Completed;
 					Course newcourse;
@@ -51,7 +51,7 @@ class CourseIO{
 						price = Integer.parseInt(strSplitArr[7]);
 						target = strSplitArr[8];
 						description = strSplitArr[9];
-						max = Integer.parseInt(strSplitArr[11]);
+						max = Integer.parseInt(strSplitArr[10]);
 						newcourse.setCourseInfo(Completed, courseTrainer, duration, venue, price, target, description, max);
 						
 						//add to course list
@@ -95,7 +95,6 @@ class CourseIO{
 				outStream.print(list.get(i).price + DEF_COLDELIMITER);
 				outStream.print(list.get(i).target + DEF_COLDELIMITER);
 				outStream.print(list.get(i).description + DEF_COLDELIMITER);
-				outStream.print(list.get(i).totalNumOfTrainee + DEF_COLDELIMITER);
 				outStream.print(list.get(i).maxNumOfTrainee + DEF_COLDELIMITER);		
 				outStream.println("");
 			}

@@ -41,15 +41,16 @@ class CourseRecordIO{
 						trainerID = Integer.parseInt(strSplitArr[1]);
 						max = Integer.parseInt(strSplitArr[2]);
 						
-						int[] tlist = new int[max];
+						ArrayList<Integer> tlist = new ArrayList<Integer>();
 						for(int i = 3; i < strSplitArr.length ; i++ ){
-							tlist[i-3] = Integer.parseInt(strSplitArr[i]);
+							tlist.add(Integer.parseInt(strSplitArr[i]));
 						}
 						
 						//create new course
 						newrecord = new CourseRecord(courseID);
 						newrecord.setInfo(trainerID, max);
 						newrecord.setTrainee(tlist);
+						
 						
 						//add to course list
 						list.add(newrecord);
@@ -86,9 +87,9 @@ class CourseRecordIO{
 				outStream.print(list.get(i).courseID + DEF_COLDELIMITER);
 				outStream.print(list.get(i).courseTrainerID + DEF_COLDELIMITER);
 				outStream.print(list.get(i).maxNumOfTrainee + DEF_COLDELIMITER);
-				int[] tlist = list.get(i).traineelist;
-				for(int j = 0; j < tlist.length ; j++ ){
-					outStream.print(tlist[j]+ DEF_COLDELIMITER);
+				ArrayList<Integer> tlist = list.get(i).traineelist;
+				for(int j = 0; j < tlist.size(); j++ ){
+					outStream.print(tlist.get(j)+ DEF_COLDELIMITER);
 				}
 				outStream.println("");
 			}

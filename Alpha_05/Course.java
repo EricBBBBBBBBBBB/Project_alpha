@@ -34,6 +34,7 @@ class Course{
 // Constructors
 	Course() {
 		totalNoOfCourses++;
+		getTotalOfTrainee();
 	}
 
 	Course(int cid, String cname, int type) {
@@ -97,6 +98,12 @@ class Course{
 		description = d;
 		maxNumOfTrainee = max;
 		
+	}
+	
+	public int getTotalOfTrainee(){
+		totalNumOfTrainee = Curriculum.recordlist.get(courseID).getTotalOfTrainee();
+		maxNumOfTrainee = Curriculum.recordlist.get(courseID).getMaxOfTrainee();	
+		return totalNumOfTrainee;
 	}
 	
 	// Print the Course information
