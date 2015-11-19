@@ -32,7 +32,7 @@ class Trainer extends User{
 		System.out.println("User Phone: \t  " + getUserPhone());
 		System.out.println("Date of register: " + dateOfRegister.getTime());
 		System.out.println("-----------------------------------------------------");
-		System.out.println("Owned Courses: \t  " + Curriculum.checkNoOfOwned(getUserID()));
+		System.out.println("Owned Courses: ");
 		System.out.println("-----------------------------------------------------");	
 		System.out.println("End of Personal Infomation.\n");
 	}

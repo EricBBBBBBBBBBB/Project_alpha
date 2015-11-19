@@ -78,7 +78,7 @@ class Curriculum implements Files{
 	
 	
 	//List Trainer Owned Courses
-	public static void listOC(int uid, boolean all){
+	public static void listOC(int tid, boolean all){
 		System.out.println("------------------- Owned Courses -------------------");
 		System.out.println("-----------------------------------------------------");
 		System.out.println(" ID    Course Name         Total    Status");
@@ -86,7 +86,7 @@ class Curriculum implements Files{
 		
 		boolean not = true;
 		for (int i = 0; i < courselist.size(); i++) {
-			if(courselist.get(i).getTrainerID() == uid){
+			if(courselist.get(i).getTrainerID() == tid){
 				if( all || !(courselist.get(i).completed ) ){
 					System.out.format( "- %-5d%-20s%d/%-7d%s\n" , courselist.get(i).getCourseID(), courselist.get(i).getCourseName(), courselist.get(i).getTotalOfTrainee(), courselist.get(i).getMaxOfTrainee(), courselist.get(i).getStatus());
 					not = false;
@@ -99,9 +99,9 @@ class Curriculum implements Files{
 		System.out.println("-----------------------------------------------------");
 	}
 	
-	public static void listOwnedCourse(int uid){
+	public static void listOwnedCourse(int tid){
 		
-		listOC(uid,true);
+		listOC(tid,true);
 		System.out.println("Please enter the Course ID to show more details.");
         System.out.print("(-1) for quit. : ");
 
@@ -119,43 +119,14 @@ class Curriculum implements Files{
 		
 		boolean found = false;
 		for (int i = 0; i < courselist.size(); i++) {
-			if(courselist.get(i).courseID == inInt && courselist.get(i).getTrainerID() == uid ){
-				courselist.get(i).printCourseInfo();
+			if(courselist.get(i).courseID == inInt && courselist.get(i).getTrainerID() == tid ){
+				courselist.get(i).printCourseTrainee();
 				found = true;
 			} 
 		}
 		if(!found) System.out.println(">> Course not found!!\n");
 
 	}	
-	
-	public static void completeCourse(int uid){
-		
-		listOC(uid,false);
-		System.out.println("Please enter the Course ID to complete it.");
-        System.out.print("(-1) for quit. : ");
-
-        Scanner scanner = new Scanner(System.in);
-		int inInt;
-        if(scanner.hasNextInt())
-            inInt = scanner.nextInt();
-        else
-            inInt = -1;
-
-        if(inInt == -1){
-            System.out.println(">> quit.");
-			return;
-        }
-		
-		boolean found = false;
-		for (int i = 0; i < courselist.size(); i++) {
-			if(courselist.get(i).courseID == inInt && !(courselist.get(i).completed)) {
-				courselist.get(i).completed = true;
-				System.out.println(">> Course completed.\n");	
-				found = true;
-			}
-		}
-		if(!found) System.out.println(">> Course not found!!\n");		
-	}
 	
 
 	//List Avaible Courses
@@ -245,7 +216,6 @@ class Curriculum implements Files{
 
         Scanner scanner = new Scanner(System.in);
 		int inInt;
-        char inChar;
         if(scanner.hasNextInt())
             inInt = scanner.nextInt();
         else
@@ -259,22 +229,43 @@ class Curriculum implements Files{
 		boolean found = false;
 		for (int i = 0; i < courselist.size(); i++) {
 			if(courselist.get(i).courseID == inInt && !courselist.get(i).completed && !courselist.get(i).checkid(i) ) {
+				courselist.get(i).addTrainee(uid) ;
+				System.out.println(">> Course joined.\n");	
 				found = true;
-				courselist.get(i).printCourseInfo();
-				System.out.println(">> Are you sure to pay and join this course? (Y/N)");
-				inChar = scanner.next().charAt(0);
-				if(inChar == 'y' || inChar == 'Y'){
-					courselist.get(i).addTrainee(uid);
-					System.out.println(">> Course joined, \n");
-				} else {
-					System.out.println(">> Action was cancelled!");
-				}
 			}
 		}
 		if(!found) System.out.println(">> Course not found!!\n");		
 	}
 	
-	
+	//Trainer complete Course
+	public static void completeCourse(int tid){
+		
+		listOC(tid,false);
+		System.out.println("Please enter the Course ID to complete it.");
+        System.out.print("(-1) for quit. : ");
+
+        Scanner scanner = new Scanner(System.in);
+		int inInt;
+        if(scanner.hasNextInt())
+            inInt = scanner.nextInt();
+        else
+            inInt = -1;
+
+        if(inInt == -1){
+            System.out.println(">> quit.");
+			return;
+        }
+		
+		boolean found = false;
+		for (int i = 0; i < courselist.size(); i++) {
+			if(courselist.get(i).courseID == inInt && !(courselist.get(i).completed)) {
+				courselist.get(i).completed = true;
+				System.out.println(">> Course completed.\n");	
+				found = true;
+			}
+		}
+		if(!found) System.out.println(">> Course not found!!\n");		
+	}
 	
 	
 	
@@ -303,15 +294,6 @@ class Curriculum implements Files{
                 return courselist.get(i).completed;
         }
         return false;
-    }
-	
-	//Check total of owned by CourseID 
-    public static int checkNoOfOwned(int uid) {
-		int total = 0;
-		for (int i = 0; i < courselist.size(); i++) {
-			if(courselist.get(i).courseTrainerID == uid) total++;
-		}
-		return total;
     }
 	
 	//Courses Performance

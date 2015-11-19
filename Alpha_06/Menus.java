@@ -105,7 +105,7 @@ class Menus{
 		System.out.println("- 1. Owned Courses List\t\t\t\t    -");
 		System.out.println("- 2. Course Trainees informaion\t\t\t    -");
 		System.out.println("- 3. Courses Complete\t\t\t\t    -");
-		System.out.println("- 4. XXXXXXXXXXXXXX\t\t\t\t    -");
+		System.out.println("- 4. Courses Create\t\t\t\t    -");
 		System.out.println("- 5. View Personal Infomation\t\t\t    -");
 		System.out.println("- 6. General Menu\t\t\t\t    -");
 		System.out.println("- 9. Quit the system\t\t\t\t    -");
@@ -121,15 +121,14 @@ class Menus{
 				Curriculum.listOwnedCourse(trainer.getUserID());
 				break;
 			case '2':
-				System.out.println(">>Course Trainees informaion");	
-				Curriculum.listOwnedCourse(trainer.getUserID());
+				System.out.println(">>Course Trainees informaion");
 				break;
 			case '3':
 				System.out.println(">>Courses Complete");
 				Curriculum.completeCourse(trainer.getUserID());
 				break;
 			case '4':
-				System.out.println(">>XXXXXXXXXXXXXXXX");
+				System.out.println("You choose number 4");
 				break;
 			case '5':
 				trainer.printUserInfo();
@@ -151,7 +150,7 @@ class Menus{
 		System.out.println("-----------------------------------------------------");
 		System.out.println("-------------------- Admin Menu ---------------------");
 		System.out.println("- 1. Users Management\t\t\t\t    -");
-		System.out.println("- 2. Course Management\t\t\t\t    -");
+		System.out.println("- 2. Courses Management\t\t\t\t    -");
 		System.out.println("- 3. xxxxxxxxxxxxxxxxxxxxxxt\t\t\t    -");
 		System.out.println("- 4. xxxxxxxxxxxxxxxxxxxxxx\t\t\t    -");
 		System.out.println("- 5. View Personal Infomation\t\t\t    -");
@@ -228,8 +227,8 @@ class Menus{
 			case '2':
 				outerloop:
 				while(true){
-					System.out.println("=============== Course Management Menu ==============");
-					System.out.println("= 1. List all the Course\t\t\t    =");
+					System.out.println("=============== Courses Management Menu ==============");
+					System.out.println("= 1. List all the Courses\t\t\t    =");
 					System.out.println("= 2. Create new course\t\t\t    =");
 					System.out.println("= 3. Edit course\t\t\t    =");
 					System.out.println("= 4. Delete course\t\t\t    =");
@@ -270,6 +269,16 @@ class Menus{
 				quit = true;
 				break;
 		}
+	}
+
+	private void generalMenu() {
+		System.out.println("-----------------------------------------------------");
+		System.out.println("------------------ General Menu ---------------------");
+		System.out.println("- 1. View personal Information\t\t    -");
+		System.out.println("- 2. Change personal password\t\t    -");
+		System.out.println("- 9. Go back \t\t\t\t    -");
+		System.out.println("-----------------------------------------------------");
+		System.out.print(">> Please enter the number: ");
 	}
 
 	private void pkContinue(){

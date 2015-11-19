@@ -17,6 +17,7 @@ class UserIO{
 	
 // Methods //////////////////////////
 	public static ArrayList<User> readUTxtFile(String inFileStr){
+		System.out.println("START of readLBTxtFile from file ["+inFileStr+"]");
 			ArrayList<User> list = new ArrayList<User>();
 			// Exception handling
 			try {
@@ -77,6 +78,7 @@ class UserIO{
 	}
 	
 	public static boolean writeUTxtFile(String outFileStr, ArrayList<User> list ){	
+		System.out.println("START of writeLBTxtFile to file ["+outFileStr+"]");
 		if (list==null) return false; // in case of null arraylist
 		try{
 			File outFile = new File(outFileStr);
