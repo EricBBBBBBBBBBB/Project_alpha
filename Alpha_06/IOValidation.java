@@ -35,6 +35,9 @@ class IOValidation{
         phones.add("123458");
         phones.add("12678");
         phones.add("345678");
+        phones.add("12345678");
+        phones.add("123456789");
+        phones.add("1234567890");
         phones.add("");
         for(int i = 0; i < phones.size(); i++){
             String phone = phones.get(i);

@@ -31,13 +31,12 @@ class Register {
         /*while(!IOValidation.usernameValid(inUserName = scanner.nextLine())){
         	System.out.print("User name could not be empty! Please enter again: ");
         }*/
+        System.out.print("Name: ");
         while(true){
-            System.out.print("Name: ");
             inUserName = scanner.nextLine();
             if(!IOValidation.usernameValid(inUserName))
                 System.out.print("User name could not be empty! Please enter again: ");
             else {
-                System.out.println(Account.searchUserReBo(inUserName));
                 if(Account.searchUserReBo(inUserName))
                     System.out.println("The name has been used");
                 else
@@ -54,7 +53,8 @@ class Register {
         	System.out.print("Email could not be empty! Please enter again: ");
         }
         System.out.print("Phone: ");
-        while((inPhone = scanner.nextLine()).isEmpty()){
+        //while((inPhone = scanner.nextLine()).isEmpty()){
+        while(!IOValidation.phoneValid(inPhone = scanner.nextLine())){
         	System.out.print("User name could not be empty! Please enter again: ");
         }
 

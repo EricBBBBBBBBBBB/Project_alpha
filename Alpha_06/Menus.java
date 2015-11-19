@@ -150,7 +150,7 @@ class Menus{
 		System.out.println("-----------------------------------------------------");
 		System.out.println("-------------------- Admin Menu ---------------------");
 		System.out.println("- 1. Users Management\t\t\t\t    -");
-		System.out.println("- 2. List All Courses\t\t\t\t    -");
+		System.out.println("- 2. Course Management\t\t\t\t    -");
 		System.out.println("- 3. xxxxxxxxxxxxxxxxxxxxxxt\t\t\t    -");
 		System.out.println("- 4. xxxxxxxxxxxxxxxxxxxxxx\t\t\t    -");
 		System.out.println("- 5. View Personal Infomation\t\t\t    -");
@@ -187,10 +187,13 @@ class Menus{
 								break;
 							case '2':	// Search User =======
 								System.out.println("\n= = = = = = Users Searching = = = = = =");
-								System.out.print(" Please enter the user name you want to search: ");
-								// temportary no ID searching......
-								inString = scanner.next();
-								Account.searchUser(inString);
+								System.out.println(" Please enter the user type you want to search: ");
+								System.out.println("  - 1. trainee");
+								System.out.println("  - 2. trainer");
+								System.out.println("  - 3. all types of users");
+								System.out.println("  - 9. quit");
+								System.out.print(" >>> ");
+								Account.searchUser(scanner.next().charAt(0));
 								break;
 							case '3':	// Edit User =========
 								System.out.println("\n= = = = = = User Information Editing = = = = = =");
@@ -222,7 +225,33 @@ class Menus{
 				}
 				break;
 			case '2':
-				Curriculum.listAll();
+				outerloop:
+				while(true){
+					System.out.println("=============== Course Management Menu ==============");
+					System.out.println("= 1. List all the Course\t\t\t    =");
+					System.out.println("= 2. Create new course\t\t\t    =");
+					System.out.println("= 3. Edit course\t\t\t    =");
+					System.out.println("= 4. Delete course\t\t\t    =");
+					System.out.println("= 9. Return to main menu\t\t\t    =");
+					System.out.println("=====================================================");
+					System.out.print(">> Please enter the number: ");
+					inString = scanner.next();
+					if(inString.equals("-l"))
+						Account.listAll();
+					else{
+						inChar = inString.charAt(0);
+						switch(inChar){
+							case '1':
+								Curriculum.listAll();
+								break;
+							case '9':
+								break outerloop;	//break the outerloop -> return main menu
+							default:
+								System.out.println("Unknown Error.");
+						}
+						pkContinue();	// press enter key to continue
+					}
+				}
 				break;
 			case '3':
 				break;
