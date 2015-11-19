@@ -15,18 +15,11 @@ class Curriculum implements Files{
 // Declare data members
 
     public static ArrayList<Course> courselist = new ArrayList<Course>(); 
-    public static ArrayList<CourseRecord> recordlist = new ArrayList<CourseRecord>();
 
 //Methods
 	//Initialization Course List
     public static void initcourselist() {       
-		recordlist = CourseRecordIO.readRTxtFile(DEF_RECORD);
-		System.out.println("Read OK: " + DEF_RECORD);
-
 		courselist = CourseIO.readCTxtFile(DEF_COURSE);
-		System.out.println("Read OK: " + DEF_COURSE);
-		
-
     }
 	
 	
@@ -72,38 +65,101 @@ class Curriculum implements Files{
 		System.out.println("-----------------------------------------------------");
 		System.out.println("- ID   Course Name          Status         Price($)");
 		System.out.println("-----------------------------------------------------");	
-		
+		boolean not = true;		
 		for (int i = 0; i < courselist.size(); i++) {
 			System.out.format( "- %-5d%-20s%-15s%d\n" , courselist.get(i).getCourseID(), courselist.get(i).getCourseName(), courselist.get(i).getCourseStatus(), courselist.get(i).getPrice() );
+			not = false;
 		}
+		if(not)System.out.println("- Not for now.");		
 		System.out.println("-----------------------------------------------------");
 
 	}
 	
 	//List Trainer Owned Courses
-	public static void listOwnedCourse(String uname){
+	public static void listOwnedCourse(int uid){
 		System.out.println("------------------- Owned Courses -------------------");
 		System.out.println("-----------------------------------------------------");
 		System.out.println(" ID   Course Name          Total Number of Trainee");
-		System.out.println("-----------------------------------------------------");
+		System.out.println("-----------------------------------------------------");	
+		boolean not = true;
 		for (int i = 0; i < courselist.size(); i++) {
-				if(courselist.get(i).getTrainerName().equals(uname)) 
+				if(courselist.get(i).getTrainerID() == uid){ 
 					System.out.format( "- %-5d%-20s%-15d\n" , courselist.get(i).getCourseID(), courselist.get(i).getCourseName(), courselist.get(i).getTotalOfTrainee());
+					not = false;
+			}
 		}
-		System.out.println("-----------------------------------------------------\n");
+		if(not)System.out.println("- Not for now.");		
+		System.out.println("-----------------------------------------------------");
+		
+		System.out.println("Please enter the Course ID to show more details.");
+        System.out.print("(-1) for quit. : ");
+
+        Scanner scanner = new Scanner(System.in);
+		int inInt;
+        if(scanner.hasNextInt())
+            inInt = scanner.nextInt();
+        else
+            inInt = -1;
+
+        if(inInt == -1){
+            System.out.println(">> quit.");
+			return;
+        }
+		
+		boolean found = false;
+		for (int i = 0; i < courselist.size(); i++) {
+			if(courselist.get(i).courseID == inInt ){
+				courselist.get(i).printCourseTrainee();
+				found = true;
+			} 
+		}
+		if(!found) System.out.println(">> Course not found!!\n");
 	}
 
 	//List Avaible Courses
-	public static void listAvaibleCourse(int type,int uid){
+	public static void listAvaible(int type,int uid){
 		System.out.println("-----------------------------------------------------");
-		System.out.println("- ID   Course Name          Course Type    Price($)");
+		System.out.println("- ID   Course Name         Course Type    Price($)");
 		System.out.println("-----------------------------------------------------");	
+		boolean not = true;
 		for (int i = 0; i < courselist.size(); i++) {
-			if(!(courselist.get(i).Completed) && courselist.get(i).courseType <= type && !(recordlist.get(i).checkid(uid)) )
+			if(!(courselist.get(i).Completed) && courselist.get(i).courseType <= type && !(courselist.get(i).checkid(uid))){
 				System.out.format( "- %-5d%-20s%-15s%d\n" , courselist.get(i).getCourseID(), courselist.get(i).getCourseName(), courselist.get(i).getCourseType(), courselist.get(i).getPrice() );
+				not = false;
+			}
 		}
-		
+		if(not)System.out.println("- Not for now.");
 		System.out.println("-----------------------------------------------------");
+	}
+	
+	//List Avabile Courses Details
+	public static void listAvaibleCourse(int type,int uid){
+		
+		listAvaible(type, uid);
+		System.out.println("Please enter the Course ID to show more details.");
+        System.out.print("(-1) for quit. : ");
+
+        Scanner scanner = new Scanner(System.in);
+		int inInt;
+        if(scanner.hasNextInt())
+            inInt = scanner.nextInt();
+        else
+            inInt = -1;
+
+        if(inInt == -1){
+            System.out.println(">> quit.");
+			return;
+        }
+		
+		boolean found = false;
+		for (int i = 0; i < courselist.size(); i++) {
+			if(courselist.get(i).courseID == inInt && !(courselist.get(i).Completed) && courselist.get(i).courseType <= type ){
+				courselist.get(i).printCourseInfo();
+				found = true;
+			} 
+		}
+		if(!found) System.out.println(">> Course not found!!\n");
+	
 	}
 	
 	//List Courses Targets
@@ -111,10 +167,14 @@ class Curriculum implements Files{
 		System.out.println("-----------------------------------------------------");
 		System.out.println(" ID   Course Name          Targets");
 		System.out.println("-----------------------------------------------------");
-		for (int i = 0; i < recordlist.size(); i++) {
-			if(recordlist.get(i).checkid(uid) && !(recordlist.get(i).Completed))
+		boolean not = true;
+		for (int i = 0; i < courselist.size(); i++) {
+			if(courselist.get(i).checkid(uid) && !(courselist.get(i).Completed)){
 				System.out.format( "- %-5d%-20s%-15s\n" , courselist.get(i).getCourseID(), courselist.get(i).getCourseName(), courselist.get(i).getTarget());
+				not = false;		
+			}
 		}
+		if(not)System.out.println("- Not for now.");		
 		System.out.println("-----------------------------------------------------");
 	}
 	
@@ -123,15 +183,21 @@ class Curriculum implements Files{
 		System.out.println("-----------------------------------------------------");
 		System.out.println(" ID   Course Name          Completed");
 		System.out.println("-----------------------------------------------------");
-		for (int i = 0; i < recordlist.size(); i++) {
-			if(recordlist.get(i).checkid(uid))
-				System.out.format( "- %-5d%-20s%-15s\n" , courselist.get(i).getCourseID(), courselist.get(i).getCourseName(), recordlist.get(i).Completed);
+		boolean not = true;
+		for (int i = 0; i < courselist.size(); i++) {
+			if(courselist.get(i).checkid(uid)){
+				System.out.format( "- %-5d%-20s%-15s\n" , courselist.get(i).getCourseID(), courselist.get(i).getCourseName(), courselist.get(i).Completed);
+				not = false;		
+			}
 		}
-		System.out.println("-----------------------------------------------------");
+		if(not)System.out.println("- Not for now.");		
+		System.out.println("-----------------------------------------------------");	
 	}	
 	
 	//Join Courses
-	public static void joinCourse(int uid){
+	public static void joinCourse(int type,int uid){
+		
+		listAvaible(type, uid);
 		System.out.println("Please enter the Course ID to join.");
         System.out.print("(-1) for quit. : ");
 
@@ -147,19 +213,23 @@ class Curriculum implements Files{
 			return;
         }
 		
-		for (int i = 0; i < recordlist.size(); i++) {
-			if(recordlist.get(i).courseID == inInt) recordlist.get(i).addTrainee(uid) ;
+		boolean found = false;
+		for (int i = 0; i < courselist.size(); i++) {
+			if(courselist.get(i).courseID == inInt && !(courselist.get(i).Completed)) {
+				courselist.get(i).addTrainee(uid) ;
+				System.out.println(">> Course joined.\n");	
+				found = true;
+			}
 		}
-		
-	
+		if(!found) System.out.println(">> Course not found!!\n");		
 	}
 	
 	
 	//Check total of Completed Courses
 	public static int checkNoOfCompleted(int uid){
 		int total = 0;
-		for (int i = 0; i < recordlist.size(); i++) {
-			if(recordlist.get(i).checkid(uid) && recordlist.get(i).Completed) total++;
+		for (int i = 0; i < courselist.size(); i++) {
+			if(courselist.get(i).checkid(uid) && courselist.get(i).Completed) total++;
 		}
 		return total;
 	}
@@ -167,8 +237,8 @@ class Curriculum implements Files{
 	//Check total of Current Courses
 	public static int checkNoOfCurrent(int uid){
 		int total = 0;
-		for (int i = 0; i < recordlist.size(); i++) {
-			if(recordlist.get(i).checkid(uid) && !(recordlist.get(i).Completed)) total++;
+		for (int i = 0; i < courselist.size(); i++) {
+			if(courselist.get(i).checkid(uid) && !(courselist.get(i).Completed)) total++;
 		}
 		return total;
 	}

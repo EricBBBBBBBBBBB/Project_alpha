@@ -20,13 +20,14 @@ class Course{
 	protected int courseType;
 	protected boolean Completed;
 
-	protected String courseTrainerName;	
+	protected int courseTrainerID;	
 	protected int duration;	// add Date & Time later
 	protected String venue;
 	protected int price;	
 	protected String target;
 	protected String description;
 
+    protected ArrayList<Integer> traineelist = new ArrayList<Integer>();
 	public int totalNumOfTrainee;
 	public int maxNumOfTrainee;
 	protected boolean isAvailable = true;
@@ -75,8 +76,8 @@ class Course{
 		return statusStr;
 	}
 	
-	public String getTrainerName() {
-		return courseTrainerName;
+	public int getTrainerID() {
+		return courseTrainerID;
 	}
 	
 	public String getTarget() {
@@ -87,10 +88,16 @@ class Course{
 		return price;
 	}
 	
+	public int getTotalOfTrainee(){
+		totalNumOfTrainee = traineelist.size();	
+		return totalNumOfTrainee;
+	}
+
+	
 	//set the Course information
-	public void setCourseInfo(boolean status, String tname, int time, String place, int cost, String t , String d, int max ) {
+	public void setCourseInfo(boolean status, int tid, int time, String place, int cost, String t , String d, int max ) {
 		Completed = status;
-		courseTrainerName = tname;
+		courseTrainerID = tid;
 		duration = time;
 		venue = place;
 		price = cost;
@@ -100,29 +107,56 @@ class Course{
 		
 	}
 	
-	public int getTotalOfTrainee(){
-		totalNumOfTrainee = Curriculum.recordlist.get(courseID).getTotalOfTrainee();
-		maxNumOfTrainee = Curriculum.recordlist.get(courseID).getMaxOfTrainee();	
-		return totalNumOfTrainee;
+	public void setTrainee(ArrayList<Integer> list) {
+		traineelist = list;
 	}
+	
+
 	
 	// Print the Course information
 	public void printCourseInfo() {
 		System.out.println("-----------------------------------------------------");
-		System.out.println("           Information (" + getCourseStatus() + "\t)");    		 
+		System.out.println("          Course Information (" + getCourseStatus() + ")");    		 
 		System.out.println("-----------------------------------------------------");
-		System.out.println("Course ID: \t\t\t" + courseID);
-		System.out.println("Course Name: \t\t" + courseName);
-		System.out.println("Course Trainer: \t" + courseTrainerName);
-        System.out.println("Price: \t\t\t" + price);
-        System.out.println("Duration: \t" + "months");
-        System.out.println("Venue: \t" + venue);
-		
-        System.out.println("Trainee Requirements: \t" + courseType);
-        System.out.println("Number of Trainee: \t" + totalNumOfTrainee + "/" + maxNumOfTrainee);
-		System.out.println("Description: \t\t" + description);
-		System.out.println("-----------------------------------------------------");	
+		System.out.format("- Course ID     :  %d\n", getCourseID());
+		System.out.format("- Course Name   :  %s\n", getCourseName());
+		System.out.format("- Course Trainer:  %d\n", courseTrainerID);
+        System.out.format("- Requirements  :  %s\n", getCourseType());
+		System.out.println("-----------------------------------------------------");
+        System.out.format("- Price         :  $%d\n", getPrice());
+        System.out.format("- Duration      :  %s weeks\n", duration);
+        System.out.format("- Venue         :  %s\n", venue);
+        System.out.format("- No. of Trainee:  %d/%d\n", totalNumOfTrainee, maxNumOfTrainee);
+		System.out.format("- Description   :  %s\n", description.replaceAll("(.{1,35})\\s+", "$1\n\t\t   "));
+		System.out.println("-----------------------------------------------------\n");	
 	}
 	
+	public void printCourseTrainee(){
+		System.out.println("-----------------------------------------------------");	
+		System.out.println("          Course Information (" + getCourseStatus() + ")");    		 
+		System.out.println("-----------------------------------------------------");
+		System.out.format("- Course ID     :  %d\n", getCourseID());
+		System.out.format("- Course Name   :  %s\n", getCourseName());
+        System.out.format("- Requirements  :  %s\n", getCourseType());
+		System.out.format("- No. of Trainee:  %d/%d\n", totalNumOfTrainee, maxNumOfTrainee);
+		System.out.println("-----------------------------------------------------");
+		for(int i = 0; i < traineelist.size() ; i++ ){
+			//System.out.format( "- %-5d%-20s%s\n" , Account.userlist.get(traineelist.get(i)).getUserID, Account.userlist.get(traineelist.get(i)).getUserName, Account.userlist.get(traineelist.get(i))  );
+		}
+		System.out.println("-----------------------------------------------------");	
+		System.out.println("End of XXX.\n");
+		
+	}
+	
+	public void addTrainee(int uid) {
+		traineelist.add(uid);
+	}
+	
+	public boolean checkid(int uid){
+		for(int i = 0; i < traineelist.size() ; i++ ){
+			if(traineelist.get(i) == uid) return true;
+		}
+		return false;
+	}
 	
 }

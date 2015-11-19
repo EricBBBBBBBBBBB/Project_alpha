@@ -53,8 +53,8 @@ class User{
 	}
 	
 	public String getUserType() {	
-		if(userType == 0 ) return "Tarinee" ;
-		if(userType == 1 ) return "Tariner" ;
+		if(userType == 0 ) return "Trainee" ;
+		if(userType == 1 ) return "Trainer" ;
 		if(userType == 2 ) return "Admin" ;
 		return "Unknown" ;
 	}

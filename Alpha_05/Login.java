@@ -20,7 +20,7 @@ class Login{
     private ArrayList<User> userlist;
 	
 // Constructors 
-	public User login() {
+	public User login(){
 		Scanner scanner = new Scanner(System.in);
 
 		do{

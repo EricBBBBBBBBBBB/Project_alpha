@@ -73,13 +73,11 @@ class UserIO{
 				System.out.println("ERROR: Check colDelimiter/ data");
 			}
 			
-		//Backup
-		writeUTxtFile(inFileStr.substring(0,inFileStr.length() - 4) + "_BackUp.csv", list );	
 		
 		return list;
 	}
 	
-	public static boolean writeUTxtFile(String outFileStr, ArrayList<User> list ){
+	public static boolean writeUTxtFile(String outFileStr, ArrayList<User> list ){	
 		System.out.println("START of writeLBTxtFile to file ["+outFileStr+"]");
 		if (list==null) return false; // in case of null arraylist
 		try{
@@ -117,7 +115,6 @@ class UserIO{
 			System.out.println("ERROR - IOException. Write Book Failure.");
 			return false;
 		}
-		System.out.println("END of writeLBTxtFile");
 		return true;	
 	}
 	

@@ -20,7 +20,6 @@ public class Account implements Files{
 	//Initialization User List
 	public static void inituserlist() {
 		userlist = UserIO.readUTxtFile(DEF_USER);
-		System.out.println("Read OK: " + DEF_USER);
 	}
 	
 	//Update User List
@@ -93,67 +92,32 @@ public class Account implements Files{
     }
 	
     //Search User by Name (return no value)
-    public static void searchUser(char userTypeC) {
-        int userType = 0;
-        int totSearchNum = 0;
-        int inInt;
-        String inStr;
-        switch(userTypeC) {
-            case '1':
-                System.out.print("Please enter the user name of trainee: ");
-                userType = 1;
-                break;
-            case '2':
-                System.out.print("Please enter the user name of trainer: ");
-                userType = 2;
-                break;
-            case '3':
-                System.out.print("Please enter the user name: ");
-                userType = 3;
-                break;
-            case '9':
-                return;
-            default:
-                System.out.println("Unknown error");
-                return;
-        }
-        Scanner scanner = new Scanner(System.in);
-        inStr = scanner.next();
-        System.out.println("= = = = = = Searching Result(s) = = = = = =");
-        System.out.println("- ID   User Name");
+    public static void searchUser(String userName) {
+        System.out.println("There is/are the result(s) of searching: ");
+		System.out.println("- ID   User Name");
         System.out.println("===========================================");
-        totSearchNum = searching(inStr, userType);
-        System.out.println("There are " + totSearchNum + " result(s)");
-        System.out.println("===========================================");
-
-        if(totSearchNum > 0) {
-            while(true) {
-                System.out.println("Please enter the user ID for detailed Information.");
-                System.out.print("(-1) for quit. : ");
-                if(scanner.hasNextInt())
-                    inInt = scanner.nextInt();
-                else
-                    inInt = -1;
-
-                if(inInt == -1){
-                    System.out.println(">> quit.");
-                    break;
-                }
-                printUserInfo(searchuserlistID(inInt));
-            }
-        }
-    }
-
-    //SearchList
-    public static int searching(String userName, int userType) {
-        int total = 0;
         for (int i = 0; i < userlist.size(); i++) {
             if(userlist.get(i).getUserName().contains(userName)) {
                 System.out.format( "- %-5d%-20s\n" , userlist.get(i).getUserID(), userlist.get(i).getUserName());
-                total++;
             }
         }
-        return total;
+        System.out.println("===========================================");
+        System.out.println("Please enter the user ID for detailed Information.");
+        System.out.print("(-1) for quit. : ");
+
+        Scanner scanner = new Scanner(System.in);
+		String inStr;
+        int inInt;
+        if(scanner.hasNextInt())
+            inInt = scanner.nextInt();
+        else
+            inInt = -1;
+
+        if(inInt == -1){
+            System.out.println(">> quit.");
+            return;
+        }
+        printUserInfo(searchuserlistID(inInt));
     }
 
 
