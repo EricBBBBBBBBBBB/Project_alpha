@@ -13,11 +13,10 @@ class CourseIO{
 
 // Declare data members //////////////////////////	
 	public static final String DEF_COLDELIMITER = ",";
-	public static final String DEF_TITLEHEADER ="Course ID,Course name,Course Type,Completed,Course Trainer,Duration (Weeks),Venue,Price ($),Course Target,Course Description,Total of Trainee,Max of Trainee,Trainee ID";
+	public static final String DEF_TITLEHEADER ="Course ID,Course name,Course Type,completed,Course Trainer,Duration (Weeks),Venue,Price ($),Course Target,Course Description,Total of Trainee,Max of Trainee,Trainee ID";
 	
 // Methods //////////////////////////
 	public static ArrayList<Course> readCTxtFile(String inFileStr){
-		System.out.println("START of readLBTxtFile from file ["+inFileStr+"]");
 			ArrayList<Course> list = new ArrayList<Course>();
 			// Exception handling
 			try {
@@ -31,7 +30,7 @@ class CourseIO{
 					String [] strSplitArr;
 					int courseID, courseType, courseTrainer, duration, price, max, total;
 					String courseName, venue, target, description;
-					boolean Completed;
+					boolean completed;
 					Course newcourse;
 					
 					while ((row = bufferReader.readLine()) != null) {
@@ -44,7 +43,7 @@ class CourseIO{
 						newcourse = new Course(courseID, courseName, courseType);
 						
 						//input information
-						Completed = Boolean.parseBoolean(strSplitArr[3]);
+						completed = Boolean.parseBoolean(strSplitArr[3]);
 						courseTrainer = Integer.parseInt(strSplitArr[4]);
 						duration = Integer.parseInt(strSplitArr[5]);
 						venue = strSplitArr[6];
@@ -58,7 +57,7 @@ class CourseIO{
 							tlist.add(Integer.parseInt(strSplitArr[i]));
 						}
 						
-						newcourse.setCourseInfo(Completed, courseTrainer, duration, venue, price, target, description, max);
+						newcourse.setCourseInfo(completed, courseTrainer, duration, venue, price, target, description, max);
 						newcourse.setTrainee(tlist);
 						//add to course list
 						list.add(newcourse);
@@ -79,7 +78,6 @@ class CourseIO{
 		
 		
 	public static boolean writeCTxtFile(String outFileStr, ArrayList<Course> list ){		
-		System.out.println("START of writeLBTxtFile to file ["+outFileStr+"]");
 		if (list==null) return false; // in case of null arraylist
 		try{
 			File outFile = new File(outFileStr);
@@ -92,7 +90,7 @@ class CourseIO{
 				outStream.print(list.get(i).courseID + DEF_COLDELIMITER);
 				outStream.print(list.get(i).courseName + DEF_COLDELIMITER);
 				outStream.print(list.get(i).courseType + DEF_COLDELIMITER);
-				outStream.print(list.get(i).Completed + DEF_COLDELIMITER);
+				outStream.print(list.get(i).completed + DEF_COLDELIMITER);
 				outStream.print(list.get(i).courseTrainerID + DEF_COLDELIMITER);
 				outStream.print(list.get(i).duration + DEF_COLDELIMITER);
 				outStream.print(list.get(i).venue + DEF_COLDELIMITER);

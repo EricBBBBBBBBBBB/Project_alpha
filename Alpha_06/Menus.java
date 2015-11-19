@@ -105,7 +105,7 @@ class Menus{
 		System.out.println("- 1. Owned Courses List\t\t\t\t    -");
 		System.out.println("- 2. Course Trainees informaion\t\t\t    -");
 		System.out.println("- 3. Courses Complete\t\t\t\t    -");
-		System.out.println("- 4. Courses Create\t\t\t\t    -");
+		System.out.println("- 4. XXXXXXXXXXXXXX\t\t\t\t    -");
 		System.out.println("- 5. View Personal Infomation\t\t\t    -");
 		System.out.println("- 6. General Menu\t\t\t\t    -");
 		System.out.println("- 9. Quit the system\t\t\t\t    -");
@@ -121,14 +121,15 @@ class Menus{
 				Curriculum.listOwnedCourse(trainer.getUserID());
 				break;
 			case '2':
-				System.out.println(">>Course Trainees informaion");
+				System.out.println(">>Course Trainees informaion");	
+				Curriculum.listOwnedCourse(trainer.getUserID());
 				break;
 			case '3':
 				System.out.println(">>Courses Complete");
 				Curriculum.completeCourse(trainer.getUserID());
 				break;
 			case '4':
-				System.out.println("You choose number 4");
+				System.out.println(">>XXXXXXXXXXXXXXXX");
 				break;
 			case '5':
 				trainer.printUserInfo();

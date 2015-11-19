@@ -81,7 +81,7 @@ class Course{
 	public String getStatus() {
 		String statusStr;
 		if(!completed) statusStr = "Current";
-				else statusStr = "Completed";
+			else statusStr = "Completed";
 				
 		return statusStr;
 	}
@@ -109,9 +109,9 @@ class Course{
 	}
 	
 	//set the Course information
-	public void setCourseInfo(boolean status, int tid, int time, String place, int cost, String t , String d, int max ) {
+	public void setCourseInfo(boolean status, int uid, int time, String place, int cost, String t , String d, int max ) {
 		completed = status;
-		courseTrainerID = tid;
+		courseTrainerID = uid;
 		duration = time;
 		venue = place;
 		price = cost;

@@ -1,6 +1,5 @@
 
 Trainee
-2--join course (with trainee type checking, Compeleted checking, repeatition checking )
 2--confirmation before join
 
 ---reg date, birthday

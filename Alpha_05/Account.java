@@ -37,25 +37,25 @@ public class Account implements Files{
 	
 	//Remove User by Name
     public static void removeUser(String userName, int uid, User operateUser) {
-        int listID;
+        int lisuid;
         if(userName.isEmpty())
-            listID = searchuserlistID(userName);
+            lisuid = searchuserlisuid(userName);
         else
-            listID = searchuserlistID(uid);
+            lisuid = searchuserlisuid(uid);
 
-        if(listID == -1) {
+        if(lisuid == -1) {
             System.out.println("user not found!");
-        }else if((userlist.get(listID).getUserName()).equals(operateUser.getUserName())) {
+        }else if((userlist.get(lisuid).getUserName()).equals(operateUser.getUserName())) {
                 System.out.println("You cannot remove yourself!");
-        }else if((userlist.get(listID).getUserType()).equals("Admin")) {
+        }else if((userlist.get(lisuid).getUserType()).equals("Admin")) {
             System.out.println("You cannot remove an admin-type user!");
         }else{
-            System.out.println("Are you sure to remove User [" + userlist.get(listID).getUserName() + "]? (Y/N)");
+            System.out.println("Are you sure to remove User [" + userlist.get(lisuid).getUserName() + "]? (Y/N)");
             Scanner scanner = new Scanner(System.in);
             char inChar = scanner.next().charAt(0);
             
             if(inChar == 'Y' || inChar == 'y') {
-                userlist.remove(listID);
+                userlist.remove(lisuid);
                 System.out.println("Removed!");
             } else{
                 System.out.println("Unsuccessful, Unknown error!");
@@ -65,7 +65,7 @@ public class Account implements Files{
 	
 	
     //Search User by ID (return ArrayList ID)
-    public static int searchuserlistID(int uid) {
+    public static int searchuserlisuid(int uid) {
         for (int i = 0; i < userlist.size(); i++) {
             if (userlist.get(i).getUserID() == uid)
                 return i;
@@ -74,7 +74,7 @@ public class Account implements Files{
     }
 	
     //Search User by name (return ArrayList ID) [Require exactly User name for searching]
-    public static int searchuserlistID(String userName) {
+    public static int searchuserlisuid(String userName) {
         for (int i = 0; i < userlist.size(); i++) {
             if (userlist.get(i).getUserName().equals(userName)) 
                 return i;
@@ -82,7 +82,7 @@ public class Account implements Files{
         return -1;
     }
 
-	
+	//Search User 
 	public static boolean searchUserReBo(String userName) {
         for (int i = 0; i < userlist.size(); i++) {
             if (userlist.get(i).getUserName().equals(userName)) 
@@ -117,14 +117,14 @@ public class Account implements Files{
             System.out.println(">> quit.");
             return;
         }
-        printUserInfo(searchuserlistID(inInt));
+        printUserInfo(searchuserlisuid(inInt));
     }
 
 
     //Print User Information
-    public static void printUserInfo(int listID) {
-        if(listID != -1) {
-            userlist.get(listID).printUserInfo();
+    public static void printUserInfo(int lisuid) {
+        if(lisuid != -1) {
+            userlist.get(lisuid).printUserInfo();
         }else{
             System.out.println("User not found!");
         }
@@ -132,10 +132,10 @@ public class Account implements Files{
 
     //Edit User Information
     public static void editUser(String userName) {
-        int listID = searchuserlistID(userName);
-        if (listID != -1) {
+        int lisuid = searchuserlisuid(userName);
+        if (lisuid != -1) {
             System.out.println("Found the record");
-            //userlist.get(listID).printUserInfo();
+            //userlist.get(lisuid).printUserInfo();
         Scanner scanner = new Scanner(System.in);
             String inStr;
             char inChar;
@@ -160,12 +160,12 @@ public class Account implements Files{
                             break;
                         } else {
                             if(IOValidation.emailValid(inStr)) {
-                                System.out.println("The previous Email: " + userlist.get(listID).getUserEmail());
+                                System.out.println("The previous Email: " + userlist.get(lisuid).getUserEmail());
                                 System.out.println("The new Email: " + inStr);
                                 System.out.println(">> Are you sure to make change? (Y/N)");
                                 inChar = scanner.next().charAt(0);
                                 if(inChar == 'y' || inChar == 'Y'){
-                                    userlist.get(listID).setUserEmail(inStr);
+                                    userlist.get(lisuid).setUserEmail(inStr);
                                     System.out.println("The Email is updated!");
                                 } else {
                                     System.out.println("Action was cancelled!");
@@ -182,12 +182,12 @@ public class Account implements Files{
                             break;
                         } else {
                             if(IOValidation.phoneValid(inStr)) {
-                                System.out.println("The previous Phone: " + userlist.get(listID).   getUserPhone());
+                                System.out.println("The previous Phone: " + userlist.get(lisuid).   getUserPhone());
                                 System.out.println("The new Phone: " + inStr);
                                 System.out.println(">> Are you sure to make chnage? (Y/N)");
                                 inChar = scanner.next().charAt(0);
                                 if(inChar == 'y' || inChar == 'Y'){
-                                    userlist.get(listID).setUserPhone(inStr);
+                                    userlist.get(lisuid).setUserPhone(inStr);
                                     System.out.println("The Phone number is updated!");
                                 } else {
                                     System.out.println("Action was cancelled!");
@@ -200,7 +200,7 @@ public class Account implements Files{
                     case '3':
                         break;
                     case '8':
-						userlist.get(listID).printUserInfo();
+						userlist.get(lisuid).printUserInfo();
                         break;
                     case '9':
                         break whileloop;

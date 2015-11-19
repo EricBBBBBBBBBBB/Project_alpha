@@ -18,7 +18,7 @@ class Course{
 	protected int courseID;
 	protected String courseName;
 	protected int courseType;
-	protected boolean Completed;
+	protected boolean completed;
 
 	protected int courseTrainerID;	
 	protected int duration;	// add Date & Time later
@@ -62,19 +62,30 @@ class Course{
 		return "Unknown" ;
 	}
 	
+	//trainee use
 	public String getCourseStatus() {
-		if(totalNumOfTrainee == maxNumOfTrainee || Completed ) 
+		if(totalNumOfTrainee == maxNumOfTrainee || completed ) 
 			isAvailable = false;
 		
 		String statusStr;
-		if(!Completed){
+		if(!completed){
 			if(isAvailable) statusStr = "Available";
 				else statusStr = "NOT Available";
 		}else{
-			statusStr = "Completed";
+			statusStr = "completed";
 		}
 		return statusStr;
 	}
+	
+	//trainer use
+	public String getStatus() {
+		String statusStr;
+		if(!completed) statusStr = "Current";
+			else statusStr = "Completed";
+				
+		return statusStr;
+	}
+	
 	
 	public int getTrainerID() {
 		return courseTrainerID;
@@ -92,12 +103,15 @@ class Course{
 		totalNumOfTrainee = traineelist.size();	
 		return totalNumOfTrainee;
 	}
-
+	
+	public int getMaxOfTrainee(){
+		return maxNumOfTrainee;
+	}
 	
 	//set the Course information
-	public void setCourseInfo(boolean status, int tid, int time, String place, int cost, String t , String d, int max ) {
-		Completed = status;
-		courseTrainerID = tid;
+	public void setCourseInfo(boolean status, int uid, int time, String place, int cost, String t , String d, int max ) {
+		completed = status;
+		courseTrainerID = uid;
 		duration = time;
 		venue = place;
 		price = cost;
@@ -140,8 +154,10 @@ class Course{
         System.out.format("- Requirements  :  %s\n", getCourseType());
 		System.out.format("- No. of Trainee:  %d/%d\n", totalNumOfTrainee, maxNumOfTrainee);
 		System.out.println("-----------------------------------------------------");
+		System.out.println("- ID   User Name           User Type");
+		System.out.println("-----------------------------------------------------");
 		for(int i = 0; i < traineelist.size() ; i++ ){
-			//System.out.format( "- %-5d%-20s%s\n" , Account.userlist.get(traineelist.get(i)).getUserID, Account.userlist.get(traineelist.get(i)).getUserName, Account.userlist.get(traineelist.get(i))  );
+			System.out.format( "- %-5d%-20s\n" , Account.userlist.get(traineelist.get(i)).getUserID(), Account.userlist.get(traineelist.get(i)).getUserName());
 		}
 		System.out.println("-----------------------------------------------------");	
 		System.out.println("End of XXX.\n");

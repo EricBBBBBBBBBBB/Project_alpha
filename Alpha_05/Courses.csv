@@ -1,7 +1,11 @@
-Course ID,Course name,Course Type,Completed,Course Trainer,Duration (Weeks),Venue,Price ($),Course Target,Course Description,Total of Trainee,Max of Trainee,Trainee ID
-1,Freestyle,3,true,8,3,Lai Chi Kok Park Swimming Pool,100,50m within 2 minutes,A beginner course for new swimmer that would teach the basic of freestyle swimming,0,15,
-2,Breaststroke,4,false,7,2,Sham Shui Po Park Swimming Pool,150,100m within 5 minutes,An intermediate course for swimmer that want to learn alternate swimming style,0,15,
-3,Backstroke,4,false,5,2,Kwun Tong Swimming Pool,150,100m within 5 minutes,An intermediate course for swimmer that want to learn alternate swimming style,0,15,
+Course ID,Course name,Course Type,completed,Course Trainer,Duration (Weeks),Venue,Price ($),Course Target,Course Description,Total of Trainee,Max of Trainee,Trainee ID
+1,Freestyle,3,false,8,3,Lai Chi Kok Park Swimming Pool,100,50m within 2 minutes,A beginner course for new swimmer that would teach the basic of freestyle swimming,0,15,1,
+2,Breaststroke,4,false,7,2,Sham Shui Po Park Swimming Pool,150,100m within 5 minutes,An intermediate course for swimmer that want to learn alternate swimming style,0,15,2,
+3,Backstroke,4,true,5,2,Kwun Tong Swimming Pool,150,100m within 5 minutes,An intermediate course for swimmer that want to learn alternate swimming style,0,15,
 4,Butterfly stroke,5,false,5,2,Wan Chai Swimming Pool,150,200m within 10 minutes,An advanced course for student ,0,15,
-5,Finswimming,3,false,5,3,Ping Shan Tin Shui Wai Swimming Pool,100,50m within 1 minute,An beginner course for trainee that want to learn an alternate swimming style ,0,15,1,
+5,Finswimming,3,true,5,3,Ping Shan Tin Shui Wai Swimming Pool,100,50m within 1 minute,An beginner course for trainee that want to learn an alternate swimming style ,0,15,1,
 6,Lifesaving course,5,false,6,5,Fanling Swimming Pool,200,Rescue 60kg dummy,An advanced course for swimmer that want to become a lifeguard,0,15,4,
+7,Freestyle,3,false,6,3,Lai Chi Kok Park Swimming Pool,100,50m within 2 minutes,A beginner course for new swimmer that would teach the basic of freestyle swimming,0,15,
+8,Breaststroke,3,true,6,3,Sham Shui Po Park Swimming Pool,100,50m within 2 minutes,An beginner course for trainee that want to learn an alternate swimming style ,0,15,
+9,Backstroke,3,false,7,3,Kwun Tong Swimming Pool,100,50m within 2 minutes,An beginner course for trainee that want to learn an alternate swimming style ,0,15,
+10,Butterfly stroke,3,false,7,3,Wan Chai Swimming Pool,100,50m within 2 minutes,An beginner course for trainee that want to learn an alternate swimming style ,0,15,

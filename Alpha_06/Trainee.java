@@ -58,8 +58,8 @@ class Trainee extends User{
 		System.out.println("User Phone: \t  " + getUserPhone());
 		System.out.println("Date of register: " + dateOfRegister.getTime());
 		System.out.println("-----------------------------------------------------");
-		System.out.println("completed Courses: " + Curriculum.checkNoOfcompleted(getUserID()));
-		System.out.println("Current Courses: " + Curriculum.checkNoOfCurrent(getUserID()));
+		System.out.println("Completed Courses:" + Curriculum.checkNoOfcompleted(getUserID()));
+		System.out.println("Current Courses:  " + Curriculum.checkNoOfCurrent(getUserID()));
 		System.out.println("-----------------------------------------------------");	
 		System.out.println("End of Personal Infomation.\n");
 	}

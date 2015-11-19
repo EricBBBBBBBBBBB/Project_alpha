@@ -17,7 +17,6 @@ class CourseIO{
 	
 // Methods //////////////////////////
 	public static ArrayList<Course> readCTxtFile(String inFileStr){
-		System.out.println("START of readLBTxtFile from file ["+inFileStr+"]");
 			ArrayList<Course> list = new ArrayList<Course>();
 			// Exception handling
 			try {
@@ -79,7 +78,6 @@ class CourseIO{
 		
 		
 	public static boolean writeCTxtFile(String outFileStr, ArrayList<Course> list ){		
-		System.out.println("START of writeLBTxtFile to file ["+outFileStr+"]");
 		if (list==null) return false; // in case of null arraylist
 		try{
 			File outFile = new File(outFileStr);

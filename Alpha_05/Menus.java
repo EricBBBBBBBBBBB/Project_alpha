@@ -53,7 +53,7 @@ class Menus{
 		System.out.println("------------------ Trainee Menu ---------------------");
 		System.out.println("- 1. View the Current Available Courses\t\t    -");
 		System.out.println("- 2. Join Training Courses\t\t\t    -");
-		System.out.println("- 3. Display Current/Completed Courses\t\t    -");
+		System.out.println("- 3. Display Current/completed Courses\t\t    -");
 		System.out.println("- 4. Display Targets Set\t\t\t    -");
 		System.out.println("- 5. View Personal Infomation\t\t\t    -");
 		System.out.println("- 6. General Menu\t\t\t\t    -");
@@ -70,20 +70,23 @@ class Menus{
 				Curriculum.listAvaibleCourse(trainee.upadteTraineeType(),trainee.getUserID());
 				break;
 			case '2':
+				System.out.println(">>Join Training Courses.");	
 				Curriculum.joinCourse(trainee.upadteTraineeType(),trainee.getUserID());
 				break;
 			case '3':
+				System.out.println(">>Display Current/completed Courses.");	
 				Curriculum.listCCCourse(trainee.getUserID());
 				break;
 			case '4':
+				System.out.println(">>Display Targets Set.");	
 				Curriculum.listTarget(trainee.getUserID());
 				break;
 			case '5':
+				System.out.println(">>View Personal Infomation.");	
 				trainee.printUserInfo();
 				break;
 			case '6':
-				//General menu
-				System.out.println("You choose number 6");
+				System.out.println(">>General Menu.");	
 				break;
 			case '9':
 				System.out.println("You choosed to quit the system. Bye!! ");
@@ -99,10 +102,10 @@ class Menus{
 		Trainer trainer = (Trainer) user;
 		System.out.println("-----------------------------------------------------");
 		System.out.println("------------------ Trainer Menu ---------------------");
-		System.out.println("- 1. List Owned Courses	\t\t\t    -");
-		System.out.println("- 2. Display Courses and Trainee Records\t    -");
-		System.out.println("- 3. xxxxxxxxxxxxxxxxxxxxxx\t\t\t    -");
-		System.out.println("- 4. xxxxxxxxxxxxxxxxxxxxxx\t\t\t    -");
+		System.out.println("- 1. Owned Courses List\t\t\t\t    -");
+		System.out.println("- 2. Course Trainees informaion\t\t\t    -");
+		System.out.println("- 3. Courses Complete\t\t\t\t    -");
+		System.out.println("- 4. XXXXXXXXXXXXXX\t\t\t\t    -");
 		System.out.println("- 5. View Personal Infomation\t\t\t    -");
 		System.out.println("- 6. General Menu\t\t\t\t    -");
 		System.out.println("- 9. Quit the system\t\t\t\t    -");
@@ -114,16 +117,19 @@ class Menus{
 
 		switch(inChar) {
 			case '1':
+				System.out.println(">>Owned Courses List.");	
 				Curriculum.listOwnedCourse(trainer.getUserID());
 				break;
 			case '2':
-				System.out.println("You choose number 2");
+				System.out.println(">>Course Trainees informaion");	
+				Curriculum.listOwnedCourse(trainer.getUserID());
 				break;
 			case '3':
-				System.out.println("You choose number 3");
+				System.out.println(">>Courses Complete");
+				Curriculum.completeCourse(trainer.getUserID());
 				break;
 			case '4':
-				System.out.println("You choose number 4");
+				System.out.println(">>XXXXXXXXXXXXXXXX");
 				break;
 			case '5':
 				trainer.printUserInfo();
@@ -222,7 +228,7 @@ class Menus{
 			case '3':
 				break;
 			case '4':
-				Curriculum.DelCourse();
+
 				break;
 			case '5':
 				admin.printUserInfo();

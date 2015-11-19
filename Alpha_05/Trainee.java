@@ -26,8 +26,8 @@ class Trainee extends User{
 // Methods 
 	//Trainee type updating
 	public int upadteTraineeType() {	
-		//if( totalCompletedCourse > 10 ) traineeType = 4;
-		//	else if( totalCompletedCourse > 5 ) traineeType = 5;
+		//if( totalcompletedCourse > 10 ) traineeType = 4;
+		//	else if( totalcompletedCourse > 5 ) traineeType = 5;
 		return traineeType;
 	}
 	
@@ -58,8 +58,8 @@ class Trainee extends User{
 		System.out.println("User Phone: \t  " + getUserPhone());
 		System.out.println("Date of register: " + dateOfRegister.getTime());
 		System.out.println("-----------------------------------------------------");
-		System.out.println("Completed Courses: " + Curriculum.checkNoOfCompleted(getUserID()));
-		System.out.println("Current Courses: " + Curriculum.checkNoOfCurrent(getUserID()));
+		System.out.println("Completed Courses:" + Curriculum.checkNoOfcompleted(getUserID()));
+		System.out.println("Current Courses:  " + Curriculum.checkNoOfCurrent(getUserID()));
 		System.out.println("-----------------------------------------------------");	
 		System.out.println("End of Personal Infomation.\n");
 	}
