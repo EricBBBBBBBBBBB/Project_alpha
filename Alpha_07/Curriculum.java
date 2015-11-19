@@ -64,11 +64,11 @@ class Curriculum implements Files{
 	public static void listAll(){
 		
 		System.out.println("-----------------------------------------------------");
-		System.out.println("- ID   Course Name          Status         Price($)");
+		System.out.println("- ID   Course Name         Type           Status");
 		System.out.println("-----------------------------------------------------");	
 		boolean not = true;		
 		for (int i = 0; i < courselist.size(); i++) {
-			System.out.format( "- %-5d%-20s%-15s%d\n" , courselist.get(i).getCourseID(), courselist.get(i).getCourseName(), courselist.get(i).getCourseStatus(), courselist.get(i).getPrice() );
+			System.out.format( "- %-5d%-20s%-15s%s\n" , courselist.get(i).getCourseID(), courselist.get(i).getCourseName(), courselist.get(i).getCourseType(), courselist.get(i).getCourseStatus() );
 			not = false;
 		}
 		if(not)System.out.println("- Not for now.");		
@@ -265,7 +265,7 @@ class Curriculum implements Files{
 				inChar = scanner.next().charAt(0);
 				if(inChar == 'y' || inChar == 'Y'){
 					courselist.get(i).addTrainee(uid);
-					System.out.println(">> Course joined, \n");
+					System.out.println(">> Course joined. \n");
 				} else {
 					System.out.println(">> Action was cancelled!");
 				}
@@ -274,11 +274,50 @@ class Curriculum implements Files{
 		if(!found) System.out.println(">> Course not found!!\n");		
 	}
 	
+	//Search Course by cid (return ArrayList ID)
+    public static int searchcourselistID(int uid) {
+        for (int i = 0; i < courselist.size(); i++) {
+            if (courselist.get(i).getCourseID() == uid) 
+                return i;
+        }
+        return -1;
+    }
 	
 	
+	//Create Course
+	public static void createCourse(){
+		
+		//declare datas
+		int courseID, courseType, courseTrainer, duration, price, max, total;
+		String courseName, venue, target, description;
+		boolean completed;
+		Course newcourse;
+
+		//create new course
+		courseID = 0;
+		courseName = "###";
+		courseType = 3;
+		newcourse = new Course(courseID, courseName, courseType);
+		
+		//input information
+		completed = false;
+		courseTrainer = 8;
+		duration = 3;
+		venue = "###";
+		price = 0;
+		target = "###";
+		description = "###";
+		//total = ;
+		max = 15 ;
+		
+
+		newcourse.setCourseInfo(completed, courseTrainer, duration, venue, price, target, description, max);
+		courselist.add(newcourse);
+	}
+		
+		
 	
-	
-	//Check total of completed Courses
+	//Check total of completed Course
 	public static int checkNoOfcompleted(int uid){
 		int total = 0;
 		for (int i = 0; i < courselist.size(); i++) {
@@ -287,7 +326,7 @@ class Curriculum implements Files{
 		return total;
 	}
 	
-	//Check total of Current Courses
+	//Check total of Current Course
 	public static int checkNoOfCurrent(int uid){
 		int total = 0;
 		for (int i = 0; i < courselist.size(); i++) {
@@ -313,6 +352,93 @@ class Curriculum implements Files{
 		}
 		return total;
     }
+	
+	//Edit User Information
+    public static void editCourse(int cid) {
+		int listID = searchcourselistID(cid);
+        if (listID != -1) {
+            System.out.println("Found the record");
+			
+        Scanner scanner = new Scanner(System.in);
+            String inStr;
+            char inChar;
+			
+            whileloop:
+            while(true) {
+                System.out.println("---------------Edit Course Information-------------");
+                System.out.println("Please select the part you want to edit: ");
+                System.out.println("- 1: Course Name");
+                System.out.println("- 2: XX");
+                System.out.println("- 3: XX");
+                System.out.println("- 8: Show Course information");
+                System.out.println("- 9: Quit Editing");
+
+                inStr = scanner.next();
+
+                switch(inStr.charAt(0)) {
+                    case '1':
+						System.out.format("Current Course Name: [%s]\n", courselist.get(listID).getCourseName() );
+                        System.out.println("Please enter the new XX (-q for quit without change");
+						inStr = scanner.next();
+                        if(inStr.equals("-q") || inStr.equals("-Q")) {
+                            break;
+                        } /*else {
+                            if(IOValidation.emailValid(inStr)) {
+                                System.out.println("The previous Email: " + userlist.get(listID).getUserEmail());
+                                System.out.println("The new Email: " + inStr);
+                                System.out.println(">> Are you sure to make change? (Y/N)");
+                                inChar = scanner.next().charAt(0);
+                                if(inChar == 'y' || inChar == 'Y'){
+                                    userlist.get(listID).setUserEmail(inStr);
+                                    System.out.println("The Email is updated!");
+                                } else {
+                                    System.out.println("Action was cancelled!");
+                                }
+                            }else{
+                                System.out.println("Wrong format");
+                            }
+                        }*/
+						break;
+                    case '2':
+						/*System.out.println("Please enter the new phone number (-q for quit without change");
+                        inStr = scanner.next();
+                        if(inStr.equals("-q") || inStr.equals("-Q")) {
+                            break;
+                        } else {
+                            if(IOValidation.phoneValid(inStr)) {
+                                System.out.println("The previous Phone: " + userlist.get(listID).   getUserPhone());
+                                System.out.println("The new Phone: " + inStr);
+                                System.out.println(">> Are you sure to make chnage? (Y/N)");
+                                inChar = scanner.next().charAt(0);
+                                if(inChar == 'y' || inChar == 'Y'){
+                                    userlist.get(listID).setUserPhone(inStr);
+                                    System.out.println("The Phone number is updated!");
+                                } else {
+                                    System.out.println("Action was cancelled!");
+                                }
+                            }else{
+                                System.out.println("Wrong format");
+                            }
+                        }*/
+                        break;
+                    case '3':
+                        break;
+                    case '8':
+						courselist.get(listID).printCourseInfo();
+                        break;
+                    case '9':
+                        break whileloop;
+                    default:
+                        System.out.println("Unknown command");
+                        break whileloop;
+                }
+
+            }
+        } else {
+            System.out.println("No such course");
+        }
+	}
+	
 	
 	//Courses Performance
 	public static void Performance(){

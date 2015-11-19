@@ -68,22 +68,27 @@ class Menus{
 			case '1':
 				System.out.println(">>View the Current Available Courses.");	
 				Curriculum.listAvaibleCourse(trainee.upadteTraineeType(),trainee.getUserID());
+				pkContinue();
 				break;
 			case '2':
 				System.out.println(">>Join Training Courses.");	
 				Curriculum.joinCourse(trainee.upadteTraineeType(),trainee.getUserID());
+				pkContinue();
 				break;
 			case '3':
 				System.out.println(">>Display Current/completed Courses.");	
 				Curriculum.listCCCourse(trainee.getUserID());
+				pkContinue();
 				break;
 			case '4':
 				System.out.println(">>Display Targets Set.");	
 				Curriculum.listTarget(trainee.getUserID());
+				pkContinue();
 				break;
 			case '5':
 				System.out.println(">>View Personal Infomation.");	
 				trainee.printUserInfo();
+				pkContinue();
 				break;
 			case '6':
 				System.out.println(">>General Menu.");	
@@ -119,20 +124,25 @@ class Menus{
 			case '1':
 				System.out.println(">>Owned Courses List.");	
 				Curriculum.listOwnedCourse(trainer.getUserID());
+				pkContinue();
 				break;
 			case '2':
 				System.out.println(">>Course Trainees informaion");	
-				Curriculum.listOwnedCourse(trainer.getUserID());
+				//
+				pkContinue();
 				break;
 			case '3':
 				System.out.println(">>Courses Complete");
 				Curriculum.completeCourse(trainer.getUserID());
+				pkContinue();
 				break;
 			case '4':
 				System.out.println(">>XXXXXXXXXXXXXXXX");
+				pkContinue();
 				break;
 			case '5':
 				trainer.printUserInfo();
+				pkContinue();
 				break;
 			case '6':
 				//General menu
@@ -202,8 +212,6 @@ class Menus{
 								// temportary no ID 
 								inString = scanner.next();
 								Account.editUser(inString);
-
-								
 								break;
 							case '4':	// Remove User =======
 								System.out.println(" Deregister\n");
@@ -230,20 +238,27 @@ class Menus{
 				while(true){
 					System.out.println("=============== Course Management Menu ==============");
 					System.out.println("= 1. List all the Course\t\t\t    =");
-					System.out.println("= 2. Create new course\t\t\t    =");
-					System.out.println("= 3. Edit course\t\t\t    =");
-					System.out.println("= 4. Delete course\t\t\t    =");
+					System.out.println("= 2. Create new course\t\t\t\t    =");
+					System.out.println("= 3. Edit course\t\t\t\t    =");
+					System.out.println("= 4. Delete course\t\t\t\t    =");
 					System.out.println("= 9. Return to main menu\t\t\t    =");
 					System.out.println("=====================================================");
 					System.out.print(">> Please enter the number: ");
 					inString = scanner.next();
 					if(inString.equals("-l"))
-						Account.listAll();
+						Curriculum.listAll();
 					else{
 						inChar = inString.charAt(0);
 						switch(inChar){
 							case '1':
 								Curriculum.listAll();
+								break;
+							case '2': 	//creat new course
+							case '3':	// Edit Course =========
+								System.out.println("\n= = = = = = Course Information Editing = = = = = =");
+								System.out.print(" Please enter the course name you want to edit: "); 
+								inInt = Integer.parseInt(scanner.next());
+								Curriculum.editCourse(inInt);
 								break;
 							case '9':
 								break outerloop;	//break the outerloop -> return main menu
@@ -273,7 +288,7 @@ class Menus{
 	}
 
 	private void pkContinue(){
-		System.out.println("Press Enter key to continue...");
+		System.out.print("Press Enter key to continue...");
         try
         {
             System.in.read();

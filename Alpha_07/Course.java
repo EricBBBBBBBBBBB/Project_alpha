@@ -141,7 +141,7 @@ class Course{
         System.out.format("- Duration      :  %s weeks\n", duration);
         System.out.format("- Venue         :  %s\n", venue);
         System.out.format("- No. of Trainee:  %d/%d\n", totalNumOfTrainee, maxNumOfTrainee);
-		System.out.format("- Description   :  %s\n", description.replaceAll("(.{1,35})\\s+", "$1\n\t\t   "));
+		System.out.format("- Description   :  %s\n", description.replaceAll("(.{1,36})\\s+", "$1\n\t\t   "));
 		System.out.println("-----------------------------------------------------\n");	
 	}
 	
