@@ -13,7 +13,7 @@ class UserIO{
 
 // Declare data members //////////////////////////	
 	public static final String DEF_COLDELIMITER = ",";
-	public static final String DEF_TITLEHEADER ="User ID, User Type, User name, Password, Email, Phone, Date of Register, Trainee Type (for Trainee Only)";
+	public static final String DEF_TITLEHEADER ="User ID, User Type, User name, Password, Email, Phone, BDay, Date of Register, Trainee Type (for Trainee Only)";
 	
 // Methods //////////////////////////
 	public static ArrayList<User> readUTxtFile(String inFileStr){
@@ -29,8 +29,8 @@ class UserIO{
 					String row = null;
 					String [] strSplitArr;
 					int userID, userType, traineeType;
-					String uName, password, inEmail, inPhone, dateOfReg;
-					Long date;
+					String uName, password, inEmail, inPhone;
+					Long dateOfReg, dateOfbDay;
 					User newuser;
 					
 					while ((row = bufferReader.readLine()) != null) {
@@ -40,25 +40,29 @@ class UserIO{
 						password = strSplitArr[3];
 						inEmail = strSplitArr[4];
 						inPhone = strSplitArr[5];
-						date = Long.parseLong(strSplitArr[6]);
+						dateOfReg = Long.parseLong(strSplitArr[6]);
+						dateOfbDay = Long.parseLong(strSplitArr[7]);
 						switch(Integer.parseInt(strSplitArr[1])) {
 							case 1:
 								newuser = new Trainer(userID, uName, password);
 								newuser.setUserInfo(inEmail,inPhone);
-								newuser.setUserRegTime(date);
+								newuser.setUserRegTime(dateOfReg);
+								newuser.setUserBirth(dateOfbDay);
 								break;
 							case 2:
 								newuser = new Admin(userID, uName, password);
 								newuser.setUserInfo(inEmail,inPhone);
-								newuser.setUserRegTime(date);
+								newuser.setUserRegTime(dateOfReg);
+								newuser.setUserBirth(dateOfbDay);
 								break;
 							case 0:
 							default:
 								newuser = new Trainee(userID, uName, password);
-								traineeType = Integer.parseInt(strSplitArr[7]);
+								traineeType = Integer.parseInt(strSplitArr[8]);
 								Trainee newtrainee = (Trainee) newuser;
 								newtrainee.setTraineeInfo(inEmail,inPhone,traineeType);
-								newuser.setUserRegTime(date);
+								newuser.setUserRegTime(dateOfReg);
+								newuser.setUserBirth(dateOfbDay);
 						}
 						list.add(newuser);
 						
@@ -95,6 +99,7 @@ class UserIO{
 				outStream.print(list.get(i).getUserEmail() + DEF_COLDELIMITER);
 				outStream.print(list.get(i).getUserPhone() + DEF_COLDELIMITER);
 				outStream.print(list.get(i).getDate() + DEF_COLDELIMITER);
+				outStream.print(list.get(i).getBDay() + DEF_COLDELIMITER);
 				if (list.get(i) instanceof Trainee){
 					outStream.print(((Trainee)list.get(i)).traineeType + DEF_COLDELIMITER);
 				}

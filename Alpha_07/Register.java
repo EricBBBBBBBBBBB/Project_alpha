@@ -7,12 +7,17 @@
 ********************************************/
 
 import java.util.Scanner;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.text.ParseException;
 
 
 class Register {
 	public void register() {
 		
-		String inUserName, inPassword, inEmail, inPhone, inStr;
+		String inUserName, inPassword, inEmail, inPhone, inDate, inStr;
+        int year, month, day;
 
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("-----------------------------------------------------");
@@ -55,14 +60,42 @@ class Register {
         System.out.print("Phone: ");
         //while((inPhone = scanner.nextLine()).isEmpty()){
         while(!IOValidation.phoneValid(inPhone = scanner.nextLine())){
-        	System.out.print("User name could not be empty! Please enter again: ");
+        	System.out.print("Phone could not be empty! Please enter again: ");
         }
-
+        System.out.print("Date of birth (YYYY/MM/DD) [Eg.: 2007/10/27]: ");
+        Date bDay = new Date();
+        while(true){
+            inDate = scanner.nextLine();
+            if(!IOValidation.dateValid(inDate))
+                System.out.print("Wrong Format! Please enter again");
+            else {
+                String[] dateSplit = inDate.split("/");
+                year = Integer.parseInt(dateSplit[0]);
+                month = Integer.parseInt(dateSplit[1]);
+                day = Integer.parseInt(dateSplit[2]);
+                if(month < 0 || month > 12)
+                    System.out.println("Wrong Format!");
+                else if(day < 0 || day > 31)
+                    System.out.println("Wrong Format!");
+                else {
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+                    try {  
+                        bDay = sdf.parse(inDate);  
+                    } catch (ParseException pe) {  
+                        System.out.println("Wrong Format!");
+                        System.out.println(pe.getMessage());
+                        continue;
+                    } 
+                    break;
+                }
+            }
+        }
         System.out.println("#####################################################");
         System.out.println("# Please check the information correctly");
-        System.out.println("#   Your user name: " + inUserName);
-        System.out.println("#   Your E-mail: " + inEmail);
-        System.out.println("#   Your Phone: " + inPhone);
+        System.out.println("#   Your user name: \t" + inUserName);
+        System.out.println("#   Your E-mail: \t" + inEmail);
+        System.out.println("#   Your Phone: \t" + inPhone);
+        System.out.println("#   Date of Birth: \t" + inDate);
         System.out.println("#####################################################");
         System.out.println(" **** Please Enter : 'Y' to create user ****");
         System.out.print("(Y / N): ");
@@ -72,7 +105,8 @@ class Register {
 			inPassword = CryptWithMD5.cryptWithMD5(inPassword);
 			Trainee newtrainee = new Trainee(uid, inUserName, inPassword);
 			newtrainee.setTraineeInfo(inEmail,inPhone,3);
-     		System.out.println(Account.updateuserlist(newtrainee));
+            newtrainee.setUserBirth(bDay.getTime());
+            System.out.println(Account.updateuserlist(newtrainee));
 			
 			System.out.println("-----------------------------------------------------");
 	        System.out.println("-                                                   -");

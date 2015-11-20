@@ -14,34 +14,20 @@ class IOValidation{
 	public static void main(String[] args) {
 
         ArrayList<String> emails = new ArrayList<String>();
-        emails.add("Eric5201314Donny");
-        emails.add("Eric1111");
-        emails.add("eric1234");
-        emails.add("123eric");
+        emails.add("2014/9/5");
+        emails.add("2015/12/12");
+        emails.add("1993/5/9");
+        emails.add("1996/2/9");
          
         //Invalid emails
-        emails.add("user#domain.com");
-        emails.add("@yahoo.com");
-        emails.add(""); 
+        emails.add("196/2/9");
+        emails.add("1996/20/9");
+        emails.add("1996/2/900");
+        emails.add("2014.9.5");
         for(int i = 0; i < emails.size(); i++){
             String email = emails.get(i);
-            System.out.println(email +" : "+ IOValidation.usernameValid(email));
+            System.out.println(email +" : "+ IOValidation.dateValid(email));
 
-        }
-
-        ArrayList<String> phones = new ArrayList<String>();
-        phones.add("12345678");
-        phones.add("1234567");
-        phones.add("123458");
-        phones.add("12678");
-        phones.add("345678");
-        phones.add("12345678");
-        phones.add("123456789");
-        phones.add("1234567890");
-        phones.add("");
-        for(int i = 0; i < phones.size(); i++){
-            String phone = phones.get(i);
-            System.out.println(phone + " : " + IOValidation.phoneValid(phone));
         }
 	}
 	
@@ -94,6 +80,18 @@ class IOValidation{
         if(inStr.isEmpty())
             return false;
         String regex = "[a-zA-Z0-9]{6,16}";  // set the regex
+        Pattern pattern = Pattern.compile(regex);   // compile the pattern
+        Matcher matcher = pattern.matcher(inStr);   // validate the email
+        if(matcher.matches())
+            return true;
+        else
+            return false;
+    }
+
+    public static boolean dateValid(String inStr) {
+        if(inStr.isEmpty())
+            return false;
+        String regex = "[0-9]{4}+/[0-9]{1,2}+/[0-9]{1,2}";  // set the regex
         Pattern pattern = Pattern.compile(regex);   // compile the pattern
         Matcher matcher = pattern.matcher(inStr);   // validate the email
         if(matcher.matches())

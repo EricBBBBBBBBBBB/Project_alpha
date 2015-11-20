@@ -34,7 +34,7 @@ class Trainer extends User{
 		System.out.println("User Name: \t  " + getUserName());
 		System.out.println("User Email: \t  " + getUserEmail());
 		System.out.println("User Phone: \t  " + getUserPhone());
-		System.out.println("Date of register: " + sdf.format(date));
+		System.out.println("Date of register: " + sdf.format(dateOfRegister));
 		System.out.println("-----------------------------------------------------");
 		System.out.println("Owned Courses: \t  " + Curriculum.checkNoOfOwned(getUserID()));
 		System.out.println("-----------------------------------------------------");	

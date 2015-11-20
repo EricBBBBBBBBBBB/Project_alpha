@@ -19,7 +19,8 @@ class User{
 	protected String password;
 	protected String email;
 	protected String phone;
-	protected Long date;
+	protected Long dateOfRegister;
+	protected Long dateOfBirth;
 	private Date getTime;
 
 // Constructors
@@ -27,7 +28,7 @@ class User{
 		totalNoOfUser++;
 		//dateOfRegister = Calendar.getInstance();
 		getTime = new Date();
-		date = getTime.getTime();	// Long type number must add "L" after the number
+		dateOfRegister = getTime.getTime();	// Long type number must add "L" after the number
 	}
 	
 	public User(String name, int type) {	
@@ -73,8 +74,12 @@ class User{
 	}	
 	
 	public Long getDate() {
-		return date;
+		return dateOfRegister;
 	}	
+
+	public Long getBDay() {
+		return dateOfBirth;
+	}
 	
 	//Set the User information
 	public void setUserName(String name) {
@@ -103,7 +108,11 @@ class User{
 	}
 
 	public void setUserRegTime(Long date) {
-		this.date = date;
+		dateOfRegister = date;
+	}
+
+	public void setUserBirth(Long date) {
+		dateOfBirth = date;
 	}
 	
 	// Print User information
@@ -116,7 +125,7 @@ class User{
 		System.out.println("User Name: \t  " + getUserName());
 		System.out.println("User Email: \t  " + getUserEmail());
 		System.out.println("User Phone: \t  " + getUserPhone());
-		System.out.println("Date of register: " + sdf.format(date));
+		System.out.println("Date of register: " + sdf.format(dateOfRegister));
 		System.out.println("-----------------------------------------------------");	
 		System.out.println("End of Personal Infomation.\n");
 	}
