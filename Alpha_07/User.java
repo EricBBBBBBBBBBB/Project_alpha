@@ -9,6 +9,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.time.LocalDate;
+import java.time.Period;
 class User{
 	
 // Declare data members
@@ -82,9 +83,10 @@ class User{
 	public int getAge() {
 		int age;
 		LocalDate today = LocalDate.now();
-		age = today.compareTo(dateOfBirth);
+		Period period = Period.between(dateOfBirth, today);
 
-		return age;
+
+		return period.getYears();
 	}
 
 	public LocalDate getBDay() {

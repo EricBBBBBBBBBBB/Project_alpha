@@ -34,10 +34,10 @@ public class Test {
         System.out.println("----" + different);
         System.out.println("======");
 
-LocalDate today = LocalDate.of(2016, 5, 9);//.now();
+LocalDate today = LocalDate.of(2015, 5, 9);//.now();
 LocalDate birthday = LocalDate.of(1996, 5, 9);
-
-System.out.println(today.compareTo(birthday));
+Period period = Period.between(birthday, today);
+System.out.println(period.getYears());
 
 
 
