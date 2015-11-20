@@ -9,6 +9,9 @@
 import java.io.*;
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 class Trainee extends User{
 
@@ -48,6 +51,7 @@ class Trainee extends User{
 	
 	// Print Trainee information
 	public void printUserInfo() {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm");
 		System.out.println("-----------------------------------------------------");	
 		System.out.println("-   \t\t" + getUserType() + " Information\t\t   -");
 		System.out.println("-----------------------------------------------------");	
@@ -56,7 +60,7 @@ class Trainee extends User{
 		System.out.println("Trainee Type: \t  " + getTraineeType());
 		System.out.println("User Email: \t  " + getUserEmail());
 		System.out.println("User Phone: \t  " + getUserPhone());
-		System.out.println("Date of register: " + dateOfRegister.getTime());
+		System.out.println("Date of register: " + sdf.format(date));
 		System.out.println("-----------------------------------------------------");
 		System.out.println("Completed Courses:" + Curriculum.checkNoOfcompleted(getUserID()));
 		System.out.println("Current Courses:  " + Curriculum.checkNoOfCurrent(getUserID()));

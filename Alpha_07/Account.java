@@ -39,9 +39,9 @@ public class Account implements Files{
     public static void removeUser(String userName, int uid, User operateUser) {
         int listID;
         if(userName.isEmpty())
-            listID = searchuserlistID(userName);
-        else
             listID = searchuserlistID(uid);
+        else
+            listID = searchuserlistID(userName);
 
         if(listID == -1) {
             System.out.println("user not found!");
@@ -67,6 +67,7 @@ public class Account implements Files{
     //Search User by ID (return ArrayList ID)
     public static int searchuserlistID(int uid) {
         for (int i = 0; i < userlist.size(); i++) {
+            System.out.println(userlist.get(i).getUserID() + "---" + uid);
             if (userlist.get(i).getUserID() == uid)
                 return i;
         }

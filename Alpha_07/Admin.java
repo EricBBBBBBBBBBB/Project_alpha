@@ -9,6 +9,9 @@
 import java.io.*;
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 class Admin extends User{
 
@@ -23,6 +26,7 @@ class Admin extends User{
 // Methods
 	// Print Admin information
 	public void printUserInfo() {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm");
 		System.out.println("-----------------------------------------------------");	
 		System.out.println("-   \t\t" + getUserType() + " Information\t\t   -");
 		System.out.println("-----------------------------------------------------");	
@@ -30,7 +34,7 @@ class Admin extends User{
 		System.out.println("User Name: \t  " + getUserName());
 		System.out.println("User Email: \t  " + getUserEmail());
 		System.out.println("User Phone: \t  " + getUserPhone());
-		System.out.println("Date of register: " + dateOfRegister.getTime());
+		System.out.println("Date of register: " + sdf.format(date));
 		System.out.println("-----------------------------------------------------");	
 		System.out.println("End of Personal Infomation.\n");
 	}

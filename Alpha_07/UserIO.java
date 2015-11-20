@@ -30,7 +30,7 @@ class UserIO{
 					String [] strSplitArr;
 					int userID, userType, traineeType;
 					String uName, password, inEmail, inPhone, dateOfReg;
-					Calendar date;
+					Long date;
 					User newuser;
 					
 					while ((row = bufferReader.readLine()) != null) {
@@ -40,16 +40,17 @@ class UserIO{
 						password = strSplitArr[3];
 						inEmail = strSplitArr[4];
 						inPhone = strSplitArr[5];
-						//date = strSplitArr[6];
+						date = Long.parseLong(strSplitArr[6]);
 						switch(Integer.parseInt(strSplitArr[1])) {
 							case 1:
 								newuser = new Trainer(userID, uName, password);
 								newuser.setUserInfo(inEmail,inPhone);
-								
+								newuser.setUserRegTime(date);
 								break;
 							case 2:
 								newuser = new Admin(userID, uName, password);
 								newuser.setUserInfo(inEmail,inPhone);
+								newuser.setUserRegTime(date);
 								break;
 							case 0:
 							default:
@@ -57,6 +58,7 @@ class UserIO{
 								traineeType = Integer.parseInt(strSplitArr[7]);
 								Trainee newtrainee = (Trainee) newuser;
 								newtrainee.setTraineeInfo(inEmail,inPhone,traineeType);
+								newuser.setUserRegTime(date);
 						}
 						list.add(newuser);
 						
@@ -92,7 +94,7 @@ class UserIO{
 				outStream.print(list.get(i).password + DEF_COLDELIMITER);
 				outStream.print(list.get(i).getUserEmail() + DEF_COLDELIMITER);
 				outStream.print(list.get(i).getUserPhone() + DEF_COLDELIMITER);
-				outStream.print(list.get(i).dateOfRegister.getTime() + DEF_COLDELIMITER);
+				outStream.print(list.get(i).getDate() + DEF_COLDELIMITER);
 				if (list.get(i) instanceof Trainee){
 					outStream.print(((Trainee)list.get(i)).traineeType + DEF_COLDELIMITER);
 				}

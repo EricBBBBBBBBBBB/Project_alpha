@@ -5,7 +5,9 @@
 *
 * User.java:
 ********************************************/
-import java.util.Calendar;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 class User{
 	
 // Declare data members
@@ -17,12 +19,15 @@ class User{
 	protected String password;
 	protected String email;
 	protected String phone;
-	protected Calendar dateOfRegister;
+	protected Long date;
+	private Date getTime;
 
 // Constructors
 	User() {
 		totalNoOfUser++;
-		dateOfRegister = Calendar.getInstance();
+		//dateOfRegister = Calendar.getInstance();
+		getTime = new Date();
+		date = getTime.getTime();	// Long type number must add "L" after the number
 	}
 	
 	public User(String name, int type) {	
@@ -67,8 +72,8 @@ class User{
 		return phone;
 	}	
 	
-	public Calendar getDate() {
-		return dateOfRegister;
+	public Long getDate() {
+		return date;
 	}	
 	
 	//Set the User information
@@ -96,9 +101,14 @@ class User{
 		email = mail;
 		phone = tel;
 	}
+
+	public void setUserRegTime(Long date) {
+		this.date = date;
+	}
 	
 	// Print User information
 	public void printUserInfo() {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm");
 		System.out.println("-----------------------------------------------------");	
 		System.out.println("-   \t\t" + getUserType() + " Information\t\t   -");
 		System.out.println("-----------------------------------------------------");	
@@ -106,8 +116,10 @@ class User{
 		System.out.println("User Name: \t  " + getUserName());
 		System.out.println("User Email: \t  " + getUserEmail());
 		System.out.println("User Phone: \t  " + getUserPhone());
-		System.out.println("Date of register: " + dateOfRegister.getTime());
+		System.out.println("Date of register: " + sdf.format(date));
 		System.out.println("-----------------------------------------------------");	
 		System.out.println("End of Personal Infomation.\n");
 	}
+
+
 }
