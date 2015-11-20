@@ -353,7 +353,7 @@ class Curriculum implements Files{
 		return total;
     }
 	
-	//Edit User Information
+//Edit Course Information
     public static void editCourse(int cid) {
 		int listID = searchcourselistID(cid);
         if (listID != -1) {
@@ -439,12 +439,25 @@ class Curriculum implements Files{
         }
 	}
 	
-	
-	//Courses Performance
-	public static void Performance(){
-		System.out.println(" Grade performance\n");
-		//Current trainee
-		//completed trainee
+	//Delete Course
+	 public static void	deleteCourse(int cid) {
+		int listID = searchcourselistID(cid);
+        if (listID != -1) {
+            System.out.println("Found the record");
+			System.out.format("Course Name: [%s]\n", courselist.get(listID).getCourseName() );
+			System.out.println("Are you Confirm to delete this Course? (Y/N)");
+			Scanner scanner = new Scanner(System.in);
+			String inStr;
+			inStr = scanner.next();
+			if(inStr.equals("Y") || inStr.equals("y")) {
+				removeCourse(cid);
+                System.out.println("Course was deleted!");	
+			} else{
+                System.out.println("Action was cancelled!");
+			}
+        } else {
+            System.out.println("No such course");
+        }
 	}
 	
 }
