@@ -9,9 +9,7 @@
 import java.io.*;
 import java.util.Scanner;
 import java.util.ArrayList;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 class Trainer extends User{
 
@@ -35,7 +33,7 @@ class Trainer extends User{
 		System.out.println("User Email: \t  " + getUserEmail());
 		System.out.println("User Phone: \t  " + getUserPhone());
 		System.out.println("Date of register: " + sdf.format(dateOfRegister));
-		System.out.println("Date of Birth: \t  " + sdf.format(dateOfBirth));
+		System.out.println("Date of Birth: \t  " + dateOfBirth);
 		System.out.println("-----------------------------------------------------");
 		System.out.println("Owned Courses: \t  " + Curriculum.checkNoOfOwned(getUserID()));
 		System.out.println("-----------------------------------------------------");	

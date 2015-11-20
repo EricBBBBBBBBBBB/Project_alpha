@@ -8,6 +8,7 @@
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.time.LocalDate;
 class User{
 	
 // Declare data members
@@ -20,7 +21,7 @@ class User{
 	protected String email;
 	protected String phone;
 	protected Long dateOfRegister;
-	protected Long dateOfBirth;
+	protected LocalDate dateOfBirth;
 	private Date getTime;
 
 // Constructors
@@ -29,6 +30,7 @@ class User{
 		//dateOfRegister = Calendar.getInstance();
 		getTime = new Date();
 		dateOfRegister = getTime.getTime();	// Long type number must add "L" after the number
+		dateOfBirth = LocalDate.now();
 	}
 	
 	public User(String name, int type) {	
@@ -77,7 +79,15 @@ class User{
 		return dateOfRegister;
 	}	
 
-	public Long getBDay() {
+	public int getAge() {
+		int age;
+		LocalDate today = LocalDate.now();
+		age = today.compareTo(dateOfBirth);
+
+		return age;
+	}
+
+	public LocalDate getBDay() {
 		return dateOfBirth;
 	}
 	
@@ -111,7 +121,7 @@ class User{
 		dateOfRegister = date;
 	}
 
-	public void setUserBirth(Long date) {
+	public void setUserBirth(LocalDate date) {
 		dateOfBirth = date;
 	}
 	

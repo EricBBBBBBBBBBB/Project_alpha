@@ -105,7 +105,7 @@ class Register {
 			inPassword = CryptWithMD5.cryptWithMD5(inPassword);
 			Trainee newtrainee = new Trainee(uid, inUserName, inPassword);
 			newtrainee.setTraineeInfo(inEmail,inPhone,3);
-            newtrainee.setUserBirth(bDay.getTime());
+            //newtrainee.setUserBirth(bDay.getTime());
             System.out.println(Account.updateuserlist(newtrainee));
 			
 			System.out.println("-----------------------------------------------------");

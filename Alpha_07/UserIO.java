@@ -8,6 +8,7 @@
 
 import java.io.*;
 import java.util.*;
+import java.time.LocalDate;
 
 class UserIO{
 
@@ -30,7 +31,8 @@ class UserIO{
 					String [] strSplitArr;
 					int userID, userType, traineeType;
 					String uName, password, inEmail, inPhone;
-					Long dateOfReg, dateOfbDay;
+					Long dateOfReg;
+					LocalDate dateOfbDay;
 					User newuser;
 					
 					while ((row = bufferReader.readLine()) != null) {
@@ -41,7 +43,7 @@ class UserIO{
 						inEmail = strSplitArr[4];
 						inPhone = strSplitArr[5];
 						dateOfReg = Long.parseLong(strSplitArr[6]);
-						dateOfbDay = Long.parseLong(strSplitArr[7]);
+						dateOfbDay = LocalDate.parse(strSplitArr[7]);
 						switch(Integer.parseInt(strSplitArr[1])) {
 							case 1:
 								newuser = new Trainer(userID, uName, password);
