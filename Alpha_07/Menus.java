@@ -180,7 +180,7 @@ class Menus{
 					System.out.println("================ Users Management Menu ==============");
 					System.out.println("= 1. Users Detailed Information\t\t\t    =");
 					System.out.println("= 2. Users Searching\t\t\t\t    =");
-					System.out.println("= 3. Users Editing\t\t\t\t    =");
+					System.out.println("= 3. Users editing\t\t\t\t    =");
 					System.out.println("= 4. Remove Users\t\t\t\t    =");
 					System.out.println("= 5. Create Users\t\t\t\t    =");
 					System.out.println("= 9. Return to main menu\t\t\t    =");
@@ -253,12 +253,25 @@ class Menus{
 							case '1':
 								Curriculum.listAll();
 								break;
-							case '2': 	//creat new course
-							case '3':	// Edit Course =========
+							case '2': 	//Creat new course
+							
+								break;
+							case '3':	//Edit Course
 								System.out.println("\n= = = = = = Course Information Editing = = = = = =");
 								System.out.print(" Please enter the course name you want to edit: "); 
 								inInt = Integer.parseInt(scanner.next());
 								Curriculum.editCourse(inInt);
+								break;
+							case '4':	//Deiete Course =========
+								System.out.println("\n= = = = = = Course Deleting = = = = = =");
+								System.out.print(" Please enter the course name/ID you want to delete: "); 
+								if(scanner.hasNextInt()){	// if enter user ID
+									inInt = Integer.parseInt(scanner.next());
+									Curriculum.deleteCourse(inInt);
+								} else {					// if enter user name
+									inString = scanner.next();
+									Curriculum.deleteCourse(inInt);
+								}
 								break;
 							case '9':
 								break outerloop;	//break the outerloop -> return main menu
@@ -270,14 +283,16 @@ class Menus{
 				}
 				break;
 			case '3':
+				System.out.println("XXXXXXXXXXXXXXXXXXX");
 				break;
 			case '4':
-
+				System.out.println("XXXXXXXXXXXXXXXXXXX");		
 				break;
 			case '5':
 				admin.printUserInfo();
 				break;
 			case '6':
+				//General menu
 				System.out.println("You choose number 6");
 				break;
 			case '9':
