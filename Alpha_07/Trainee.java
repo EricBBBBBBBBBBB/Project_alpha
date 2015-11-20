@@ -61,6 +61,7 @@ class Trainee extends User{
 		System.out.println("User Email: \t  " + getUserEmail());
 		System.out.println("User Phone: \t  " + getUserPhone());
 		System.out.println("Date of register: " + sdf.format(dateOfRegister));
+		System.out.println("Date of Birth: \t  " + sdf.format(dateOfBirth));
 		System.out.println("-----------------------------------------------------");
 		System.out.println("Completed Courses:" + Curriculum.checkNoOfcompleted(getUserID()));
 		System.out.println("Current Courses:  " + Curriculum.checkNoOfCurrent(getUserID()));

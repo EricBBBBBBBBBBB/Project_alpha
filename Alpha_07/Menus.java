@@ -180,7 +180,7 @@ class Menus{
 					System.out.println("================ Users Management Menu ==============");
 					System.out.println("= 1. Users Detailed Information\t\t\t    =");
 					System.out.println("= 2. Users Searching\t\t\t\t    =");
-					System.out.println("= 3. Users editing\t\t\t\t    =");
+					System.out.println("= 3. Users Editing\t\t\t\t    =");
 					System.out.println("= 4. Remove Users\t\t\t\t    =");
 					System.out.println("= 5. Create Users\t\t\t\t    =");
 					System.out.println("= 9. Return to main menu\t\t\t    =");

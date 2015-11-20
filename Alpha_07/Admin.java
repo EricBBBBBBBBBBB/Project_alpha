@@ -35,6 +35,7 @@ class Admin extends User{
 		System.out.println("User Email: \t  " + getUserEmail());
 		System.out.println("User Phone: \t  " + getUserPhone());
 		System.out.println("Date of register: " + sdf.format(dateOfRegister));
+		System.out.println("Date of Birth: \t  " + sdf.format(dateOfBirth));
 		System.out.println("-----------------------------------------------------");	
 		System.out.println("End of Personal Infomation.\n");
 	}
