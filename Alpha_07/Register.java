@@ -32,10 +32,7 @@ class Register {
         System.out.println("\tPassword must contain: ");
         System.out.println("\t\t- 8~12 characters");
         System.out.println("\t\t- letters and digit");
-        //while((inUserName = scanner.nextLine()).isEmpty()){
-        /*while(!IOValidation.usernameValid(inUserName = scanner.nextLine())){
-        	System.out.print("User name could not be empty! Please enter again: ");
-        }*/
+        
         System.out.print("Name: ");
         while(true){
             inUserName = scanner.nextLine();

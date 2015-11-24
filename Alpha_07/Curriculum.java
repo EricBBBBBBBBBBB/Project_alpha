@@ -383,7 +383,8 @@ class Curriculum implements Files{
                         if(inStr.equals("-q") || inStr.equals("-Q")) {
                             break;
                         } else {
-                                System.out.println("The previous Email: " + userlist.get(listID).getUserEmail());
+                            // Eric 自行修改！
+                                /*System.out.println("The previous Email: " + userlist.get(listID).getUserEmail());
                                 System.out.println("The new Email: " + inStr);
                                 System.out.println(">> Are you sure to make change? (Y/N)");
                                 inChar = scanner.next().charAt(0);
@@ -392,7 +393,7 @@ class Curriculum implements Files{
                                     System.out.println("The Email is updated!");
                                 } else {
                                     System.out.println("Action was cancelled!");
-                                }
+                                }*/
                         }
 						break;
                     case '2':

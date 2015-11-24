@@ -165,7 +165,7 @@ class Menus{
 		System.out.println("- 3. xxxxxxxxxxxxxxxxxxxxxxt\t\t\t    -");
 		System.out.println("- 4. xxxxxxxxxxxxxxxxxxxxxx\t\t\t    -");
 		System.out.println("- 5. View Personal Infomation\t\t\t    -");
-		System.out.println("- 6. General Menu\t\t\t\t    -");
+		System.out.println("- 6. Change Password\t\t\t\t    -");
 		System.out.println("- 9. Quit the system\t\t\t\t    -");
 		System.out.println("-----------------------------------------------------");
 		System.out.print(">> Please enter the number: ");
@@ -296,8 +296,24 @@ class Menus{
 				admin.printUserInfo();
 				break;
 			case '6':
-				//General menu
-				System.out.println("You choose number 6");
+				System.out.println("=================== Change Password =================");
+				System.out.println(" - Enter [-q] to exit;");
+				System.out.println(" Please Enter your old password");
+				System.out.print(" >>> ");
+				String inPassword;
+				while(true) {
+					inString = scanner.next();
+					inPassword = CryptWithMD5.cryptWithMD5(inString);
+					if (inString.equals("-q") || inString.equals("-Q")) {
+						break;
+					} else if (inPassword.equals(user.getUserPassword())) {
+						System.out.println("Please Enter the password you want to change");
+						System.out.print(" >>> ");
+					} else {
+						System.out.println("The old password is not correct. Please enter again: ");
+					}
+				}
+				System.out.println("=====================================================");
 				break;
 			case '9':
 				System.out.println("You choosed to quit the system. Bye!! ");

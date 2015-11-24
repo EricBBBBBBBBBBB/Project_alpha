@@ -60,6 +60,10 @@ class User{
 	public String getUserName() {
 		return userName;
 	}
+
+	public String getUserPassword() {
+		return password;
+	}
 	
 	public String getUserType() {	
 		if(userType == 0 ) return "Trainee" ;
