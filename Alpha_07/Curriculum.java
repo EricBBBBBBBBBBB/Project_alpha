@@ -382,8 +382,7 @@ class Curriculum implements Files{
 						inStr = scanner.next();
                         if(inStr.equals("-q") || inStr.equals("-Q")) {
                             break;
-                        } /*else {
-                            if(IOValidation.emailValid(inStr)) {
+                        } else {
                                 System.out.println("The previous Email: " + userlist.get(listID).getUserEmail());
                                 System.out.println("The new Email: " + inStr);
                                 System.out.println(">> Are you sure to make change? (Y/N)");
@@ -394,10 +393,7 @@ class Curriculum implements Files{
                                 } else {
                                     System.out.println("Action was cancelled!");
                                 }
-                            }else{
-                                System.out.println("Wrong format");
-                            }
-                        }*/
+                        }
 						break;
                     case '2':
 						/*System.out.println("Please enter the new phone number (-q for quit without change");

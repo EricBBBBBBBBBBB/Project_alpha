@@ -262,7 +262,7 @@ class Menus{
 								break;
 							case '3':	//Edit Course
 								System.out.println("\n= = = = = = Course Information Editing = = = = = =");
-								System.out.print(" Please enter the course name you want to edit: "); 
+								System.out.print(" Please enter the course ID you want to edit: "); 
 								inInt = Integer.parseInt(scanner.next());
 								Curriculum.editCourse(inInt);
 								break;

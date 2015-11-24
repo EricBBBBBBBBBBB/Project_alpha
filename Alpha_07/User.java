@@ -81,11 +81,8 @@ class User{
 	}	
 
 	public int getAge() {
-		int age;
 		LocalDate today = LocalDate.now();
 		Period period = Period.between(dateOfBirth, today);
-
-
 		return period.getYears();
 	}
 
@@ -126,6 +123,7 @@ class User{
 	public void setUserBirth(LocalDate date) {
 		dateOfBirth = date;
 	}
+
 	
 	// Print User information
 	public void printUserInfo() {
