@@ -108,7 +108,7 @@ class Menus{
 		System.out.println("-----------------------------------------------------");
 		System.out.println("------------------ Trainer Menu ---------------------");
 		System.out.println("- 1. Owned Courses List\t\t\t\t    -");
-		System.out.println("- 2. Course Trainees informaion\t\t\t    -");
+		System.out.println("- 2. Courses Enrolled Trainees\t\t\t    -");
 		System.out.println("- 3. Courses Complete\t\t\t\t    -");
 		System.out.println("- 4. XXXXXXXXXXXXXX\t\t\t\t    -");
 		System.out.println("- 5. View Personal Infomation\t\t\t    -");
@@ -127,7 +127,7 @@ class Menus{
 				pkContinue();
 				break;
 			case '2':
-				System.out.println(">>Course Trainees informaion");	
+				System.out.println(">>Courses Enrolled Trainees");	
 				//
 				pkContinue();
 				break;
@@ -214,7 +214,7 @@ class Menus{
 								Account.editUser(inString);
 								break;
 							case '4':	// Remove User =======
-								System.out.println(" Deregister\n");
+								System.out.println("\n= = = = = = = = = = Deregister = = = = = = = = = =");
 								System.out.print(" Please enter the user name or ID you want to remove: ");
 								if(scanner.hasNextInt()){	// if enter user ID
 									inInt = scanner.nextInt();
@@ -223,6 +223,10 @@ class Menus{
 									inString = scanner.next();
 									Account.removeUser(inString, 0, user);
 								}
+								break;
+							case '5':	// Create User =======
+								Register register = new Register();
+								register.register();	
 								break;
 							case '9':
 								break outerloop;	//break the outerloop -> return main menu
@@ -254,7 +258,7 @@ class Menus{
 								Curriculum.listAll();
 								break;
 							case '2': 	//Creat new course
-							
+								
 								break;
 							case '3':	//Edit Course
 								System.out.println("\n= = = = = = Course Information Editing = = = = = =");

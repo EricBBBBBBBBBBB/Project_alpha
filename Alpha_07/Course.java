@@ -70,9 +70,9 @@ class Course{
 		String statusStr;
 		if(!completed){
 			if(isAvailable) statusStr = "Available";
-				else statusStr = "NOT Available";
+				else statusStr = "FULL";
 		}else{
-			statusStr = "completed";
+			statusStr = "Completed";
 		}
 		return statusStr;
 	}
