@@ -41,7 +41,7 @@ class Course{
 	Course(int cid, String cname, int type) {
 		this();
 		courseID = cid;
-		courseName = cname;
+		setCourseName(cname);
 		courseType = type;
 	}
 	
@@ -108,24 +108,42 @@ class Course{
 		return maxNumOfTrainee;
 	}
 	
+	public String getDescription() {
+		return description;
+	}
+	
 	//set the Course information
-	public void setCourseInfo(boolean status, int uid, int time, String place, int cost, String t , String d, int max ) {
+	public void setCourseInfo(boolean status, int uid, int time, String place, int cost, String tar , String des, int max ) {
 		completed = status;
-		courseTrainerID = uid;
+		setCourseTrainerID(uid);
 		duration = time;
 		venue = place;
 		price = cost;
-		target = t;
-		description = d;
+		setTarget(tar);
+		setDescription(des);
 		maxNumOfTrainee = max;
 		
 	}
+	
+	public void setCourseName(String cname) {
+		courseName = cname;	
+	}	
+	
+	public void setCourseTrainerID(int uid) {
+		courseTrainerID = uid;	
+	}	
 	
 	public void setTrainee(ArrayList<Integer> list) {
 		traineelist = list;
 	}
 	
+	public void setDescription(String des) {
+		description = des;
+	}
 
+	public void setTarget(String tar) {
+		target =  tar;
+	}
 	
 	// Print the Course information
 	public void printCourseInfo() {

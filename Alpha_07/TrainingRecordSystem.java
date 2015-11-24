@@ -40,15 +40,33 @@ public class TrainingRecordSystem implements Files{
     		Menus menus = new Menus(loginUser);	//menus class
             menus.mainMenu();
     		
-    		//Backup
-			UserIO.writeUTxtFile(DEF_USER.substring(0,DEF_USER.length() - 4) + "_BackUp.csv", Account.userlist);	
-			CourseIO.writeCTxtFile(DEF_COURSE.substring(0,DEF_COURSE.length() - 4) + "_BackUp.csv", Curriculum.courselist);	
-			//Write
-			UserIO.writeUTxtFile(DEF_USER, Account.userlist);
-    		CourseIO.writeCTxtFile(DEF_COURSE, Curriculum.courselist);
-
-            System.out.println(">>> Enter \"-q\" for quit the system; nothing for login other user");
-            String inStr;
+			//Prompt user for saving
+			String inStr;
+			outerloop: 
+			while(true) {
+				System.out.println(">>> Are you want to saving all updates?? (Y/N)");
+				inStr = scanner.nextLine();
+				switch(inStr) {
+					case "Y":
+					case "y":
+						//Backup
+						UserIO.writeUTxtFile(DEF_USER.substring(0,DEF_USER.length() - 4) + "_BackUp.csv", Account.userlist);	
+						CourseIO.writeCTxtFile(DEF_COURSE.substring(0,DEF_COURSE.length() - 4) + "_BackUp.csv", Curriculum.courselist);	
+						//Write
+						UserIO.writeUTxtFile(DEF_USER, Account.userlist);
+						CourseIO.writeCTxtFile(DEF_COURSE, Curriculum.courselist);
+						System.out.println(">>>> Updates Saved.");
+						break outerloop;
+					case "N":
+					case "n":
+						System.out.println("Upate Cancelled.");
+						break outerloop;
+					default:
+						System.out.println("Unknown Command.");
+				}
+			}
+			
+            System.out.println(">>> Enter \"-q\" for quit the system;\n  > nothing for login other user");
             inStr = scanner.nextLine();
 			
             if(inStr.equals("-q") || inStr.equals("-Q")) {
