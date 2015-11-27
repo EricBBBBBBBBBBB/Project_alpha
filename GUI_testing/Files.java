@@ -1,0 +1,13 @@
+/********************************************
+* Project Team:	
+* Students: 
+* Course: OOP 2015 Sem 1, HDIT
+*
+*
+********************************************/
+
+interface Files {
+	public static final String DEF_COURSE = "Courses.csv";
+	public static final String DEF_USER = "Users.csv";
+}
+
