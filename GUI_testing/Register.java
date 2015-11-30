@@ -31,9 +31,8 @@ class Register extends SSEM {
 		final int x = (screenSize.width - 360) / 2;
 		final int y = (screenSize.height - 640) / 2;
 		registerframe.setLocation(x, y);
-		
-		registerframe.setUndecorated(true);
 		registerframe.setVisible(true);
+		SSEM.quit(this);	
 		
 		//panel
 		JPanel panel = new JPanel();

@@ -10,25 +10,26 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-public class SSEM extends JFrame {
+
+public class SSEM extends JFrame implements Files {
 	
 	public static SSEM main;
 	public static Menus menus;
 	
 	SSEM() {
 		add(new SSEMPanel());
-		setSize(360, 640);
+		setSize(376, 640);
 		
 		//set center
 		final Toolkit toolkit = Toolkit.getDefaultToolkit();
 		final Dimension screenSize = toolkit.getScreenSize();
-		final int x = (screenSize.width - 360) / 2;
+		final int x = (screenSize.width - 376) / 2;
 		final int y = (screenSize.height - 640) / 2;
+		
 		setLocation(x, y);
-		//setExtendedState(JFrame.MAXIMIZED_BOTH); //Full Screen
-		setUndecorated(true);
-	
+		quit(this);	
 	}
+	
 
 	public static void main(String[] args) {
 		
@@ -40,13 +41,39 @@ public class SSEM extends JFrame {
 		main.setVisible(true);
 
 	}
+	
+	public static void quit(JFrame f){
+		f.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+		WindowListener exitListener = new WindowAdapter() {
+			public void windowClosing(WindowEvent e) {
+				int confirm = JOptionPane.showOptionDialog(null, "Are You Sure to Close Application?","Exit Confirmation", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
+				if (confirm == 0) {
+					int save = JOptionPane.showOptionDialog(null, "Are You Sure to Save All Updates?","Update Confirmation", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
+					if(save == 0){
+						//Backup
+						UserIO.writeUTxtFile(DEF_USER.substring(0,DEF_USER.length() - 4) + "_BackUp.csv", Account.userlist);	
+						CourseIO.writeCTxtFile(DEF_COURSE.substring(0,DEF_COURSE.length() - 4) + "_BackUp.csv", Curriculum.courselist);	
+						//Write
+						UserIO.writeUTxtFile(DEF_USER, Account.userlist);
+						CourseIO.writeCTxtFile(DEF_COURSE, Curriculum.courselist);
+						JOptionPane.showMessageDialog(null, "Updates Saved.");
+						System.exit(0);
+					}else{
+						System.exit(0);	
+					}
+				}else{
+					//do nothing
+				}
+			}
+		};
+		f.addWindowListener(exitListener);
+	}
 
 }
 
 //panel
-class SSEMPanel extends JPanel implements Files {
+class SSEMPanel extends JPanel {
 	Image bgimage = null;
-
 	SSEMPanel() {
 		
 		setLayout(null);	
@@ -70,7 +97,7 @@ class SSEMPanel extends JPanel implements Files {
 		JButton signupButton = new JButton(new ImageIcon("img/signup.png"));
 
 		//user name
-		username.setBounds(63, 403, 210, 25);
+		username.setBounds(62, 369, 210, 25);
 		username.setBorder(null);
 		username.setFont(font);
 		username.setForeground(fontcolor);
@@ -83,7 +110,7 @@ class SSEMPanel extends JPanel implements Files {
 		}); 
 		
 		//password
-		password.setBounds(63, 455, 210, 25);
+		password.setBounds(62, 421, 210, 25);
 		password.setBorder(null);
 		password.setFont(font);
 		password.setForeground(fontcolor);
@@ -96,7 +123,7 @@ class SSEMPanel extends JPanel implements Files {
 		}); 	
 		
 		//login
-		loginButton.setBounds(59, 501, 245, 37);
+		loginButton.setBounds(58, 468, 245, 37);
 		loginButton.setBorder(null);
 		add(loginButton);
 		//login function 
@@ -142,7 +169,7 @@ class SSEMPanel extends JPanel implements Files {
 
 		
 		//SignUp
-		signupButton.setBounds(141, 546, 80, 25);
+		signupButton.setBounds(140, 513, 80, 25);
 		signupButton.setBorder(null);
 		add(signupButton);
 		//signup function
@@ -154,47 +181,14 @@ class SSEMPanel extends JPanel implements Files {
 			}
 		});
 		
-		quit(this);
 	}
 
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		int imwidth = bgimage.getWidth(null);
 		int imheight = bgimage.getHeight(null);
-		g.drawImage(bgimage, 1, 1, null);
+		g.drawImage(bgimage, 0, 0, imwidth,imheight, this);
 	}
-	
-	public static void quit(JPanel p){
-		
-		//quit button
-		JButton quitButton = new JButton(new ImageIcon("img/quit.png"));
-		quitButton.setBounds(310, 2, 50, 30);
-		p.add(quitButton);
-		quitButton.setBorder(null);  	
-		//quit function
-		quitButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (JOptionPane.showConfirmDialog(null, "Are you want to quit ?", " ",JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-					if (JOptionPane.showConfirmDialog(null, "Are you want to saving all updates?", " ",JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-						//Backup
-						UserIO.writeUTxtFile(DEF_USER.substring(0,DEF_USER.length() - 4) + "_BackUp.csv", Account.userlist);	
-						CourseIO.writeCTxtFile(DEF_COURSE.substring(0,DEF_COURSE.length() - 4) + "_BackUp.csv", Curriculum.courselist);	
-						//Write
-						UserIO.writeUTxtFile(DEF_USER, Account.userlist);
-						CourseIO.writeCTxtFile(DEF_COURSE, Curriculum.courselist);
-						JOptionPane.showMessageDialog(null, "Updates Saved.");
-						System.exit(0);			
-					} else{
-						JOptionPane.showMessageDialog(null, "Bye!!");
-						System.exit(0);
-					}
-				}else{
-					//do nothing
-				}
-			}
-		});
-	}
-	
-	
+
 }
 

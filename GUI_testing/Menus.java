@@ -18,24 +18,22 @@ public class Menus extends SSEM{
 	
 	Menus(User user) {
 		add(new MenusPanel(user));
-		setSize(360, 640);
+		setSize(1015, 645);
 		
 		//set center
 		final Toolkit toolkit = Toolkit.getDefaultToolkit();
 		final Dimension screenSize = toolkit.getScreenSize();
-		final int x = (screenSize.width - 360) / 2;
-		final int y = (screenSize.height - 640) / 2;
+		final int x = (screenSize.width - 1010) / 2;
+		final int y = (screenSize.height - 650) / 2;	
 		setLocation(x, y);
-		
-		setUndecorated(true);
-		setVisible(true);
+		setVisible(true);	
 	}
 	
 }
 
 //panel
 class MenusPanel extends JPanel {
-	
+
 	private User user;
 	private JLabel title;
 	private JButton option1;
@@ -66,17 +64,19 @@ class MenusPanel extends JPanel {
 		  e.printStackTrace();
 		}
 		
-		
 		//select the right menu
 		switch(user.getUserType()) {
 			case "Trainee":
-				traineeMenu();
+				Trainee trainee = (Trainee) user;		
+				add(new TraineeMenu(trainee));
 				break;
 			case "Trainer":
-				trainerMenu();
+				Trainer trainer = (Trainer) user;		
+				add(new TrainerMenu(trainer));
 				break;
 			case "Admin":
-				adminMenu();
+				Admin admin = (Admin) user;	
+				add(new AdminMenu(admin));
 				break;
 			default:
 				JOptionPane.showMessageDialog(null, "Unknown Comment, Please Restart The System."," ",JOptionPane.WARNING_MESSAGE);
@@ -84,7 +84,7 @@ class MenusPanel extends JPanel {
 		
 		//logout
 		Logout = new JButton("Logout");
-		Logout.setBounds(10, 220, BOTTON_WIDTH, BOTTON_HEIGHT);
+		Logout.setBounds(670, 430, BOTTON_WIDTH, BOTTON_HEIGHT);
 		add(Logout);
 		Logout.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -96,149 +96,16 @@ class MenusPanel extends JPanel {
 					//do nothing
 				}
 			}
-		});	
-		SSEMPanel.quit(this);
+		});			
 		
+		add(new test(u));
 	}	
-	
-	//Trainee Menu
-	private void traineeMenu() {
-		Trainee trainee = (Trainee) user;
-	
-		option1 = new JButton("1. View the Current Available Courses");
-		option2 = new JButton("2. Join Training Courses");
-		option3 = new JButton("3. Display Current/completed Courses");
-		option4 = new JButton("4. Display Targets Set");
-		option5 = new JButton("5. View Personal Infomation");
-		option6 = new JButton("6. Change Password");
-		
-		//title
-		title = new JLabel("Trainee Menu");
-		title.setBounds(10, 10, 1000, 25);
-		add(title);
-		
-		//option1
-		option1.setBounds(10, 40, BOTTON_WIDTH, BOTTON_HEIGHT);
-		add(option1);
-		option1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Curriculum.listAvaibleCourse(trainee.upadteTraineeType(),trainee.getUserID());				
-			}
-		});
-		
-		//option2
-		option2.setBounds(10, 70, BOTTON_WIDTH, BOTTON_HEIGHT);
-		add(option2);
-		option2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Curriculum.joinCourse(trainee.upadteTraineeType(),trainee.getUserID());			
-			}
-		});
-		
-		//option3
-		option3.setBounds(10, 100, BOTTON_WIDTH, BOTTON_HEIGHT);
-		add(option3);
-		option3.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Curriculum.listCCCourse(trainee.getUserID());		
-			}
-		});
-		
-		//option4
-		option4.setBounds(10, 130, BOTTON_WIDTH, BOTTON_HEIGHT);
-		add(option4);
-		option4.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Curriculum.listTarget(trainee.getUserID());		
-			}
-		});		
-		
-		//option5
-		option5.setBounds(10, 160, BOTTON_WIDTH, BOTTON_HEIGHT);
-		add(option5);
-		option5.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				trainee.printUserInfo();
-			}
-		});			
-		
-		//option6
-		option6.setBounds(10, 190, BOTTON_WIDTH, BOTTON_HEIGHT);
-		add(option6);
-		option6.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				changePassword();
-			}
-		});		
-				
-	}
 
-	//Trainer Menu
-	private void trainerMenu() {
-		Trainer trainer = (Trainer) user;
-		
-		option1 = new JButton("1. Owned Courses List");
-		option2 = new JButton("2. Courses Enrolled Trainees");
-		option3 = new JButton("3. Courses Complete");
-		option4 = new JButton("4. View Personal Infomation");
-		option5 = new JButton("5. Change Password");
-		
-		//title
-		title = new JLabel("Trainer Menu");
-		title.setBounds(10, 10, 1000, 25);
-		add(title);
-
-		
-		//option1
-		option1.setBounds(10, 40, BOTTON_WIDTH, BOTTON_HEIGHT);
-		add(option1);
-		option1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Curriculum.listOwnedCourse(trainer.getUserID());			
-			}
-		});
-		
-		//option2
-		option2.setBounds(10, 70, BOTTON_WIDTH, BOTTON_HEIGHT);
-		add(option2);
-		option2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-		
-			}
-		});
-		
-		//option3
-		option3.setBounds(10, 100, BOTTON_WIDTH, BOTTON_HEIGHT);
-		add(option3);
-		option3.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Curriculum.completeCourse(trainer.getUserID());
-			}
-		});
-		
-		//option4
-		option4.setBounds(10, 130, BOTTON_WIDTH, BOTTON_HEIGHT);
-		add(option4);
-		option4.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				trainer.printUserInfo();
-			}
-		});			
-		
-		//option5
-		option5.setBounds(10, 160, BOTTON_WIDTH, BOTTON_HEIGHT);
-		add(option5);
-		option5.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				changePassword();
-			}
-		});		
-		
-	}
+	
 	
 	//Admin Menu
 	private void adminMenu() {
-		Admin admin = (Admin) user;
+		Admin admin = (Admin) user;	
 		
 		option1 = new JButton("1. Users Management");
 		option2 = new JButton("2. Course Management");
@@ -458,6 +325,6 @@ class MenusPanel extends JPanel {
 		super.paintComponent(g);
 		int imwidth = bgimage.getWidth(null);
 		int imheight = bgimage.getHeight(null);
-		g.drawImage(bgimage, 1, 1, null);
+		g.drawImage(bgimage, 0, 0, imwidth,imheight, this);
 	}
 }

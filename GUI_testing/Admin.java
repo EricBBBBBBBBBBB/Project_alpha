@@ -25,17 +25,19 @@ class Admin extends User{
 	// Print Admin information
 	public void printUserInfo() {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm");
-		System.out.println("-----------------------------------------------------");	
-		System.out.println("-   \t\t" + getUserType() + " Information\t\t   -");
-		System.out.println("-----------------------------------------------------");	
-		System.out.println("User ID: \t  " + getUserID());
-		System.out.println("User Name: \t  " + getUserName());
-		System.out.println("User Email: \t  " + getUserEmail());
-		System.out.println("User Phone: \t  " + getUserPhone());
-		System.out.println("Date of register: " + sdf.format(dateOfRegister));
-		System.out.println("Date of Birth: \t  " + dateOfBirth);
-		System.out.println("Age: \t" + getAge());
-		System.out.println("-----------------------------------------------------");	
-		System.out.println("End of Personal Infomation.\n");
+		
+		String output = 
+			"---------------------------------------------------------------------------\n" +
+			"-                               Admin Information                               -\n" +
+			"---------------------------------------------------------------------------\n" +
+			"User ID: \t  " + getUserID() + "\n" +
+			"User Name: \t  " + getUserName() + "\n" +
+			"User Email: \t  " + getUserEmail() + "\n" +
+			"User Phone: \t  " + getUserPhone() + "\n" +
+			"Date of register:  " + sdf.format(dateOfRegister) + "\n" + 
+			"Date of Birth: \t  " + dateOfBirth + "\n" + 
+			"---------------------------------------------------------------------------\n" +
+			"End of Personal Infomation.\n";
+		test.write(output);
 	}
 }

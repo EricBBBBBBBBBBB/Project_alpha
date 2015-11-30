@@ -147,39 +147,50 @@ class Course{
 	
 	// Print the Course information
 	public void printCourseInfo() {
-		System.out.println("-----------------------------------------------------");
-		System.out.println("          Course Information (" + getCourseStatus() + ")");    		 
-		System.out.println("-----------------------------------------------------");
-		System.out.format("- Course ID     :  %d\n", getCourseID());
-		System.out.format("- Course Name   :  %s\n", getCourseName());
-		System.out.format("- Course Trainer:  %d\n", courseTrainerID);
-        System.out.format("- Requirements  :  %s\n", getCourseType());
-		System.out.println("-----------------------------------------------------");
-        System.out.format("- Price         :  $%d\n", getPrice());
-        System.out.format("- Duration      :  %s weeks\n", duration);
-        System.out.format("- Venue         :  %s\n", venue);
-        System.out.format("- No. of Trainee:  %d/%d\n", totalNumOfTrainee, maxNumOfTrainee);
-		System.out.format("- Description   :  %s\n", description.replaceAll("(.{1,36})\\s+", "$1\n\t\t   "));
-		System.out.println("-----------------------------------------------------\n");	
+
+		String output = 
+			"---------------------------------------------------------------------------\n" +
+			"-                                Course Information (" + getCourseStatus() + ")                               -\n" +
+			"---------------------------------------------------------------------------\n" +
+			"Course ID     :  " + getCourseID() + "\n" +
+			"Course Name   :  " + getCourseName() + "\n" +
+			"Course Trainer:  " + courseTrainerID + "\n" +
+			"Requirements  :  " + getCourseType() + "\n" +
+			"---------------------------------------------------------------------------\n" +
+			"Price         :  " + getPrice() + "\n" +
+		    "Duration      :  " + duration + "weeks\n" +
+			"Venue         :  " + venue + "\n" +
+			"No. of Trainee:  " + totalNumOfTrainee + "/" + maxNumOfTrainee + "\n" +
+			"Description   :  " + description + "\n" +
+			"---------------------------------------------------------------------------\n" +
+			"End of Personal Infomation.\n";
+		test.write(output);
 	}
-	
+
+
+//######################################################################################################################		
 	public void printCourseTrainee(){
-		System.out.println("-----------------------------------------------------");	
-		System.out.println("          Course Information (" + getCourseStatus() + ")");    		 
-		System.out.println("-----------------------------------------------------");
-		System.out.format("- Course ID     :  %d\n", getCourseID());
-		System.out.format("- Course Name   :  %s\n", getCourseName());
-        System.out.format("- Requirements  :  %s\n", getCourseType());
-		System.out.format("- No. of Trainee:  %d/%d\n", totalNumOfTrainee, maxNumOfTrainee);
-		System.out.println("-----------------------------------------------------");
-		System.out.println("- ID   User Name           User Type");
-		System.out.println("-----------------------------------------------------");
+
+	
 		for(int i = 0; i < traineelist.size() ; i++ ){
 			System.out.format( "- %-5d%-20s\n" , Account.userlist.get(traineelist.get(i)).getUserID(), Account.userlist.get(traineelist.get(i)).getUserName());
 		}
-		System.out.println("-----------------------------------------------------");	
-		System.out.println("End of XXX.\n");
-		
+
+		String output = 
+			"---------------------------------------------------------------------------\n" +
+			"-                                Course Information (" + getCourseStatus() + ")                               -\n" +
+			"---------------------------------------------------------------------------\n" +
+			"Course ID     :  " + getCourseID() + "\n" +
+			"Course Name   :  " + getCourseName() + "\n" +
+			"Requirements  :  " + getCourseType() + "\n" +
+			"No. of Trainee:  " + totalNumOfTrainee + "/" + maxNumOfTrainee + "\n" +
+			"---------------------------------------------------------------------------\n" +
+			"- ID   User Name           User Type" +
+			"---------------------------------------------------------------------------\n" +
+			
+			"---------------------------------------------------------------------------\n" +
+			"End of Personal Infomation.\n";
+		test.write(output);		
 	}
 	
 	public void addTrainee(int uid) {

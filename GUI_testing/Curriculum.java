@@ -9,6 +9,7 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import javax.swing.table.*;
 
 import java.io.*;
 import java.util.Scanner;
@@ -17,7 +18,6 @@ import java.util.ArrayList;
 class Curriculum implements Files{
 
 // Declare data members
-
     public static ArrayList<Course> courselist = new ArrayList<Course>(); 
 
 //Methods
@@ -25,9 +25,7 @@ class Curriculum implements Files{
     public static void initcourselist() {       
 		courselist = CourseIO.readCTxtFile(DEF_COURSE);
     }
-	
-	
-	
+
 	//Update Course List
     public static boolean updatecourselist(Course course) {
         if(courselist.add(course))
@@ -67,106 +65,40 @@ class Curriculum implements Files{
 	//List all Course records
 	public static void listAll(){
 		
-		System.out.println("-----------------------------------------------------");
-		System.out.println("- ID   Course Name         Type           Status");
-		System.out.println("-----------------------------------------------------");	
-		boolean not = true;		
+		String output =  "> List all courses";
+		test.write(output);
+		
+		String [] strHeader = {"Course ID", "Course Name", "Type", "Status"};
+		String [][] strData = new String[courselist.size()][4]; 
+		boolean not = true;
+		int row = 0;
 		for (int i = 0; i < courselist.size(); i++) {
-			System.out.format( "- %-5d%-20s%-15s%s\n" , courselist.get(i).getCourseID(), courselist.get(i).getCourseName(), courselist.get(i).getCourseType(), courselist.get(i).getCourseStatus() );
+			strData[row][0] = Integer.toString(courselist.get(i).getCourseID()); 
+			strData[row][1] = courselist.get(i).getCourseName(); 
+			strData[row][2] = courselist.get(i).getCourseType(); 
+			strData[row++][3] = courselist.get(i).getStatus(); 
 			not = false;
 		}
-		if(not)System.out.println("- Not for now.");		
-		System.out.println("-----------------------------------------------------");
+		if(not) {
+			JOptionPane.showMessageDialog(null, "Not for now.");
+		}else {
+			TableModel  model = new DefaultTableModel(strData,strHeader);
+			TraineeMenu.table.setModel(model);
+		}
 	}
 	
 	
-	//List Trainer Owned Courses
-	public static void listOC(int uid, boolean all){
-		System.out.println("------------------- Owned Courses -------------------");
-		System.out.println("-----------------------------------------------------");
-		System.out.println(" ID    Course Name         Total    Status");
-		System.out.println("-----------------------------------------------------");	
-		
-		boolean not = true;
-		for (int i = 0; i < courselist.size(); i++) {
-			if(courselist.get(i).getTrainerID() == uid){
-				if( all || !(courselist.get(i).completed ) ){
-					System.out.format( "- %-5d%-20s%d/%-7d%s\n" , courselist.get(i).getCourseID(), courselist.get(i).getCourseName(), courselist.get(i).getTotalOfTrainee(), courselist.get(i).getMaxOfTrainee(), courselist.get(i).getStatus());
-					not = false;
-				}
-					
-			}
-		}
-		
-		if(not)System.out.println("- Not for now.");		
-		System.out.println("-----------------------------------------------------");
-	}
-	
-	public static void listOwnedCourse(int uid){
-		
-		listOC(uid,true);
-		System.out.println("Please enter the Course ID to show more details.");
-        System.out.print("(-1) for quit. : ");
 
-        Scanner scanner = new Scanner(System.in);
-		int inInt;
-        if(scanner.hasNextInt())
-            inInt = scanner.nextInt();
-        else
-            inInt = -1;
-
-        if(inInt == -1){
-            System.out.println(">> quit.");
-			return;
-        }
-		
-		boolean found = false;
-		for (int i = 0; i < courselist.size(); i++) {
-			if(courselist.get(i).courseID == inInt && courselist.get(i).getTrainerID() == uid ){
-				courselist.get(i).printCourseInfo();
-				found = true;
-			} 
-		}
-		if(!found) System.out.println(">> Course not found!!\n");
-
-	}	
-	
-	public static void completeCourse(int uid){
-		
-		listOC(uid,false);
-		System.out.println("Please enter the Course ID to complete it.");
-        System.out.print("(-1) for quit. : ");
-
-        Scanner scanner = new Scanner(System.in);
-		int inInt;
-        if(scanner.hasNextInt())
-            inInt = scanner.nextInt();
-        else
-            inInt = -1;
-
-        if(inInt == -1){
-            System.out.println(">> quit.");
-			return;
-        }
-		
-		boolean found = false;
-		for (int i = 0; i < courselist.size(); i++) {
-			if(courselist.get(i).courseID == inInt && !(courselist.get(i).completed)) {
-				courselist.get(i).completed = true;
-				System.out.println(">> Course completed.\n");	
-				found = true;
-			}
-		}
-		if(!found) System.out.println(">> Course not found!!\n");		
-	}
 	
 
-	//List Avaible Courses
-	public static void listAvaible(int type,int uid){
-
+	//List Avaible Courses (Trainee Option 1)
+	public static void listAvaibleCourse(int type,int uid){
+		
+		String output =  "> List Avaible courses";
+		test.write(output);
+		
 		String [] strHeader = {"Course ID", "Course Name", "Course Type", "Price($)"};
 		String [][] strData = new String[courselist.size()][4]; 
-		
 		int age = Account.userlist.get(Account.searchuserlistID(uid)).getAge();
 		boolean not = true;
 		int row = 0;
@@ -184,28 +116,62 @@ class Curriculum implements Files{
 		if(not) {
 			JOptionPane.showMessageDialog(null, "Not for now.");
 		}else {
-			Tableframe listTable = new Tableframe("Avaible Courses" ,strHeader, strData);
+			TableModel  model = new DefaultTableModel(strData,strHeader);
+			TraineeMenu.table.setModel(model);
+		}
+	}
+
+	//Join Courses (Trainee Option 2)
+	public static void joinCourse(int type,int uid){
+		
+		String output =  "> Join courses";
+		test.write(output);
+		
+		int i = Integer.parseInt(TraineeMenu.table.getValueAt(TraineeMenu.table.getSelectedRow(), 0).toString());
+		
+		if(JOptionPane.showConfirmDialog(null, "Are you sure to pay and join Course [" + i + "] ??", " ",JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
+			courselist.get(i-1).addTrainee(uid);
+			JOptionPane.showMessageDialog(null, "Course joined");	
+		}else{
+			JOptionPane.showMessageDialog(null, "Action was cancelled");	
 		}
 		
 	}
 	
-	
-	//List Avabile Courses Details
-	public static void listAvaibleCourse(int type,int uid){
-		listAvaible(type, uid);
-	}
-	
-	//List Courses Targets
-	public static void listTarget(int uid){
+	//List CCCourses (Trainee Option 3)
+	public static void listCCCourse(int uid){
 		
+		String output =  "> List Current/Completed courses";
+		test.write(output);
+		
+		String [] strHeader = {"Course ID", "Course Name", "Status"};
+		String [][] strData = new String[courselist.size()][3]; 
+		boolean not = true;
+		int row = 0;
+		for (int i = 0; i < courselist.size(); i++) {
+			if(courselist.get(i).checkid(uid)){
+				strData[row][0] = Integer.toString(courselist.get(i).getCourseID()); 
+				strData[row][1] = courselist.get(i).getCourseName(); 
+				strData[row++][2] = courselist.get(i).getStatus();
+				not = false;
+			}
+		}
+		if(not) {
+			JOptionPane.showMessageDialog(null, "Not for now.");
+		}else {
+			TableModel  model = new DefaultTableModel(strData,strHeader);
+			TraineeMenu.table.setModel(model);
+		}
+	}	
+	
+	//List Courses Targets (Trainee Option 4)
+	public static void listTarget(int uid){
 		String [] strHeader = {"Course ID", "Course Name", "Targets"};
 		String [][] strData = new String[courselist.size()][3]; 
-		
 		boolean not = true;
 		int row = 0;
 		for (int i = 0; i < courselist.size(); i++) {
 			if(courselist.get(i).checkid(uid) && !(courselist.get(i).completed)){
-
 				strData[row][0] = Integer.toString(courselist.get(i).getCourseID()); 
 				strData[row][1] = courselist.get(i).getCourseName(); 
 				strData[row++][2] = courselist.get(i).getTarget();
@@ -215,63 +181,9 @@ class Curriculum implements Files{
 		if(not) {
 			JOptionPane.showMessageDialog(null, "Not for now.");
 		}else {
-			Tableframe listTable = new Tableframe("Courses Targets" ,strHeader, strData);
+			TableModel  model = new DefaultTableModel(strData,strHeader);
+			TraineeMenu.table.setModel(model);
 		}
-
-	}
-	
-	//List CCCourses
-	public static void listCCCourse(int uid){
-		System.out.println("-----------------------------------------------------");
-		System.out.println(" ID    Course Name         Status");
-		System.out.println("-----------------------------------------------------");
-		boolean not = true;
-		for (int i = 0; i < courselist.size(); i++) {
-			if(courselist.get(i).checkid(uid)){
-				System.out.format( "- %-5d%-20s%-20s\n" , courselist.get(i).getCourseID(), courselist.get(i).getCourseName(), courselist.get(i).getStatus());
-				not = false;		
-			}
-		}
-		if(not)System.out.println("- Not for now.");		
-		System.out.println("-----------------------------------------------------");	
-	}	
-	
-	//Join Courses
-	public static void joinCourse(int type,int uid){
-		
-		listAvaible(type, uid);
-		System.out.println("Please enter the Course ID to join.");
-        System.out.print("(-1) for quit. : ");
-
-        Scanner scanner = new Scanner(System.in);
-		int inInt;
-        char inChar;
-        if(scanner.hasNextInt())
-            inInt = scanner.nextInt();
-        else
-            inInt = -1;
-
-        if(inInt == -1){
-            System.out.println(">> quit.");
-			return;
-        }
-		
-		boolean found = false;
-		for (int i = 0; i < courselist.size(); i++) {
-			if(courselist.get(i).courseID == inInt && !courselist.get(i).completed && !courselist.get(i).checkid(i) ) {
-				found = true;
-				courselist.get(i).printCourseInfo();
-				System.out.println(">> Are you sure to pay and join this course? (Y/N)");
-				inChar = scanner.next().charAt(0);
-				if(inChar == 'y' || inChar == 'Y'){
-					courselist.get(i).addTrainee(uid);
-					System.out.println(">> Course joined. \n");
-				} else {
-					System.out.println(">> Action was cancelled!");
-				}
-			}
-		}
-		if(!found) System.out.println(">> Course not found!!\n");		
 	}
 	
 	//Search Course by cid (return ArrayList ID)
@@ -282,8 +194,55 @@ class Curriculum implements Files{
         }
         return -1;
     }
-	
-	
+
+	//List Trainer Owned Courses (Trainer Option 1)
+	public static void listOwnedCourse(int uid, boolean all){
+		
+		String output =  "> List Owned Courses ";
+		test.write(output);
+		
+		String [] strHeader = {"Course ID", "Course Name", "Total", "Status"};
+		String [][] strData = new String[courselist.size()][4]; 
+		boolean not = true;
+		int row = 0;
+		for (int i = 0; i < courselist.size(); i++) {
+			if(courselist.get(i).getTrainerID() == uid){
+				if( all || !(courselist.get(i).completed ) ){
+					strData[row][0] = Integer.toString(courselist.get(i).getCourseID()); 
+					strData[row][1] = courselist.get(i).getCourseName(); 
+					strData[row][2] = Integer.toString(courselist.get(i).getTotalOfTrainee()); 
+					strData[row++][3] = courselist.get(i).getStatus(); 
+					not = false;
+				}
+			}
+		}
+		if(not) {
+			JOptionPane.showMessageDialog(null, "Not for now.");
+		}else {
+			TableModel  model = new DefaultTableModel(strData,strHeader);
+			TrainerMenu.table.setModel(model);
+		}
+	}
+		
+	//Complete Courses (Trainer Option 3)
+	public static void completeCourse(int uid){
+
+		String output =  "> Complete courses";
+		test.write(output);
+		
+		int i = Integer.parseInt(TrainerMenu.table.getValueAt(TrainerMenu.table.getSelectedRow(), 0).toString());
+		
+		if(JOptionPane.showConfirmDialog(null, "Are you sure to complete Course [" + i + "] ??", " ",JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
+			courselist.get(i-1).completed = true;
+			JOptionPane.showMessageDialog(null, "Course Completed");	
+		}else{
+			JOptionPane.showMessageDialog(null, "Action was cancelled");	
+		}
+		
+	}
+
+			
+//######################################################################################################################
 	//Create Course
 	public static void createCourse(){
 		
@@ -352,7 +311,8 @@ class Curriculum implements Files{
 		}
 		return total;
     }
-	
+
+//######################################################################################################################
 //Edit Course Information
     public static void editCourse(int cid) {
 		int listID = searchcourselistID(cid);
@@ -444,7 +404,8 @@ class Curriculum implements Files{
             System.out.println("No such course");
         }
 	}
-	
+
+//######################################################################################################################	
 	//Delete Course
 	 public static void	deleteCourse(int cid) {
 		int listID = searchcourselistID(cid);
