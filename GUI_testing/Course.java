@@ -154,11 +154,11 @@ class Course{
 			"---------------------------------------------------------------------------\n" +
 			"Course ID     :  " + getCourseID() + "\n" +
 			"Course Name   :  " + getCourseName() + "\n" +
-			"Course Trainer:  " + courseTrainerID + "\n" +
+			"Course Trainer:   " + Account.userlist.get(Account.searchuserlistID(courseTrainerID)).getUserName() + "\n" +
 			"Requirements  :  " + getCourseType() + "\n" +
 			"---------------------------------------------------------------------------\n" +
 			"Price         :  " + getPrice() + "\n" +
-		    "Duration      :  " + duration + "weeks\n" +
+		    "Duration      :  " + duration + " weeks\n" +
 			"Venue         :  " + venue + "\n" +
 			"No. of Trainee:  " + totalNumOfTrainee + "/" + maxNumOfTrainee + "\n" +
 			"Description   :  " + description + "\n" +

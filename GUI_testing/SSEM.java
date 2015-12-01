@@ -25,8 +25,8 @@ public class SSEM extends JFrame implements Files {
 		final Dimension screenSize = toolkit.getScreenSize();
 		final int x = (screenSize.width - 376) / 2;
 		final int y = (screenSize.height - 640) / 2;
-		
 		setLocation(x, y);
+		
 		quit(this);	
 	}
 	

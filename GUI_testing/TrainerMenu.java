@@ -77,10 +77,23 @@ class TrainerMenu extends JPanel{
 		complete.setVisible(false);
 		complete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Curriculum.completeCourse(trainer.getUserID());	
+				if(value() != -1)
+				Curriculum.completeCourse(value(),trainer.getUserID());	
 			}
 		});		
 		
     }
+	
+	public int value(){
+		if(Menus.table.getValueAt(Menus.table.getSelectedRow(), 0) != null){
+			String inStr = Menus.table.getValueAt(Menus.table.getSelectedRow(), 0).toString();
+			if(IOValidation.numberValid(inStr)){
+				return Integer.parseInt(inStr);
+			}else 
+				return -1;
+		}else{
+			return -1;
+		}
+	}
 		
 }

@@ -72,12 +72,10 @@ class Curriculum implements Files{
 	}
 
 	//Join Courses (Trainee Option 2)
-	public static void joinCourse(int type,int uid){
+	public static void joinCourse(int i, int type,int uid){
 		
 		String output =  "> Join courses";
 		test.write(output);
-		
-		int i = Integer.parseInt(Menus.table.getValueAt(Menus.table.getSelectedRow(), 0).toString());
 		int listID = searchcourselistID(i);		
 		
 		if(JOptionPane.showConfirmDialog(null, "Are you sure to pay and join Course [" + i + "] ??", " ",JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
@@ -170,15 +168,14 @@ class Curriculum implements Files{
 	}
 		
 	//Complete Courses (Trainer Option 3)
-	public static void completeCourse(int uid){
+	public static void completeCourse(int cid, int uid){
 
 		String output =  "> Complete courses";
 		test.write(output);
 		
-		int i = Integer.parseInt(Menus.table.getValueAt(Menus.table.getSelectedRow(), 0).toString());
-		int listID = searchcourselistID(i);	
+		int listID = searchcourselistID(cid);	
 		
-		if(JOptionPane.showConfirmDialog(null, "Are you sure to complete Course [" + i + "] ??", " ",JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
+		if(JOptionPane.showConfirmDialog(null, "Are you sure to complete Course [" + cid + "] ??", " ",JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
 			courselist.get(listID).completed = true;
 			JOptionPane.showMessageDialog(null, "Course Completed");	
 		}else{

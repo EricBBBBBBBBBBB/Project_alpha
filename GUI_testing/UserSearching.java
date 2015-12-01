@@ -5,17 +5,9 @@ import java.awt.event.*;
 class UserSearching extends JFrame implements ActionListener {
 
 //////Data Members
-    private static final int FRAME_WIDTH    = 300;
-    private static final int FRAME_HEIGHT   = 200;
-    private static final int FRAME_X_ORIGIN = 150;
-    private static final int FRAME_Y_ORIGIN = 250;
-    private JComboBox comboBox;
-
-//////Main method
-    public static void main(String[] args) {
-        UserSearching frame = new UserSearching();
-        frame.setVisible(true);
-    }
+    private static final int FRAME_WIDTH    = 200;
+    private static final int FRAME_HEIGHT   = 120; 
+	private JComboBox comboBox;
 
 //////Constructors
 
@@ -29,7 +21,13 @@ class UserSearching extends JFrame implements ActionListener {
         //set the frame properties
         setSize      (FRAME_WIDTH, FRAME_HEIGHT);
         setTitle     ("User Searching");
-        setLocation  (FRAME_X_ORIGIN, FRAME_Y_ORIGIN);
+		
+		//set center
+		final Toolkit toolkit = Toolkit.getDefaultToolkit();
+		final Dimension screenSize = toolkit.getScreenSize();
+		final int x = (screenSize.width - 200) / 2;
+		final int y = (screenSize.height - 120) / 2;
+		setLocation(x, y);
 
         contentPane = getContentPane( );
         contentPane.setBackground(new Color(26, 188, 156));

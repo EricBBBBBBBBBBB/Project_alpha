@@ -69,7 +69,8 @@ class TraineeMenu extends JPanel{
 		join.setVisible(false);
 		join.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Curriculum.joinCourse(trainee.upadteTraineeType(),trainee.getUserID());		
+				if(value() != -1)
+				Curriculum.joinCourse(value(), trainee.upadteTraineeType(),trainee.getUserID());		
 			}
 		});
 		
@@ -92,10 +93,19 @@ class TraineeMenu extends JPanel{
 				Curriculum.listTarget(trainee.getUserID());	
 			}
 		});		
-			
-
-
 		
     }
 	
+	private int value(){
+		if(Menus.table.getValueAt(Menus.table.getSelectedRow(), 0) != null){
+			String inStr = Menus.table.getValueAt(Menus.table.getSelectedRow(), 0).toString();
+			if(IOValidation.numberValid(inStr)){
+				return Integer.parseInt(inStr);
+			}else 
+				return -1;
+		}else{
+			return -1;
+		}
+	}
+		
 }

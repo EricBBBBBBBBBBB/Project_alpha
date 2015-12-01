@@ -116,8 +116,8 @@ class MenusPanel extends JPanel implements Files {
 	}	
 	
 	private void changePassword(){
-		System.out.println("=================== Change Password =================");
-		/*		System.out.println(" - Enter [-q] to exit;");
+		/*System.out.println("=================== Change Password =================");
+				System.out.println(" - Enter [-q] to exit;");
 				System.out.println(" Please Enter your old password");
 				System.out.print(" >>> ");
 				String inPassword;
@@ -133,8 +133,8 @@ class MenusPanel extends JPanel implements Files {
 						System.out.println("The old password is not correct. Please enter again: ");
 					}
 				}
-		*/
-		System.out.println("=====================================================");
+		
+		System.out.println("=====================================================");*/
 	}
 	
 	private void logout(){
@@ -159,18 +159,7 @@ class MenusPanel extends JPanel implements Files {
 		} else {
 			//do nothing
 		}
-	}	
-	
-	class Click extends MouseAdapter{
-        public void mouseClicked(MouseEvent e) {
-            if(e.getClickCount() <= 5){
-				int i = Integer.parseInt(Menus.table.getValueAt(Menus.table.getSelectedRow(), 0).toString())-1;
-				if(Menus.Cinfo) Curriculum.courselist.get(i).printCourseInfo();
-				else Account.userlist.get(i).printUserInfo();
-			}
-		}
 	}
-
 	
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
@@ -179,6 +168,14 @@ class MenusPanel extends JPanel implements Files {
 		g.drawImage(bgimage, 0, 0, imwidth,imheight, this);
 	}
 	
-	
+	class Click extends MouseAdapter{
+        public void mouseClicked(MouseEvent e) {
+            if(e.getClickCount() <= 10 && Menus.table.getValueAt(Menus.table.getSelectedRow(), 0) != null){
+				int i = Integer.parseInt(Menus.table.getValueAt(Menus.table.getSelectedRow(), 0).toString())-1;
+				if(Menus.Cinfo) Curriculum.courselist.get(i).printCourseInfo();
+				else Account.userlist.get(i).printUserInfo();
+			}
+		}
+	}
 	
 }
