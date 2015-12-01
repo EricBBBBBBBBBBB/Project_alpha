@@ -103,7 +103,7 @@ class IOValidation{
     public static boolean dateValid(String inStr) {
         if(inStr.isEmpty())
             return false;
-        String regex = "[0-9]{4}+/[0-9]{1,2}+/[0-9]{1,2}";  // set the regex
+        String regex = "[0-9]{4}+[-]+[0-9]{2}+[-]+[0-9]{2}";  // set the regex
         Pattern pattern = Pattern.compile(regex);   // compile the pattern
         Matcher matcher = pattern.matcher(inStr);   // validate the email
         if(matcher.matches())

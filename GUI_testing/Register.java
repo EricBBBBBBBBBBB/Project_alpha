@@ -180,16 +180,18 @@ class Register extends SSEM {
 				String emailString = email.getText();
 				String phoneString = phone.getText();
 				String birthString = birth.getText();
-        		//Date bDay = new Date();
 
-				if(checkname(userString) && checkpassword(passString) && checkemail(emailString) &&	checkphone(phoneString)){
+				if(checkname(userString) && checkpassword(passString) && checkemail(emailString) &&	checkphone(phoneString) && checkbirth(birthString)){
 					if(JOptionPane.showConfirmDialog(null, "Create account ??", " ",JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
 						int uid = Account.userlist.get(Account.userlist.size() - 1).getUserID() + 1;
 						passString = CryptWithMD5.cryptWithMD5(passString);
 						Trainee newtrainee = new Trainee(uid, userString, passString);
 						newtrainee.setTraineeInfo(emailString,phoneString,3);
-			            //SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 			            LocalDate dateOfbDay = LocalDate.parse(birthString);
+			            // Problem to fix ---------
+			            // 2015-8-9 -> ERROR
+			            // 2015-08-09 -> Successful
+			            // consider to change option panel?
 			            newtrainee.setUserBirth(dateOfbDay);
 						Account.updateuserlist(newtrainee);
 						JOptionPane.showMessageDialog(null, "Account ["+userString+"] created! Please login.");
@@ -262,18 +264,14 @@ class Register extends SSEM {
 			int year = Integer.parseInt(dateSplit[0]);
 			int month = Integer.parseInt(dateSplit[1]);
 			int day = Integer.parseInt(dateSplit[2]);
-			if(month < 0 || month > 12)
-				JOptionPane.showMessageDialog(null, "Wrong Format!"," ",JOptionPane.WARNING_MESSAGE);
-			else if(day < 0 || day > 31)
-				JOptionPane.showMessageDialog(null, "Wrong Format!"," ",JOptionPane.WARNING_MESSAGE);
-			else {
-				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-				try {  
-					bDay = sdf.parse(birthString);  
-				} catch (ParseException pe) {  
-					JOptionPane.showMessageDialog(null, "Wrong Format!"," ",JOptionPane.WARNING_MESSAGE);
-					JOptionPane.showMessageDialog(null, pe.getMessage()," ",JOptionPane.WARNING_MESSAGE);
-				} 
+			if(month < 0 || month > 12) {
+				JOptionPane.showMessageDialog(null, "Wrong Format! Month cannot be less than 1 or more than 12! "," ",JOptionPane.WARNING_MESSAGE);
+				return false;
+			} else if(day < 0 || day > 31) {
+				JOptionPane.showMessageDialog(null, "Wrong Format! "," ",JOptionPane.WARNING_MESSAGE);
+				return false;
+			} else {
+				
 			}
 		return true;
 		}	
