@@ -137,8 +137,7 @@ class SSEMPanel extends JPanel {
 				//get password
 				char[] pass = password.getPassword();
 				String passString = new String(pass);
-				CryptWithMD5 CMD5 = new CryptWithMD5();		
-				passString = CMD5.cryptWithMD5(passString);
+				passString = CryptWithMD5.cryptWithMD5(passString);
 
 				//User validate
 				boolean loginSuccess = false;
@@ -177,7 +176,7 @@ class SSEMPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) { 
 				SSEM.main.setVisible(false);
 				Register register = new Register();
-				register.register();
+				register.register(true);
 			}
 		});
 		

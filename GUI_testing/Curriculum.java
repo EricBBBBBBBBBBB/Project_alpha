@@ -38,59 +38,9 @@ class Curriculum implements Files{
     public static ArrayList<Course> getcourselist() {
         return courselist;
     }
-	
-	//Remove Course by ID
-    public static boolean removeCourse(int cid) {
-		for (int i = 0; i < courselist.size(); i++) {
-            if (courselist.get(i).getCourseID() == cid) {
-                courselist.remove(i);
-                return true;
-            }
-        }
-        return false;
-    }
-	
-	//Remove Course by Name
-    public static boolean removeCourse(String cname) {
-        for (int i = 0; i < courselist.size(); i++) {
-            if (courselist.get(i).getCourseName().equals(cname)) {
-                courselist.remove(i);
-                return true;
-            }
-        }
-        return false;
-    }
 
 	
-	//List all Course records
-	public static void listAll(){
-		
-		String output =  "> List all courses";
-		test.write(output);
-		
-		String [] strHeader = {"Course ID", "Course Name", "Type", "Status"};
-		String [][] strData = new String[courselist.size()][4]; 
-		boolean not = true;
-		int row = 0;
-		for (int i = 0; i < courselist.size(); i++) {
-			strData[row][0] = Integer.toString(courselist.get(i).getCourseID()); 
-			strData[row][1] = courselist.get(i).getCourseName(); 
-			strData[row][2] = courselist.get(i).getCourseType(); 
-			strData[row++][3] = courselist.get(i).getStatus(); 
-			not = false;
-		}
-		if(not) {
-			JOptionPane.showMessageDialog(null, "Not for now.");
-		}else {
-			TableModel  model = new DefaultTableModel(strData,strHeader);
-			TraineeMenu.table.setModel(model);
-		}
-	}
-	
-	
-
-	
-
+////Trainee Option
 	//List Avaible Courses (Trainee Option 1)
 	public static void listAvaibleCourse(int type,int uid){
 		
@@ -117,7 +67,7 @@ class Curriculum implements Files{
 			JOptionPane.showMessageDialog(null, "Not for now.");
 		}else {
 			TableModel  model = new DefaultTableModel(strData,strHeader);
-			TraineeMenu.table.setModel(model);
+			Menus.table.setModel(model);
 		}
 	}
 
@@ -127,15 +77,17 @@ class Curriculum implements Files{
 		String output =  "> Join courses";
 		test.write(output);
 		
-		int i = Integer.parseInt(TraineeMenu.table.getValueAt(TraineeMenu.table.getSelectedRow(), 0).toString());
+		int i = Integer.parseInt(Menus.table.getValueAt(Menus.table.getSelectedRow(), 0).toString());
+		int listID = searchcourselistID(i);		
 		
 		if(JOptionPane.showConfirmDialog(null, "Are you sure to pay and join Course [" + i + "] ??", " ",JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
-			courselist.get(i-1).addTrainee(uid);
+			courselist.get(listID).addTrainee(uid);
 			JOptionPane.showMessageDialog(null, "Course joined");	
 		}else{
 			JOptionPane.showMessageDialog(null, "Action was cancelled");	
 		}
 		
+		listAvaibleCourse(type,uid);
 	}
 	
 	//List CCCourses (Trainee Option 3)
@@ -160,7 +112,7 @@ class Curriculum implements Files{
 			JOptionPane.showMessageDialog(null, "Not for now.");
 		}else {
 			TableModel  model = new DefaultTableModel(strData,strHeader);
-			TraineeMenu.table.setModel(model);
+			Menus.table.setModel(model);
 		}
 	}	
 	
@@ -182,19 +134,12 @@ class Curriculum implements Files{
 			JOptionPane.showMessageDialog(null, "Not for now.");
 		}else {
 			TableModel  model = new DefaultTableModel(strData,strHeader);
-			TraineeMenu.table.setModel(model);
+			Menus.table.setModel(model);
 		}
 	}
 	
-	//Search Course by cid (return ArrayList ID)
-    public static int searchcourselistID(int uid) {
-        for (int i = 0; i < courselist.size(); i++) {
-            if (courselist.get(i).getCourseID() == uid) 
-                return i;
-        }
-        return -1;
-    }
-
+	
+////Trainer Option
 	//List Trainer Owned Courses (Trainer Option 1)
 	public static void listOwnedCourse(int uid, boolean all){
 		
@@ -220,7 +165,7 @@ class Curriculum implements Files{
 			JOptionPane.showMessageDialog(null, "Not for now.");
 		}else {
 			TableModel  model = new DefaultTableModel(strData,strHeader);
-			TrainerMenu.table.setModel(model);
+			Menus.table.setModel(model);
 		}
 	}
 		
@@ -230,10 +175,11 @@ class Curriculum implements Files{
 		String output =  "> Complete courses";
 		test.write(output);
 		
-		int i = Integer.parseInt(TrainerMenu.table.getValueAt(TrainerMenu.table.getSelectedRow(), 0).toString());
+		int i = Integer.parseInt(Menus.table.getValueAt(Menus.table.getSelectedRow(), 0).toString());
+		int listID = searchcourselistID(i);	
 		
 		if(JOptionPane.showConfirmDialog(null, "Are you sure to complete Course [" + i + "] ??", " ",JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
-			courselist.get(i-1).completed = true;
+			courselist.get(listID).completed = true;
 			JOptionPane.showMessageDialog(null, "Course Completed");	
 		}else{
 			JOptionPane.showMessageDialog(null, "Action was cancelled");	
@@ -241,81 +187,21 @@ class Curriculum implements Files{
 		
 	}
 
-			
+	
+////Admin Option	
 //######################################################################################################################
-	//Create Course
-	public static void createCourse(){
-		
-		//declare datas
-		int courseID, courseType, courseTrainer, duration, price, max, total;
-		String courseName, venue, target, description;
-		boolean completed;
-		Course newcourse;
+	//Search Course (Admin Option 7)
+	public static void searchCourse(){
 
-		//create new course
-		courseID = 0;
-		courseName = "###";
-		courseType = 3;
-		newcourse = new Course(courseID, courseName, courseType);
-		
-		//input information
-		completed = false;
-		courseTrainer = 8;
-		duration = 3;
-		venue = "###";
-		price = 0;
-		target = "###";
-		description = "###";
-		//total = ;
-		max = 15 ;
-		
-
-		newcourse.setCourseInfo(completed, courseTrainer, duration, venue, price, target, description, max);
-		courselist.add(newcourse);
-	}
-		
-		
 	
-	//Check total of completed Course
-	public static int checkNoOfcompleted(int uid){
-		int total = 0;
-		for (int i = 0; i < courselist.size(); i++) {
-			if(courselist.get(i).checkid(uid) && courselist.get(i).completed) total++;
-		}
-		return total;
 	}
 	
-	//Check total of Current Course
-	public static int checkNoOfCurrent(int uid){
-		int total = 0;
-		for (int i = 0; i < courselist.size(); i++) {
-			if(courselist.get(i).checkid(uid) && !(courselist.get(i).completed)) total++;
-		}
-		return total;
-	}
-	
-	//Check completed or Not by CourseID 
-    public static boolean checkcompleted(int uid) {
-        for (int i = 0; i < courselist.size(); i++) {
-            if (courselist.get(i).getCourseID() == uid)
-                return courselist.get(i).completed;
-        }
-        return false;
-    }
-	
-	//Check total of owned by CourseID 
-    public static int checkNoOfOwned(int uid) {
-		int total = 0;
-		for (int i = 0; i < courselist.size(); i++) {
-			if(courselist.get(i).courseTrainerID == uid) total++;
-		}
-		return total;
-    }
-
 //######################################################################################################################
-//Edit Course Information
+	//Edit Course Information (Admin Option 8)
     public static void editCourse(int cid) {
-		int listID = searchcourselistID(cid);
+		System.out.println(cid);
+        
+		/*int listID = searchcourselistID(cid);
         if (listID != -1) {
             System.out.println("Found the record");
 			
@@ -402,29 +288,117 @@ class Curriculum implements Files{
             }
         } else {
             System.out.println("No such course");
-        }
+        }*/
+		
+	}
+	
+	//Remove Course (Admin Option 9)
+	public static void	removeCourse(int cid) {
+		int listID = searchcourselistID(cid);
+
+		if(JOptionPane.showConfirmDialog(null, "Are you sure to remove Course [" + courselist.get(listID).getCourseName() + "] ??", " ",JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
+			courselist.remove(listID);
+			JOptionPane.showMessageDialog(null, "Course Removed");	
+			listAll();
+		}else{
+			JOptionPane.showMessageDialog(null, "Action was cancelled");	
+		}	 
+		
+	}
+//######################################################################################################################
+	//Create Course (Admin Option 10)
+	public static void createCourse(){
+		
+		//declare datas
+		int courseID, courseType, courseTrainer, duration, price, max, total;
+		String courseName, venue, target, description;
+		boolean completed;
+			
+		//input information
+
+		duration = 3;
+		venue = "###";
+		price = 0;
+		target = "###";
+		description = "###";
+		max = 15 ;
+		
+		//create
+		
+	
 	}
 
-//######################################################################################################################	
-	//Delete Course
-	 public static void	deleteCourse(int cid) {
-		int listID = searchcourselistID(cid);
-        if (listID != -1) {
-            System.out.println("Found the record");
-			System.out.format("Course Name: [%s]\n", courselist.get(listID).getCourseName() );
-			System.out.println("Are you Confirm to delete this Course? (Y/N)");
-			Scanner scanner = new Scanner(System.in);
-			String inStr;
-			inStr = scanner.next();
-			if(inStr.equals("Y") || inStr.equals("y")) {
-				removeCourse(cid);
-                System.out.println("Course was deleted!");	
-			} else{
-                System.out.println("Action was cancelled!");
-			}
-        } else {
-            System.out.println("No such course");
-        }
+	
+//Other Supporting method
+	
+	//List all Course records
+	public static void listAll(){
+		
+		String output =  "> List all courses";
+		test.write(output);
+		
+		String [] strHeader = {"Course ID", "Course Name", "Type", "Status"};
+		String [][] strData = new String[courselist.size()][4]; 
+		boolean not = true;
+		int row = 0;
+		for (int i = 0; i < courselist.size(); i++) {
+			strData[row][0] = Integer.toString(courselist.get(i).getCourseID()); 
+			strData[row][1] = courselist.get(i).getCourseName(); 
+			strData[row][2] = courselist.get(i).getCourseType(); 
+			strData[row++][3] = courselist.get(i).getStatus(); 
+			not = false;
+		}
+		if(not) {
+			JOptionPane.showMessageDialog(null, "Not for now.");
+		}else {
+			TableModel  model = new DefaultTableModel(strData,strHeader);
+			Menus.table.setModel(model);
+		}
 	}
+	
+	//Search Course by cid (return ArrayList ID)
+    public static int searchcourselistID(int uid) {
+        for (int i = 0; i < courselist.size(); i++) {
+            if (courselist.get(i).getCourseID() == uid) 
+                return i;
+        }
+        return -1;
+    }	
+		
+	//Check total of completed Course
+	public static int checkNoOfcompleted(int uid){
+		int total = 0;
+		for (int i = 0; i < courselist.size(); i++) {
+			if(courselist.get(i).checkid(uid) && courselist.get(i).completed) total++;
+		}
+		return total;
+	}
+	
+	//Check total of Current Course
+	public static int checkNoOfCurrent(int uid){
+		int total = 0;
+		for (int i = 0; i < courselist.size(); i++) {
+			if(courselist.get(i).checkid(uid) && !(courselist.get(i).completed)) total++;
+		}
+		return total;
+	}
+	
+	//Check completed or Not by CourseID 
+    public static boolean checkcompleted(int uid) {
+        for (int i = 0; i < courselist.size(); i++) {
+            if (courselist.get(i).getCourseID() == uid)
+                return courselist.get(i).completed;
+        }
+        return false;
+    }
+	
+	//Check total of owned by CourseID 
+    public static int checkNoOfOwned(int uid) {
+		int total = 0;
+		for (int i = 0; i < courselist.size(); i++) {
+			if(courselist.get(i).courseTrainerID == uid) total++;
+		}
+		return total;
+    }
 	
 }

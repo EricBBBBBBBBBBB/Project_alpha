@@ -131,21 +131,9 @@ class User{
 	
 	// Print User information
 	public void printUserInfo() {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm");
-		
-		String output = 
-			"---------------------------------------------------------------------------\n" +
-			"-                               "+ getUserType() +" Information                               -\n" +
-			"---------------------------------------------------------------------------\n" +
-			"User ID: \t  " + getUserID() + "\n" +
-			"User Name: \t  " + getUserName() + "\n" +
-			"User Email: \t  " + getUserEmail() + "\n" +
-			"User Phone: \t  " + getUserPhone() + "\n" +
-			"Date of register:   " + sdf.format(dateOfRegister) + "\n" + 
-			"Date of Birth: \t  " + sdf.format(dateOfBirth) + "\n" + 
-			"---------------------------------------------------------------------------\n" +
-			"End of Personal Infomation.\n";
-		test.write(output);
+		if(userType == 0 ) ((Trainee)this).printUserInfo();
+		if(userType == 1 ) ((Trainer)this).printUserInfo();
+		if(userType == 2 ) ((Admin)this).printUserInfo(); 
 	}
 
 

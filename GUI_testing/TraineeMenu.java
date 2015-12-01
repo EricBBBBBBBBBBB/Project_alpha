@@ -9,11 +9,10 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import javax.swing.table.*;
 
 class TraineeMenu extends JPanel{
 
-	public static JTable table;
+
 	private JScrollPane scrollPane;
 	private static final int BOTTON_WIDTH    = 300;
     private static final int BOTTON_HEIGHT   = 25;
@@ -25,8 +24,6 @@ class TraineeMenu extends JPanel{
 	private JButton option2 = new JButton("2. Join Training Courses");
 	private JButton option3 = new JButton("3. Display Current/completed Courses");
 	private JButton option4 = new JButton("4. Display Targets Set");
-	private JButton option5 = new JButton("5. View Personal Infomation");
-	private JButton option6 = new JButton("6. Change Password");
 	private JButton join = new JButton("join");
 
 	public TraineeMenu(Trainee trainee){
@@ -42,8 +39,8 @@ class TraineeMenu extends JPanel{
 		add(title);
 		
 		//table
-		table = new JTable();
-		scrollPane = new JScrollPane(table);
+		Menus.table = new JTable();
+		scrollPane = new JScrollPane(Menus.table);
 		add(scrollPane);
 		
 		//option1
@@ -87,7 +84,7 @@ class TraineeMenu extends JPanel{
 		});
 		
 		//option4
-		option4.setBounds(350, 430, BOTTON_WIDTH, BOTTON_HEIGHT);
+		option4.setBounds(30, 520, BOTTON_WIDTH, BOTTON_HEIGHT);
 		add(option4);
 		option4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -95,38 +92,10 @@ class TraineeMenu extends JPanel{
 				Curriculum.listTarget(trainee.getUserID());	
 			}
 		});		
-		
-		//option5
-		option5.setBounds(350, 460, BOTTON_WIDTH, BOTTON_HEIGHT);
-		add(option5);
-		option5.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				trainee.printUserInfo();
-			}
-		});			
-		
-		//option6
-		option6.setBounds(350, 490, BOTTON_WIDTH, BOTTON_HEIGHT);
-		add(option6);
-		option6.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				//changePassword();
-			}
-		});		
 			
-		//for clicking table
-		table.addMouseListener(new Click());
+
 
 		
     }
-	
-	class Click extends MouseAdapter{
-        public void mouseClicked(MouseEvent e) {
-            if(e.getClickCount() <= 5){
-				int i = Integer.parseInt(table.getValueAt(table.getSelectedRow(), 0).toString())-1;
-				Curriculum.courselist.get(i).printCourseInfo();
-			}
-		}
-	}
 	
 }

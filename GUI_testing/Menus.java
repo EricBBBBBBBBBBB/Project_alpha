@@ -9,12 +9,16 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import javax.swing.table.*;
 
 import java.io.*;
 import java.util.*;
 import javax.swing.JOptionPane;
 
 public class Menus extends SSEM{
+
+	public static JTable table;
+	public static boolean Cinfo = true;
 	
 	Menus(User user) {
 		add(new MenusPanel(user));
@@ -32,21 +36,17 @@ public class Menus extends SSEM{
 }
 
 //panel
-class MenusPanel extends JPanel {
+class MenusPanel extends JPanel implements Files {
 
 	private User user;
-	private JLabel title;
-	private JButton option1;
-	private JButton option2;
-	private JButton option3;
-	private JButton option4;
-	private JButton option5;
-	private JButton option6;
-	private JButton option7;
-	private JButton Logout;
+	private JButton Infomation = new JButton("View Personal Infomation");
+	private JButton ChangePW = new JButton("Change Password");	
+	private JButton Logout = new JButton("Logout");
+
 	private static final int BOTTON_WIDTH    = 300;
     private static final int BOTTON_HEIGHT   = 25;
 	
+
 	Image bgimage = null;
 
 	MenusPanel(User u) {
@@ -80,228 +80,44 @@ class MenusPanel extends JPanel {
 				break;
 			default:
 				JOptionPane.showMessageDialog(null, "Unknown Comment, Please Restart The System."," ",JOptionPane.WARNING_MESSAGE);
-		}
+		}	
 		
-		//logout
-		Logout = new JButton("Logout");
-		Logout.setBounds(670, 430, BOTTON_WIDTH, BOTTON_HEIGHT);
-		add(Logout);
-		Logout.addActionListener(new ActionListener() {
+		//Infomation
+		Infomation.setBounds(670, 430, BOTTON_WIDTH, BOTTON_HEIGHT);
+		add(Infomation);
+		Infomation.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//Prompt user for saving
-				if (JOptionPane.showConfirmDialog(null, "Are you want to logout ?", " ",JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-					SSEM.main.setVisible(true);
-					SSEM.menus.dispose();
-				} else {
-					//do nothing
-				}
-			}
-		});			
-		
-		add(new test(u));
-	}	
-
-	
-	
-	//Admin Menu
-	private void adminMenu() {
-		Admin admin = (Admin) user;	
-		
-		option1 = new JButton("1. Users Management");
-		option2 = new JButton("2. Course Management");
-		option3 = new JButton("3. View Personal Infomation");
-		option4 = new JButton("4. Change Password");
-		option6 = new JButton("Return to main menu");
-		
-		//title
-		title = new JLabel("Administrator Menu");
-		title.setBounds(10, 10, 1000, 25);
-		add(title);
-
-		//option1
-		option1.setBounds(10, 40, BOTTON_WIDTH, BOTTON_HEIGHT);
-		add(option1);
-		option1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				adminMenuUM(admin);
-			}
-		});
-		
-		//option2
-		option2.setBounds(10, 70, BOTTON_WIDTH, BOTTON_HEIGHT);
-		add(option2);
-		option2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				adminMenuCM(admin);
-			}
-		});
-
-		//option3
-		option3.setBounds(10, 100, BOTTON_WIDTH, BOTTON_HEIGHT);
-		add(option3);
-		option3.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				admin.printUserInfo();
+				user.printUserInfo();
 			}
 		});		
 		
-		//option4
-		option4.setBounds(10, 100, BOTTON_WIDTH, BOTTON_HEIGHT);
-		add(option4);
-		option4.addActionListener(new ActionListener() {
+		//ChangePW
+		ChangePW.setBounds(670, 460, BOTTON_WIDTH, BOTTON_HEIGHT);
+		add(ChangePW);
+		ChangePW.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				changePassword();
 			}
-		});		
-
-	}
-	
-	private void adminMenuUM(Admin admin) {
-		
-		
-		option1 = new JButton("1. Users Detailed Information");
-		option2 = new JButton("2. Users Searching");
-		option3 = new JButton("3. Users editing");
-		option4 = new JButton("4. Remove Users");
-		option5 = new JButton("5. Create Users");
-		
-		//title
-		title = new JLabel("Trainer Menu");
-		title.setBounds(410, 10, 1000, 25);
-		add(title);
-
-		
-		//option1
-		option1.setBounds(310, 40, BOTTON_WIDTH, BOTTON_HEIGHT);
-		add(option1);
-		option1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Account.listAll();
-			}
-		});
-		
-		//option2
-		option2.setBounds(310, 70, BOTTON_WIDTH, BOTTON_HEIGHT);
-		add(option2);
-		option2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				/*case '2':	// Search User =======
-				System.out.println("\n= = = = = = Users Searching = = = = = =");
-				System.out.println(" Please enter the user type you want to search: ");
-				System.out.println("  - 1. trainee");
-				System.out.println("  - 2. trainer");
-				System.out.println("  - 3. all types of users");
-				System.out.println("  - 9. quit");
-				System.out.print(" >>> ");
-				Account.searchUser(scanner.next().charAt(0));*/
-			}
-		});
-		
-		//option3
-		option3.setBounds(310, 100, BOTTON_WIDTH, BOTTON_HEIGHT);
-		add(option3);
-		option3.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				/*case '3':	// Edit User =========
-				System.out.println("\n= = = = = = User Information Editing = = = = = =");
-				System.out.print(" Please enter the user name you want to edit: ");
-				// temportary no ID 
-				inString = scanner.next();
-				Account.editUser(inString);*/
-			}
-		});
-		
-		//option4
-		option4.setBounds(310, 130, BOTTON_WIDTH, BOTTON_HEIGHT);
-		add(option4);
-		option4.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				/*case '4':	// Remove User =======
-					System.out.println("\n= = = = = = = = = = Deregister = = = = = = = = = =");
-					System.out.print(" Please enter the user name or ID you want to remove: ");
-					if(scanner.hasNextInt()){	// if enter user ID
-						inInt = scanner.nextInt();
-						Account.removeUser("", inInt, user);
-					} else {					// if enter user name
-						inString = scanner.next();
-						Account.removeUser(inString, 0, user);
-					}*/
-			}
-		});			
-		
-		//option5
-		option5.setBounds(310, 160, BOTTON_WIDTH, BOTTON_HEIGHT);
-		add(option5);
-		option5.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Register register = new Register();
-				register.register();	
-			}
-		});		
-		
-		//option6
-		option6.setBounds(310, 220, BOTTON_WIDTH, BOTTON_HEIGHT);
-		add(option6);
-		option6.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
-			}
 		});	
-	}
-	
-	private void adminMenuCM(Admin admin) {
-		/*while(true){
-			System.out.println("=============== Course Management Menu ==============");
-			System.out.println("= 1. List all the Course\t\t\t    =");
-			System.out.println("= 2. Create new course\t\t\t\t    =");
-			System.out.println("= 3. Edit course\t\t\t\t    =");
-			System.out.println("= 4. Delete course\t\t\t\t    =");
-			System.out.println("= 9. Return to main menu\t\t\t    =");
-			System.out.println("=====================================================");
-			System.out.print(">> Please enter the number: ");
-			inString = scanner.next();
-			if(inString.equals("-l"))
-				Curriculum.listAll();
-			else{
-				inChar = inString.charAt(0);
-				switch(inChar){
-					case '1':
-						Curriculum.listAll();
-						break;
-					case '2': 	//Creat new course
-						
-						break;
-					case '3':	//Edit Course
-						System.out.println("\n= = = = = = Course Information Editing = = = = = =");
-						System.out.print(" Please enter the course ID you want to edit: "); 
-						inInt = Integer.parseInt(scanner.next());
-						Curriculum.editCourse(inInt);
-						break;
-					case '4':	//Deiete Course =========
-						System.out.println("\n= = = = = = Course Deleting = = = = = =");
-						System.out.print(" Please enter the course name/ID you want to delete: "); 
-						if(scanner.hasNextInt()){	// if enter user ID
-							inInt = Integer.parseInt(scanner.next());
-							Curriculum.deleteCourse(inInt);
-						} else {					// if enter user name
-							inString = scanner.next();
-							Curriculum.deleteCourse(inInt);
-						}
-						break;
-					case '9':
-						break outerloop;	//break the outerloop -> return main menu
-					default:
-						System.out.println("Unknown Error.");
-				}
-				pkContinue();	// press enter key to continue
+		
+		//logout
+		Logout.setBounds(670, 490, BOTTON_WIDTH, BOTTON_HEIGHT);
+		add(Logout);
+		Logout.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				logout();
 			}
-		}*/
-	}
+		});		
+		
+		add(new test(u));
+		
+		//for clicking table
+		Menus.table.addMouseListener(new Click());
+	}	
 	
 	private void changePassword(){
-		/*Scanner scanner = new Scanner(System.in);
 		System.out.println("=================== Change Password =================");
-				System.out.println(" - Enter [-q] to exit;");
+		/*		System.out.println(" - Enter [-q] to exit;");
 				System.out.println(" Please Enter your old password");
 				System.out.print(" >>> ");
 				String inPassword;
@@ -317,9 +133,44 @@ class MenusPanel extends JPanel {
 						System.out.println("The old password is not correct. Please enter again: ");
 					}
 				}
-		System.out.println("=====================================================");
 		*/
+		System.out.println("=====================================================");
 	}
+	
+	private void logout(){
+		//Prompt user for saving
+		int confirm = JOptionPane.showOptionDialog(null, "Are you want to logout ?","Logout Confirmation", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
+		if (confirm == 0) {
+			int save = JOptionPane.showOptionDialog(null, "Are You Sure to Save All Updates?","Update Confirmation", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
+			if(save == 0){
+				//Backup
+				UserIO.writeUTxtFile(DEF_USER.substring(0,DEF_USER.length() - 4) + "_BackUp.csv", Account.userlist);	
+				CourseIO.writeCTxtFile(DEF_COURSE.substring(0,DEF_COURSE.length() - 4) + "_BackUp.csv", Curriculum.courselist);	
+				//Write
+				UserIO.writeUTxtFile(DEF_USER, Account.userlist);
+				CourseIO.writeCTxtFile(DEF_COURSE, Curriculum.courselist);
+				JOptionPane.showMessageDialog(null, "Updates Saved.");
+				SSEM.main.setVisible(true);
+				SSEM.menus.dispose();
+			}else{
+				SSEM.main.setVisible(true);
+				SSEM.menus.dispose();
+			}
+		} else {
+			//do nothing
+		}
+	}	
+	
+	class Click extends MouseAdapter{
+        public void mouseClicked(MouseEvent e) {
+            if(e.getClickCount() <= 5){
+				int i = Integer.parseInt(Menus.table.getValueAt(Menus.table.getSelectedRow(), 0).toString())-1;
+				if(Menus.Cinfo) Curriculum.courselist.get(i).printCourseInfo();
+				else Account.userlist.get(i).printUserInfo();
+			}
+		}
+	}
+
 	
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
@@ -327,4 +178,7 @@ class MenusPanel extends JPanel {
 		int imheight = bgimage.getHeight(null);
 		g.drawImage(bgimage, 0, 0, imwidth,imheight, this);
 	}
+	
+	
+	
 }

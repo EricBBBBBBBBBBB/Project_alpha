@@ -6,6 +6,11 @@
 * Account > User > Trainer, Trainee, Admin
 ********************************************/
 
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import javax.swing.table.*;
+
 import java.io.*;
 import java.util.Scanner;
 import java.util.ArrayList;
@@ -35,32 +40,27 @@ public class Account implements Files{
         return userlist;
     }
 	
-	//Remove User by Name
-    public static void removeUser(String userName, int uid, User operateUser) {
-        int listID;
-        if(userName.isEmpty())
-            listID = searchuserlistID(uid);
-        else
-            listID = searchuserlistID(userName);
+	//Remove User (admin option4)
+    public static void removeUser(int uid, User operateUser) {
 
-        if(listID == -1) {
-            System.out.println("user not found!");
-        }else if((userlist.get(listID).getUserName()).equals(operateUser.getUserName())) {
-                System.out.println("You cannot remove yourself!");
-        }else if((userlist.get(listID).getUserType()).equals("Admin")) {
-            System.out.println("You cannot remove an admin-type user!");
-        }else{
-            System.out.println("Are you sure to remove User [" + userlist.get(listID).getUserName() + "]? (Y/N)");
-            Scanner scanner = new Scanner(System.in);
-            char inChar = scanner.next().charAt(0);
-            
-            if(inChar == 'Y' || inChar == 'y') {
-                userlist.remove(listID);
-                System.out.println("Removed!");
-            } else{
-                System.out.println("Unsuccessful, Unknown error!");
-            }
-        }
+		int listID = searchuserlistID(uid);
+
+		if((userlist.get(listID).getUserName()).equals(operateUser.getUserName())) {
+                JOptionPane.showMessageDialog(null, "You cannot remove yourself!"," ",JOptionPane.WARNING_MESSAGE);
+        }else {
+			if((userlist.get(listID).getUserType()).equals("Admin")) {
+					JOptionPane.showMessageDialog(null, "You cannot remove an admin-type user!"," ",JOptionPane.WARNING_MESSAGE);
+			}else{
+				if(JOptionPane.showConfirmDialog(null, "Are you sure to remove User [" + userlist.get(listID).getUserName() + "] ??", " ",JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
+					userlist.remove(listID);
+					JOptionPane.showMessageDialog(null, "User Removed");	
+				}else{
+					JOptionPane.showMessageDialog(null, "Action was cancelled");	
+				}
+			}
+		}
+		
+		listAll();
     }
 	
 	
@@ -91,68 +91,57 @@ public class Account implements Files{
         return false;
     }
 	
-    //Search User by Name (return no value)
-    public static void searchUser(char userTypeC) {
-        int userType = 0;
+    //Search User by Name (Admin Option 2)
+    public static void searchUser(int userType) {
+		
         int totSearchNum = 0;
-        int inInt;
-        String inStr;
-        switch(userTypeC) {
-            case '1':
-                System.out.print("Please enter the user name of trainee: ");
-                userType = 1;
+		int row = 0;
+		String message, inStr;  
+		boolean type;
+		
+        switch(userType) {
+            case 0:
+                message = "user name of trainee: ";
                 break;
-            case '2':
-                System.out.print("Please enter the user name of trainer: ");
-                userType = 2;
+            case 1:
+                message = "user name of trainer: ";
                 break;
-            case '3':
-                System.out.print("Please enter the user name: ");
-                userType = 3;
-                break;
-            case '9':
-                return;
             default:
-                System.out.println("Unknown error");
-                return;
+                message = "user name:";
         }
-        Scanner scanner = new Scanner(System.in);
-        inStr = scanner.next();
-        System.out.println("= = = = = = Searching Result(s) = = = = = =");
-        System.out.println("- ID   User Name");
-        System.out.println("===========================================");
-        totSearchNum = searching(inStr, userType);
-        System.out.println("There are " + totSearchNum + " result(s)");
-        System.out.println("===========================================");
+				
+		inStr = JOptionPane.showInputDialog("Please enter the " + message);
 
-        if(totSearchNum > 0) {
-            while(true) {
-                System.out.println("Please enter the user ID for detailed Information.");
-                System.out.print("(-1) for quit. : ");
-                if(scanner.hasNextInt())
-                    inInt = scanner.nextInt();
-                else
-                    inInt = -1;
-
-                if(inInt == -1){
-                    System.out.println(">> quit.");
-                    break;
-                }
-                printUserInfo(searchuserlistID(inInt));
-            }
-        }
-    }
-
-    //SearchList
-    public static int searching(String userName, int userType) {
-        int total = 0;
+		//listing
+		String [] strHeader = {"User ID", "User Name", "User Type"};
+		String [][] strData = new String[userlist.size()][3]; 
         for (int i = 0; i < userlist.size(); i++) {
-            if(userlist.get(i).getUserName().contains(userName)) {
-                System.out.format( "- %-5d%-20s\n" , userlist.get(i).getUserID(), userlist.get(i).getUserName());
-                total++;
+			switch(userType) {
+				case 0:
+					type = userlist.get(i) instanceof Trainee ;
+					break;
+				case 1:
+					type = userlist.get(i) instanceof Trainer ;
+					break;
+				default:
+					type = true;
+			}
+            if(userlist.get(i).getUserName().contains(inStr) && type) {
+				strData[row][0] = Integer.toString(userlist.get(i).getUserID()); 
+				strData[row][1] = userlist.get(i).getUserName(); 
+				strData[row++][2] = userlist.get(i).getUserType();
+                totSearchNum++;
             }
+
         }
-        return total;
+		if(totSearchNum <= 0) {
+			JOptionPane.showMessageDialog(null, "User can't found.");
+		}else {
+			JOptionPane.showMessageDialog(null, "There are " + totSearchNum + " result(s)");
+			TableModel  model = new DefaultTableModel(strData,strHeader);
+			Menus.table.setModel(model);
+		}
+            
     }
 
 
@@ -252,20 +241,32 @@ public class Account implements Files{
 	
 	//List all Users records
 	public static void listAll(){
+
+		String output =  "> List all courses";
+		test.write(output);
 		
-		System.out.println("-----------------------------------------------------");
-		System.out.println("- ID   User Name           User Type");
-		System.out.println("-----------------------------------------------------");
-		
+		String [] strHeader = {"User ID", "User Name", "User Type"};
+		String [][] strData = new String[userlist.size()][3]; 
+		boolean not = true;
+		int row = 0;
 		for (int i = 0; i < userlist.size(); i++) {
+			strData[row][0] = Integer.toString(userlist.get(i).getUserID()); 
+			strData[row][1] = userlist.get(i).getUserName(); 
 			if(userlist.get(i) instanceof Trainee) {
 				Trainee trainee = (Trainee)userlist.get(i);
-				System.out.format( "- %-5d%-20s%s (%s)\n" , userlist.get(i).getUserID(), userlist.get(i).getUserName(), userlist.get(i).getUserType(), trainee.getTraineeType());
+				strData[row++][2] = userlist.get(i).getUserType() + " (" + trainee.getTraineeType() + ")";
 			}else  
-				System.out.format( "- %-5d%-20s%s\n" , userlist.get(i).getUserID(), userlist.get(i).getUserName(), userlist.get(i).getUserType());
+				strData[row++][2] = userlist.get(i).getUserType();
+			not = false;
 		}
-		System.out.println("-----------------------------------------------------\n");
-
+		if(not) {
+			JOptionPane.showMessageDialog(null, "Not for now.");
+		}else {
+			TableModel  model = new DefaultTableModel(strData,strHeader);
+			Menus.table.setModel(model);
+		}		
+		
+		
 	}
 	
 }

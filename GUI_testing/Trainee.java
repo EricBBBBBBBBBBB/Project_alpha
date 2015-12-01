@@ -17,8 +17,6 @@ class Trainee extends User{
 	public static int totalNoOfTrainee = 0;  // class data member
 	protected int traineeType;
 	
-	
-	
 // Constructors 
 	Trainee(int uid, String name, String pw) {
 		super(uid, name, pw, 0);	//call superclass constructor

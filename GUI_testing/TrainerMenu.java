@@ -9,11 +9,9 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import javax.swing.table.*;
 
 class TrainerMenu extends JPanel{
 
-	public static JTable table;
 	private JScrollPane scrollPane;
 	private static final int BOTTON_WIDTH    = 300;
     private static final int BOTTON_HEIGHT   = 25;
@@ -24,8 +22,6 @@ class TrainerMenu extends JPanel{
 	private JButton option1 = new JButton("1. Owned Courses List");
 	private JButton option2 = new JButton("2. Courses Enrolled Trainees");
 	private JButton option3 = new JButton("3. Courses Complete");
-	private JButton option4 = new JButton("4. View Personal Infomation");
-	private JButton option5 = new JButton("5. Change Password");
 	private JButton complete = new JButton("Complete");
 
 	public TrainerMenu(Trainer trainer){
@@ -41,8 +37,8 @@ class TrainerMenu extends JPanel{
 		add(title);
 		
 		//table
-		table = new JTable();
-		scrollPane = new JScrollPane(table);
+		Menus.table = new JTable();
+		scrollPane = new JScrollPane(Menus.table);
 		add(scrollPane);
 		
 		//option1
@@ -83,38 +79,8 @@ class TrainerMenu extends JPanel{
 			public void actionPerformed(ActionEvent e) {
 				Curriculum.completeCourse(trainer.getUserID());	
 			}
-		});
-		
-		//option4
-		option4.setBounds(350, 430, BOTTON_WIDTH, BOTTON_HEIGHT);
-		add(option4);
-		option4.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				trainer.printUserInfo();
-			}
 		});		
 		
-		//option5
-		option5.setBounds(350, 460, BOTTON_WIDTH, BOTTON_HEIGHT);
-		add(option5);
-		option5.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				//changePassword();
-			}
-		});			
-		
-		//for clicking table
-		table.addMouseListener(new Click());
-		
     }
-	
-	class Click extends MouseAdapter{
-        public void mouseClicked(MouseEvent e) {
-            if(e.getClickCount() <= 5){
-				int i = Integer.parseInt(table.getValueAt(table.getSelectedRow(), 0).toString())-1;
-				Curriculum.courselist.get(i).printCourseInfo();
-			}
-		}
-	}
-	
+		
 }

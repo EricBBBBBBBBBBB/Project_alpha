@@ -11,9 +11,9 @@ public class test extends JPanel {
 	private static JTextArea textArea = new JTextArea(22, 54);
 	private static User user;
 
-    public test(User user) { 
+    public test(User u) { 
 		
-		this.user = user;
+		user = u;
 		setOpaque(false);
 		setVisible(true);
 		setBounds(34, 33, 600, 365);
