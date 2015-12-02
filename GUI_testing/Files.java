@@ -7,7 +7,7 @@
 ********************************************/
 
 interface Files {
-	public static final String DEF_COURSE = "Courses.csv";
-	public static final String DEF_USER = "Users.csv";
+	public static final String DEF_COURSE = "data/Courses.csv";
+	public static final String DEF_USER = "data/Users.csv";
 }
 

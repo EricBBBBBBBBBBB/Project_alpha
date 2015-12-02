@@ -72,15 +72,6 @@ public class Account implements Files{
         }
         return -1;
     }
-	
-    //Search User by name (return ArrayList ID) [Require exactly User name for searching]
-    public static int searchuserlistID(String userName) {
-        for (int i = 0; i < userlist.size(); i++) {
-            if (userlist.get(i).getUserName().equals(userName)) 
-                return i;
-        }
-        return -1;
-    }
 
 	// Search User by Name (return boolean if yes)
 	public static boolean searchUserReBo(String userName) {
@@ -153,91 +144,6 @@ public class Account implements Files{
             System.out.println("User not found!");
         }
     }
-
-    //Edit User Information
-    public static void editUser(String userName) {
-        int listID = searchuserlistID(userName);
-        if (listID != -1) {
-            System.out.println("Found the record");
-            //userlist.get(listID).printUserInfo();
-        Scanner scanner = new Scanner(System.in);
-            String inStr;
-            char inChar;
-			
-            whileloop:
-            while(true) {
-                System.out.println("---------------Edit User Information-------------");
-                System.out.println("Please select the part you want to edit: ");
-                System.out.println("- 1: User Email");
-                System.out.println("- 2: User Phone");
-                System.out.println("- 3: Other");
-                System.out.println("- 8: Show User information");
-                System.out.println("- 9: Quit Editing");
-
-                inStr = scanner.next();
-
-                switch(inStr.charAt(0)) {
-                    case '1':
-                        System.out.println("Please enter the new Email Address (-q for quit without change");
-						inStr = scanner.next();
-                        if(inStr.equals("-q") || inStr.equals("-Q")) {
-                            break;
-                        } else {
-                            if(IOValidation.emailValid(inStr)) {
-                                System.out.println("The previous Email: " + userlist.get(listID).getUserEmail());
-                                System.out.println("The new Email: " + inStr);
-                                System.out.println(">> Are you sure to make change? (Y/N)");
-                                inChar = scanner.next().charAt(0);
-                                if(inChar == 'y' || inChar == 'Y'){
-                                    userlist.get(listID).setUserEmail(inStr);
-                                    System.out.println("The Email is updated!");
-                                } else {
-                                    System.out.println("Action was cancelled!");
-                                }
-                            }else{
-                                System.out.println("Wrong format");
-                            }
-                        }
-						break;
-                    case '2':
-						System.out.println("Please enter the new phone number (-q for quit without change");
-                        inStr = scanner.next();
-                        if(inStr.equals("-q") || inStr.equals("-Q")) {
-                            break;
-                        } else {
-                            if(IOValidation.phoneValid(inStr)) {
-                                System.out.println("The previous Phone: " + userlist.get(listID).   getUserPhone());
-                                System.out.println("The new Phone: " + inStr);
-                                System.out.println(">> Are you sure to make chnage? (Y/N)");
-                                inChar = scanner.next().charAt(0);
-                                if(inChar == 'y' || inChar == 'Y'){
-                                    userlist.get(listID).setUserPhone(inStr);
-                                    System.out.println("The Phone number is updated!");
-                                } else {
-                                    System.out.println("Action was cancelled!");
-                                }
-                            }else{
-                                System.out.println("Wrong format");
-                            }
-                        }
-                        break;
-                    case '3':
-                        break;
-                    case '8':
-						userlist.get(listID).printUserInfo();
-                        break;
-                    case '9':
-                        break whileloop;
-                    default:
-                        System.out.println("Unknown command");
-                        break whileloop;
-                }
-
-            }
-        } else {
-            System.out.println("No such user");
-        }
-	}
 	
 	//List all Users records
 	public static void listAll(){

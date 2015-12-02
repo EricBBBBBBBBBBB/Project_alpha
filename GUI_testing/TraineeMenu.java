@@ -32,12 +32,8 @@ class TraineeMenu extends JPanel{
 		setOpaque(false);
 		setLayout(null);
 		setVisible(true);
-		
-		//title
-		title = new JLabel("Trainee Menu");
-		title.setBounds(30, 5, 300, 25);
-		add(title);
-		
+		Menus.Detail = 2;
+
 		//table
 		Menus.table = new JTable();
 		scrollPane = new JScrollPane(Menus.table);

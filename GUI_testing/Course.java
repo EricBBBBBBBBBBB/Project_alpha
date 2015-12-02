@@ -108,6 +108,11 @@ class Course{
 		return maxNumOfTrainee;
 	}
 	
+	public ArrayList<Integer> getTrainees(){
+		return traineelist;
+	}
+	
+	
 	public String getDescription() {
 		return description;
 	}
@@ -166,14 +171,14 @@ class Course{
 			"End of Personal Infomation.\n";
 		test.write(output);
 	}
-
-
-//######################################################################################################################		
-	public void printCourseTrainee(){
-
 	
+	public void printCourseTrainee(){
+		 
+		String tlist = "";
+		int tid;
 		for(int i = 0; i < traineelist.size() ; i++ ){
-			System.out.format( "- %-5d%-20s\n" , Account.userlist.get(traineelist.get(i)).getUserID(), Account.userlist.get(traineelist.get(i)).getUserName());
+			tid = Account.searchuserlistID(traineelist.get(i));
+			tlist = tlist + String.format("- %-20d%-30s%-30s\n", Account.userlist.get(tid).getUserID(), Account.userlist.get(tid).getUserName(),((Trainee)Account.userlist.get(tid)).getTraineeType());
 		}
 
 		String output = 
@@ -185,9 +190,9 @@ class Course{
 			"Requirements  :  " + getCourseType() + "\n" +
 			"No. of Trainee:  " + totalNumOfTrainee + "/" + maxNumOfTrainee + "\n" +
 			"---------------------------------------------------------------------------\n" +
-			"- ID   User Name           User Type" +
+			"- ID                  User Name           User Type\n" +
 			"---------------------------------------------------------------------------\n" +
-			
+			tlist +
 			"---------------------------------------------------------------------------\n" +
 			"End of Personal Infomation.\n";
 		test.write(output);		

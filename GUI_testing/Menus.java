@@ -18,7 +18,7 @@ import javax.swing.JOptionPane;
 public class Menus extends SSEM{
 
 	public static JTable table;
-	public static boolean Cinfo = true;
+	public static int Detail;
 	
 	Menus(User user) {
 		add(new MenusPanel(user));
@@ -31,6 +31,21 @@ public class Menus extends SSEM{
 		final int y = (screenSize.height - 650) / 2;	
 		setLocation(x, y);
 		setVisible(true);	
+		
+		//set title 
+		switch(user.getUserType()) {
+			case "Trainee":
+				setTitle("Trainee Menu");
+				break;
+			case "Trainer":
+				setTitle("Trainer Menu");
+				break;
+			case "Admin":
+				setTitle("Admin Menu");
+				break;
+			default:
+				setTitle("Menu");
+		}	
 	}
 	
 }
@@ -171,9 +186,27 @@ class MenusPanel extends JPanel implements Files {
 	class Click extends MouseAdapter{
         public void mouseClicked(MouseEvent e) {
             if(e.getClickCount() <= 10 && Menus.table.getValueAt(Menus.table.getSelectedRow(), 0) != null){
-				int i = Integer.parseInt(Menus.table.getValueAt(Menus.table.getSelectedRow(), 0).toString())-1;
-				if(Menus.Cinfo) Curriculum.courselist.get(i).printCourseInfo();
-				else Account.userlist.get(i).printUserInfo();
+				int i = Integer.parseInt(Menus.table.getValueAt(Menus.table.getSelectedRow(), 0).toString());
+				switch(Menus.Detail) {
+					case 1:
+						i = Account.searchuserlistID(i);
+						Account.userlist.get(i).printUserInfo();
+						break;
+					case 2:
+						i = Curriculum.searchcourselistID(i);
+						Curriculum.courselist.get(i).printCourseInfo();
+						break;
+					case 3:
+						i = Curriculum.searchcourselistID(i);
+						Curriculum.courselist.get(i).printCourseTrainee();
+						break;
+					default:
+						JOptionPane.showMessageDialog(null, "Unknown Comment."," ",JOptionPane.WARNING_MESSAGE);
+				}	
+				
+				
+					
+				
 			}
 		}
 	}

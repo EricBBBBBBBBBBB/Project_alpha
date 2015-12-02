@@ -153,7 +153,7 @@ class Curriculum implements Files{
 				if( all || !(courselist.get(i).completed ) ){
 					strData[row][0] = Integer.toString(courselist.get(i).getCourseID()); 
 					strData[row][1] = courselist.get(i).getCourseName(); 
-					strData[row][2] = Integer.toString(courselist.get(i).getTotalOfTrainee()); 
+					strData[row][2] = courselist.get(i).getTotalOfTrainee() + "/" +courselist.get(i).getMaxOfTrainee() ;
 					strData[row++][3] = courselist.get(i).getStatus(); 
 					not = false;
 				}
@@ -166,6 +166,60 @@ class Curriculum implements Files{
 			Menus.table.setModel(model);
 		}
 	}
+
+	//List Trainer Owned Courses (Trainer Option 2)
+	public static void enrolledTrainees(int uid){
+		
+		String output =  "> Courses Enrolled Trainees ";
+		test.write(output);
+		
+		String [] strHeader = {"Course ID", "Course Name", "Course Type", "Course Trainees"};
+		String [][] strData = new String[courselist.size()][4]; 
+		boolean not = true;
+		int row = 0;
+		for (int i = 0; i < courselist.size(); i++) {
+			if(courselist.get(i).getTrainerID() == uid){
+				if(!(courselist.get(i).completed ) ){
+					strData[row][0] = Integer.toString(courselist.get(i).getCourseID()); 
+					strData[row][1] = courselist.get(i).getCourseName(); 
+					strData[row][2] =  courselist.get(i).getCourseType();
+					strData[row++][3] = courselist.get(i).getTotalOfTrainee() + "/" +courselist.get(i).getMaxOfTrainee() ;
+					not = false;
+				}
+			}
+		}
+		if(not) {
+			JOptionPane.showMessageDialog(null, "Not for now.");
+		}else {
+			TableModel  model = new DefaultTableModel(strData,strHeader);
+			Menus.table.setModel(model);
+		}
+	}
+	
+	public static void viewTrainees(int cid){
+		
+		ArrayList<Integer> traineelist = courselist.get(searchcourselistID(cid)).getTrainees();
+		String [] strHeader = {"Trainee ID", "Trainee Name", " ", " "};
+		String [][] strData = new String[traineelist.size()][3]; 
+		boolean not = true;
+		int row = 0;
+		int tid = 0;
+		
+		for (int i = 0; i < traineelist.size(); i++) {
+			tid = Account.searchuserlistID(traineelist.get(i));
+			strData[row][0] =  Integer.toString(Account.userlist.get(tid).getUserID());
+			strData[row][1] =  Account.userlist.get(tid).getUserName();
+			strData[row++][2] =  ((Trainee)Account.userlist.get(tid)).getTraineeType();
+			not = false;
+			}
+		if(not) {
+			JOptionPane.showMessageDialog(null, "Not for now.");
+		}else {
+			TableModel  model = new DefaultTableModel(strData,strHeader);
+			Menus.table.setModel(model);
+		}
+		
+	}		
 		
 	//Complete Courses (Trainer Option 3)
 	public static void completeCourse(int cid, int uid){
@@ -188,8 +242,60 @@ class Curriculum implements Files{
 ////Admin Option	
 //######################################################################################################################
 	//Search Course (Admin Option 7)
-	public static void searchCourse(){
+	public static void searchCourse(int courseType){
 
+		int totSearchNum = 0;
+		int row = 0;
+		String message, inStr;  
+		boolean type;
+		
+        switch(courseType) {
+            case 0:
+                message = "Beginner Course name: ";
+                break;
+            case 1:
+                message = "Advanced Course name: ";
+                break;
+			case 2:
+				message = "Intermediate Course name:";
+				break;
+            default:
+                message = " Course name:";
+        }
+		inStr = JOptionPane.showInputDialog("Please enter the " + message);
+
+		//listing
+		String [] strHeader = {"Course ID", "Course Name", "Course Type"};
+		String [][] strData = new String[courselist.size()][3]; 
+        for (int i = 0; i < courselist.size(); i++) {
+			switch(courseType) {
+				case 0:
+					type =  (courselist.get(i).getCourseType() == "Beginner");
+					break;
+				case 1:
+					type =  (courselist.get(i).getCourseType() == "Advanced");
+					break;
+				case 2:
+					type =  (courselist.get(i).getCourseType() == "Intermediate");
+					break;
+				default:
+					type = true;
+			}
+            if(courselist.get(i).getCourseName().contains(inStr) && type) {
+				strData[row][0] = Integer.toString(courselist.get(i).getCourseID()); 
+				strData[row][1] = courselist.get(i).getCourseName(); 
+				strData[row++][2] = courselist.get(i).getCourseType();
+                totSearchNum++;
+            }
+			
+        }
+		if(totSearchNum <= 0) {
+			JOptionPane.showMessageDialog(null, "Course can't found.");
+		}else {
+			JOptionPane.showMessageDialog(null, "There are " + totSearchNum + " result(s)");
+			TableModel  model = new DefaultTableModel(strData,strHeader);
+			Menus.table.setModel(model);
+		}
 	
 	}
 	
@@ -322,7 +428,6 @@ class Curriculum implements Files{
 		
 		//create
 		
-	
 	}
 
 	

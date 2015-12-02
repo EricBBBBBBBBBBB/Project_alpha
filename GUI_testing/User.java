@@ -90,7 +90,7 @@ class User{
 		return period.getYears();
 	}
 
-	public LocalDate getBDay() {
+	public LocalDate getUserBirth() {
 		return dateOfBirth;
 	}
 	

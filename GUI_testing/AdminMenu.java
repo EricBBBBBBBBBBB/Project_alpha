@@ -24,7 +24,7 @@ class AdminMenu extends JPanel{
 	//Users Detailed Information
 	private JButton option1 = new JButton("1. List All Users ");
 	private JButton option2 = new JButton("2. Users Searching");
-	private JButton option3 = new JButton("3. Users Editing");	//not done
+	private JButton option3 = new JButton("3. Users Editing");
 	private JButton editU 	= new JButton("Edit");
 	private JButton option4 = new JButton("4. Remove Users");	
 	private JButton removeU = new JButton("Remove");
@@ -32,7 +32,7 @@ class AdminMenu extends JPanel{
 	
 	//Courses Detailed Information
 	private JButton option6 = new JButton("6. List All Courses ");
-	private JButton option7 = new JButton("7. Courses Searching");	//not done
+	private JButton option7 = new JButton("7. Courses Searching");
 	private JButton option8 = new JButton("8. Courses Editing");	//not done
 	private JButton editC 	= new JButton("Edit");
 	private JButton option9 = new JButton("9. Remove Courses");
@@ -46,11 +46,6 @@ class AdminMenu extends JPanel{
 		setLayout(null);
 		setVisible(true);
 		
-		//title
-		title = new JLabel("Administrator Menu");
-		title.setBounds(30, 5, 300, 25);
-		add(title);
-		
 		//table
 		Menus.table = new JTable();
 		scrollPane = new JScrollPane(Menus.table);
@@ -63,7 +58,7 @@ class AdminMenu extends JPanel{
 		add(option1);
 		option1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setting(false);
+				setting(1);
 				Account.listAll();
 			}
 		});
@@ -73,7 +68,7 @@ class AdminMenu extends JPanel{
 		add(option2);
 		option2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setting(false);
+				setting(1);
 				UserSearching frame = new UserSearching();
 				frame.setVisible(true);
 			}
@@ -85,9 +80,8 @@ class AdminMenu extends JPanel{
 		add(option3);
 		option3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setting(false);
+				setting(1);
 				editU.setVisible(true);
-				
 			}
 		});
 		
@@ -95,8 +89,11 @@ class AdminMenu extends JPanel{
 		add(editU);
 		editU.setVisible(false);
 		editU.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				//Account.editUser(inString);
+			public void actionPerformed(ActionEvent e) {			
+				if(value() != -1){
+					UserEditing frame = new UserEditing(value());
+					frame.setVisible(true);
+				}
 			}
 		});	
 		
@@ -105,7 +102,7 @@ class AdminMenu extends JPanel{
 		add(option4);
 		option4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setting(false);
+				setting(1);
 				test.write("> User Deleting");
 				removeU.setVisible(true);
 			}
@@ -116,8 +113,7 @@ class AdminMenu extends JPanel{
 		removeU.setVisible(false);
 		removeU.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(value() != -1)
-				Account.removeUser(value(),admin);
+				if(value() != -1) Account.removeUser(value(),admin);
 			}
 		});	
 		
@@ -126,7 +122,7 @@ class AdminMenu extends JPanel{
 		add(option5);
 		option5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setting(false);
+				setting(1);
 				Register register = new Register();
 				register.register(false);
 				Account.listAll();
@@ -139,7 +135,7 @@ class AdminMenu extends JPanel{
 		add(option6);
 		option6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setting(true);
+				setting(2);
 				Curriculum.listAll();
 			}
 		});
@@ -149,8 +145,9 @@ class AdminMenu extends JPanel{
 		add(option7);
 		option7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setting(true);
-				/*Searching*/
+				setting(2);
+				CourseSearching frame = new CourseSearching();
+				frame.setVisible(true);
 			}
 		});		
 	
@@ -159,8 +156,7 @@ class AdminMenu extends JPanel{
 		add(option8);
 		option8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setting(true);
-				Curriculum.listAll();
+				setting(2);
 				test.write("> Course Information Editing");
 				editC.setVisible(true);
 			}
@@ -171,7 +167,10 @@ class AdminMenu extends JPanel{
 		editC.setVisible(false);
 		editC.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Curriculum.editCourse(Integer.parseInt(Menus.table.getValueAt(Menus.table.getSelectedRow(), 0).toString()));
+				if(value() != -1){
+					//CourseEditing frame = new CourseEditing(value());
+					//frame.setVisible(true);
+				}
 			}
 		});		
 	
@@ -180,8 +179,7 @@ class AdminMenu extends JPanel{
 		add(option9);
 		option9.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setting(true);
-				Curriculum.listAll();
+				setting(2);
 				test.write("> Course Deleting");
 				removeC.setVisible(true);
 			}
@@ -192,7 +190,7 @@ class AdminMenu extends JPanel{
 		removeC.setVisible(false);
 		removeC.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Curriculum.removeCourse(Integer.parseInt(Menus.table.getValueAt(Menus.table.getSelectedRow(), 0).toString()));
+				if(value() != -1) Curriculum.removeCourse(value());
 			}
 		});	
 	
@@ -201,7 +199,7 @@ class AdminMenu extends JPanel{
 		add(option10);
 		option10.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setting(true);
+				setting(2);
 				CourseCreate coursecreate = new CourseCreate();
 				coursecreate.coursecreate();
 				Curriculum.listAll();
@@ -212,7 +210,7 @@ class AdminMenu extends JPanel{
 	
 	public int value(){
 		if(Menus.table.getValueAt(Menus.table.getSelectedRow(), 0) != null){
-			String inStr = Menus.table.getValueAt(Menus.table.getSelectedRow(), 0).toString();
+			String inStr = 	Menus.table.getValueAt(Menus.table.getSelectedRow(), 0).toString();
 			if(IOValidation.numberValid(inStr)){
 				return Integer.parseInt(inStr);
 			}else 
@@ -222,10 +220,10 @@ class AdminMenu extends JPanel{
 		}
 	}
 	
-	private	void setting(boolean b){
+	private	void setting(int i){
 		scrollPane.setBounds(671, 33, TABLE_WIDTH, TABLE_HEIGHT-30);
 		buttonclear();
-		Menus.Cinfo = b;
+		Menus.Detail = i;
 	}
 	
 	private	void buttonclear(){

@@ -101,7 +101,7 @@ class UserIO{
 				outStream.print(list.get(i).getUserEmail() + DEF_COLDELIMITER);
 				outStream.print(list.get(i).getUserPhone() + DEF_COLDELIMITER);
 				outStream.print(list.get(i).getDate() + DEF_COLDELIMITER);
-				outStream.print(list.get(i).getBDay() + DEF_COLDELIMITER);
+				outStream.print(list.get(i).getUserBirth() + DEF_COLDELIMITER);
 				if (list.get(i) instanceof Trainee){
 					outStream.print(((Trainee)list.get(i)).traineeType + DEF_COLDELIMITER);
 				}

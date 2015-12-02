@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-class UserSearching extends JFrame implements ActionListener {
+class CourseSearching extends JFrame implements ActionListener {
 
 //////Data Members
     private static final int FRAME_WIDTH    = 300;
@@ -11,16 +11,16 @@ class UserSearching extends JFrame implements ActionListener {
 
 //////Constructors
 
-    public UserSearching() {
+    public CourseSearching() {
         Container   contentPane;
         JPanel      comboPanel, okPanel;
 
         JButton     okButton;
-        String[]    comboBoxItem = {"Trainees", "Trainers", "All Users"};
+        String[]    comboBoxItem = {"Beginner", "Advanced", "Intermediate","All Course"};
 
         //set the frame properties
         setSize      (FRAME_WIDTH, FRAME_HEIGHT);
-        setTitle     ("User Searching");
+        setTitle     ("Course Searching");
 		
 		//set center
 		final Toolkit toolkit = Toolkit.getDefaultToolkit();
@@ -53,7 +53,7 @@ class UserSearching extends JFrame implements ActionListener {
 
     public void actionPerformed(ActionEvent event) {
         int  loc = comboBox.getSelectedIndex();
-		Account.searchUser(loc);
+		Curriculum.searchCourse(loc);
 		this.dispose();
     }
 

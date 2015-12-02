@@ -21,8 +21,9 @@ class TrainerMenu extends JPanel{
 	private JLabel title;
 	private JButton option1 = new JButton("1. Owned Courses List");
 	private JButton option2 = new JButton("2. Courses Enrolled Trainees");
-	private JButton option3 = new JButton("3. Courses Complete");
+	private JButton option3 = new JButton("3. Courses Complete");	//not done
 	private JButton complete = new JButton("Complete");
+	private JButton view = new JButton("View Trainees");
 
 	public TrainerMenu(Trainer trainer){
 		
@@ -30,12 +31,7 @@ class TrainerMenu extends JPanel{
 		setOpaque(false);
 		setLayout(null);
 		setVisible(true);
-		
-		//title
-		title = new JLabel("Trainer Menu");
-		title.setBounds(30, 5, 300, 25);
-		add(title);
-		
+
 		//table
 		Menus.table = new JTable();
 		scrollPane = new JScrollPane(Menus.table);
@@ -47,6 +43,7 @@ class TrainerMenu extends JPanel{
 		option1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				scrollPane.setBounds(671, 33, TABLE_WIDTH, TABLE_HEIGHT);
+				Menus.Detail = 2;
 				Curriculum.listOwnedCourse(trainer.getUserID(),true);	
 			}
 		});
@@ -56,10 +53,25 @@ class TrainerMenu extends JPanel{
 		add(option2);
 		option2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				scrollPane.setBounds(671, 33, TABLE_WIDTH, TABLE_HEIGHT);
-				
+				scrollPane.setBounds(671, 33, TABLE_WIDTH, TABLE_HEIGHT-30);
+				Menus.Detail = 3;
+				Curriculum.enrolledTrainees(trainer.getUserID());
+				view.setVisible(true);
 			}
 		});
+		
+		view.setBounds(671, 363, 300, 30);
+		add(view);
+		view.setVisible(false);
+		view.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(value() != -1){
+					Menus.Detail = 1;
+					Curriculum.viewTrainees(value());
+				}
+				
+			}
+		});			
 		
 		//option3
 		option3.setBounds(30, 490, BOTTON_WIDTH, BOTTON_HEIGHT);
@@ -68,6 +80,7 @@ class TrainerMenu extends JPanel{
 			public void actionPerformed(ActionEvent e) {
 				scrollPane.setBounds(671, 33, TABLE_WIDTH, TABLE_HEIGHT-30);
 				Curriculum.listOwnedCourse(trainer.getUserID(),false);	
+				Menus.Detail = 2;
 				complete.setVisible(true);
 			}
 		});

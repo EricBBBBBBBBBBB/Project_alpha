@@ -67,7 +67,7 @@ class IOValidation{
 	public static boolean numberValid(String inStr) {
         if(inStr.isEmpty())
             return false;
-        String regex = "[0-200]";  // set the regex
+        String regex = "[0-9]*$";  // set the regex
         Pattern pattern = Pattern.compile(regex);   // compile the pattern
         Matcher matcher = pattern.matcher(inStr);   // validate the email
         if(matcher.matches())
@@ -87,6 +87,7 @@ class IOValidation{
         else
             return false;
     }
+	
 	
     public static boolean passwordValid(String inStr) {
         if(inStr.isEmpty())
