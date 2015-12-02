@@ -8,10 +8,12 @@ class CourseSearching extends JFrame implements ActionListener {
     private static final int FRAME_WIDTH    = 300;
     private static final int FRAME_HEIGHT   = 120; 
 	private JComboBox comboBox;
+	private User user;
 
 //////Constructors
 
-    public CourseSearching() {
+    public CourseSearching(User u) {
+		user = u;
         Container   contentPane;
         JPanel      comboPanel, okPanel;
 
@@ -52,9 +54,16 @@ class CourseSearching extends JFrame implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent event) {
-        int  loc = comboBox.getSelectedIndex();
-		Curriculum.searchCourse(loc);
-		this.dispose();
+		int  loc = comboBox.getSelectedIndex();	
+		if(user.getUserType().equals("Admin") ){
+			Curriculum.searchCourse(loc);
+			this.dispose();
+		}else{
+			if(user.getUserType().equals("Trainer")  ){
+			Curriculum.trainersearchCourse(loc,user.getUserID());
+			this.dispose();
+			}
+		}
     }
 
 }

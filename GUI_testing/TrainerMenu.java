@@ -20,8 +20,9 @@ class TrainerMenu extends JPanel{
 	
 	private JLabel title;
 	private JButton option1 = new JButton("1. Owned Courses List");
-	private JButton option2 = new JButton("2. Courses Enrolled Trainees");
-	private JButton option3 = new JButton("3. Courses Complete");	//not done
+	private JButton option2 = new JButton("2. Course Searching");
+	private JButton option3 = new JButton("3. Courses Enrolled Trainees");
+	private JButton option4 = new JButton("4. Courses Complete");	//not done
 	private JButton complete = new JButton("Complete");
 	private JButton view = new JButton("View Trainees");
 
@@ -53,6 +54,17 @@ class TrainerMenu extends JPanel{
 		add(option2);
 		option2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				scrollPane.setBounds(671, 33, TABLE_WIDTH, TABLE_HEIGHT);
+				CourseSearching frame = new CourseSearching(trainer);
+				frame.setVisible(true);
+			}
+		});
+		
+		//option3
+		option3.setBounds(30, 490, BOTTON_WIDTH, BOTTON_HEIGHT);
+		add(option3);
+		option3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				scrollPane.setBounds(671, 33, TABLE_WIDTH, TABLE_HEIGHT-30);
 				Menus.Detail = 3;
 				Curriculum.enrolledTrainees(trainer.getUserID());
@@ -73,10 +85,10 @@ class TrainerMenu extends JPanel{
 			}
 		});			
 		
-		//option3
-		option3.setBounds(30, 490, BOTTON_WIDTH, BOTTON_HEIGHT);
-		add(option3);
-		option3.addActionListener(new ActionListener() {
+		//option4
+		option4.setBounds(30, 520, BOTTON_WIDTH, BOTTON_HEIGHT);
+		add(option4);
+		option4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				scrollPane.setBounds(671, 33, TABLE_WIDTH, TABLE_HEIGHT-30);
 				Curriculum.listOwnedCourse(trainer.getUserID(),false);	

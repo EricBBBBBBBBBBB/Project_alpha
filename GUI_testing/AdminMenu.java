@@ -146,7 +146,7 @@ class AdminMenu extends JPanel{
 		option7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setting(2);
-				CourseSearching frame = new CourseSearching();
+				CourseSearching frame = new CourseSearching(admin);
 				frame.setVisible(true);
 			}
 		});		

@@ -166,8 +166,66 @@ class Curriculum implements Files{
 			Menus.table.setModel(model);
 		}
 	}
+	
+	//Trainer Search Course (Trainer Option 2)
+	public static void trainersearchCourse(int courseType,int uid){
 
-	//List Trainer Owned Courses (Trainer Option 2)
+		int totSearchNum = 0;
+		int row = 0;
+		String message, inStr;  
+		boolean type;
+		
+        switch(courseType) {
+            case 0:
+                message = "Beginner Course name: ";
+                break;
+            case 1:
+                message = "Advanced Course name: ";
+                break;
+			case 2:
+				message = "Intermediate Course name:";
+				break;
+            default:
+                message = " Course name:";
+        }
+		inStr = JOptionPane.showInputDialog("Please enter the " + message);
+
+		//listing
+		String [] strHeader = {"Course ID", "Course Name", "Course Type"};
+		String [][] strData = new String[courselist.size()][3]; 
+        for (int i = 0; i < courselist.size(); i++) {
+			switch(courseType) {
+				case 0:
+					type =  (courselist.get(i).getCourseType() == "Beginner");
+					break;
+				case 1:
+					type =  (courselist.get(i).getCourseType() == "Advanced");
+					break;
+				case 2:
+					type =  (courselist.get(i).getCourseType() == "Intermediate");
+					break;
+				default:
+					type = true;
+			}
+            if(courselist.get(i).getCourseName().contains(inStr) && type && courselist.get(i).getTrainerID() == uid) {
+				strData[row][0] = Integer.toString(courselist.get(i).getCourseID()); 
+				strData[row][1] = courselist.get(i).getCourseName(); 
+				strData[row++][2] = courselist.get(i).getCourseType();
+                totSearchNum++;
+            }
+			
+        }
+		if(totSearchNum <= 0) {
+			JOptionPane.showMessageDialog(null, "Course can't found.");
+		}else {
+			JOptionPane.showMessageDialog(null, "There are " + totSearchNum + " result(s)");
+			TableModel  model = new DefaultTableModel(strData,strHeader);
+			Menus.table.setModel(model);
+		}
+	
+	}
+
+	//List Trainer Owned Courses (Trainer Option 3)
 	public static void enrolledTrainees(int uid){
 		
 		String output =  "> Courses Enrolled Trainees ";
@@ -221,7 +279,7 @@ class Curriculum implements Files{
 		
 	}		
 		
-	//Complete Courses (Trainer Option 3)
+	//Complete Courses (Trainer Option 4)
 	public static void completeCourse(int cid, int uid){
 
 		String output =  "> Complete courses";
@@ -237,6 +295,7 @@ class Curriculum implements Files{
 		}
 		
 	}
+	
 
 	
 ////Admin Option	
