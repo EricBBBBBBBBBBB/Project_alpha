@@ -131,25 +131,22 @@ class MenusPanel extends JPanel implements Files {
 	}	
 	
 	private void changePassword(){
-		/*System.out.println("=================== Change Password =================");
-				System.out.println(" - Enter [-q] to exit;");
-				System.out.println(" Please Enter your old password");
-				System.out.print(" >>> ");
-				String inPassword;
-				while(true) {
-					inString = scanner.next();
-					inPassword = CryptWithMD5.cryptWithMD5(inString);
-					if (inString.equals("-q") || inString.equals("-Q")) {
-						break;
-					} else if (inPassword.equals(user.getUserPassword())) {
-						System.out.println("Please Enter the password you want to change");
-						System.out.print(" >>> ");
-					} else {
-						System.out.println("The old password is not correct. Please enter again: ");
-					}
-				}
 		
-		System.out.println("=====================================================");*/
+		String oldPW = JOptionPane.showInputDialog(" Please Enter your old password:");
+		oldPW = CryptWithMD5.cryptWithMD5(oldPW);
+		
+		if (oldPW.equals(user.getUserPassword())) {
+			String newPW = JOptionPane.showInputDialog(" Please Enter the new password:");
+			String newPW2 = JOptionPane.showInputDialog(" Please Re-enter the new password:");
+			if(newPW.equals(newPW2)) {
+				newPW = CryptWithMD5.cryptWithMD5(newPW);
+				user.setUserPassword(newPW);
+				JOptionPane.showMessageDialog(null," Password Changed.");
+			}
+		}else {
+			System.out.println("The old password is not correct. Action Cancel.");
+		}
+		
 	}
 	
 	private void logout(){

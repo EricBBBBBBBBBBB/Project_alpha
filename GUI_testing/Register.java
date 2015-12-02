@@ -57,8 +57,9 @@ class Register extends SSEM {
 			"      - no starting with digit \n" +
 			"   Password must contain: \n" +
 			"      - 8~12 characters \n" +
-			"      - letters and digit \n\n" +
-			"   Day of Brith (YYYY/MM/DD)"
+			"      - letters and digit \n" +
+			"   Day of Brith (YYYY-MM-DD)\n" +
+			"      - e.g. 1997-01-24"
 		);
 		textArea.setLineWrap(true);
 		panel.add(textArea);
