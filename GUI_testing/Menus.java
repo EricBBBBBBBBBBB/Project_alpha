@@ -133,6 +133,7 @@ class MenusPanel extends JPanel implements Files {
 	private void changePassword(){
 		
 		String oldPW = JOptionPane.showInputDialog(" Please Enter your old password:");
+		if(oldPW == null) oldPW = " ";
 		oldPW = CryptWithMD5.cryptWithMD5(oldPW);
 		
 		if (oldPW.equals(user.getUserPassword())) {
@@ -144,7 +145,7 @@ class MenusPanel extends JPanel implements Files {
 				JOptionPane.showMessageDialog(null," Password Changed.");
 			}
 		}else {
-			System.out.println("The old password is not correct. Action Cancel.");
+				JOptionPane.showMessageDialog(null," Action Changed.");
 		}
 		
 	}
@@ -200,10 +201,6 @@ class MenusPanel extends JPanel implements Files {
 					default:
 						JOptionPane.showMessageDialog(null, "Unknown Comment."," ",JOptionPane.WARNING_MESSAGE);
 				}	
-				
-				
-					
-				
 			}
 		}
 	}

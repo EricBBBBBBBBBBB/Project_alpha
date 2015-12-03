@@ -24,6 +24,7 @@ class TraineeMenu extends JPanel{
 	private JButton option2 = new JButton("2. Join Training Courses");
 	private JButton option3 = new JButton("3. Display Current/completed Courses");
 	private JButton option4 = new JButton("4. Display Targets Set");
+	
 	private JButton join = new JButton("join");
 
 	public TraineeMenu(Trainee trainee){
@@ -100,6 +101,7 @@ class TraineeMenu extends JPanel{
 			}else 
 				return -1;
 		}else{
+			JOptionPane.showMessageDialog(null, "Please Select the right records.");
 			return -1;
 		}
 	}
