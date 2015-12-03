@@ -20,7 +20,7 @@ class UserSearching extends JFrame implements ActionListener {
 
         //set the frame properties
         setSize      (FRAME_WIDTH, FRAME_HEIGHT);
-        setTitle     ("User Searching");
+        setTitle     ("SSEM - User Searching");
 		
 		//set center
 		final Toolkit toolkit = Toolkit.getDefaultToolkit();

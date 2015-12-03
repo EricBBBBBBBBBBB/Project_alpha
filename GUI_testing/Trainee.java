@@ -25,8 +25,8 @@ class Trainee extends User{
 // Methods 
 	//Trainee type updating
 	public int upadteTraineeType() {	
-		//if( totalcompletedCourse > 10 ) traineeType = 4;
-		//	else if( totalcompletedCourse > 5 ) traineeType = 5;
+		if( Curriculum.checkNoOfcompleted(getUserID()) > 2 ) traineeType = 4;
+			else if( Curriculum.checkNoOfcompleted(getUserID()) > 4 ) traineeType = 5;
 		return traineeType;
 	}
 	

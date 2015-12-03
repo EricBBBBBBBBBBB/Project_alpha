@@ -45,7 +45,7 @@ class CourseEditing extends JFrame {
 
         //set the frame properties
         setSize      (FRAME_WIDTH, FRAME_HEIGHT);
-        setTitle     ("Course Register");
+        setTitle     ("SSEM - Course Editing");
 
 		//set center
 		final Toolkit toolkit = Toolkit.getDefaultToolkit();
@@ -68,12 +68,9 @@ class CourseEditing extends JFrame {
 			"-                                     Course Register                                     -\n" +
 			"--------------------------------------------------------------------------------\n" +
 			"Please enter the information requested completely!\n\n" +
-			"Rules for a valid XXXXXXX for a Course:\n" +
+			"Rules for a valid name for a Course:\n" +
 			"   Course must contain: \n" +
-			"      - 8~50 characters \n" +
-			"      XXXXXXX \n" +
-			"      XXXXXXX \n" +
-			"      XXXXXXX \n" 
+			"      - 8~50 characters \n" 
 		);
 		textArea.setLineWrap(true);
 		textArea.setEditable(false);

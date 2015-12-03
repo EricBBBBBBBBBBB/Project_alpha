@@ -35,16 +35,16 @@ public class Menus extends SSEM{
 		//set title 
 		switch(user.getUserType()) {
 			case "Trainee":
-				setTitle("Trainee Menu");
+				setTitle("SSEM - Trainee Menu");
 				break;
 			case "Trainer":
-				setTitle("Trainer Menu");
+				setTitle("SSEM - Trainer Menu");
 				break;
 			case "Admin":
-				setTitle("Admin Menu");
+				setTitle("SSEM - Admin Menu");
 				break;
 			default:
-				setTitle("Menu");
+				setTitle("SSEM - Menu");
 		}	
 	}
 	

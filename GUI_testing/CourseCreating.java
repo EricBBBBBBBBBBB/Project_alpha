@@ -19,7 +19,7 @@ import java.time.LocalDate;
 import java.text.ParseException;
 
 
-class CourseCreate extends JFrame {
+class CourseCreating extends JFrame {
 	
 //////Data Members
     private static final int FRAME_WIDTH    = 360;
@@ -28,7 +28,7 @@ class CourseCreate extends JFrame {
 	
 	
 	
-	public CourseCreate(User user) {
+	public CourseCreating(User user) {
 		Container   contentPane;
 
         JButton 	create;
@@ -45,7 +45,7 @@ class CourseCreate extends JFrame {
 
         //set the frame properties
         setSize      (FRAME_WIDTH, FRAME_HEIGHT);
-        setTitle     ("Course Register");
+        setTitle     ("SSEM - Course Register");
 
 		//set center
 		final Toolkit toolkit = Toolkit.getDefaultToolkit();

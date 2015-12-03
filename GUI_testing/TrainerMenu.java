@@ -83,10 +83,14 @@ class TrainerMenu extends JPanel{
 			public void actionPerformed(ActionEvent e) {
 				if(value() != -1){
 					Menus.Detail = 1;
-					Curriculum.viewTrainees(value());
-					view.setVisible(false);
-					back.setVisible(true);
-					save.setVisible(true);
+					if(Curriculum.viewTrainees(value())){
+						view.setVisible(false);
+						back.setVisible(true);
+						save.setVisible(true);
+					}else{
+						//do nothing
+					}
+					
 				}
 				
 			}

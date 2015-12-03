@@ -109,7 +109,7 @@ class AdminMenu extends JPanel{
 		option6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setting(2);
-				CourseCreate frame = new CourseCreate(admin);
+				CourseCreating frame = new CourseCreating(admin);
 				frame.setVisible(true);
 			}
 		});			

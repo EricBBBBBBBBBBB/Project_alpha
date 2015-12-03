@@ -36,7 +36,7 @@ class UserEditing extends JFrame {
 
         //set the frame properties
         setSize      (FRAME_WIDTH, FRAME_HEIGHT);
-        setTitle     ("User Editing");
+        setTitle     ("SSEM - User Editing");
 		
 		//set center
 		final Toolkit toolkit = Toolkit.getDefaultToolkit();

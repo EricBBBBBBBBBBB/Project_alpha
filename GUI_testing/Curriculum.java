@@ -105,15 +105,20 @@ class Curriculum implements Files{
 		String output =  "> List Current/Completed courses";
 		OutPutStream.write(output);
 		
-		String [] strHeader = {"Course ID", "Course Name", "Status"};
-		String [][] strData = new String[courselist.size()][3]; 
+		String [] strHeader = {"Course ID", "Course Name", "Status", "Grade"};
+		String [][] strData = new String[courselist.size()][4]; 
 		boolean not = true;
 		int row = 0;
 		for (int i = 0; i < courselist.size(); i++) {
 			if(courselist.get(i).checkid(uid)){
 				strData[row][0] = Integer.toString(courselist.get(i).getCourseID()); 
 				strData[row][1] = courselist.get(i).getCourseName(); 
-				strData[row++][2] = courselist.get(i).getStatus();
+				strData[row][2] = courselist.get(i).getStatus();
+				if(courselist.get(i).searchtraineelistID(uid) != -1){
+					strData[row++][3] = courselist.get(i).gettraineeGrade(courselist.get(i).searchtraineelistID(uid));
+				}else{
+					row++;
+				}
 				not = false;
 			}
 		}
@@ -290,7 +295,7 @@ class Curriculum implements Files{
 		}
 	}
 	
-	public static void viewTrainees(int cid){
+	public static boolean viewTrainees(int cid){
 		
 		ArrayList<Integer> traineelist = courselist.get(searchcourselistID(cid)).getTrainees();
 		ArrayList<String> gradelist = courselist.get(searchcourselistID(cid)).getGrades();
@@ -310,9 +315,11 @@ class Curriculum implements Files{
 			}
 		if(not) {
 			JOptionPane.showMessageDialog(null, "Not for now.");
+			return false;
 		}else {
 			TableModel  model = new DefaultTableModel(strData,strHeader);
 			Menus.table.setModel(model);
+			return true;
 		}
 		
 	}		
@@ -337,7 +344,7 @@ class Curriculum implements Files{
 
 	
 ////Admin Option	
-//######################################################################################################################
+
 	//Search Course (Admin Option 7)
 	public static void searchCourse(int courseType){
 
@@ -399,102 +406,6 @@ class Curriculum implements Files{
 			Menus.table.setModel(model);
 		}
 	
-	}
-	
-//######################################################################################################################
-	//Edit Course Information (Admin Option 8)
-    public static void editCourse(int cid) {
-		System.out.println(cid);
-        
-		/*int listID = searchcourselistID(cid);
-        if (listID != -1) {
-            System.out.println("Found the record");
-			
-        Scanner scanner = new Scanner(System.in);
-            String inStr;
-            char inChar;
-			
-            whileloop:
-            while(true) {
-                System.out.println("---------------Edit Course Information-------------");
-                System.out.println("Please select the part you want to edit: ");
-                System.out.println("- 1: Course Name");
-                System.out.println("- 2: Course Target");
-                System.out.println("- 3: Course Description");
-                System.out.println("- 8: Show Course information");
-                System.out.println("- 9: Quit Editing");
-
-                inStr = scanner.next();
-
-                switch(inStr.charAt(0)) {
-                    case '1':
-                        System.out.println("Please enter the new Name (-q for quit without change");
-						inStr = scanner.next();
-                        if(inStr.equals("-q") || inStr.equals("-Q")) {
-                            break;
-                        } else {
-                                System.out.println("The previous Name: " + courselist.get(listID).getCourseName());
-                                System.out.println("The new Name: " + inStr);
-                                System.out.println(">> Are you sure to make change? (Y/N)");
-                                inChar = scanner.next().charAt(0);
-                                if(inChar == 'y' || inChar == 'Y'){
-                                    courselist.get(listID).setCourseName(inStr);
-                                    System.out.println("The Name is updated!");
-                                } else {
-                                    System.out.println("Action was cancelled!");
-                                }
-                        }
-						break;
-                    case '2':
-						System.out.println("Please enter the target (-q for quit without change");
-						inStr = scanner.next();
-                        if(inStr.equals("-q") || inStr.equals("-Q")) {
-                            break;
-                        } else {
-                                System.out.println("The previous target: " + courselist.get(listID).getTarget());
-                                System.out.println("The new target: " + inStr);
-                                System.out.println(">> Are you sure to make change? (Y/N)");
-                                inChar = scanner.next().charAt(0);
-                                if(inChar == 'y' || inChar == 'Y'){
-                                    courselist.get(listID).setTarget(inStr);
-                                    System.out.println("The Target is updated!");
-                                } else {
-                                    System.out.println("Action was cancelled!");
-                                }
-                        }
-						break;
-                    case '3':
-						System.out.println("Please enter the description (-q for quit without change");
-						inStr = scanner.next();
-                        if(inStr.equals("-q") || inStr.equals("-Q")) {
-                            break;
-                        } else {
-                                System.out.println("The previous description: " + courselist.get(listID).getDescription().replaceAll("(.{1,50})\\s+", "$1\n\t   "));
-                                System.out.println("The new description: " + inStr);
-                                System.out.println(">> Are you sure to make change? (Y/N)");
-                                inChar = scanner.next().charAt(0);
-                                if(inChar == 'y' || inChar == 'Y'){
-                                    courselist.get(listID).setDescription(inStr);
-                                    System.out.println("The Description is updated!");
-                                } else {
-                                    System.out.println("Action was cancelled!");
-                                }
-                        }
-						break;
-                    case '8':
-						courselist.get(listID).printCourseInfo();
-                        break;
-                    case '9':
-                        break whileloop;
-                    default:
-                        System.out.println("Unknown command");
-                        break whileloop;
-                }
-            }
-        } else {
-            System.out.println("No such course");
-        }*/
-		
 	}
 	
 	//Remove Course (Admin Option 9)

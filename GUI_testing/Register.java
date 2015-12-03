@@ -42,7 +42,7 @@ class Register extends JFrame {
 
         //set the frame properties
         setSize      (FRAME_WIDTH, FRAME_HEIGHT);
-        setTitle     ("User Register");
+        setTitle     ("SSEM - User Register");
 
 		//set center
 		final Toolkit toolkit = Toolkit.getDefaultToolkit();

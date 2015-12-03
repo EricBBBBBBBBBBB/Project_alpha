@@ -22,7 +22,7 @@ class CourseSearching extends JFrame implements ActionListener {
 
         //set the frame properties
         setSize      (FRAME_WIDTH, FRAME_HEIGHT);
-        setTitle     ("Course Searching");
+        setTitle     ("SSEM - Course Searching");
 		
 		//set center
 		final Toolkit toolkit = Toolkit.getDefaultToolkit();

@@ -120,11 +120,15 @@ class Course{
 	public ArrayList<String> getGrades(){
 		return gradelist;
 	}
-	
+
+	public String gettraineeGrade(int i){
+		return gradelist.get(i);
+	}	
 	
 	public String getDescription() {
 		return description;
 	}
+	
 	
 	//set the Course information
 	public void setCourseInfo(boolean status, int uid, int time, String place, int cost, String tar , String des, int max ) {
@@ -218,6 +222,13 @@ class Course{
 			if(traineelist.get(i) == uid) return true;
 		}
 		return false;
+	}
+	
+	public int searchtraineelistID(int uid){
+		for(int i = 0; i < traineelist.size() ; i++ ){
+			if(traineelist.get(i) == uid) return i;
+		}
+		return -1;
 	}
 	
 }
