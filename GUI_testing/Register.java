@@ -19,31 +19,45 @@ import java.time.LocalDate;
 import java.text.ParseException;
 
 
-class Register extends SSEM {
+class Register extends JFrame {
 	
-	public void register(boolean self) {
-		
-		JFrame registerframe = new JFrame();
-		registerframe.setSize(360, 640);
-		
+//////Data Members
+    private static final int FRAME_WIDTH    = 360;
+    private static final int FRAME_HEIGHT   = 640; 
+	private static int listID;
+	
+	
+	
+	public Register(boolean self) {
+		Container   contentPane;
+
+        JButton 	signup;
+        JButton     cancel;
+		JTextArea 	textArea;
+		JTextField 	username;
+		JPasswordField 	password;
+		JTextField 	email;
+		JTextField 	phone;
+		JTextField 	birth;
+
+        //set the frame properties
+        setSize      (FRAME_WIDTH, FRAME_HEIGHT);
+        setTitle     ("User Register");
+
 		//set center
 		final Toolkit toolkit = Toolkit.getDefaultToolkit();
 		final Dimension screenSize = toolkit.getScreenSize();
 		final int x = (screenSize.width - 360) / 2;
 		final int y = (screenSize.height - 640) / 2;
-		registerframe.setLocation(x, y);
-		registerframe.setVisible(true);
-		SSEM.quit(this);	
-		
-		//panel
-		JPanel panel = new JPanel();
-		registerframe.add(panel);
-		panel.setLayout(null);		
-		panel.setBackground( new Color(26, 188, 156) );
+		setLocation(x, y);
 
+        contentPane = getContentPane();
+        contentPane.setLayout(null);
+		contentPane.setBackground( new Color(26, 188, 156) );
+		
 
 		//messae box
-		JTextArea textArea = new JTextArea();
+		textArea = new JTextArea();
 		textArea.setBounds(10, 10, 324, 250);
 		textArea.setText(
 			"--------------------------------------------------------------------------------\n" +
@@ -62,78 +76,67 @@ class Register extends SSEM {
 			"      - e.g. 1997-01-24"
 		);
 		textArea.setLineWrap(true);
-		panel.add(textArea);
-			
+		textArea.setEditable(false);
 			
 		//name
 		JLabel userLabel = new JLabel("Name:");
 		userLabel.setBounds(10, 270, 80, 25);
-		panel.add(userLabel);
-
-		JTextField username = new JTextField(20);
+		username = new JTextField(20);
 		username.setBounds(100, 270, 160, 25);
-		panel.add(username);
 
 		//password
 		JLabel passwordLabel = new JLabel("Password:");
 		passwordLabel.setBounds(10, 310, 80, 25);
-		panel.add(passwordLabel);
-
-		JPasswordField password = new JPasswordField(20);
+		password = new JPasswordField(20);
 		password.setBounds(100, 310, 160, 25);
-		panel.add(password);	
+
 		
 		//re-password
 		
 		//email
 		JLabel emailLabel = new JLabel("Email:");
 		emailLabel.setBounds(10, 350, 80, 25);
-		panel.add(emailLabel);
-
-		JTextField email = new JTextField(20);
+		email = new JTextField(20);
 		email.setBounds(100, 350, 160, 25);
-		panel.add(email);	
 		
 		//phone
 		JLabel phoneLabel = new JLabel("Phone:");
 		phoneLabel.setBounds(10, 390, 80, 25);
-		panel.add(phoneLabel);
-
-		JTextField phone = new JTextField(20);
+		phone = new JTextField(20);
 		phone.setBounds(100, 390, 160, 25);
-		panel.add(phone);	
 			
 		//Date of birth (YYYY/MM/DD)
 		JLabel birthLabel = new JLabel("Date of birth:");
 		birthLabel.setBounds(10, 430, 80, 25);
-		panel.add(birthLabel);
-
-		JTextField birth = new JTextField(20);
+		birth = new JTextField(20);
 		birth.setBounds(100, 430, 160, 25);
-		panel.add(birth);	
 		
 		//SignUp
-		JButton signupButton = new JButton("Signup");
-		signupButton.setBounds(10, 470, 80, 25);
-		panel.add(signupButton);
+		signup = new JButton("Signup");
+		signup.setBounds(10, 470, 80, 25);
 
 		//Cancel
-		JButton cancelButton = new JButton("Cancel");
-		cancelButton.setBounds(100, 470, 80, 25);
-		panel.add(cancelButton);
+		cancel = new JButton("Cancel");
+		cancel.setBounds(100, 470, 80, 25);
 
-		/*	
-        System.out.println("#####################################################");
-        System.out.println("# Please check the information correctly");
-        System.out.println("#   Your user name: \t" + inUserName);
-        System.out.println("#   Your E-mail: \t" + inEmail);
-        System.out.println("#   Your Phone: \t" + inPhone);
-        System.out.println("#   Date of Birth: \t" + inDate);
-        System.out.println("#####################################################");
-		*/
+		contentPane.add(textArea);	
+		contentPane.add(userLabel);			
+		contentPane.add(username);	
+		contentPane.add(passwordLabel);		
+		contentPane.add(password);		
+		contentPane.add(emailLabel);		
+		contentPane.add(email);
+		contentPane.add(phoneLabel);
+		contentPane.add(phone);
+		contentPane.add(birthLabel);
+		contentPane.add(birth);
+        contentPane.add(signup);
+        contentPane.add(cancel);
+		
+        //register 'Exit upon closing' as a default close operation
+        setDefaultCloseOperation( WindowConstants.DISPOSE_ON_CLOSE );
 		
 /////listener/////////////////////////////////////////////////
-		
 		//name////on ENTER key switch to password 
 		username.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -167,12 +170,12 @@ class Register extends SSEM {
 		//brith////on ENTER key click the sign up
 		birth.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(checkbirth(birth.getText())) signupButton.doClick();				
+				if(checkbirth(birth.getText())) signup.doClick();				
 			}
 		}); 		
 		
 		//signup
-		signupButton.addActionListener(new ActionListener() {
+		signup.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) { 
 				
 				String userString = username.getText();
@@ -196,7 +199,7 @@ class Register extends SSEM {
 			            newtrainee.setUserBirth(dateOfbDay);
 						Account.updateuserlist(newtrainee);
 						JOptionPane.showMessageDialog(null, "Account ["+userString+"] created! Please login.");
-						registerframe.dispose();
+						dispose();
 						if(self)SSEM.main.setVisible(true);		
 					} else {
 						JOptionPane.showMessageDialog(null, "Action Cancelled & SYSTEM END."," ",JOptionPane.WARNING_MESSAGE);
@@ -205,16 +208,14 @@ class Register extends SSEM {
 
 			}
 		});
-		
-		
+
 		//cancel
-		cancelButton.addActionListener(new ActionListener() {
+		cancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) { 
-				registerframe.dispose();
+				dispose();
 				if(self)SSEM.main.setVisible(true);						
 			}
 		});
-		
 		
 	}
 
@@ -257,7 +258,7 @@ class Register extends SSEM {
 	private boolean checkbirth(String birthString){
 		Date bDay = new Date();
 		if(!IOValidation.dateValid(birthString)){
-			JOptionPane.showMessageDialog(null, "Wrong Format! Please enter again"," ",JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Birthday wrong Format! Please enter again"," ",JOptionPane.WARNING_MESSAGE);
 			return false;
 		}
 		else {
@@ -266,10 +267,10 @@ class Register extends SSEM {
 			int month = Integer.parseInt(dateSplit[1]);
 			int day = Integer.parseInt(dateSplit[2]);
 			if(month < 0 || month > 12) {
-				JOptionPane.showMessageDialog(null, "Wrong Format! Month cannot be less than 1 or more than 12! "," ",JOptionPane.WARNING_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Birthday wrong Format! Month must between 1 and 12! "," ",JOptionPane.WARNING_MESSAGE);
 				return false;
 			} else if(day < 0 || day > 31) {
-				JOptionPane.showMessageDialog(null, "Wrong Format! "," ",JOptionPane.WARNING_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Birthday wrong Format! Day not accept "," ",JOptionPane.WARNING_MESSAGE);
 				return false;
 			} else {
 				

@@ -40,7 +40,7 @@ class Trainer extends User{
 			"Owned Courses: \t  " + Curriculum.checkNoOfOwned(getUserID()) + "\n" + 
 			"---------------------------------------------------------------------------\n" +
 			"End of Personal Infomation.\n";
-		test.write(output);
+		OutPutStream.write(output);
 	}
 	
 }

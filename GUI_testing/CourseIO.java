@@ -53,12 +53,19 @@ class CourseIO{
 						//total = Integer.parseInt(strSplitArr[10]);
 						max = Integer.parseInt(strSplitArr[11]);
 						ArrayList<Integer> tlist = new ArrayList<Integer>();
-						for(int i = 12; i < strSplitArr.length ; i++ ){
-							tlist.add(Integer.parseInt(strSplitArr[i]));
+						ArrayList<String> glist = new ArrayList<String>();
+						if(strSplitArr.length > 11 ){
+							for(int i = 12; i < strSplitArr.length ; i++ ){
+								String string = strSplitArr[i];
+								String[] parts = string.split("-");
+								String part1 = parts[0];
+								String part2 = parts[1];
+								tlist.add(Integer.parseInt(part1));
+								glist.add(part2);
+							}		
 						}
-						
 						newcourse.setCourseInfo(completed, courseTrainer, duration, venue, price, target, description, max);
-						newcourse.setTrainee(tlist);
+						newcourse.setTrainee(tlist,glist);
 						//add to course list
 						list.add(newcourse);
 					}
@@ -100,8 +107,9 @@ class CourseIO{
 				outStream.print(list.get(i).totalNumOfTrainee + DEF_COLDELIMITER);	
 				outStream.print(list.get(i).maxNumOfTrainee + DEF_COLDELIMITER);	
 				ArrayList<Integer> tlist = list.get(i).traineelist;
+				ArrayList<String> glist = list.get(i).gradelist;
 				for(int j = 0; j < tlist.size(); j++ ){
-					outStream.print(tlist.get(j)+ DEF_COLDELIMITER);
+					outStream.print(tlist.get(j) + "-" + glist.get(j) + DEF_COLDELIMITER);
 				}				
 				outStream.println("");
 			}

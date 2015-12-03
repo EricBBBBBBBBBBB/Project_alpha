@@ -21,9 +21,8 @@ class TraineeMenu extends JPanel{
 	
 	private JLabel title;
 	private JButton option1 = new JButton("1. View the Current Available Courses");
-	private JButton option2 = new JButton("2. Join Training Courses");
-	private JButton option3 = new JButton("3. Display Current/completed Courses");
-	private JButton option4 = new JButton("4. Display Targets Set");
+	private JButton option2 = new JButton("2. Display Current/completed Courses");
+	private JButton option3 = new JButton("3. Display Targets Set");
 	
 	private JButton join = new JButton("join");
 
@@ -45,9 +44,17 @@ class TraineeMenu extends JPanel{
 		add(option1);
 		option1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				scrollPane.setBounds(671, 33, TABLE_WIDTH, TABLE_HEIGHT);
+				join.setVisible(true);
+				scrollPane.setBounds(671, 33, TABLE_WIDTH, TABLE_HEIGHT-30);
 				Curriculum.listAvaibleCourse(trainee.upadteTraineeType(),trainee.getUserID());	
 			}
+		});
+		option1.addKeyListener(new KeyAdapter() {
+			public void keyPressed(KeyEvent e) {
+				 if(e.getKeyCode() == KeyEvent.VK_F1) {
+					  option1.doClick();
+				 }
+			} 
 		});
 		
 		//option2
@@ -55,19 +62,8 @@ class TraineeMenu extends JPanel{
 		add(option2);
 		option2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				scrollPane.setBounds(671, 33, TABLE_WIDTH, TABLE_HEIGHT-30);
-				Curriculum.listAvaibleCourse(trainee.upadteTraineeType(),trainee.getUserID());			
-				join.setVisible(true);
-			}
-		});
-		
-		join.setBounds(671, 363, 300, 30);
-		add(join);
-		join.setVisible(false);
-		join.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(value() != -1)
-				Curriculum.joinCourse(value(), trainee.upadteTraineeType(),trainee.getUserID());		
+				scrollPane.setBounds(671, 33, TABLE_WIDTH, TABLE_HEIGHT);
+				Curriculum.listCCCourse(trainee.getUserID());	
 			}
 		});
 		
@@ -77,19 +73,18 @@ class TraineeMenu extends JPanel{
 		option3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				scrollPane.setBounds(671, 33, TABLE_WIDTH, TABLE_HEIGHT);
-				Curriculum.listCCCourse(trainee.getUserID());		
+				Curriculum.listTarget(trainee.getUserID());	
 			}
 		});
 		
-		//option4
-		option4.setBounds(30, 520, BOTTON_WIDTH, BOTTON_HEIGHT);
-		add(option4);
-		option4.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				scrollPane.setBounds(671, 33, TABLE_WIDTH, TABLE_HEIGHT);
-				Curriculum.listTarget(trainee.getUserID());	
+		join.setBounds(671, 363, 300, 30);
+		add(join);
+		join.setVisible(false);
+		join.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {	
+				if(value() != -1) Curriculum.joinCourse(value(), trainee.upadteTraineeType(),trainee.getUserID());		
 			}
-		});		
+		});
 		
     }
 	

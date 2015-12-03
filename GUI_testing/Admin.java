@@ -38,6 +38,6 @@ class Admin extends User{
 			"Date of Birth: \t  " + dateOfBirth + "\n" + 
 			"---------------------------------------------------------------------------\n" +
 			"End of Personal Infomation.\n";
-		test.write(output);
+		OutPutStream.write(output);
 	}
 }

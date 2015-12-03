@@ -40,8 +40,8 @@ class Trainee extends User{
 	public String getTraineeType() {	
 		upadteTraineeType();
 		if(traineeType == 3 ) return "Beginner" ;
-		if(traineeType == 4 ) return "Advanced" ;
-		if(traineeType == 5 ) return "Intermediate" ;
+		if(traineeType == 4 ) return "Intermediate" ;
+		if(traineeType == 5 ) return "Advanced" ;
 		return "Unknown" ;
 	}
 	
@@ -65,7 +65,7 @@ class Trainee extends User{
 			"Current Courses:  " + Curriculum.checkNoOfCurrent(getUserID()) + "\n" + 
 			"---------------------------------------------------------------------------\n" +
 			"End of Personal Infomation.\n";
-		test.write(output);
+		OutPutStream.write(output);
 	}
 	
 }

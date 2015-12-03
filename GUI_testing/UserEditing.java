@@ -1,3 +1,11 @@
+/********************************************
+* Project Team:	
+* Students: 
+* Course: OOP 2015 Sem 1, HDIT
+*
+* Register.java: 
+********************************************/
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -80,7 +88,8 @@ class UserEditing extends JFrame {
 		contentPane.add(phone);
         contentPane.add(okButton);
         contentPane.add(cancel);
-
+		
+/////listener/////////////////////////////////////////////////
 		//name////on ENTER key switch to password 
 		username.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

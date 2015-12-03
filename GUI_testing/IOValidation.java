@@ -10,26 +10,6 @@ import java.util.regex.Pattern;
 import java.util.ArrayList;
 
 class IOValidation{
-
-	public static void main(String[] args) {
-
-        ArrayList<String> emails = new ArrayList<String>();
-        emails.add("2014/9/5");
-        emails.add("2015/12/12");
-        emails.add("1993/5/9");
-        emails.add("1996/2/9");
-         
-        //Invalid emails
-        emails.add("196/2/9");
-        emails.add("1996/20/9");
-        emails.add("1996/2/900");
-        emails.add("2014.9.5");
-        for(int i = 0; i < emails.size(); i++){
-            String email = emails.get(i);
-            System.out.println(email +" : "+ IOValidation.dateValid(email));
-
-        }
-	}
 	
 	public static boolean stringValid(String inStr) {
 		if(inStr.isEmpty()){
@@ -87,7 +67,18 @@ class IOValidation{
         else
             return false;
     }
-	
+
+    public static boolean coursenameValid(String inStr) {
+        if(inStr.isEmpty())
+            return false;
+        String regex = "[a-z]{8,50}";  // set the regex
+        Pattern pattern = Pattern.compile(regex);   // compile the pattern
+        Matcher matcher = pattern.matcher(inStr);   // validate the email
+        if(matcher.matches())
+            return true;
+        else
+            return false;
+    }	
 	
     public static boolean passwordValid(String inStr) {
         if(inStr.isEmpty())

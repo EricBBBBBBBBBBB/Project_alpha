@@ -18,7 +18,7 @@ class CourseSearching extends JFrame implements ActionListener {
         JPanel      comboPanel, okPanel;
 
         JButton     okButton;
-        String[]    comboBoxItem = {"Beginner", "Advanced", "Intermediate","All Course"};
+        String[]    comboBoxItem = {"Beginner", "Intermediate", "Advanced","All Course"};
 
         //set the frame properties
         setSize      (FRAME_WIDTH, FRAME_HEIGHT);

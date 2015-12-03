@@ -28,6 +28,7 @@ class Course{
 	protected String description;
 
     protected ArrayList<Integer> traineelist = new ArrayList<Integer>();
+    protected ArrayList<String> gradelist = new ArrayList<String>();
 	public int totalNumOfTrainee;
 	public int maxNumOfTrainee;
 	protected boolean isAvailable = true;
@@ -57,8 +58,8 @@ class Course{
 	
 	public String getCourseType() {	
 		if(courseType == 3 ) return "Beginner" ;
-		if(courseType == 4 ) return "Advanced" ;
-		if(courseType == 5 ) return "Intermediate" ;
+		if(courseType == 4 ) return "Intermediate" ;
+		if(courseType == 5 ) return "Advanced" ;
 		return "Unknown" ;
 	}
 	
@@ -95,6 +96,10 @@ class Course{
 		return target;
 	}
 	
+	public String getVenue() {
+		return venue;
+	}
+		
 	public int getPrice() {
 		return price;
 	}
@@ -110,6 +115,10 @@ class Course{
 	
 	public ArrayList<Integer> getTrainees(){
 		return traineelist;
+	}
+		
+	public ArrayList<String> getGrades(){
+		return gradelist;
 	}
 	
 	
@@ -138,8 +147,9 @@ class Course{
 		courseTrainerID = uid;	
 	}	
 	
-	public void setTrainee(ArrayList<Integer> list) {
-		traineelist = list;
+	public void setTrainee(ArrayList<Integer> tlist, ArrayList<String> glist) {
+		traineelist = tlist;
+		gradelist = glist;
 	}
 	
 	public void setDescription(String des) {
@@ -169,7 +179,7 @@ class Course{
 			"Description   :  " + description + "\n" +
 			"---------------------------------------------------------------------------\n" +
 			"End of Personal Infomation.\n";
-		test.write(output);
+		OutPutStream.write(output);
 	}
 	
 	public void printCourseTrainee(){
@@ -195,11 +205,12 @@ class Course{
 			tlist +
 			"---------------------------------------------------------------------------\n" +
 			"End of Personal Infomation.\n";
-		test.write(output);		
+		OutPutStream.write(output);		
 	}
 	
 	public void addTrainee(int uid) {
 		traineelist.add(uid);
+		gradelist.add(" ");
 	}
 	
 	public boolean checkid(int uid){

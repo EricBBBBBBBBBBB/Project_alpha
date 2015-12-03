@@ -12,7 +12,6 @@ import javax.swing.*;
 import javax.swing.table.*;
 
 import java.io.*;
-import java.util.Scanner;
 import java.util.ArrayList;
 
 class Curriculum implements Files{
@@ -45,7 +44,7 @@ class Curriculum implements Files{
 	public static void listAvaibleCourse(int type,int uid){
 		
 		String output =  "> List Avaible courses";
-		test.write(output);
+		OutPutStream.write(output);
 		
 		String [] strHeader = {"Course ID", "Course Name", "Course Type", "Price($)"};
 		String [][] strData = new String[courselist.size()][4]; 
@@ -66,7 +65,12 @@ class Curriculum implements Files{
 		if(not) {
 			JOptionPane.showMessageDialog(null, "Not for now.");
 		}else {
-			TableModel  model = new DefaultTableModel(strData,strHeader);
+			TableModel  model = new DefaultTableModel(strData,strHeader) {
+				public boolean isCellEditable(int row, int column)
+				{
+				  return false;
+				}
+			};
 			Menus.table.setModel(model);
 		}
 	}
@@ -74,13 +78,20 @@ class Curriculum implements Files{
 	//Join Courses (Trainee Option 2)
 	public static void joinCourse(int i, int type,int uid){
 		
-		String output =  "> Join courses";
-		test.write(output);
+		String output =  
+			"> Join courses\n" +
+			"> Select one course before click the join button"		
+		;
+		OutPutStream.write(output);
 		int listID = searchcourselistID(i);		
 		
 		if(JOptionPane.showConfirmDialog(null, "Are you sure to pay and join Course [" + i + "] ??", " ",JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
-			courselist.get(listID).addTrainee(uid);
-			JOptionPane.showMessageDialog(null, "Course joined");	
+			if(!courselist.get(listID).checkid(uid)){
+				courselist.get(listID).addTrainee(uid);
+				JOptionPane.showMessageDialog(null, "Course joined");
+			}else{
+				JOptionPane.showMessageDialog(null, "You already joined the course");	
+			}
 		}else{
 			JOptionPane.showMessageDialog(null, "Action was cancelled");	
 		}
@@ -92,7 +103,7 @@ class Curriculum implements Files{
 	public static void listCCCourse(int uid){
 		
 		String output =  "> List Current/Completed courses";
-		test.write(output);
+		OutPutStream.write(output);
 		
 		String [] strHeader = {"Course ID", "Course Name", "Status"};
 		String [][] strData = new String[courselist.size()][3]; 
@@ -109,7 +120,12 @@ class Curriculum implements Files{
 		if(not) {
 			JOptionPane.showMessageDialog(null, "Not for now.");
 		}else {
-			TableModel  model = new DefaultTableModel(strData,strHeader);
+			TableModel  model = new DefaultTableModel(strData,strHeader) {
+				public boolean isCellEditable(int row, int column)
+				{
+				  return false;
+				}
+			};
 			Menus.table.setModel(model);
 		}
 	}	
@@ -131,7 +147,12 @@ class Curriculum implements Files{
 		if(not) {
 			JOptionPane.showMessageDialog(null, "Not for now.");
 		}else {
-			TableModel  model = new DefaultTableModel(strData,strHeader);
+			TableModel  model = new DefaultTableModel(strData,strHeader) {
+				public boolean isCellEditable(int row, int column)
+				{
+				  return false;
+				}
+			};
 			Menus.table.setModel(model);
 		}
 	}
@@ -142,7 +163,7 @@ class Curriculum implements Files{
 	public static void listOwnedCourse(int uid, boolean all){
 		
 		String output =  "> List Owned Courses ";
-		test.write(output);
+		OutPutStream.write(output);
 		
 		String [] strHeader = {"Course ID", "Course Name", "Total", "Status"};
 		String [][] strData = new String[courselist.size()][4]; 
@@ -162,7 +183,12 @@ class Curriculum implements Files{
 		if(not) {
 			JOptionPane.showMessageDialog(null, "Not for now.");
 		}else {
-			TableModel  model = new DefaultTableModel(strData,strHeader);
+			TableModel  model = new DefaultTableModel(strData,strHeader){
+				public boolean isCellEditable(int row, int column)
+				{
+				  return false;
+				}
+			};
 			Menus.table.setModel(model);
 		}
 	}
@@ -199,10 +225,10 @@ class Curriculum implements Files{
 					type =  (courselist.get(i).getCourseType() == "Beginner");
 					break;
 				case 1:
-					type =  (courselist.get(i).getCourseType() == "Advanced");
+					type =  (courselist.get(i).getCourseType() == "Intermediate");
 					break;
 				case 2:
-					type =  (courselist.get(i).getCourseType() == "Intermediate");
+					type =  (courselist.get(i).getCourseType() == "Advanced");
 					break;
 				default:
 					type = true;
@@ -219,7 +245,12 @@ class Curriculum implements Files{
 			JOptionPane.showMessageDialog(null, "Course can't found.");
 		}else {
 			JOptionPane.showMessageDialog(null, "There are " + totSearchNum + " result(s)");
-			TableModel  model = new DefaultTableModel(strData,strHeader);
+			TableModel  model = new DefaultTableModel(strData,strHeader){
+				public boolean isCellEditable(int row, int column)
+				{
+				  return false;
+				}
+			};
 			Menus.table.setModel(model);
 		}
 	
@@ -229,7 +260,7 @@ class Curriculum implements Files{
 	public static void enrolledTrainees(int uid){
 		
 		String output =  "> Courses Enrolled Trainees ";
-		test.write(output);
+		OutPutStream.write(output);
 		
 		String [] strHeader = {"Course ID", "Course Name", "Course Type", "Course Trainees"};
 		String [][] strData = new String[courselist.size()][4]; 
@@ -249,7 +280,12 @@ class Curriculum implements Files{
 		if(not) {
 			JOptionPane.showMessageDialog(null, "Not for now.");
 		}else {
-			TableModel  model = new DefaultTableModel(strData,strHeader);
+			TableModel  model = new DefaultTableModel(strData,strHeader){
+				public boolean isCellEditable(int row, int column)
+				{
+				  return false;
+				}
+			};
 			Menus.table.setModel(model);
 		}
 	}
@@ -257,8 +293,9 @@ class Curriculum implements Files{
 	public static void viewTrainees(int cid){
 		
 		ArrayList<Integer> traineelist = courselist.get(searchcourselistID(cid)).getTrainees();
-		String [] strHeader = {"Trainee ID", "Trainee Name", " ", " "};
-		String [][] strData = new String[traineelist.size()][3]; 
+		ArrayList<String> gradelist = courselist.get(searchcourselistID(cid)).getGrades();
+		String [] strHeader = {"Trainee ID", "Trainee Name", "Trainee Type", "Grade"};
+		String [][] strData = new String[traineelist.size()][4]; 
 		boolean not = true;
 		int row = 0;
 		int tid = 0;
@@ -267,7 +304,8 @@ class Curriculum implements Files{
 			tid = Account.searchuserlistID(traineelist.get(i));
 			strData[row][0] =  Integer.toString(Account.userlist.get(tid).getUserID());
 			strData[row][1] =  Account.userlist.get(tid).getUserName();
-			strData[row++][2] =  ((Trainee)Account.userlist.get(tid)).getTraineeType();
+			strData[row][2] =  ((Trainee)Account.userlist.get(tid)).getTraineeType();
+			strData[row++][3] =  gradelist.get(i);
 			not = false;
 			}
 		if(not) {
@@ -283,7 +321,7 @@ class Curriculum implements Files{
 	public static void completeCourse(int cid, int uid){
 
 		String output =  "> Complete courses";
-		test.write(output);
+		OutPutStream.write(output);
 		
 		int listID = searchcourselistID(cid);	
 		
@@ -332,10 +370,10 @@ class Curriculum implements Files{
 					type =  (courselist.get(i).getCourseType() == "Beginner");
 					break;
 				case 1:
-					type =  (courselist.get(i).getCourseType() == "Advanced");
+					type =  (courselist.get(i).getCourseType() == "Intermediate");
 					break;
 				case 2:
-					type =  (courselist.get(i).getCourseType() == "Intermediate");
+					type =  (courselist.get(i).getCourseType() == "Advanced");
 					break;
 				default:
 					type = true;
@@ -352,7 +390,12 @@ class Curriculum implements Files{
 			JOptionPane.showMessageDialog(null, "Course can't found.");
 		}else {
 			JOptionPane.showMessageDialog(null, "There are " + totSearchNum + " result(s)");
-			TableModel  model = new DefaultTableModel(strData,strHeader);
+			TableModel  model = new DefaultTableModel(strData,strHeader){
+				public boolean isCellEditable(int row, int column)
+				{
+				  return false;
+				}
+			};
 			Menus.table.setModel(model);
 		}
 	
@@ -496,7 +539,7 @@ class Curriculum implements Files{
 	public static void listAll(){
 		
 		String output =  "> List all courses";
-		test.write(output);
+		OutPutStream.write(output);	
 		
 		String [] strHeader = {"Course ID", "Course Name", "Type", "Status"};
 		String [][] strData = new String[courselist.size()][4]; 
@@ -512,7 +555,12 @@ class Curriculum implements Files{
 		if(not) {
 			JOptionPane.showMessageDialog(null, "Not for now.");
 		}else {
-			TableModel  model = new DefaultTableModel(strData,strHeader);
+			TableModel  model = new DefaultTableModel(strData,strHeader) {
+				public boolean isCellEditable(int row, int column)
+				{
+				  return false;
+				}
+			};
 			Menus.table.setModel(model);
 		}
 	}

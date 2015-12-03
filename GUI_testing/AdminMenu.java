@@ -12,14 +12,12 @@ import javax.swing.*;
 
 class AdminMenu extends JPanel{
 
-
 	private JScrollPane scrollPane;
 	private static final int BOTTON_WIDTH    = 300;
     private static final int BOTTON_HEIGHT   = 25;
 	private static final int TABLE_WIDTH    = 300;
     private static final int TABLE_HEIGHT   = 360;
 
-	
 	private JLabel title;
 	//Users Detailed Information
 	private JButton option1 = new JButton("1. List All Users ");
@@ -44,7 +42,7 @@ class AdminMenu extends JPanel{
 		//table
 		Menus.table = new JTable();
 		scrollPane = new JScrollPane(Menus.table);
-		scrollPane.setBounds(671, 33, TABLE_WIDTH, TABLE_HEIGHT-30);
+		scrollPane.setBounds(671, 33, TABLE_WIDTH, TABLE_HEIGHT);
 		add(scrollPane);
 		
 /////Users Detailed Information		
@@ -53,6 +51,7 @@ class AdminMenu extends JPanel{
 		add(option1);
 		option1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				scrollPane.setBounds(671, 33, TABLE_WIDTH, TABLE_HEIGHT-30);
 				setting(1);
 				Account.listAll();
 			}
@@ -75,8 +74,8 @@ class AdminMenu extends JPanel{
 		option3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setting(1);
-				Register register = new Register();
-				register.register(false);
+				Register frame = new Register(false);
+				frame.setVisible(true);
 				Account.listAll();
 			}
 		});		
@@ -87,6 +86,7 @@ class AdminMenu extends JPanel{
 		add(option4);
 		option4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				scrollPane.setBounds(671, 33, TABLE_WIDTH, TABLE_HEIGHT-30);
 				setting(2);
 				Curriculum.listAll();
 			}
@@ -109,9 +109,8 @@ class AdminMenu extends JPanel{
 		option6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setting(2);
-				CourseCreate coursecreate = new CourseCreate();
-				coursecreate.coursecreate();
-				Curriculum.listAll();
+				CourseCreate frame = new CourseCreate(admin);
+				frame.setVisible(true);
 			}
 		});			
 		
@@ -127,8 +126,8 @@ class AdminMenu extends JPanel{
 					}
 				}else{
 					if(value() != -1){
-						//CourseEditing frame = new CourseEditing(value());
-						//frame.setVisible(true);
+						CourseEditing frame = new CourseEditing(value());
+						frame.setVisible(true);
 					}
 				}	
 			}
@@ -149,7 +148,7 @@ class AdminMenu extends JPanel{
 	
     }
 	
-	public int value(){
+	private int value(){
 		if(Menus.table.getValueAt(Menus.table.getSelectedRow(), 0) != null){
 			String inStr = 	Menus.table.getValueAt(Menus.table.getSelectedRow(), 0).toString();
 			if(IOValidation.numberValid(inStr)){

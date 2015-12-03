@@ -9,6 +9,7 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import java.util.ArrayList;
 
 class TrainerMenu extends JPanel{
 
@@ -25,6 +26,7 @@ class TrainerMenu extends JPanel{
 	
 	private JButton complete = new JButton("Complete");
 	private JButton view = new JButton("View Trainees");
+	private JButton save = new JButton("Save");
 	private JButton back = new JButton("Back");
 
 	public TrainerMenu(Trainer trainer){
@@ -69,6 +71,7 @@ class TrainerMenu extends JPanel{
 				scrollPane.setBounds(671, 33, TABLE_WIDTH, TABLE_HEIGHT-30);
 				Menus.Detail = 3;
 				Curriculum.enrolledTrainees(trainer.getUserID());
+				complete.setVisible(false);
 				view.setVisible(true);
 			}
 		});
@@ -83,26 +86,51 @@ class TrainerMenu extends JPanel{
 					Curriculum.viewTrainees(value());
 					view.setVisible(false);
 					back.setVisible(true);
+					save.setVisible(true);
 				}
 				
 			}
 		});			
 		
-		back.setBounds(671, 363, 300, 30);
+		save.setBounds(671, 363, 150, 30);
+		add(save);
+		save.setVisible(false);
+		save.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				int i;
+				int listID = Curriculum.searchcourselistID(value());
+				ArrayList<String> glist = Curriculum.courselist.get(listID).gradelist;
+				String getText;
+			
+				for(i = 0 ; i < glist.size() ; i++ ){
+					getText = Menus.table.getValueAt(i,3).toString();
+					if(!(getText.equals("A") || getText.equals("B") || getText.equals("C"))) {
+						JOptionPane.showMessageDialog(null, "The Grade field is only allow A, B or C.");
+						return;
+					}
+					glist.set(i,getText);
+				}
+				Curriculum.courselist.get(listID).gradelist = glist;
+				JOptionPane.showMessageDialog(null, "Grade Saved.");
+				
+			}
+		});
+		
+		back.setBounds(821, 363, 150, 30);
 		add(back);
 		back.setVisible(false);
 		back.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(value() != -1){
 					Menus.Detail = 3;
 					Curriculum.enrolledTrainees(trainer.getUserID());
 					back.setVisible(false);
-					view.setVisible(true);
-				}
-				
+					back.setVisible(false);
+					view.setVisible(true);		
 			}
 		});	
 		
+			
 		//option4
 		option4.setBounds(30, 520, BOTTON_WIDTH, BOTTON_HEIGHT);
 		add(option4);
@@ -111,6 +139,7 @@ class TrainerMenu extends JPanel{
 				scrollPane.setBounds(671, 33, TABLE_WIDTH, TABLE_HEIGHT-30);
 				Curriculum.listOwnedCourse(trainer.getUserID(),false);	
 				Menus.Detail = 2;
+				view.setVisible(false);
 				complete.setVisible(true);
 			}
 		});

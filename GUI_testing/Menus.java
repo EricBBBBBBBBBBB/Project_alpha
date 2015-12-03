@@ -124,7 +124,7 @@ class MenusPanel extends JPanel implements Files {
 			}
 		});		
 		
-		add(new test(u));
+		add(new OutPutStream(u));
 		
 		//for clicking table
 		Menus.table.addMouseListener(new Click());

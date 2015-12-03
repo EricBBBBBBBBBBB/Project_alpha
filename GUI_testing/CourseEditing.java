@@ -19,7 +19,7 @@ import java.time.LocalDate;
 import java.text.ParseException;
 
 
-class CourseCreate extends JFrame {
+class CourseEditing extends JFrame {
 	
 //////Data Members
     private static final int FRAME_WIDTH    = 360;
@@ -28,7 +28,7 @@ class CourseCreate extends JFrame {
 	
 	
 	
-	public CourseCreate(User user) {
+	public CourseEditing(int cid) {
 		Container   contentPane;
 
         JButton 	create;
@@ -56,7 +56,8 @@ class CourseCreate extends JFrame {
 
         contentPane = getContentPane();
         contentPane.setLayout(null);
-		contentPane.setBackground( new Color(26, 188, 156) );
+
+		listID = Curriculum.searchcourselistID(cid);
 		
 
 		//messae box
@@ -82,6 +83,7 @@ class CourseCreate extends JFrame {
 		courseLabel.setBounds(10, 220, 80, 25);
 		coursename = new JTextField(20);
 		coursename.setBounds(100, 220, 160, 25);
+		coursename.setText(Curriculum.courselist.get(listID).getCourseName());
 
 		//trainer id
 		JLabel trainerLabel = new JLabel("Trainer ID:");
@@ -125,18 +127,21 @@ class CourseCreate extends JFrame {
 		venueLabel.setBounds(10, 420, 80, 25);
 		venue = new JTextField(20);
 		venue.setBounds(100, 420, 160, 25);
+		venue.setText(Curriculum.courselist.get(listID).getVenue());
 		
 		//Target
 		JLabel targetLabel = new JLabel("Target:");
 		targetLabel.setBounds(10, 460, 80, 25);
 		target = new JTextField(20);
 		target.setBounds(100, 460, 160, 25);
+		target.setText(Curriculum.courselist.get(listID).getTarget());
 		
 		//Description
 		JLabel descriotionLabel = new JLabel("Description:");
 		descriotionLabel.setBounds(10, 500, 80, 25);
 		descriotion = new JTextField(20);
 		descriotion.setBounds(100, 500, 160, 25);
+		descriotion.setText(Curriculum.courselist.get(listID).getDescription());
 		
 		//Create
 		create = new JButton("Create");

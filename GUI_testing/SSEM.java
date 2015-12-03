@@ -175,8 +175,8 @@ class SSEMPanel extends JPanel {
 		signupButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) { 
 				SSEM.main.setVisible(false);
-				Register register = new Register();
-				register.register(true);
+				Register frame = new Register(true);
+				frame.setVisible(true);
 			}
 		});
 		

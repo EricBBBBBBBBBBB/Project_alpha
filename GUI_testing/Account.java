@@ -19,7 +19,6 @@ public class Account implements Files{
 
 // Declare data members 
 	public static ArrayList<User> userlist = new ArrayList<User>();
-	
 
 // Methods 
 	//Initialization User List
@@ -129,7 +128,12 @@ public class Account implements Files{
 			JOptionPane.showMessageDialog(null, "User can't found.");
 		}else {
 			JOptionPane.showMessageDialog(null, "There are " + totSearchNum + " result(s)");
-			TableModel  model = new DefaultTableModel(strData,strHeader);
+			TableModel  model = new DefaultTableModel(strData,strHeader) {
+				public boolean isCellEditable(int row, int column)
+				{
+				  return false;
+				}
+			};
 			Menus.table.setModel(model);
 		}
             
@@ -149,7 +153,7 @@ public class Account implements Files{
 	public static void listAll(){
 
 		String output =  "> List all courses";
-		test.write(output);
+		OutPutStream.write(output);
 		
 		String [] strHeader = {"User ID", "User Name", "User Type"};
 		String [][] strData = new String[userlist.size()][3]; 
@@ -168,7 +172,12 @@ public class Account implements Files{
 		if(not) {
 			JOptionPane.showMessageDialog(null, "Not for now.");
 		}else {
-			TableModel  model = new DefaultTableModel(strData,strHeader);
+			TableModel  model = new DefaultTableModel(strData,strHeader) {
+				public boolean isCellEditable(int row, int column)
+				{
+				  return false;
+				}
+			};
 			Menus.table.setModel(model);
 		}		
 		
